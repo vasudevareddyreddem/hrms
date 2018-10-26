@@ -1,5 +1,4 @@
-<?php include("header.php"); ?>
-<?php include("sidebar.php"); ?>
+
             <div class="page-wrapper">
                 <div class="content container-fluid">	
 					<div class="row">
@@ -7,7 +6,7 @@
 							<h4 class="page-title">Employee</h4>
 						</div>
 						<div class="col-xs-8 text-right m-b-30">
-							<a href="addemployee.php" class="btn btn-primary pull-right rounded" ><i class="fa fa-plus"></i> Add Employee</a>
+							<a href="<?php echo base_url('employee/addemployee');?>" class="btn btn-primary pull-right rounded" ><i class="fa fa-plus"></i> Add Employee</a>
 						
 						</div>
 					</div>
@@ -401,7 +400,7 @@
 					</div>
 				</div>
 			</div>
-<?php include("footer.php"); ?>
+
 <script>
   $(function () {
     $("#example1").DataTable();

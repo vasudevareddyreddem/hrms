@@ -1,5 +1,4 @@
-<?php include("header.php"); ?>
-<?php include("sidebar.php"); ?>
+
              <div class="page-wrapper">
                 <div class="content container-fluid">
 					<div class="row">
@@ -13,7 +12,7 @@
 							<div class="row">
 								<div class="col-md-12">
 									<div class="profile-img-wrap">
-										<img class="inline-block" src="assets/img/user.jpg" alt="user">
+										<img class="inline-block" src="<?php echo base_url();?>assets/vendor/img/user.jpg" alt="user">
 										<div class="fileupload btn btn-default">
 											<span class="btn-text">edit</span>
 											<input class="upload" type="file">
@@ -382,4 +381,4 @@
 					</div>
 				</div>
 			</div>
-<?php include("footer.php"); ?>
+

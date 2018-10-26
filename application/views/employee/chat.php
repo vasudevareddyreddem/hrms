@@ -1,5 +1,4 @@
-<?php include("header.php"); ?>
-<?php include("sidebar-chat.php"); ?> 
+
 <div class="page-wrapper">
 				<div class="chat-main-row">
 					<div class="chat-main-wrapper">
@@ -64,7 +63,7 @@
 													<div class="chat chat-left">
 														<div class="chat-avatar">
 															<a href="profile.html" class="avatar">
-																<img alt="John Doe" src="assets/img/user.jpg" class="img-responsive img-circle">
+																<img alt="John Doe" src="<?php echo base_url();?>assets/vendor/img/user.jpg" class="img-responsive img-circle">
 															</a>
 														</div>
 														<div class="chat-body">
@@ -130,7 +129,7 @@
 													<div class="chat chat-left">
 														<div class="chat-avatar">
 															<a href="profile.html" class="avatar">
-															<img alt="John Doe" src="assets/img/user.jpg" class="img-responsive img-circle">
+															<img alt="John Doe" src="<?php echo base_url();?>assets/vendor/img/user.jpg" class="img-responsive img-circle">
 															</a>
 														</div>
 														<div class="chat-body">
@@ -230,7 +229,7 @@
 													<div class="chat chat-left">
 														<div class="chat-avatar">
 															<a href="profile.html" class="avatar">
-																<img alt="John Doe" src="assets/img/user.jpg" class="img-responsive img-circle">
+																<img alt="John Doe" src="<?php echo base_url();?>assets/vendor/img/user.jpg" class="img-responsive img-circle">
 															</a>
 														</div>
 														<div class="chat-body">
@@ -342,7 +341,7 @@
 													<div class="chat chat-left">
 														<div class="chat-avatar">
 															<a href="profile.html" class="avatar">
-																<img alt="John Doe" src="assets/img/user.jpg" class="img-responsive img-circle">
+																<img alt="John Doe" src="<?php echo base_url();?>assets/vendor/img/user.jpg" class="img-responsive img-circle">
 															</a>
 														</div>
 														<div class="chat-body">
@@ -385,7 +384,7 @@
 													<div class="chat chat-left">
 														<div class="chat-avatar">
 															<a href="profile.html" class="avatar">
-																<img alt="John Doe" src="assets/img/user.jpg" class="img-responsive img-circle">
+																<img alt="John Doe" src="<?php echo base_url();?>assets/vendor/img/user.jpg" class="img-responsive img-circle">
 															</a>
 														</div>
 														<div class="chat-body">
@@ -519,4 +518,4 @@
 				
 				
             </div>
-<?php include("footer.php"); ?>
+

@@ -1,5 +1,4 @@
-<?php include("header.php"); ?>
-<?php include("sidebar.php"); ?>
+
 <div class="page-wrapper">
                 <div class="content container-fluid bg-white">
 					<div class="row">
@@ -76,7 +75,7 @@
                 </div>
 				
             </div>
-<?php include("footer.php"); ?>
+
 <script>
   $(function () {
     $("#example1").DataTable();

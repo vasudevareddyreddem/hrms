@@ -1,5 +1,4 @@
-<?php include("header.php"); ?>
-<?php include("sidebar.php"); ?>
+
             <div class="page-wrapper">
                 <div class="content container-fluid bg-white">	
 					<div class="row">
@@ -7,7 +6,7 @@
 							<h4 class="page-title">Employee</h4>
 						</div>
 						<div class="col-xs-8 text-right m-b-30">
-							<a href="salarylist.php" class="btn btn-primary pull-right rounded"> Salary Lists</a>
+							<a href="<?php echo base_url('employee/salarylist');?>" class="btn btn-primary pull-right rounded"> Salary Lists</a>
 						
 						</div>
 					</div>
@@ -106,7 +105,7 @@
 				</div>
 			</div>
 			
-<?php include("footer.php"); ?>
+
 
 
 

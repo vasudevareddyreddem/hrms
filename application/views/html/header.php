@@ -23,8 +23,8 @@
         <div class="main-wrapper">
             <div class="header">
                 <div class="header-left">
-                    <a href="index.php" class="logo">
-						<img class="img-responsive" src="assets/img/logo.png" alt="">
+                    <a href="<?php echo base_url('dashboard'); ?>" class="logo">
+						<img class="img-responsive" src="<?php echo base_url(); ?>assets/vendor/img/logo.png" alt="">
 					</a>
                 </div>
                 <div class="page-title-box pull-left">
@@ -44,7 +44,7 @@
 										<a href="#">
 											<div class="media-left">
 												<span class="avatar">
-													<img alt="John Doe" src="assets/img/user.jpg" class="img-responsive img-circle">
+													<img alt="John Doe" src="<?php echo base_url();?>assets/vendor/img/user.jpg" class="img-responsive img-circle">
 												</span>
 											</div>
 											<div class="media-body">
@@ -109,16 +109,16 @@
 					</li>	
 					<li class="dropdown">
 						<a href="profile.html" class="dropdown-toggle user-link" data-toggle="dropdown" title="Admin">
-							<span class="user-img"><img class="img-circle" src="assets/img/user.jpg" width="40" alt="Admin">
+							<span class="user-img"><img class="img-circle" src="<?php echo base_url();?>assets/vendor/img/user.jpg" width="40" alt="Admin">
 							<span class="status online"></span></span>
 							<span>Admin</span>
 							<i class="caret"></i>
 						</a>
 						<ul class="dropdown-menu">
-							<li><a href="employee-details.php">My Profile</a></li>
-							<li><a href="edit-profile.php">Edit Profile</a></li>
+							<li><a href="<?php echo base_url('employee/profile');?>">My Profile</a></li>
+							<li><a href="<?php echo base_url('employee/editprofile');?>">Edit Profile</a></li>
 						
-							<li><a href="login.php">Logout</a></li>
+							<li><a href="<?php echo base_url('dashboard/logout'); ?>">Logout</a></li>
 						</ul>
 					</li>
 				</ul>
@@ -132,3 +132,13 @@
 					</ul>
 				</div>
             </div>
+			<?php if($this->session->flashdata('success')): ?>
+				<div class="alert_msg1 animated slideInUp bg-succ">
+				<?php echo $this->session->flashdata('success');?> &nbsp; <i class="fa fa-check text-success ico_bac" aria-hidden="true"></i>
+				</div>
+			<?php endif; ?>
+			<?php if($this->session->flashdata('error')): ?>
+				<div class="alert_msg1 animated slideInUp bg-warn">
+				<?php echo $this->session->flashdata('error');?> &nbsp; <i class="fa fa-exclamation-triangle text-warning ico_bac" aria-hidden="true"></i>
+				</div>
+			<?php endif; ?>

@@ -41,7 +41,7 @@
 											<td>Salesman</td>
 											<td>Kondareddy Circle</td>
 											<td class="text-right">
-												<a href="track-details.php" class="btn btn-warning btn-sm" ><i class="fa fa-thumb-tack m-r-5"></i> Track</a>
+												<a href="<?php echo base_url('employee/trackdetails'); ?>" class="btn btn-warning btn-sm" ><i class="fa fa-thumb-tack m-r-5"></i> Track</a>
 											</td>
 										</tr>
 										

@@ -13,6 +13,8 @@ class Hrmsmanagement extends CI_Controller
 			
 			$this->load->view('html/header');
 			$this->load->view('html/sidebar');
+			$this->load->view('html/footer');
+
 
 			}
 	}
@@ -24,55 +26,20 @@ class Hrmsmanagement extends CI_Controller
 		if(!$this->session->userdata('hrmsdetails'))
 		{	 
 		
-	     $this->load->view('html/login');
-	    
+	     $this->load->view('html/login'); 
 	}
   
 }
-public function dashboard(){
-	   
-	  if(!$this->session->userdata('hrmsdetails'))
+ public function forgot(){
+	 if(!$this->session->userdata('hrmsdetails'))
 		{	 
-		 $this->load->view('html/header');
-	     $this->load->view('hrmsmanagement/index');
-	     $this->load->view('html/sidebar');
+		 
+	     $this->load->view('html/forget-password');   
 	} 
-	   
-	   
-	   
-   }
+		
+}
 
- public function attendance(){
-	   
-	  if(!$this->session->userdata('hrmsdetails'))
-		{	 
-		 $this->load->view('html/header');
-	     $this->load->view('hrmsmanagement/attendence');
-	     $this->load->view('html/sidebar');
-	} 
-	   
-	   
-	   
-   }
-
-   public function saleman_track(){
-	   
-	  if(!$this->session->userdata('hrmsdetails'))
-		{	 
-		 $this->load->view('html/header');
-	     $this->load->view('hrmsmanagement/salestrack');
-	     $this->load->view('html/sidebar');
-	} 
-	   
-	   
-	   
-   }
-
-
-
-
-
-
+ 
 
 }
 ?>

@@ -1,53 +1,66 @@
-<?php include("header.php"); ?>
-<?php include("sidebar.php"); ?>
+
             <div class="page-wrapper">
-                <div class="content container-fluid bg-white">
+                <div class="content container-fluid">	
 					<div class="row">
 						<div class="col-xs-4">
-							<h4 class="page-title">Employee Salary List</h4>
+							<h4 class="page-title">Employee Attendance</h4>
 						</div>
 						<div class="col-xs-8 text-right m-b-30">
-							<a href="addsalery.php" class="btn btn-primary rounded pull-right">  Add Salary</a>
+							&nbsp;
+						
 						</div>
 					</div>
-					<hr>
+					<form>
+					
 					<div class="row">
-						<div class="col-md-12">
-						
+						<div class="col-md-12 bg-white">
+						<div class="clearfix">&nbsp;</div>
 							<div class="table-responsive">
-								<table id="example1" class="table table-bordered table-striped">
+									<table id="example1" class="table table-bordered table-striped">
 									<thead>
 										<tr>
-											<th style="width:30%;">Employee</th>
+											<th style="width:30%;">Name</th>
 											<th>Employee ID</th>
-											<th>Email</th>
-											<th>Joining Date</th>
 											<th>Role</th>
-											<th>Salary</th>
-											<th>Payslip</th>
+											<th>Mobile</th>
+											<th>Month</th>
 											<th class="text-right">Action</th>
 										</tr>
 									</thead>
 									<tbody>
+										
+									
 										<tr>
 											<td>
-												<a href="profile.html" class="avatar">J</a>
-												<h2><a href="profile.html">John Doe <span>Web Designer</span></a></h2>
+												<a href="#" class="avatar">J</a>
+												<h2><a href="#">Jeffrey Warden <span>Shift Incharge</span></a></h2>
 											</td>
-											<td>FT-0001</td>
-											<td>johndoe@example.com</td>
-											<td>1 Jan 2013</td>
+											<td>FT-0006</td>
 											<td>Shift Incharge</td>
-											<td>₹59698</td>
-											<td><a class="btn btn-xs btn-primary" href="payslip.php">Generate Slip</a></td>
-											<td class="text-right">
-												<div class="dropdown">
-													<a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-ellipsis-v"></i></a>
-													<ul class="dropdown-menu pull-right">
-														<li><a href="#" data-toggle="modal" data-target="#edit_salary" title="Edit"><i class="fa fa-pencil m-r-5"></i> Edit</a></li>
-														<li><a href="#" data-toggle="modal" data-target="#delete_salary" title="Delete"><i class="fa fa-trash-o m-r-5"></i> Delete</a></li>
-													</ul>
-												</div>
+											<td>9876543210</td>
+											<td>
+												<select class="form-control">
+													<option>Select</option>
+													<option>Jan</option>
+													<option>Feb</option>
+													<option>Mar</option>
+													<option>Apr</option>
+													<option>May</option>
+													<option>Jun</option>
+													<option>Jul</option>
+													<option>Aug</option>
+													<option>Sep</option>
+													<option>Oct</option>
+													<option>Nov</option>
+													<option>Dec</option>
+												</select>
+											</td>
+											
+											
+											<td class="text-center">
+												<a href="<?php echo base_url('employee/viewattendance'); ?>"><span class="btn btn-sm btn-primary">
+												<i class="fa fa-eye m-r-5"></i> View
+												</span></a>
 											</td>
 										</tr>
 										
@@ -65,7 +78,7 @@
 						<div class="drop-scroll msg-list-scroll">
 							<ul class="list-box">
 								<li>
-									<a href="chat.html">
+									<a href="#">
 										<div class="list-item">
 											<div class="list-left">
 												<span class="avatar">R</span>
@@ -80,7 +93,7 @@
 									</a>
 								</li>
 								<li>
-									<a href="chat.html">
+									<a href="#">
 										<div class="list-item new-message">
 											<div class="list-left">
 												<span class="avatar">J</span>
@@ -95,7 +108,7 @@
 									</a>
 								</li>
 								<li>
-									<a href="chat.html">
+									<a href="#">
 										<div class="list-item">
 											<div class="list-left">
 												<span class="avatar">T</span>
@@ -110,7 +123,7 @@
 									</a>
 								</li>
 								<li>
-									<a href="chat.html">
+									<a href="#">
 										<div class="list-item">
 											<div class="list-left">
 												<span class="avatar">M</span>
@@ -125,7 +138,7 @@
 									</a>
 								</li>
 								<li>
-									<a href="chat.html">
+									<a href="#">
 										<div class="list-item">
 											<div class="list-left">
 												<span class="avatar">C</span>
@@ -140,7 +153,7 @@
 									</a>
 								</li>
 								<li>
-									<a href="chat.html">
+									<a href="#">
 										<div class="list-item">
 											<div class="list-left">
 												<span class="avatar">D</span>
@@ -155,7 +168,7 @@
 									</a>
 								</li>
 								<li>
-									<a href="chat.html">
+									<a href="#">
 										<div class="list-item">
 											<div class="list-left">
 												<span class="avatar">B</span>
@@ -170,7 +183,7 @@
 									</a>
 								</li>
 								<li>
-									<a href="chat.html">
+									<a href="#">
 										<div class="list-item">
 											<div class="list-left">
 												<span class="avatar">R</span>
@@ -185,7 +198,7 @@
 									</a>
 								</li>
 								<li>
-									<a href="chat.html">
+									<a href="#">
 										<div class="list-item">
 											<div class="list-left">
 												<span class="avatar">C</span>
@@ -200,7 +213,7 @@
 									</a>
 								</li>
 								<li>
-									<a href="chat.html">
+									<a href="#">
 										<div class="list-item">
 											<div class="list-left">
 												<span class="avatar">M</span>
@@ -215,7 +228,7 @@
 									</a>
 								</li>
 								<li>
-									<a href="chat.html">
+									<a href="#">
 										<div class="list-item">
 											<div class="list-left">
 												<span class="avatar">J</span>
@@ -230,7 +243,7 @@
 									</a>
 								</li>
 								<li>
-									<a href="chat.html">
+									<a href="#">
 										<div class="list-item">
 											<div class="list-left">
 												<span class="avatar">L</span>
@@ -245,7 +258,7 @@
 									</a>
 								</li>
 								<li>
-									<a href="chat.html">
+									<a href="#">
 										<div class="list-item">
 											<div class="list-left">
 												<span class="avatar">T</span>
@@ -262,123 +275,112 @@
 							</ul>
 						</div>
 						<div class="topnav-dropdown-footer">
-							<a href="chat.html">See all messages</a>
+							<a href="#">See all messages</a>
 						</div>
 					</div>
 				</div>
             </div>
 			
-			<div id="edit_salary" class="modal custom-modal fade " role="dialog">
+			<div id="edit_employee" class="modal custom-modal fade" role="dialog">
 				<div class="modal-dialog">
 					<button type="button" class="close" data-dismiss="modal">&times;</button>
 					<div class="modal-content modal-lg">
 						<div class="modal-header">
-							<h4 class="modal-title">Add Staff Salary</h4>
+							<h4 class="modal-title">Edit Employee</h4>
 						</div>
 						<div class="modal-body">
-							<form>
-								<div class="row"> 
-									<div class="col-md-6"> 
+							<form class="m-b-30">
+								<div class="row">
+									<div class="col-sm-6">
 										<div class="form-group">
-											<label>Select Staff</label>
-											<select class="select"> 
-												<option>John Doe</option>
-												<option>Richard Miles</option>
+											<label class="control-label">First Name <span class="text-danger">*</span></label>
+											<input class="form-control" value="John" type="text">
+										</div>
+									</div>
+									<div class="col-sm-6">
+										<div class="form-group">
+											<label class="control-label">Last Name</label>
+											<input class="form-control" value="Doe" type="text">
+										</div>
+									</div>
+									<div class="col-sm-6">
+										<div class="form-group">
+											<label class="control-label">Username <span class="text-danger">*</span></label>
+											<input class="form-control" value="johndoe" type="text">
+										</div>
+									</div>
+									<div class="col-sm-6">
+										<div class="form-group">
+											<label class="control-label">Email <span class="text-danger">*</span></label>
+											<input class="form-control" value="johndoe@example.com" type="email">
+										</div>
+									</div>
+									<div class="col-sm-6">
+										<div class="form-group">
+											<label class="control-label">Password</label>
+											<input class="form-control" value="johndoe" type="password">
+										</div>
+									</div>
+									<div class="col-sm-6">
+										<div class="form-group">
+											<label class="control-label">Confirm Password</label>
+											<input class="form-control" value="johndoe" type="password">
+										</div>
+									</div>
+									<div class="col-sm-6">  
+										<div class="form-group">
+											<label class="control-label">Employee ID <span class="text-danger">*</span></label>
+											<input type="text" value="FT-0001" readonly="" class="form-control floating">
+										</div>
+									</div>
+									<div class="col-sm-6">  
+										<div class="form-group">
+											<label class="control-label">Joining Date <span class="text-danger">*</span></label>
+											<div class="cal-icon"><input class="form-control datetimepicker" type="text"></div>
+										</div>
+									</div>
+									<div class="col-sm-6">
+										<div class="form-group">
+											<label class="control-label">Phone </label>
+											<input class="form-control" value="9843014641" type="text">
+										</div>
+									</div>
+									
+									<div class="col-sm-6">
+										<div class="form-group">
+											<label class="control-label">Designation</label>
+											<select class="select">
+														<option value="">Select Designation</option>
+														<option value="">General Manager</option>
+														<option value="">Assistant General Manager</option>
+														<option value="">Production Manager</option>
+														<option value="">Assistant Production Manager</option>
+														<option value="1">Shift Incharge</option>
+														<option value="1">Senior Trainee</option>
+														<option value="1">Junior  Trainee</option>
 											</select>
 										</div>
 									</div>
-									<div class="col-md-6"> 
-										<label>Net Salary</label>
-										<input class="form-control" type="text" value="$4000">
-									</div>
 								</div>
-								<div class="row"> 
-									<div class="col-md-6"> 
-										<h4 class="text-primary">Earnings</h4>
-										<div class="form-group">
-											<label>Basic</label>
-											<input class="form-control" type="text" value="$6500">
-										</div>
-										<div class="form-group">
-											<label>DA(40%)</label>
-											<input class="form-control" type="text" value="$2000">
-										</div>
-										<div class="form-group">
-											<label>HRA(15%)</label>
-											<input class="form-control" type="text" value="$700">
-										</div>
-										<div class="form-group">
-											<label>Conveyance</label>
-											<input class="form-control" type="text" value="$70">
-										</div>
-										<div class="form-group">
-											<label>Allowance</label>
-											<input class="form-control" type="text" value="$30">
-										</div>
-										<div class="form-group">
-											<label>Medical  Allowance</label>
-											<input class="form-control" type="text" value="$20">
-										</div>
-										<div class="form-group">
-											<label>Others</label>
-											<input class="form-control" type="text">
-										</div>  
-									</div>
-									<div class="col-md-6">  
-										<h4 class="text-primary">Deductions</h4>
-										<div class="form-group">
-											<label>TDS</label>
-											<input class="form-control" type="text" value="$300">
-										</div> 
-										<div class="form-group">
-											<label>ESI</label>
-											<input class="form-control" type="text" value="$20">
-										</div>
-										<div class="form-group">
-											<label>PF</label>
-											<input class="form-control" type="text" value="$20">
-										</div>
-										<div class="form-group">
-											<label>Leave</label>
-											<input class="form-control" type="text" value="$250">
-										</div>
-										<div class="form-group">
-											<label>Prof. Tax</label>
-											<input class="form-control" type="text" value="$110">
-										</div>
-										<div class="form-group">
-											<label>Labour Welfare</label>
-											<input class="form-control" type="text" value="$10">
-										</div>
-										<div class="form-group">
-											<label>Fund</label>
-											<input class="form-control" type="text" value="$40">
-										</div>
-										<div class="form-group">
-											<label>Others</label>
-											<input class="form-control" type="text" value="$15">
-										</div>
-									</div>
-								</div>
+								
 								<div class="m-t-20 text-center">
-									<button class="btn btn-primary">Save & Update</button>
+									<button class="btn btn-primary">Save Changes</button>
 								</div>
 							</form>
 						</div>
 					</div>
 				</div>
 			</div>
-			<div id="delete_salary" class="modal custom-modal fade" role="dialog">
+			<div id="delete_employee" class="modal custom-modal fade" role="dialog">
 				<div class="modal-dialog">
 					<div class="modal-content modal-md">
 						<div class="modal-header">
-							<h4 class="modal-title">Delete Salary</h4>
+							<h4 class="modal-title">Delete Employee</h4>
 						</div>
 						<form>
 							<div class="modal-body card-box">
 								<p>Are you sure want to delete this?</p>
-								<div class="m-t-20 text-left">
-									<a href="#" class="btn btn-default" data-dismiss="modal">Close</a>
+								<div class="m-t-20"> <a href="#" class="btn btn-default" data-dismiss="modal">Close</a>
 									<button type="submit" class="btn btn-danger">Delete</button>
 								</div>
 							</div>
@@ -386,9 +388,7 @@
 					</div>
 				</div>
 			</div>
-        </div>
 
-<?php include("footer.php"); ?>
 <script>
   $(function () {
     $("#example1").DataTable();
@@ -402,3 +402,5 @@
     });
   });
 </script>
+
+
