@@ -14,7 +14,7 @@ class In_frontend extends CI_Controller {
 		$this->load->library('user_agent');
 		$this->load->helper('directory');
 		$this->load->helper('security');
-		$this->load->model('Hrmsmanagement_model');
+		$this->load->model('User_model');
 		$this->load->model('Employees_model');
 		
 	
