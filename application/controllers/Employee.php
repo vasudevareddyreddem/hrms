@@ -80,8 +80,15 @@ public function salary(){
     if(!$this->session->userdata('hrmsdetails'))
 		{	
          $admindetails=$this->session->userdata('hrmsdetails');	
+         $this->db->select('*');
+$this->db->from('employee');
+$this->db->join('salary_tab', 'employee.e_id = salary_tab.emp_id');
+$query = $this->db->get();
+$data['data']=$query->result();
+	
+
 		 $this->load->view('html/header');
-	     $this->load->view('employee/salarylist');
+	     $this->load->view('employee/salarylist',$data);
 	     $this->load->view('html/sidebar');
 	     $this->load->view('html/footer');
 	    
@@ -91,8 +98,15 @@ public function addsalary(){
     if(!$this->session->userdata('hrmsdetails'))
 		{	
          $admindetails=$this->session->userdata('hrmsdetails');	
+      
+ $query = $this->db->get('employee');
+$data['data']=$query->result();
+// print_r($data);
+// exit();
+             
+
 		 $this->load->view('html/header');
-	     $this->load->view('employee/addsalery');
+	     $this->load->view('employee/addsalery', $data);
 	     $this->load->view('html/sidebar');
 	     $this->load->view('html/footer');
 	    
