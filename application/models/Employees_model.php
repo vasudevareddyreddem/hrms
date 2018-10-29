@@ -16,7 +16,7 @@ class Employees_model extends CI_Model
 	}	
 	public function employee_data_list(){
 		$this->db->select('*')->from('empployee');
-		 $this->db->where('status',1);
+		 $this->db->where('status !=', 2);
 		return $this->db->get()->result_array();
 		
 	}
@@ -25,6 +25,26 @@ class Employees_model extends CI_Model
 		$this->db->where('empployee.e_email_work',$e_email_work);
 		return $this->db->get()->row_array();
 	}	
+	public function update_employee_details($e_id,$data){
+			$this->db->where('e_id',$e_id);
+    	return $this->db->update("empployee",$data);
+	}
+	public function edit_employee_details($e_id){
+		$this->db->select('*')->from('empployee');
+		$this->db->where('e_id',$e_id);
+		return $this->db->get()->row_array();	
+	}	
+	public function saver_user_details($e_email_work){
+		$this->db->select('*')->from('empployee');
+		$this->db->where('empployee.e_email_work',$e_email_work);
+		return $this->db->get()->row_array();
+	 }
+	public function delete_employee_details($e_id){
+	    $this->db->where('e_id',$e_id);
+		return $this->db->delete('empployee');
+	}
+		
+		
 		
 		
 		

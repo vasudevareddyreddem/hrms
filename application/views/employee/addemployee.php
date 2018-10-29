@@ -10,7 +10,7 @@
 						
 						</div>
 					</div>
-					<form id="defaultForm" method="post" class="m-b-30" action="<?php echo base_url('employee/addpost');?>">
+					<form id="defaultForm" method="post" class="m-b-30" action="<?php echo base_url('employee/addpost');?>" enctype="multipart/form-data">
 							<h2 class="text-primary">Basic Details</h2>
 							<hr>
 								<div class="row">

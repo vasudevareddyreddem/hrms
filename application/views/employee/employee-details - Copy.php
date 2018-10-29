@@ -21,9 +21,9 @@
 										<div class="row">
 											<div class="col-md-5">
 												<div class="profile-info-left">
-													<h3 class="user-name m-t-0 m-b-0"><?php echo $edit_employee['e_login_name'];?></h3>
-													<small class="text-muted"><?php echo $edit_employee['e_designation'];?></small>
-													<div class="staff-id">Employee ID : <?php echo $edit_employee['e_emplouee_id'];?></div>
+													<h3 class="user-name m-t-0 m-b-0">John Doe</h3>
+													<small class="text-muted">Manager</small>
+													<div class="staff-id">Employee ID : SSB-0001</div>
 												
 												</div>
 											</div>
@@ -31,11 +31,11 @@
 												<ul class="personal-info">
 													<li>
 														<span class="title">Phone:</span>
-														<span class="text"><a href="#"><?php echo $edit_employee['e_mobile_personal'];?></a></span>
+														<span class="text"><a href="#">98765XXX</a></span>
 													</li>
 													<li>
 														<span class="title">Email:</span>
-														<span class="text"><a href="#"><?php echo $edit_employee['e_email_work'];?></a></span>
+														<span class="text"><a href="#">johndoe@example.com</a></span>
 													</li>
 												
 													<li>
@@ -70,7 +70,7 @@
 												<div class="experience-content">
 													<div class="timeline-content">
 														<a href="#/" class="name"> Name </a>
-														<div><?php echo $edit_employee['e_login_name'];?></div>
+														<div>Bayapu Reddy</div>
 													</div>
 												</div>
 											</li>
@@ -81,7 +81,7 @@
 												<div class="experience-content">
 													<div class="timeline-content">
 														<a href="#/" class="name">Joining Date</a>
-														<div><?php echo $edit_employee['e_join_date'];?></div>
+														<div>10/10/2018</div>
 													</div>
 												</div>
 											</li>
@@ -92,7 +92,7 @@
 												<div class="experience-content">
 													<div class="timeline-content">
 														<a href="#/" class="name">Login Name</a>
-														<div><?php echo $edit_employee['e_login_name'];?></div>
+														<div>Bayapuxxx</div>
 													</div>
 												</div>
 											</li>	
@@ -103,8 +103,8 @@
 												<div class="experience-content">
 													<div class="timeline-content">
 														<a href="#/" class="name">Email Personal</a>
-														<div><?php echo $edit_employee['e_email_personal'];?></div>
-														<div><?php echo $edit_employee['e_email_work'];?></div>
+														<div>Bayapuxxx@gmail.com (Personal)</div>
+														<div>Bayapuxxx@gmail.com (work)</div>
 													</div>
 												</div>
 											</li>
@@ -115,8 +115,8 @@
 												<div class="experience-content">
 													<div class="timeline-content">
 														<a href="#/" class="name">Mobile</a>
-														<div><?php echo $edit_employee['e_mobile_personal'];?></div>
-														
+														<div>8500xxxxx (Personal)</div>
+														<div>9493xxxx@gmail.com (work)</div>
 													</div>
 												</div>
 											</li>
@@ -127,7 +127,7 @@
 												<div class="experience-content">
 													<div class="timeline-content">
 														<a href="#/" class="name">Designation </a>
-														<div><?php echo $edit_employee['e_designation'];?></div>
+														<div>Manager</div>
 														
 													</div>
 												</div>
@@ -139,7 +139,7 @@
 												<div class="experience-content">
 													<div class="timeline-content">
 														<a href="#/" class="name">Supervisor  </a>
-														<div><?php echo $edit_employee['e_supervisor'];?></div>
+														<div>Ravi xxx</div>
 														
 													</div>
 												</div>
@@ -151,7 +151,7 @@
 												<div class="experience-content">
 													<div class="timeline-content">
 														<a href="#/" class="name">Department   </a>
-														<div><?php echo $edit_employee['e_department'];?></div>
+														<div>Gopi xxx</div>
 														
 													</div>
 												</div>
@@ -163,7 +163,7 @@
 												<div class="experience-content">
 													<div class="timeline-content">
 														<a href="#/" class="name">Sub Department   </a>
-														<div><?php echo $edit_employee['e_sub_department'];?></div>
+														<div>Gopi xxx</div>
 														
 													</div>
 												</div>
@@ -175,7 +175,7 @@
 												<div class="experience-content">
 													<div class="timeline-content">
 														<a href="#/" class="name">Current Address</a>
-														<div><?php echo $edit_employee['e_c_adress'];?><?php echo $edit_employee['e_c_city'];?><?php echo $edit_employee['e_c_district'];?><?php echo $edit_employee['e_c_state'];?> </div>
+														<div>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard </div>
 														
 													</div>
 												</div>
@@ -187,7 +187,7 @@
 												<div class="experience-content">
 													<div class="timeline-content">
 														<a href="#/" class="name">Permanent Address</a>
-														<div><?php echo $edit_employee['e_p_address'];?><?php echo $edit_employee['e_p_city'];?><?php echo $edit_employee['e_p_district'];?><?php echo $edit_employee['e_p_state'];?> </div>
+														<div>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard </div>
 														
 													</div>
 												</div>
@@ -206,7 +206,7 @@
 												<div class="experience-content">
 													<div class="timeline-content">
 														<a href="#/" class="name">Bank Name</a>
-														<div><?php echo $edit_employee['e_bank_name'];?></div>
+														<div>IndusInd Bank</div>
 														
 													</div>
 												</div>
@@ -218,7 +218,7 @@
 												<div class="experience-content">
 													<div class="timeline-content">
 														<a href="#/" class="name">Account Number</a>
-														<div><?php echo $edit_employee['e_account_number'];?></div>
+														<div>4500xxx22xxx</div>
 													</div>
 												</div>
 											</li>
@@ -229,7 +229,7 @@
 												<div class="experience-content">
 													<div class="timeline-content">
 														<a href="#/" class="name">Account Holder Name</a>
-														<div><?php echo $edit_employee['e_bank_h_name'];?></div>
+														<div>Bayapureddy</div>
 													</div>
 												</div>
 											</li>
@@ -240,7 +240,7 @@
 												<div class="experience-content">
 													<div class="timeline-content">
 														<a href="#/" class="name">IFSC Code</a>
-														<div><?php echo $edit_employee['e_bank_ifcs_code'];?></div>
+														<div>IND00045</div>
 													</div>
 												</div>
 											</li>
@@ -256,7 +256,7 @@
 												<div class="experience-content">
 													<div class="timeline-content">
 														<a href="#/" class="name">Name</a>
-														<div><?php echo $edit_employee['e_c_p_name'];?></div>
+														<div>siva</div>
 														
 													</div>
 												</div>
@@ -268,7 +268,7 @@
 												<div class="experience-content">
 													<div class="timeline-content">
 														<a href="#/" class="name">Mobile Number</a>
-														<div><?php echo $edit_employee['e_c_p_mobile'];?></div>
+														<div>9493xxxxx</div>
 													</div>
 												</div>
 											</li>
@@ -279,7 +279,7 @@
 												<div class="experience-content">
 													<div class="timeline-content">
 														<a href="#/" class="name"> Address</a>
-														<div><?php echo $edit_employee['e_c_p_address'];?></div>
+														<div>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard </div>
 														
 													</div>
 												</div>
@@ -291,7 +291,7 @@
 												<div class="experience-content">
 													<div class="timeline-content">
 														<a href="#/" class="name">Email</a>
-														<div><?php echo $edit_employee['e_c_p_email'];?></div>
+														<div>Bayapureddy</div>
 													</div>
 												</div>
 											</li>
@@ -302,7 +302,7 @@
 												<div class="experience-content">
 													<div class="timeline-content">
 														<a href="#/" class="name">Relationship</a>
-														<div><?php echo $edit_employee['e_c_p_relationship'];?></div>
+														<div>Father</div>
 													</div>
 												</div>
 											</li>

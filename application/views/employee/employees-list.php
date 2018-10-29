@@ -26,6 +26,7 @@
 											<th>Join Date</th>
 											<th>Role</th>
 											<th>Shift</th>
+											<th>Status</th>
 											<th class="text-right">Action</th>
 										</tr>
 									</thead>
@@ -35,22 +36,23 @@
 										
 										<tr>
 											<td>
-												<a href="#" class="avatar">B</a>
-												<h2><a href="#">Bernardo Galaviz <span>Production Manager</span></a></h2>
+											<?php echo $list['e_login_name'];?><br><?php echo $list['e_designation'];?>
 											</td>
 											<td><?php echo $list['e_emplouee_id'];?></td>
 											<td><?php echo $list['e_email_work'];?></td>
 											<td><?php echo $list['e_mobile_personal'];?></td>
 											<td><?php echo $list['e_join_date'];?></td>
 											<td><?php echo $list['e_designation'];?></td>
-											<td><?php echo $list['e_designation'];?></td>
+											<td><?php echo $list['e_supervisor'];?></td>
+                                                <td><?php if($list['status']==1){ echo "Active";}else{ echo "Deactive"; } ?></td>
 											<td class="text-right">
 												<div class="dropdown">
 													<a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-ellipsis-v"></i></a>
 													<ul class="dropdown-menu pull-right">
-														<li><a href="employee-details.php" ><i class="fa fa-eye m-r-5"></i> View</a></li>
-														<li><a href="#" data-toggle="modal" data-target="#edit_employee"><i class="fa fa-pencil m-r-5"></i> Edit</a></li>
-														<li><a href="#" data-toggle="modal" data-target="#delete_employee"><i class="fa fa-trash-o m-r-5"></i> Delete</a></li>
+														<li><a href="<?php echo base_url('employee/viewemployee'); ?>" ><i class="fa fa-eye m-r-5"></i> View</a></li>
+														<li><a href="<?php echo base_url('employee/editemployee'); ?>" ><i class="fa fa-pencil btn btn-success"></i> Edit</a></li>
+														<li><a href="<?php echo base_url('employee/status/'.base64_encode($list['e_id']).'/'.base64_encode($list['status'])); ?>" data-toggle="tooltip" title="status"><i class="fa fa-info-circle btn btn-warning"></i></a></li> 
+                                                         <a href="<?php echo base_url('employee/delete/'.base64_encode($list['e_id']));?>"   title="Delete"><i class="fa fa-trash btn btn-danger"></i></a>
 													</ul>
 												</div>
 											</td>
