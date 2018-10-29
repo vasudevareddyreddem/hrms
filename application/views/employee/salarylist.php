@@ -28,6 +28,33 @@
 										</tr>
 									</thead>
 									<tbody>
+										<?php foreach ($data as $row):?>	
+
+									<tr>
+											<td>
+												<a href="profile.html" class="avatar">
+
+													<?php echo substr($row->e_f_name,0,1)?></a>
+												<h2><a href="profile.html"><?php echo $row->e_f_name?> <span><?php echo $row->e_designation?></span></a></h2>
+											</td>
+											<td><?php echo $row->e_id?></td>
+											<td><?php echo $row->e_email_work?></td>
+											<td><?php echo $row->e_join_date?></td>
+											<td><?php ?></td>
+											<td><?php echo $row->gross_salary?></td>
+											<td><a class="btn btn-xs btn-primary" href="<?php echo base_url('employee/payslip/'.$row->e_id); ?>">Generate Slip</a></td>
+											<td class="text-right">
+												<div class="dropdown">
+													<a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-ellipsis-v"></i></a>
+													<ul class="dropdown-menu pull-right">
+														<li><a href="#" data-toggle="modal" data-target="#edit_salary" title="Edit"><i class="fa fa-pencil m-r-5"></i> Edit</a></li>
+														<li><a href="#" data-toggle="modal" data-target="#delete_salary" title="Delete"><i class="fa fa-trash-o m-r-5"></i> Delete</a></li>
+													</ul>
+												</div>
+											</td>
+										</tr>
+										<?php endforeach;?>
+										 
 										<tr>
 											<td>
 												<a href="profile.html" class="avatar">J</a>

@@ -31,40 +31,19 @@
 									</thead>
 									<tbody>
 										
-									
-										<tr>
-											<td>
-												<a href="#" class="avatar">J</a>
-												<h2><a href="#">Jeffrey Warden <span>Shift Incharge</span></a></h2>
-											</td>
-											<td>FT-0006</td>
-											<td>jeffreywarden@example.com</td>
-											<td>9876543210</td>
-											<td>16 Jun 2013</td>
-											<td>Shift Incharge</td>
-											<td>A</td>
-											<td class="text-right">
-												<div class="dropdown">
-													<a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-ellipsis-v"></i></a>
-													<ul class="dropdown-menu pull-right">
-														<li><a href="employee-details.php" ><i class="fa fa-eye m-r-5"></i> View</a></li>
-														<li><a href="#" data-toggle="modal" data-target="#edit_employee"><i class="fa fa-pencil m-r-5"></i> Edit</a></li>
-														<li><a href="#" data-toggle="modal" data-target="#delete_employee"><i class="fa fa-trash-o m-r-5"></i> Delete</a></li>
-													</ul>
-												</div>
-											</td>
-										</tr>
+									<?php foreach($employee_list as $list){?>
+										
 										<tr>
 											<td>
 												<a href="#" class="avatar">B</a>
 												<h2><a href="#">Bernardo Galaviz <span>Production Manager</span></a></h2>
 											</td>
-											<td>FT-0007</td>
-											<td>bernardogalaviz@example.com</td>
-											<td>9876543210</td>
-											<td>1 Jan 2013</td>
-											<td>Production Manager</td>
-											<td>B</td>
+											<td><?php echo $list['e_emplouee_id'];?></td>
+											<td><?php echo $list['e_email_work'];?></td>
+											<td><?php echo $list['e_mobile_personal'];?></td>
+											<td><?php echo $list['e_join_date'];?></td>
+											<td><?php echo $list['e_designation'];?></td>
+											<td><?php echo $list['e_designation'];?></td>
 											<td class="text-right">
 												<div class="dropdown">
 													<a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-ellipsis-v"></i></a>
@@ -76,6 +55,8 @@
 												</div>
 											</td>
 										</tr>
+									<?php }?>
+										
 									</tbody>
 								</table>
 							</div>
