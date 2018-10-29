@@ -10,6 +10,17 @@
         <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/vendor/css/style.css">
 		
     </head>
+	
+	<?php if($this->session->flashdata('success')): ?>
+<div class="alert_msg1 animated slideInUp bg-succ">
+   <?php echo $this->session->flashdata('success');?> &nbsp; <i class="fa fa-check text-success ico_bac" aria-hidden="true"></i>
+</div>
+<?php endif; ?>
+<?php if($this->session->flashdata('error')): ?>
+<div class="alert_msg1 animated slideInUp bg-warn">
+   <?php echo $this->session->flashdata('error');?> &nbsp; <i class="fa fa-exclamation-triangle text-success ico_bac" aria-hidden="true"></i>
+</div>
+<?php endif; ?>
 <body>
         <div class="main-wrapper">
 			<div class="account-page">
@@ -20,16 +31,23 @@
 							<div class="account-logo">
 								<a href=""><img src="<?php echo base_url(); ?>assets/vendor/img/logo2.png" alt="Focus Technologies"></a>
 							</div>
-							<form id="defaultForm" name="defaultForm"action="" method="post" enctype="multipart/form-data" >
+							<form id="defaultForm" name="defaultForm"action="<?php echo base_url('hrmsmanagement/loginpost'); ?>" method="post" enctype="multipart/form-data" >
+                               <?php $csrf = array(
+								'name' => $this->security->get_csrf_token_name(),
+								'hash' => $this->security->get_csrf_hash()
+						); ?>
 								<div class="form-group form-focus">
 									<label class="control-label">Username or Email</label>
-									<input class="form-control floating" type="text" name="email_id" id="email_id">
+									<input class="form-control floating" type="text" name="e_email_work" id="e_email_work" value="<?php echo $this->input->cookie('e_email_work');?>">
+
 								</div>
 								<div class="form-group form-focus">
 									<label class="control-label">Password</label>
-									<input class="form-control floating" type="password" name="password" password="password" >
+									<input class="form-control floating" type="password" name="e_password" password="e_password" value="<?php echo $this->input->cookie('e_password');?>">
 								</div>
+								
 								<div class="form-group text-center">
+								<input type="hidden" name="<?=$csrf['name'];?>" value="<?=$csrf['hash'];?>" />
          <button type="submit" class="btn btn-primary btn-block account-btn" style="color:#fff;" id="validateBtn" name="validateBtn" value="check">Login</button>								</div>
 								<div class="text-center">
 									<a href="<?php echo base_url('hrmsmanagement/forgot');?>">Forgot your password?</a>
@@ -53,7 +71,7 @@ $(document).ready(function() {
     $('#defaultForm').bootstrapValidator({
 //      
         fields: {
-           email_id: {
+           e_email_work: {
               validators: {
 					notEmpty: {
 						message: 'Email is required'
@@ -64,7 +82,7 @@ $(document).ready(function() {
 					}
 				}
             },
-            password: {
+            e_password: {
                validators: {
 					notEmpty: {
 						message: 'Password is required'
