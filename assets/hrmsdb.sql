@@ -16,6 +16,72 @@ CREATE DATABASE /*!32312 IF NOT EXISTS*/`hrms` /*!40100 DEFAULT CHARACTER SET la
 
 USE `hrms`;
 
+/*Table structure for table `employee_salary` */
+
+DROP TABLE IF EXISTS `employee_salary`;
+
+CREATE TABLE `employee_salary` (
+  `e_s_id` int(11) NOT NULL AUTO_INCREMENT,
+  `e_id` int(11) DEFAULT NULL COMMENT 'employee id',
+  `e_net_salary` varchar(250) DEFAULT NULL,
+  `e_basic` varchar(250) DEFAULT NULL,
+  `e_da` varchar(250) DEFAULT NULL,
+  `e_hra` varchar(250) DEFAULT NULL,
+  `e_conveyance` varchar(250) DEFAULT NULL,
+  `e_allowance` varchar(250) DEFAULT NULL,
+  `e_medical_allowance` varchar(250) DEFAULT NULL,
+  `e_others` varchar(250) DEFAULT NULL,
+  `e_d_tds` varchar(250) DEFAULT NULL,
+  `e_d_esi` varchar(250) DEFAULT NULL,
+  `e_d_pf` varchar(250) DEFAULT NULL,
+  `e_d_leave` varchar(250) DEFAULT NULL,
+  `e_d_Prof_tax` varchar(250) DEFAULT NULL,
+  `e_d_labour_welfare` varchar(250) DEFAULT NULL,
+  `e_d_fund` varchar(250) DEFAULT NULL,
+  `e_d_others` varchar(250) DEFAULT NULL,
+  `s_status` int(11) DEFAULT '1',
+  `created_at` datetime DEFAULT NULL,
+  `updated_at` datetime DEFAULT NULL,
+  `created_by` int(11) DEFAULT NULL,
+  PRIMARY KEY (`e_s_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+/*Data for the table `employee_salary` */
+
+/*Table structure for table `employee_salary_payslips` */
+
+DROP TABLE IF EXISTS `employee_salary_payslips`;
+
+CREATE TABLE `employee_salary_payslips` (
+  `e_s_p_id` int(11) NOT NULL AUTO_INCREMENT,
+  `e_id` int(11) DEFAULT NULL COMMENT 'employee id',
+  `e_net_salary` varchar(250) DEFAULT NULL,
+  `e_salary_deduction` varchar(250) DEFAULT NULL,
+  `e_basic` varchar(250) DEFAULT NULL,
+  `e_da` varchar(250) DEFAULT NULL,
+  `e_hra` varchar(250) DEFAULT NULL,
+  `e_conveyance` varchar(250) DEFAULT NULL,
+  `e_allowance` varchar(250) DEFAULT NULL,
+  `e_medical_allowance` varchar(250) DEFAULT NULL,
+  `e_others` varchar(250) DEFAULT NULL,
+  `e_d_tds` varchar(250) DEFAULT NULL,
+  `e_d_esi` varchar(250) DEFAULT NULL,
+  `e_d_pf` varchar(250) DEFAULT NULL,
+  `e_d_leave` varchar(250) DEFAULT NULL,
+  `e_d_Prof_tax` varchar(250) DEFAULT NULL,
+  `e_d_labour_welfare` varchar(250) DEFAULT NULL,
+  `e_d_fund` varchar(250) DEFAULT NULL,
+  `e_d_others` varchar(250) DEFAULT NULL,
+  `e_salary_month` date DEFAULT NULL COMMENT 'month',
+  `s_status` int(11) DEFAULT '1',
+  `created_at` datetime DEFAULT NULL,
+  `updated_at` datetime DEFAULT NULL,
+  `created_by` int(11) DEFAULT NULL,
+  PRIMARY KEY (`e_s_p_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+/*Data for the table `employee_salary_payslips` */
+
 /*Table structure for table `empployee` */
 
 DROP TABLE IF EXISTS `empployee`;
