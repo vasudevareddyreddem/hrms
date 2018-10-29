@@ -1,6 +1,6 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Hrmsmanagement_model extends CI_Model 
+class User_model extends CI_Model 
 
 {
 	function __construct() 
@@ -33,6 +33,13 @@ class Hrmsmanagement_model extends CI_Model
 		$this->db->where('empployee.e_id', $e_id);
 		$this->db->where('empployee.status', 1);
         return $this->db->get()->row_array();	
+	}
+	
+	public  function check_email_exits($email){
+		$this->db->select('empployee.e_id,empployee.e_email_work')->from('empployee');		
+		$this->db->where('e_email_work', $email);
+		$this->db->where('status', 1);
+        return $this->db->get()->row_array();
 	}
 	
 	

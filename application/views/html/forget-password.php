@@ -20,7 +20,7 @@
 							<div class="account-logo">
 								<a href=""><img src="<?php echo base_url(); ?>assets/vendor/img/logo2.png" alt="Focus Technologies"></a>
 							</div>
-							<form id="defaultForm" name="defaultForm" method="post" action="<?php echo base_url('admin'); ?>" enctype="multipart/form-data" >
+							<form id="defaultForm" name="defaultForm" method="post" action="<?php echo base_url('user/forgotpost'); ?>" enctype="multipart/form-data" >
 								<div class="form-group ">
 									<label class="control-label">Email Address</label>
 									<input class="form-control floating" type="text" name="email_id" id="email_id" placeholder="Email Address">

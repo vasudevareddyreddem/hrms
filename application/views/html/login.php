@@ -31,21 +31,24 @@
 							<div class="account-logo">
 								<a href=""><img src="<?php echo base_url(); ?>assets/vendor/img/logo2.png" alt="Focus Technologies"></a>
 							</div>
-
-							<form id="defaultForm" name="defaultForm" action="<?php echo base_url('hrmsmanagement/loginpost'); ?>" method="post" enctype="multipart/form-data" >
-								<div class="form-group ">
-									<label class="control-label">Email Address</label>
-									<input class="form-control floating" type="text" name="email_id" id="email_id" placeholder="Email Address">
+							<form id="defaultForm" name="defaultForm"action="<?php echo base_url('user/loginpost'); ?>" method="post" enctype="multipart/form-data" >
+                               <?php $csrf = array(
+								'name' => $this->security->get_csrf_token_name(),
+								'hash' => $this->security->get_csrf_hash()
+						); ?>
+								<div class="form-group">
+									<label class="control-label">Username or Email</label>
+									<input class="form-control floating" type="text" name="e_email_work" id="e_email_work" value="<?php echo $this->input->cookie('e_email_work');?>">
 
 								</div>
-								<div class="form-group ">
+								<div class="form-group">
 									<label class="control-label">Password</label>
-
-									<input class="form-control floating" type="password" name="password" password="password"  placeholder="Password">
-
+									<input class="form-control floating" type="password" name="e_password" password="e_password" value="<?php echo $this->input->cookie('e_password');?>">
 								</div>
-								         <button type="submit" class="btn btn-primary btn-block account-btn" style="color:#fff;" id="validateBtn" name="validateBtn" value="check">Login</button>								</div>
-
+								
+								<div class="form-group text-center">
+								<input type="hidden" name="<?=$csrf['name'];?>" value="<?=$csrf['hash'];?>" />
+								<button type="submit" class="btn btn-primary btn-block account-btn" style="color:#fff;" id="validateBtn" name="validateBtn" value="check">Login</button>								</div>
 								<div class="text-center">
 									<a href="<?php echo base_url('user/forgot');?>">Forgot your password?</a>
 								</div>
@@ -95,15 +98,6 @@ $(document).ready(function() {
 				}
             }
         }
-    });
-
-    // Validate the form manually
-    $('#validateBtn').click(function() {
-        $('#defaultForm').bootstrapValidator('validate');
-    });
-
-    $('#resetBtn').click(function() {
-        $('#defaultForm').data('bootstrapValidator').resetForm(true);
     });
 });
 </script>
