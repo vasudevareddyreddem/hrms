@@ -21,18 +21,18 @@
 								<a href=""><img src="<?php echo base_url(); ?>assets/vendor/img/logo2.png" alt="Focus Technologies"></a>
 							</div>
 							<form id="defaultForm" name="defaultForm"action="" method="post" enctype="multipart/form-data" >
-								<div class="form-group form-focus">
-									<label class="control-label">Username or Email</label>
-									<input class="form-control floating" type="text" name="email_id" id="email_id">
+								<div class="form-group ">
+									<label class="control-label">Email Address</label>
+									<input class="form-control floating" type="text" name="email_id" id="email_id" placeholder="Email Address">
 								</div>
-								<div class="form-group form-focus">
+								<div class="form-group ">
 									<label class="control-label">Password</label>
-									<input class="form-control floating" type="password" name="password" password="password" >
+									<input class="form-control floating" type="password" name="password" password="password"  placeholder="Password">
 								</div>
 								<div class="form-group text-center">
-         <button type="submit" class="btn btn-primary btn-block account-btn" style="color:#fff;" id="validateBtn" name="validateBtn" value="check">Login</button>								</div>
+							<button type="submit" class="btn btn-primary btn-block account-btn" style="color:#fff;" id="validateBtn" name="validateBtn" value="check">Login</button>								</div>
 								<div class="text-center">
-									<a href="<?php echo base_url('hrmsmanagement/forgot');?>">Forgot your password?</a>
+									<a href="<?php echo base_url('user/forgot');?>">Forgot your password?</a>
 								</div>
 							</form>
 						</div>
