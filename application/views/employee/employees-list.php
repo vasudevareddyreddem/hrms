@@ -32,28 +32,7 @@
 									<tbody>
 										
 									
-										<tr>
-											<td>
-												<a href="#" class="avatar">J</a>
-												<h2><a href="#">Jeffrey Warden <span>Shift Incharge</span></a></h2>
-											</td>
-											<td>FT-0006</td>
-											<td>jeffreywarden@example.com</td>
-											<td>9876543210</td>
-											<td>16 Jun 2013</td>
-											<td>Shift Incharge</td>
-											<td>A</td>
-											<td class="text-right">
-												<div class="dropdown">
-													<a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-ellipsis-v"></i></a>
-													<ul class="dropdown-menu pull-right">
-														<li><a href="employee-details.php" ><i class="fa fa-eye m-r-5"></i> View</a></li>
-														<li><a href="#" data-toggle="modal" data-target="#edit_employee"><i class="fa fa-pencil m-r-5"></i> Edit</a></li>
-														<li><a href="#" data-toggle="modal" data-target="#delete_employee"><i class="fa fa-trash-o m-r-5"></i> Delete</a></li>
-													</ul>
-												</div>
-											</td>
-										</tr>
+										
 										<tr>
 											<td>
 												<a href="#" class="avatar">B</a>
@@ -76,6 +55,8 @@
 												</div>
 											</td>
 										</tr>
+										
+										
 									</tbody>
 								</table>
 							</div>
