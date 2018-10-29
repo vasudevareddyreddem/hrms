@@ -37,13 +37,13 @@
 								'hash' => $this->security->get_csrf_hash()
 						); ?>
 								<div class="form-group">
-									<label class="control-label">Username or Email</label>
-									<input class="form-control floating" type="text" name="e_email_work" id="e_email_work" value="<?php echo $this->input->cookie('e_email_work');?>">
+									<label class="control-label">Email Address</label>
+									<input class="form-control floating" type="text" name="e_email_work" id="e_email_work" value="<?php echo $this->input->cookie('e_email_work');?>" placeholder="Email Address">
 
 								</div>
 								<div class="form-group">
 									<label class="control-label">Password</label>
-									<input class="form-control floating" type="password" name="e_password" password="e_password" value="<?php echo $this->input->cookie('e_password');?>">
+									<input class="form-control floating" type="password" name="e_password" password="e_password" value="<?php echo $this->input->cookie('e_password');?>" placeholder="Password">
 								</div>
 								
 								<div class="form-group text-center">

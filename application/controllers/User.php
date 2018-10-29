@@ -67,17 +67,16 @@ class User extends CI_Controller
 }
 public function forgotpost(){
 		$post=$this->input->post();
-		$check_email=$this->User_model->check_email_exits($post['email']);
-		echo '<pre>';print_r($check_email);exit;
+		$check_email=$this->User_model->check_email_exits($post['email_id']);
 			if(count($check_email)>0){
 				
 				$this->load->library('email');
 				$this->email->set_newline("\r\n");
 				$this->email->set_mailtype("html");
-				$this->email->to($check_email['a_email_id']);
-				$this->email->from($contactus_details['contact_email'], $logo_details['title']); 
+				$this->email->to($check_email['e_email_work']);
+				$this->email->from('admin@hrms.com', 'Hrms'); 
 				$this->email->subject('Forgot Password'); 
-				$body = "<b> Your Account login Password is </b> : ".$check_email['org_password'];
+				$body = "<b> Your Account login Password is </b> : ".$check_email['e_org_password'];
 				$this->email->message($body);
 				if ($this->email->send())
 				{
