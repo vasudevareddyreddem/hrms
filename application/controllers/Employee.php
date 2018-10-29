@@ -176,7 +176,7 @@ public function salary(){
 		{	
          $admindetails=$this->session->userdata('hrmsdetails');	
          $this->db->select('*');
-$this->db->from('employee');
+$this->db->from('empployee');
 $this->db->join('salary_tab', 'employee.e_id = salary_tab.emp_id');
 $query = $this->db->get();
 $data['data']=$query->result();
@@ -194,7 +194,7 @@ public function addsalary(){
 		{	
          $admindetails=$this->session->userdata('hrmsdetails');	
       
- $query = $this->db->get('employee');
+ $query = $this->db->get('empployee');
 $data['data']=$query->result();
 // print_r($data);
 // exit();
