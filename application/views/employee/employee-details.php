@@ -14,7 +14,11 @@
 								<div class="profile-view">
 									<div class="profile-img-wrap">
 										<div class="profile-img">
-											<a href="#"><img class="avatar" src="assets/img/user.jpg" alt=""></a>
+										
+									  <?php if($edit_employee['e_profile_pic']!=''){ ?>
+									  <img src="<?php echo base_url('assets/adminprofilepic/'.$edit_employee['e_profile_pic']); ?>" height="50px" width="50px">
+									  <?php } ?>
+														
 										</div>
 									</div>
 									<div class="profile-basic">
@@ -40,12 +44,9 @@
 												
 													<li>
 														<span class="title">Address:</span>
-														<span class="text">1861 Bayonne Ave, Manchester Township, XX, 087XX</span>
+														<span class="text"><?php echo $edit_employee['e_c_adress'];?> &nbsp;<?php echo $edit_employee['e_c_city'];?>&nbsp;<?php echo $edit_employee['e_c_district'];?>&nbsp;<?php echo $edit_employee['e_c_state'];?> </span>
 													</li>
-													<li>
-														<span class="title">Gender:</span>
-														<span class="text">Male</span>
-													</li>
+													
 												</ul>
 											</div>
 										</div>
@@ -174,8 +175,21 @@
 												</div>
 												<div class="experience-content">
 													<div class="timeline-content">
+														<a href="#/" class="name">Shift</a>
+														<div><?php echo $edit_employee['e_shift'];?></div>
+														
+													</div>
+												</div>
+											</li>
+											
+											<li>
+												<div class="experience-user">
+													<div class="before-circle"></div>
+												</div>
+												<div class="experience-content">
+													<div class="timeline-content">
 														<a href="#/" class="name">Current Address</a>
-														<div><?php echo $edit_employee['e_c_adress'];?><?php echo $edit_employee['e_c_city'];?><?php echo $edit_employee['e_c_district'];?><?php echo $edit_employee['e_c_state'];?> </div>
+														<div><?php echo $edit_employee['e_c_adress'];?>&nbsp;<?php echo $edit_employee['e_c_city'];?>&nbsp;<?php echo $edit_employee['e_c_district'];?>&nbsp;<?php echo $edit_employee['e_c_state'];?> </div>
 														
 													</div>
 												</div>
@@ -187,7 +201,7 @@
 												<div class="experience-content">
 													<div class="timeline-content">
 														<a href="#/" class="name">Permanent Address</a>
-														<div><?php echo $edit_employee['e_p_address'];?><?php echo $edit_employee['e_p_city'];?><?php echo $edit_employee['e_p_district'];?><?php echo $edit_employee['e_p_state'];?> </div>
+														<div><?php echo $edit_employee['e_p_address'];?>&nbsp;<?php echo $edit_employee['e_p_city'];?>&nbsp;<?php echo $edit_employee['e_p_district'];?>&nbsp;<?php echo $edit_employee['e_p_state'];?> </div>
 														
 													</div>
 												</div>

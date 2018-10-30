@@ -41,11 +41,22 @@
 										
 								</ul>
 							</li>
+							<li class="submenu">
+								<a href="#" ><span>Department</span> <span class="menu-arrow"></span></a>
+								<ul class="list-unstyled" style="display: none;">
+									<li><a href="<?php echo base_url('employee/department');?>">Add Department</a></li>
+									<li><a href="<?php echo base_url('employee/departmentlist');?>">Department List</a></li>
+									
+						
+								</ul>
+							</li>
+							
+							
 							<li class="">
 								<a href="<?php echo base_url('employee/salemantrack'); ?>" ><span>Salesman Man Track </span> </a>
 								
 							</li>
-						
+						 
 						
 								
 							<li class="nav-item  ">

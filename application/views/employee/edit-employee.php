@@ -80,22 +80,28 @@
 									
 									</div>	
 									<div class="row">
-										<div class="col-sm-3">
+										<div class="col-sm-2">
 										<div class="form-group">
-											<label class="control-label">Designation</label>
-											<select class="select" name="e_designation">
-													<option value="">Select Designation</option>
-													<option value="General Manager" <?php if($edit_employee['e_designation']=='General Manager'){ echo "selected"; } ?>>General Manager</option>
-													<option value="Assistant General Manager"<?php if($edit_employee['e_designation']=='Assistant General Manager'){ echo "selected"; } ?>>Assistant General Manager</option>
-													<option value="Production Manager"<?php if($edit_employee['e_designation']=='Production Manager'){ echo "selected"; } ?>>Production Manager</option>
-													<option value="Assistant Production Manager"<?php if($edit_employee['e_designation']=='Assistant Production Manager'){ echo "selected"; } ?>>Assistant Production Manager</option>
-													<option value="Shift Incharge"<?php if($edit_employee['e_designation']=='Shift Incharge'){ echo "selected"; } ?>>Shift Incharge</option>
-													<option value="Senior Trainee"<?php if($edit_employee['e_designation']=='Senior Trainee'){ echo "selected"; } ?>>Senior Trainee</option>
-													<option value="Junior  Trainee"<?php if($edit_employee['e_designation']=='Junior  Trainee'){ echo "selected"; } ?>>Junior  Trainee</option>
-											</select>
-										</div>
+									<label class=" control-label">Designation</label>
+									<div class="">
+										<select id="e_designation" name="e_designation"  class="form-control" >
+										<option value="">Select</option>
+										<?php if(isset($roles_list) && count($roles_list)>0){ ?>
+											<?php foreach($roles_list as $list){ ?>
+											
+													<?php if($edit_employee['e_designation']==$list['r_id']){ ?>
+															<option selected value="<?php echo $list['r_id']; ?>"><?php echo $list['role']; ?></option>
+													<?php }else{ ?>
+															<option value="<?php echo $list['r_id']; ?>"><?php echo $list['role']; ?></option>
+													<?php } ?>
+											<?php } ?>
+										<?php } ?>
+										</select>
 									</div>
-										<div class="col-sm-3">
+								</div>
+					
+									</div>
+										<div class="col-sm-2">
 										<div class="form-group">
 											<label class="control-label">Supervisor</label>
 											<select class="select" name="e_supervisor">
@@ -107,30 +113,74 @@
 											</select>
 										</div>
 									</div>	
-									<div class="col-sm-3">
-										<div class="form-group">
-											<label class="control-label">Department</label>
-											<select class="select" name="e_department">
-													<option value="">Select Department</option>
-													<option value="A"<?php if($edit_employee['e_department']=='A'){ echo "selected"; } ?>>A</option>
-													<option value="B"<?php if($edit_employee['e_department']=='B'){ echo "selected"; } ?>>B</option>
-													<option value="C"<?php if($edit_employee['e_department']=='C'){ echo "selected"; } ?>>C</option>
-													
-											</select>
-										</div>
+									<div class="col-sm-2">
+									<div class="form-group">
+									<label class=" control-label">Department</label>
+									<div class="">
+										<select id="e_department" name="e_department"  class="form-control" >
+										<option value="">Select</option>
+										<?php if(isset($deparment_data) && count($deparment_data)>0){ ?>
+											<?php foreach($deparment_data as $list){ ?>
+											
+													<?php if($edit_employee['e_department']==$list['d_id']){ ?>
+															<option selected value="<?php echo $list['d_id']; ?>"><?php echo $list['department']; ?></option>
+													<?php }else{ ?>
+															<option value="<?php echo $list['d_id']; ?>"><?php echo $list['department']; ?></option>
+													<?php } ?>
+											<?php } ?>
+										<?php } ?>
+										</select>
 									</div>
-									<div class="col-sm-3">
-										<div class="form-group">
-											<label class="control-label">Sub Department</label>
-											<select class="select" name="e_sub_department">
-													<option value="">Select Sub Department</option>
-													<option value="A"<?php if($edit_employee['e_sub_department']=='A'){ echo "selected"; } ?>>A</option>
-													<option value="B"<?php if($edit_employee['e_sub_department']=='B'){ echo "selected"; } ?>>B</option>
-													<option value="C"<?php if($edit_employee['e_sub_department']=='C'){ echo "selected"; } ?>>C</option>
-													
-											</select>
-										</div>
+								</div>
+									
 									</div>
+									<div class="col-sm-2">
+									<div class="form-group">
+									<label class=" control-label">Sub Department</label>
+									<div class="">
+										<select id="e_sub_department" name="e_sub_department"  class="form-control" >
+										<option value="">Select</option>
+										<?php if(isset($sub_deparment_data) && count($sub_deparment_data)>0){ ?>
+											<?php foreach($sub_deparment_data as $list){ ?>
+											
+													<?php if($edit_employee['e_sub_department']==$list['d_id']){ ?>
+															<option selected value="<?php echo $list['d_id']; ?>"><?php echo $list['sub_department']; ?></option>
+													<?php }else{ ?>
+															<option value="<?php echo $list['d_id']; ?>"><?php echo $list['sub_department']; ?></option>
+													<?php } ?>
+											<?php } ?>
+										<?php } ?>
+										</select>
+									</div>
+								</div>
+									
+									</div>
+									
+									<div class="col-sm-2">
+									<div class="form-group">
+									<label class=" control-label">Shift</label>
+									<div class="">
+										<select id="e_shift" name="e_shift"  class="form-control" >
+										<option value="">Select</option>
+										<?php if(isset($shift_data) && count($shift_data)>0){ ?>
+											<?php foreach($shift_data as $list){ ?>
+											
+													<?php if($edit_employee['e_shift']==$list['d_id']){ ?>
+															<option selected value="<?php echo $list['d_id']; ?>"><?php echo $list['shift']; ?></option>
+													<?php }else{ ?>
+															<option value="<?php echo $list['d_id']; ?>"><?php echo $list['shift']; ?></option>
+													<?php } ?>
+											<?php } ?>
+										<?php } ?>
+										</select>
+									</div>
+								</div>
+									
+									</div>
+									
+									
+									
+									
 								</div>
 								<div class="clearfix">&nbsp;</div>
 								<div class="row">
@@ -552,6 +602,24 @@ $(document).ready(function() {
 					}
 				}
             },
+			e_sub_department: {
+                validators: {
+					notEmpty: {
+						message: 'Select  Sub Department  is required'
+					}
+				}
+            },
+			
+			e_shift:{
+				validators: {
+					notEmpty: {
+						message: 'Select Shift  is required'
+					}
+				}
+            },
+				
+				
+				
 			e_c_state:{
 			validators: {
 					notEmpty: {

@@ -6,7 +6,7 @@
 							<h4 class="page-title">Employee</h4>
 						</div>
 						<div class="col-xs-8 text-right m-b-30">
-							<a href="<?php echo base_url('employee/lists'); ?>" class="btn btn-primary pull-right rounded"> Employees Lists</a>
+							<a href="<?php echo base_url('employee/all'); ?>" class="btn btn-primary pull-right rounded"> Employees Lists</a>
 						
 						</div>
 					</div>
@@ -14,18 +14,7 @@
 							<h2 class="text-primary">Basic Details</h2>
 							<hr>
 								<div class="row">
-								<div class="col-sm-6">  
-										<div class="form-group">
-											<label class="control-label">Role</label>
-											<select class="select" name="role_id">
-													<option value="">Role</option>
-													<option value="1">Admin</option>
-													<option value="2">Hr</option>
-													<option value="3">sales</option>
-													
-											</select>
-										</div>
-									</div>
+								
 									<div class="col-sm-6">  
 										<div class="form-group">
 											<label class="control-label">Employee ID </label>
@@ -105,22 +94,21 @@
 									
 									</div>	
 									<div class="row">
-										<div class="col-sm-3">
+										<div class="col-sm-2">
 										<div class="form-group">
-											<label class="control-label">Designation</label>
-											<select class="select" name="e_designation">
-													<option value="">Select Designation</option>
-													<option value="General Manager">General Manager</option>
-													<option value="Assistant General Manager">Assistant General Manager</option>
-													<option value="Production Manager">Production Manager</option>
-													<option value="Assistant Production Manager">Assistant Production Manager</option>
-													<option value="Shift Incharge">Shift Incharge</option>
-													<option value="Senior Trainee">Senior Trainee</option>
-													<option value="Junior  Trainee">Junior  Trainee</option>
-											</select>
+										<label class=" control-label">Designation</label>
+										<div class="">
+										<select id="e_designation" name="e_designation"  class="form-control" >
+										<option value="">Select</option>
+										<?php foreach ($roles_list as $list){ ?>
+										<option value="<?php echo $list['r_id']; ?>"><?php echo $list['role']; ?></option>
+										<?php }?>
+										</select>
 										</div>
+									    </div>
 									</div>
-										<div class="col-sm-3">
+									
+										<div class="col-sm-2">
 										<div class="form-group">
 											<label class="control-label">Supervisor</label>
 											<select class="select" name="e_supervisor">
@@ -132,31 +120,54 @@
 											</select>
 										</div>
 									</div>	
-									<div class="col-sm-3">
+									
+									<div class="col-sm-2">
 										<div class="form-group">
-											<label class="control-label">Department</label>
-											<select class="select" name="e_department">
-													<option value="">Select Department</option>
-													<option value="A">A</option>
-													<option value="B">B</option>
-													<option value="C">C</option>
-													
-											</select>
+										<label class=" control-label">Department</label>
+										<div class="">
+										<select id="e_department" name="e_department"  class="form-control" >
+										<option value="">Select</option>
+										<?php foreach ($deparment_data as $list){ ?>
+										<option value="<?php echo $list['d_id']; ?>"><?php echo $list['department']; ?></option>
+										<?php }?>
+										</select>
 										</div>
-									</div>
-									<div class="col-sm-3">
-										<div class="form-group">
-											<label class="control-label">Sub Department</label>
-											<select class="select" name="e_sub_department">
-													<option value="">Select Sub Department</option>
-													<option value="A">A</option>
-													<option value="B">B</option>
-													<option value="C">C</option>
-													
-											</select>
+									    </div>
+								 </div>
+									
+									
+									<div class="col-sm-2">
+									<div class="form-group">
+										<label class=" control-label">Sub Department</label>
+										<div class="">
+										<select id="e_sub_department" name="e_sub_department"  class="form-control" >
+										<option value="">Select</option>
+										<?php foreach ($sub_deparment_data as $list){ ?>
+										<option value="<?php echo $list['d_id']; ?>"><?php echo $list['sub_department']; ?></option>
+										<?php }?>
+										</select>
 										</div>
+									    </div>
 									</div>
+									<div class="col-sm-2">
+									<div class="form-group">
+										<label class=" control-label">Shift</label>
+										<div class="">
+										<select id="e_shift" name="e_shift"  class="form-control" >
+										<option value="">Select</option>
+										<?php foreach ($shift_data as $list){ ?>
+										<option value="<?php echo $list['d_id']; ?>"><?php echo $list['shift']; ?></option>
+										<?php }?>
+										</select>
+										</div>
+									    </div>
+									
+									</div>
+									
+									
 								</div>
+								
+								
 								<div class="clearfix">&nbsp;</div>
 								<div class="row">
 								<h4 class="col-md-6 text-primary">Current Address</h4>
@@ -424,27 +435,13 @@ $(document).ready(function() {
    $('#defaultForm').bootstrapValidator({
 //       
         fields: {
-			role_id: {
-                validators: {
-					notEmpty: {
-						message: 'Role is required'
-					},
-					regexp: {
-					regexp: /^[a-zA-Z0-9. ]+$/,
-					message: 'Role can only consist of alphanumeric, space and dot'
-					}
-				}
-            },
 			
             e_emplouee_id: {
                 validators: {
 					notEmpty: {
 						message: 'Employee ID is required'
-					},
-					regexp: {
-					regexp: /^[a-zA-Z0-9. ]+$/,
-					message: 'Employee ID can only consist of alphanumeric, space and dot'
 					}
+					
 				}
             },
 			e_join_date: {
@@ -584,10 +581,13 @@ $(document).ready(function() {
 					}
 				}
             },
-			
-			
-			
-			
+			e_shift:{
+			validators: {
+					notEmpty: {
+						message: 'Select Shift  is required'
+					}
+				}
+            },
 			
 			e_c_adress: {
                  validators: {
