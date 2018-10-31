@@ -68,20 +68,8 @@ $(document).ready(function() {
 					}
 				}
             },
-			sub_department: {
-                validators: {
-					notEmpty: {
-						message: 'Sub Department is required'
-					}
-				}
-            },
-			shift: {
-                validators: {
-					notEmpty: {
-						message: 'Shift is required'
-					}
-				}
-            }
+			
+			
 			
 			
         }

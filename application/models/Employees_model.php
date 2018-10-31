@@ -133,14 +133,11 @@ $this->db->select('*')->from('department');
 			$this->db->where('department.d_id',$d_id);
 			return $this->db->get()->row_array();
 		}
-	public  function check_department_data_exsists($department,$sub_department,$shift){
-			$this->db->select('department.d_id')->from('department');
-			$this->db->where('department.department',$department);
-			$this->db->where('department.sub_department',$sub_department);
-			$this->db->where('department.shift',$shift);
-			$this->db->where('department.status ',1);
-			return $this->db->get()->result_array();
-		}
+	public  function check_department_data_exsists($department){
+			$this->db->select('*')->from('department');
+		$this->db->where('department',$department);
+		return $this->db->get()->row_array();
+	}
 	
 	
 	}		

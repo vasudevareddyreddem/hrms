@@ -737,7 +737,8 @@ public function editdepartmentpost(){
          $admindetails=$this->session->userdata('hrmsdetails');
 		 $post=$this->input->post();
 		 //echo'<pre>';print_r($post);exit;
-		 $department_details=$this->Employees_model->get_department_details_list($d_id);
+		
+		 $department_details=$this->Employees_model->get_department_details_list($post['d_id']);
 					//echo '<pre>';print_r($data['allocaterrom_details']);exit;	
 		 if($department_details['department']!=$post['department']){
 						$check=$this->Employees_model->check_department_data_exsists($post['department']);
@@ -746,6 +747,8 @@ public function editdepartmentpost(){
 						redirect('employee/departmentlist');
 						}	
 					}	
+					
+					
 		       $update_data=array(
 				'department'=>isset($post['department'])?$post['department']:'',
 				'status'=>1,

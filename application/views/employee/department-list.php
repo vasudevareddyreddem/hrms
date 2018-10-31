@@ -20,8 +20,6 @@
 										<tr>
 											
 											<th>Department</th>
-											<th>Sub Department</th>
-											<th>Shift</th>
 											<th>Status</th>
 											<th class="text-right">Action</th>
 										</tr>
@@ -30,8 +28,6 @@
 									<?php foreach($deparment_list as $list){ ?>
 										<tr>
 											<td><?php echo $list['department'];?></td>
-											<td><?php echo $list['sub_department'];?></td>
-											<td><?php echo $list['shift'];?></td>
 											<td><?php if($list['status']==1){ echo "Active";}else{ echo "Deactive"; } ?></td>
 											<td class="text-right">
 												<div class="dropdown">
