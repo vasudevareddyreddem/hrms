@@ -20,9 +20,9 @@
 							<li class="submenu">
 								<a href="#" ><span> Payroll Management</span> <span class="menu-arrow"></span></a>
 								<ul class="list-unstyled" style="display: none;">
-									<li><a href="<?php echo base_url('employee/salary');?>"> Employee Salary </a></li>
+									<li><a href="<?php echo base_url('employee/salarylist');?>"> Employee Salary </a></li>
 									<li><a href="<?php echo base_url('employee/addsalary');?>"> Add Salary </a></li>
-									<li><a href="<?php echo base_url('employee/payslip');?>"> Genarate Payslip </a></li>
+									<li><a href="<?php echo base_url('payroll/genpayslip');?>"> Genarate Payslip </a></li>
 								</ul>
 							</li>
 							<li class="submenu">

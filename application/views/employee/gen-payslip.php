@@ -15,14 +15,27 @@
 						<form action='<?php echo base_url('payroll/payslippage')?>' method='post' >
 					   <div class="col-sm-3 col-md-3 col-xs-6">  
 							<div class="form-group form-focus">
-								<label class="control-label">Employee Name</label>
-								<input type="text" name='ename' value='<?php echo $data->e_f_name ;?>'class="form-control floating" />
+								<label class="control-label"></label>
+								<!-- <div class="cal-icon"> -->
+									<select id='ename' class="select" name='ename'>
+									<option value='nnnx3'>Select</option> 
+												<?php foreach($name as $row):?>
+												
+												<option value='<?php echo $row->e_f_name ?>'><?php echo $row->e_f_name ?></option>
+											<?php endforeach ?>
+											</select>
+								<!-- </div> -->
 							</div>
 					   </div>  
 						<div class="col-sm-3 col-md-3 col-xs-6">  
 							<div class="form-group form-focus">
-								<label class="control-label">Employee Id</label>
-								<input type="text" name='eid' value='<?php echo $data->e_id ;?>' class="form-control floating" />
+								<label class="control-label"></label>
+								<!-- <div class="cal-icon"> -->
+									<select id='eid' class="select" name='eid'> 
+												
+											<option>Richard gggMiles</option>
+											</select>
+								<!-- </div> -->
 							</div>
 					   </div>
 					
@@ -59,6 +72,51 @@
 						</div>     
 						</div>     
                     </div>
+
+                    <script type="text/javascript">
+                    	$(document).ready(function() {
+                    		
+
+                    	$("#ename").change(function () {
+                    		val=$('#ename').val();
+                    		alert(val);
+                    		    $.ajax({
+                    type: "GET",    //GET or POST or PUT or DELETE verb
+                    url: 'http://localhost/hrms/payroll/empids/'+val,     // Location of the service
+                    data: "",     //Data sent to server
+                   
+                    dataType: "json",   //Expected data format from server
+                    
+                    success: function (result) {
+                    	$("#eid option").remove();
+
+                    	console.log(result);
+                    	$.each(result, function () {
+                    		str='<option value="'+this.e_id+'">'+this.e_id+'</option>';
+
+                    		$("#eid").append(str);
+        console.log("ID: " + this.e_id);
+        console.log("First Name: " + this.e_f_name);
+        console.log("Last Name: " + this.status);
+        
+    });
+                    	
+                         
+                         
+                         
+                         
+                         }
+                    ,
+                    error: function() { 
+                    	alert('error from server side');
+
+                    } 
+                });
+       
+    });
+});
+
+                    </script>
 	
            
 			
