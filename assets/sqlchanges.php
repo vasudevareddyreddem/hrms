@@ -94,11 +94,28 @@ CREATE TABLE `shift` (
 
 //inserted by kasi
 
+<<<<<<< HEAD
 CREATE TABLE `month_tab` (
  `m_id` int(11) NOT NULL AUTO_INCREMENT,
  `month_name` varchar(100) NOT NULL,
  PRIMARY KEY (`m_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=latin1
+=======
+Create Table
+
+CREATE TABLE `holidays` (
+  `h_id` int(11) NOT NULL AUTO_INCREMENT,
+  `holiday_name` varchar(250) DEFAULT NULL,
+  `holiday_date` varchar(250) DEFAULT NULL,
+  `holiday_day` varchar(250) DEFAULT NULL,
+  `status` int(11) DEFAULT NULL,
+  `created_at` datetime DEFAULT NULL,
+  `updated_at` datetime DEFAULT NULL,
+  `created_by` int(11) DEFAULT NULL,
+  PRIMARY KEY (`h_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1
+
+>>>>>>> 9b73f19c36ef47515d3a3130bb652080a04a270f
 
 
 CREATE TABLE `year_tab` (
