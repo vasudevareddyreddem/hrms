@@ -40,7 +40,7 @@ $query = $this->db->get('year_tab');
   }
   public function get_holidays($year,$month){
 
-$sql = "SELECT * FROM holidays_tab WHERE year(date)=$year AND month(date)=$month ";
+$sql = "SELECT * FROM holidays WHERE year(holiday_date)=$year AND month(holiday_date)=$month ";
  $query=$this->db->query($sql);
 
 return $query->result();
@@ -82,8 +82,13 @@ $data=$query->row();
 return $data->e_net_salary;
 }
 public function emp_sal_det($eid){
+  $this->db->select('*');
+$this->db->from('empployee');
+$this->db->join('employee_salary','empployee.e_id=employee_salary.e_id');
+$this->db->where('empployee.e_id',$eid);
+$query=$this->db->get();
 
-$query = $this->db->get_where('employee_salary', array('e_id' => $eid));
+//$query = $this->db->get_where('employee_salary', array('e_id' => $eid));
 $data=$query->row();
 
 return $data;

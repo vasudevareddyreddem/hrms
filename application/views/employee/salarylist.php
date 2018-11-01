@@ -53,7 +53,7 @@
 												<div class="dropdown">
 													<a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-ellipsis-v"></i></a>
 													<ul class="dropdown-menu pull-right">
-														<li><a id='salid' data-id='<?php echo $row->e_id?>' href="#" data-toggle="modal" data-target="#edit_salary" title="Edit"><i class="fa fa-pencil m-r-5"></i> Edit</a></li>
+														<li><a id='' class='salid'data-id='<?php echo $row->e_id?>' href="#" data-toggle="modal" data-target="#edit_salary" title="Edit"><i class="fa fa-pencil m-r-5"></i> Edit</a></li>
 														<?php if(!$row->status==2){?>
 														<li><a href="<?php echo base_url('employee/emp_delete/'.$row->e_id); ?>" data-toggle="modal" data-target="#delete_salary" title="Delete"><i class="fa fa-trash-o m-r-5"></i> Delete</a></li>
 														<?php } ?>
@@ -374,10 +374,10 @@
 											<label>PF</label>
 											<input id='editpf' class="form-control" type="text" value="$20" name='pf'>
 										</div>
-										<div class="form-group">
+										<!-- <div class="form-group">
 											<label>Leave</label>
 											<input class="form-control" type="text" value="$250" name=''>
-										</div>
+										</div> -->
 										<div class="form-group">
 											<label>Prof. Tax</label>
 											<input id='editptax'class="form-control" type="text" value="$110" name='ptax'>
@@ -462,6 +462,136 @@
 					message: 'you can enter only numeric data'
 					}
 				}
+		},
+		da: {validators: {
+					notEmpty: {
+						message: 'basic salary is required'
+					},
+					regexp: {
+					regexp: /^[0-9]+$/,
+					message: 'you can enter only numeric data'
+					}
+				}
+		},
+		hra: {validators: {
+					notEmpty: {
+						message: 'basic salary is required'
+					},
+					regexp: {
+					regexp: /^[0-9]+$/,
+					message: 'you can enter only numeric data'
+					}
+				}
+		},
+		allw: {validators: {
+					notEmpty: {
+						message: 'basic salary is required'
+					},
+					regexp: {
+					regexp: /^[0-9]+$/,
+					message: 'you can enter only numeric data'
+					}
+				}
+		},
+		mallw: {validators: {
+					notEmpty: {
+						message: 'basic salary is required'
+					},
+					regexp: {
+					regexp: /^[0-9]+$/,
+					message: 'you can enter only numeric data'
+					}
+				}
+		},
+		conv: {validators: {
+					notEmpty: {
+						message: 'basic salary is required'
+					},
+					regexp: {
+					regexp: /^[0-9]+$/,
+					message: 'you can enter only numeric data'
+					}
+				}
+		},
+		eothers: {validators: {
+					notEmpty: {
+						message: 'basic salary is required'
+					},
+					regexp: {
+					regexp: /^[0-9]+$/,
+					message: 'you can enter only numeric data'
+					}
+				}
+		},
+		pf: {validators: {
+					notEmpty: {
+						message: 'basic salary is required'
+					},
+					regexp: {
+					regexp: /^[0-9]+$/,
+					message: 'you can enter only numeric data'
+					}
+				}
+		},
+		esi: {validators: {
+					notEmpty: {
+						message: 'basic salary is required'
+					},
+					regexp: {
+					regexp: /^[0-9]+$/,
+					message: 'you can enter only numeric data'
+					}
+				}
+		},
+		tds: {validators: {
+					notEmpty: {
+						message: 'basic salary is required'
+					},
+					regexp: {
+					regexp: /^[0-9]+$/,
+					message: 'you can enter only numeric data'
+					}
+				}
+		},
+		ptax: {validators: {
+					notEmpty: {
+						message: 'basic salary is required'
+					},
+					regexp: {
+					regexp: /^[0-9]+$/,
+					message: 'you can enter only numeric data'
+					}
+				}
+		},
+		lwel: {validators: {
+					notEmpty: {
+						message: 'basic salary is required'
+					},
+					regexp: {
+					regexp: /^[0-9]+$/,
+					message: 'you can enter only numeric data'
+					}
+				}
+		},
+		fund: {validators: {
+					notEmpty: {
+						message: 'basic salary is required'
+					},
+					regexp: {
+					regexp: /^[0-9]+$/,
+					message: 'you can enter only numeric data'
+					}
+				}
+		},
+		dothers: {validators: {
+					notEmpty: {
+						message: 'basic salary is required'
+					},
+					regexp: {
+					regexp: /^[0-9]+$/,
+					message: 'you can enter only numeric data'
+					}
+				}
 		}
 	}
             
@@ -475,9 +605,10 @@
 		<?php if(isset($_SESSION['update'])){?>
 			alert( 'updated succefully');
 <?php } ?>
-		$('#salid').on('click',function(){
+		$('.salid').on('click',function(){
 			val=$(this).data('id');
-			//alert(val);
+			alert(val);
+			//return false;
 			
 			      $.ajax({
                     type: "GET",    //GET or POST or PUT or DELETE verb

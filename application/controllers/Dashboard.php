@@ -7,19 +7,22 @@ class Dashboard extends In_frontend {
 	public function __construct() 
 	{
 		parent::__construct();	
+		$this->load->library('session');
 		
 	}
 	public function index()
 	{
+
+
 		if($this->session->userdata('hrmsdetails'))
 		{
 			$admindetails=$this->session->userdata('hrmsdetails');
 			$data['details']=$this->Employees_model->get_adminbasic_details($admindetails['e_id']);
               //echo'<pre>';print_r($data);exit;
-			    $this->load->view('html/header',$data);
 				$this->load->view('employee/dashboard',$data);
-	            $this->load->view('html/sidebar',$data);
 	            $this->load->view('html/footer',$data);
+		}else{
+			redirect('user');
 		}
 	}
 	
@@ -28,15 +31,7 @@ class Dashboard extends In_frontend {
 	
 	
 	
-	
-   public function logout()
-	{
-		$userinfo = $this->session->userdata('hrmsdetails');
-        $this->session->unset_userdata($userinfo);
-		$this->session->sess_destroy('hrmsdetails');
-		$this->session->unset_userdata('hrmsdetails');
-        redirect('');
-	}	
+		
 	
 	
 }
