@@ -39,7 +39,7 @@ class User extends CI_Controller
 				 //echo '<pre>';print_r($post);exit;
 			 $data['employee_list']=$this->User_model->employee_list_data();
 			 //echo '<pre>';print_r($data);exit;
-			$login_deta=array('e_email_work'=>$post['e_email_work'],'e_password'=>md5($post['e_password']));
+			$login_deta=array('e_email_work'=>$post['e_email_work'],'e_password'=>$post['e_password']);
 			$check_login=$this->User_model->login_details($login_deta);
 				$this->load->helper('cookie');
 

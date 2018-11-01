@@ -21,7 +21,7 @@ CREATE TABLE `empployee` (
   `e_mobile_work` varchar(250) DEFAULT NULL,
   `e_designation` varchar(250) DEFAULT NULL,
   `e_supervisor` varchar(250) DEFAULT NULL,
-  `e_department` varchar(250) DEFAULT NULL,
+  `e_department` varchar(250) DEFAULT NULL,h
   `e_sub_department` varchar(250) DEFAULT NULL,
   `e_shift` varchar(250) DEFAULT NULL,
   `e_c_adress` varchar(250) DEFAULT NULL,
@@ -92,7 +92,38 @@ CREATE TABLE `shift` (
 
 
 
+//inserted by kasi
+
+CREATE TABLE `month_tab` (
+ `m_id` int(11) NOT NULL AUTO_INCREMENT,
+ `month_name` varchar(100) NOT NULL,
+ PRIMARY KEY (`m_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=latin1
 
 
+CREATE TABLE `year_tab` (
+ `year` int(10) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1
+
+CREATE TABLE `emp_leave_apply_tab` (
+ `leave_id` int(11) NOT NULL AUTO_INCREMENT,
+ `leave_type` varchar(200) NOT NULL,
+ `no_of_days` int(3) NOT NULL,
+ `from_date` date NOT NULL,
+ `to_date` date DEFAULT NULL,
+ `status` varchar(200) NOT NULL DEFAULT 'pending',
+ `applied_date` date NOT NULL,
+ PRIMARY KEY (`leave_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1
 
 
+CREATE TABLE `emp_leave_apply_tab` (
+ `leave_id` int(11) NOT NULL AUTO_INCREMENT,
+ `leave_type` varchar(200) NOT NULL,
+ `no_of_days` int(3) NOT NULL,
+ `from_date` date NOT NULL,
+ `to_date` date DEFAULT NULL,
+ `status` varchar(200) NOT NULL DEFAULT 'pending',
+ `applied_date` date NOT NULL,
+ PRIMARY KEY (`leave_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1
