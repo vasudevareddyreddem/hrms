@@ -1,4 +1,4 @@
-<style>
+s<style>
 
 #myInput {
   background-image: url('/css/searchicon.png');
