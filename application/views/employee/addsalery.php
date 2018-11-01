@@ -10,7 +10,7 @@
 						
 						</div>
 					</div>
-					<form id="defaultForm" method="post" class="m-b-30" action="<?php echo base_url('payroll/addsal');?>">
+					<form id="salform" method="post" class="m-b-30" action="<?php echo base_url('payroll/addsal');?>">
 					
 								<div class="row"> 
 									<div class="col-md-6"> 
@@ -27,62 +27,62 @@
 									</div>
 									<div class="col-md-6"> 
 										<label>Net Salary</label>
-										<input class="form-control" type="text" name='netsal' >
+										<input class="form-control" type="text" name='netsal' id='nsal'>
 									</div>
 								</div>
 								<div class="row"> 
 									<div class="col-md-6"> 
-										<h4 class="text-primary">Earnings</h4>
+										<h4 class="text-primary ">Earnings</h4>
 										<div class="form-group">
 											<label>Basic</label>
-											<input class="form-control" type="text" name="firstName" name='bsal'>
+											<input class="form-control netsal" type="text" id='bsal' name='bsal'>
 										</div>
 										<div class="form-group">
 											<label>DA(40%)</label>
-											<input class="form-control" type="text" name='da'>
+											<input class="form-control netsal" type="text"  name='da'id='da'>
 										</div>
 										<div class="form-group">
 											<label>HRA(15%)</label>
-											<input class="form-control" type="text" name="hra">
+											<input class="form-control netsal" type="text"  id='hra' name="hra">
 										</div>
 										<div class="form-group">
 											<label>Conveyance</label>
-											<input class="form-control" type="text" name='conv'>
+											<input class="form-control netsal" type="text"id='conv' name='conv'>
 										</div>
 										<div class="form-group">
 											<label>Allowance</label>
-											<input class="form-control" type="text" name='allw'>
+											<input class="form-control netsal" type="text" name='allw' id='allw'>
 										</div>
 										<div class="form-group">
 											<label>Medical  Allowance</label>
-											<input class="form-control" type="text" name='mallw'>
+											<input class="form-control netsal" type="text" name='mallw' id='mallw'>
 										</div>
 										<div class="form-group">
 											<label>Others</label>
-											<input class="form-control" type="text" name='eothers'>
+											<input class="form-control netsal" type="text" name='eothers' id='eothers'>
 										</div>  
 									</div>
 									<div class="col-md-6">  
 										<h4 class="text-primary">Deductions</h4>
-										<div class="form-group">
+										<div class="form-group" >
 											<label>TDS</label>
-											<input class="form-control" type="text" name='tds'>
+											<input class="form-control " type="text" name='tds'>
 										</div> 
 										<div class="form-group">
 											<label>ESI</label>
-											<input class="form-control" type="text" name='esi'>
+											<input class="form-control " type="text" name='esi'>
 										</div>
 										<div class="form-group">
 											<label>PF</label>
-											<input class="form-control" type="text" name='pf'>
+											<input class="form-control " type="text" name='pf'>
 										</div>
 										<div class="form-group">
 											<label>Leave</label>
-											<input class="form-control" type="text" name=''>
+											<input class="form-control " type="text" name=''>
 										</div>
 										<div class="form-group">
 											<label>Prof. Tax</label>
-											<input class="form-control" type="text" name='ptax'>
+											<input class="form-control " type="text" name='ptax'>
 										</div>
 										<div class="form-group">
 											<label>Labour Welfare</label>
@@ -108,6 +108,202 @@
 				</div>
 			</div>
 			
+<!-- modal -->
+  
+<div class="modal fade" id="m12" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-sm" role="document">
+        <div class="modal-content">
+            <div class="modal-body text-center">
+                <p id='para'>
+                	<?php if($this->session->flashdata('errors')){
+
+                		  echo validation_errors();
+                	} ?>
+                </p>
+                <button type="button" class="btn btn-sm btn-secondary" data-dismiss="modal">Ok</button>
+            </div>
+        </div>
+    </div>
+</div>
+			
+<script >
+			$(document).ready(function() {
+
+
+				// net salary
+			$(".netsal").keyup(function() { 
+				//alert('ok');
+				if($('#bsal').val().length>0 && $('#hra').val().length>0 && $('#da').val().length>0 && $('#conv').val().length>0 && $('#allw').val().length>0 && $('#mallw').val().length>0 && $('#eothers').val().length>0 ){
+
+				 val=parseInt($('#bsal').val())+parseInt($('#hra').val())+parseInt($('#da').val())+parseInt($('#conv').val())+parseInt($('#allw').val())+parseInt($('#mallw').val())+parseInt($('#eothers').val());
+				
+
+
+                $('#nsal').val(val);
+
+                   }
+
+
+
+
+			 });
+
+				<?php if($this->session->userdata('errors')){?>
+					
+                   alert('errors in page');
+                   //$('#m12').modal('show');
+
+			<?php	} ?>
+
+
+ 
+   $('#salform').bootstrapValidator({
+//       
+        fields: {
+			bsal: {validators: {
+					notEmpty: {
+						message: 'basic salary is required'
+					},
+					regexp: {
+					regexp: /^[0-9]+$/,
+					message: 'you can enter only numeric data'
+					}
+				}
+		},hra: {validators: {
+					notEmpty: {
+						message: 'basic salary is required'
+					},
+					regexp: {
+					regexp: /^[0-9]+$/,
+					message: 'you can enter only numeric data'
+					}
+				}
+		},da: {validators: {
+					notEmpty: {
+						message: 'basic salary is required'
+					},
+					regexp: {
+					regexp: /^[0-9]+$/,
+					message: 'you can enter only numeric data'
+					}
+				}
+		},conv: {validators: {
+					notEmpty: {
+						message: 'basic salary is required'
+					},
+					regexp: {
+					regexp: /^[0-9]+$/,
+					message: 'you can enter only numeric data'
+					}
+				}
+		},allw: {validators: {
+					notEmpty: {
+						message: 'basic salary is required'
+					},
+					regexp: {
+					regexp: /^[0-9]+$/,
+					message: 'you can enter only numeric data'
+					}
+				}
+		},mallw: {validators: {
+					notEmpty: {
+						message: 'basic salary is required'
+					},
+					regexp: {
+					regexp: /^[0-9]+$/,
+					message: 'you can enter only numeric data'
+					}
+				}
+		},eothers: {validators: {
+					notEmpty: {
+						message: 'basic salary is required'
+					},
+					regexp: {
+					regexp: /^[0-9]+$/,
+					message: 'you can enter only numeric data'
+					}
+				}
+		},tds: {validators: {
+					notEmpty: {
+						message: 'basic salary is required'
+					},
+					regexp: {
+					regexp: /^[0-9]+$/,
+					message: 'you can enter only numeric data'
+					}
+				}
+		},pf: {validators: {
+					notEmpty: {
+						message: 'basic salary is required'
+					},
+					regexp: {
+					regexp: /^[0-9]+$/,
+					message: 'you can enter only numeric data'
+					}
+				}
+		},esi: {validators: {
+					notEmpty: {
+						message: 'basic salary is required'
+					},
+					regexp: {
+					regexp: /^[0-9]+$/,
+					message: 'you can enter only numeric data'
+					}
+				}
+		},fund: {validators: {
+					notEmpty: {
+						message: 'basic salary is required'
+					},
+					regexp: {
+					regexp: /^[0-9]+$/,
+					message: 'you can enter only numeric data'
+					}
+				}
+		},lwel: {validators: {
+					notEmpty: {
+						message: 'basic salary is required'
+					},
+					regexp: {
+					regexp: /^[0-9]+$/,
+					message: 'you can enter only numeric data'
+					}
+				}
+		},dothers: {validators: {
+					notEmpty: {
+						message: 'basic salary is required'
+					},
+					regexp: {
+					regexp: /^[0-9]+$/,
+					message: 'you can enter only numeric data'
+					}
+				}
+		},ptax: {validators: {
+					notEmpty: {
+						message: 'basic salary is required'
+					},
+					regexp: {
+					regexp: /^[0-9]+$/,
+					message: 'you can enter only numeric data'
+					}
+				}
+		}
+	}
+            
+    });
+   
+    // Validate the form manually
+    $('#salform').on('submit',function(){
+    
+	    	$('#salform').bootstrapValidator('validate');}
+	    	);
+
+//$('#salform').bootstrapValidator('validate');
+
+    });
+   
+
+
+</script>
 
 
 

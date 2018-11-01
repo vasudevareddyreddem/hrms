@@ -72,14 +72,32 @@ class Employees_model extends CI_Model
 	public function save_holidays_details($data){
 	$this->db->insert('holidays',$data);
 	return $this->db->insert_id();
+}
 		
-	}		
+public function emp_delete($eid){
+
+$this->db->set('status', '2');
+$this->db->where('e_id', $eid);
+$this->db->update('empployee');
+
+return 'sucesss';
+		}
+
+		// get all the employee names
+		public function all_emp(){
+			 $this->db->select('*');
+$this->db->from('empployee');
+$this->db->join('employee_salary', 'empployee.e_id = employee_salary.e_id');
+$query = $this->db->get();
+			return $query->result();
+
+}
+			
 	public function holidays_days_list(){
 	$this->db->select('*')->from('holidays');
 	$this->db->where('status !=', 2);
 	return $this->db->get()->result_array();
-		
-	}	
+}	
 	public function edit_holidays_details($h_id){
 	$this->db->select('*')->from('holidays');
 	$this->db->where('h_id',$h_id);
