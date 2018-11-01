@@ -22,7 +22,6 @@ class In_frontend extends CI_Controller {
 			{
 				$details=$this->session->userdata('userdetails');
 				
-				$data['userdetails']=$this->Home_model->get_all_admin_details($details['u_id']);
 				
 				$this->load->view('html/header');
 			    $this->load->view('html/sidebar');

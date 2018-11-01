@@ -125,7 +125,7 @@
 										<div class="form-group">
 										<label class=" control-label">Department</label>
 										<div class="">
-										<select id="e_department" name="e_department"  class="form-control" >
+										<select id="e_department" name="e_department" onchange="get_department_list(this.value)" class="form-control" >
 										<option value="">Select</option>
 										<?php foreach ($deparment_data as $list){ ?>
 										<option value="<?php echo $list['d_id']; ?>"><?php echo $list['department']; ?></option>
@@ -138,16 +138,14 @@
 									
 									<div class="col-sm-2">
 									<div class="form-group">
-										<label class=" control-label">Sub Department</label>
-										<div class="">
-										<select id="e_sub_department" name="e_sub_department"  class="form-control" >
-										<option value="">Select</option>
-										<?php foreach ($sub_deparment_data as $list){ ?>
-										<option value="<?php echo $list['d_id']; ?>"><?php echo $list['sub_department']; ?></option>
-										<?php }?>
-										</select>
-										</div>
-									    </div>
+								<label class=" control-label">Sub Department</label>
+								<div class="">
+									<select id="e_sub_department" name="e_sub_department"  class="form-control" >
+									<option value="">Select</option>
+									</select>
+								</div>
+							</div>
+										
 									</div>
 									<div class="col-sm-2">
 									<div class="form-group">
@@ -156,7 +154,7 @@
 										<select id="e_shift" name="e_shift"  class="form-control" >
 										<option value="">Select</option>
 										<?php foreach ($shift_data as $list){ ?>
-										<option value="<?php echo $list['d_id']; ?>"><?php echo $list['shift']; ?></option>
+										<option value="<?php echo $list['s_id']; ?>"><?php echo $list['shift']; ?></option>
 										<?php }?>
 										</select>
 										</div>
@@ -178,19 +176,19 @@
 									<div class="col-sm-6 ">
 										<div class="form-group">
 											<label class="control-label">Address 1 </label>
-											<textarea class="form-control" name="e_c_adress" placeholder="Enter Address1"></textarea>
+											<textarea class="form-control" id="e_c_adress" name="e_c_adress" placeholder="Enter Address1"></textarea>
 										</div>
 										<div class="form-group">
 											<label class="control-label">City </label>
-											<input class="form-control" name="e_c_city" type="text" placeholder="Enter City">
+											<input class="form-control"id="e_c_city" name="e_c_city" type="text" placeholder="Enter City">
 										</div>
 										<div class="form-group">
 											<label class="control-label">District </label>
-											<input class="form-control" name="e_c_district" type="text" placeholder="Enter City">
+											<input class="form-control" id="e_c_district" name="e_c_district" type="text" placeholder="Enter City">
 										</div>
 										<div class="form-group">
 											<label class="control-label">State </label>
-												<select class="form-control" id="state" name="e_c_state">
+												<select class="form-control" id="e_c_state" name="e_c_state">
 												<option value="">N/A</option>
 												<option value="AK">Alaska</option>
 												<option value="AL">Alabama</option>
@@ -246,22 +244,30 @@
 												<option value="WY">Wyoming</option>
 											</select>
 										</div>
+										
+										
 										<div class="checkbox">
-										  <label><input type="checkbox"  name="address_same" id="address_same" value="">Click here if Currrent Address is Same as Permanent</label>
-										</div>
-									</div>
+                                    <label>
+                                    <input type="checkbox" value="" name="filltoo" id="filltoo" onclick="filladd()" />Click here if Currrent Address is Same as Permanent
+
+                                    </label>
+                                </div>
+								</div>
+								<span id="same_as_above">
+								
+								
 									<div class="col-sm-6 ">
 										<div class="form-group">
 											<label class="control-label">Address 1 </label>
-											<textarea class="form-control" name="e_p_address" placeholder="Enter Address1"></textarea>
+											<textarea class="form-control" id="e_p_address" name="e_p_address" placeholder="Enter Address1"></textarea>
 										</div>
 										<div class="form-group">
 											<label class="control-label">City </label>
-											<input class="form-control" name="e_p_city" type="text" placeholder="Enter City">
+											<input class="form-control" id="e_p_city" name="e_p_city" type="text" placeholder="Enter City">
 										</div>
 										<div class="form-group">
 											<label class="control-label">District </label>
-											<input class="form-control" name="e_p_district" type="text" placeholder="Enter City">
+											<input class="form-control" id="e_p_district" name="e_p_district" type="text" placeholder="Enter City">
 										</div>
 										<div class="form-group">
 											<label class="control-label">State </label>
@@ -324,6 +330,7 @@
 									</div>
 									
 								</div>
+								</span>
 								<div class="row">
 									<div class="col-md-6">
 										<div class="form-group">
@@ -420,16 +427,70 @@
 					</div>
 				</div>
 			</div>
-
 <script>
-$(function(){
-    $('#address_same').click(function() {
-        if($(this).is(':checked'))
-			$('#same_as_above').hide();
-        else
-          $('#same_as_above').show();
-    });
-});
+function get_department_list(e_department){
+	if(e_department !=''){
+		    jQuery.ajax({
+   			url: "<?php echo base_url('employee/department_wise_list');?>",
+   			data: {
+				e_department: e_department,
+			},
+   			type: "POST",
+   			format:"Json",
+   					success:function(data){
+						
+						if(data.msg=1){
+							var parsedData = JSON.parse(data);
+						//alert(parsedData.list.length);
+							$('#e_sub_department').empty();
+							$('#e_sub_department').append("<option>select</option>");
+							for(i=0; i < parsedData.list.length; i++) {
+								//console.log(parsedData.list);
+							$('#e_sub_department').append("<option value="+parsedData.list[i].s_d_id+">"+parsedData.list[i].sub_department+"</option>");                      
+                    
+								
+							 
+							}
+						}
+						
+   					}
+           });
+	   }
+}
+</script>
+<script>
+function filladd()
+{
+	 if(filltoo.checked == true) 
+     {
+             var e_p_address =document.getElementById("e_c_adress").value;
+			 var e_p_city =document.getElementById("e_c_city").value;
+			 var e_p_district =document.getElementById("e_c_district").value;
+			 var e_p_state =document.getElementById("e_c_state").value;
+          
+
+           
+            var e_c_adress =e_p_address ;
+            var e_c_city =e_p_city ;
+            var e_c_district =e_p_district ;
+            var e_c_state =e_p_state ;
+
+            
+            document.getElementById("e_p_address").value = e_c_adress;
+            document.getElementById("e_p_city").value = e_c_city;
+            document.getElementById("e_p_district").value = e_c_district;
+            document.getElementById("e_p_state").value = e_c_state;
+	 }
+	 else if(filltoo.checked == false)
+	 {
+		 document.getElementById("e_p_address").value='';
+		 document.getElementById("e_p_city").value='';
+		 document.getElementById("e_p_district").value='';
+		 document.getElementById("e_p_state").value='';
+	 }
+}
+
+
 $(document).ready(function() {
  
    $('#defaultForm').bootstrapValidator({
