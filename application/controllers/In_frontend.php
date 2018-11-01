@@ -18,13 +18,12 @@ class In_frontend extends CI_Controller {
 		$this->load->model('Employees_model');
 		
 	
-			if($this->session->userdata('userdetails'))
+			if($this->session->userdata('hrmsdetails'))
 			{
 				$admindetails=$this->session->userdata('hrmsdetails');
 				$data['details']=$this->Employees_model->get_adminbasic_details($admindetails['e_id']);
-				
 				$this->load->view('html/header',$data);
-			    $this->load->view('html/sidebar',$data);
+				$this->load->view('html/sidebar',$data);
 				
 			}
 	}

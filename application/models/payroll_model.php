@@ -105,7 +105,7 @@ return $query->result();
 
 public function no_sal_emp(){
 
-$sql = " select * from empployee where e_id not in (select e_id from employee_salary) ";
+$sql = " select e_id,e_f_name from empployee where e_id not in (select e_id from employee_salary) ";
 
 $query=$this->db->query($sql);
 return $query->result();

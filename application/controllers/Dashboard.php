@@ -20,10 +20,20 @@ class Dashboard extends In_frontend {
 			$data['details']=$this->Employees_model->get_adminbasic_details($admindetails['e_id']);
               //echo'<pre>';print_r($data);exit;
 				$this->load->view('employee/dashboard',$data);
-	            $this->load->view('html/footer',$data);
+	            $this->load->view('html/footer');
 		}else{
-			redirect('user');
+			 $this->session->set_flashdata('error','Please login to continue');
+			 redirect('');
 		}
+	}
+	
+	public function logout(){
+		$admindetails=$this->session->userdata('userdetails');
+		$userinfo = $this->session->userdata('userdetails');
+        $this->session->unset_userdata($userinfo);
+		$this->session->sess_destroy('userdetails');
+		$this->session->unset_userdata('userdetails');
+        redirect('');
 	}
 	
 	

@@ -22,10 +22,8 @@ class Employee extends In_frontend {
           $data['employee_list']=$this->Employees_model->employee_data_list();     
            //echo'<pre>';print_r($data);exit;
 		 
-		 $this->load->view('html/header',$data);
 	     $this->load->view('employee/employees-list',$data);
-	     $this->load->view('html/sidebar',$data);
-	     $this->load->view('html/footer',$data);
+	      $this->load->view('html/footer');
 	    
    }
 }
@@ -33,9 +31,7 @@ public function addemployee(){
     if($this->session->userdata('hrmsdetails'))
 		{	
          $admindetails=$this->session->userdata('hrmsdetails');	
-		 $this->load->view('html/header');
 	     $this->load->view('employee/addemployee');
-	     $this->load->view('html/sidebar');
 	     $this->load->view('html/footer');
 	    
    }
@@ -53,10 +49,8 @@ public function editemployee(){
 		 $data['edit_employee']=$this->Employees_model->edit_employee_details(base64_decode($this->uri->segment(3)));
 		//echo'<pre>';print_r($data);exit;
 		 
-		 $this->load->view('html/header',$data);
 	     $this->load->view('employee/edit-employee',$data);
-	     $this->load->view('html/sidebar',$data);
-	     $this->load->view('html/footer',$data);
+	      $this->load->view('html/footer');
 	    
    }
 }
@@ -235,10 +229,8 @@ public function delete()
 		 $this->uri->segment(3);
 		 $data['edit_employee']=$this->Employees_model->edit_employee_details(base64_decode($this->uri->segment(3)));
 		 //echo'<pre>';print_r($data);exit;
-		 $this->load->view('html/header',$data);
 	     $this->load->view('employee/employee-details',$data);
-	     $this->load->view('html/sidebar',$data);
-	     $this->load->view('html/footer',$data);
+	     $this->load->view('html/footer');
 	    
    }
 }
@@ -259,10 +251,8 @@ public function add(){
 		 $data['shift_data']=$this->Employees_model->shift_name_list();
 		 $data['roles_list']=$this->Employees_model->roles_list();
 		 //echo'<pre>';print_r($data);exit;
-		 $this->load->view('html/header',$data);
 	     $this->load->view('employee/addemployee',$data);
-	     $this->load->view('html/sidebar',$data);
-	     $this->load->view('html/footer',$data);
+	     $this->load->view('html/footer');
 	    
    }
 }	
@@ -383,9 +373,7 @@ public function lists(){
     if($this->session->userdata('hrmsdetails'))
 		{	
          $admindetails=$this->session->userdata('hrmsdetails');	
-		 $this->load->view('html/header');
 	     $this->load->view('employee/employees-list');
-	     $this->load->view('html/sidebar');
 	     $this->load->view('html/footer');
 	    
    }
@@ -394,9 +382,7 @@ public function addholiday(){
 	if($this->session->userdata('hrmsdetails'))
 		{	
          $admindetails=$this->session->userdata('hrmsdetails');	
-		 $this->load->view('html/header');
 	     $this->load->view('employee/addholidays');
-	     $this->load->view('html/sidebar');
 	     $this->load->view('html/footer');  
    }
 }		
@@ -436,10 +422,8 @@ public function addholidaypost(){
          $admindetails=$this->session->userdata('hrmsdetails');	
 		 $data['holiday_list']=$this->Employees_model->holidays_days_list();	
 		  //echo'<pre>';print_r($data);exit;
-		 $this->load->view('html/header',$data);
 	     $this->load->view('employee/holidays',$data);
-	     $this->load->view('html/sidebar',$data);
-	     $this->load->view('html/footer',$data);  
+	    $this->load->view('html/footer');  
    }
 }		
   public function editholidays(){
@@ -449,10 +433,8 @@ public function addholidaypost(){
 	  $this->uri->segment(3);
 		 $data['edit_holiday']=$this->Employees_model->edit_holidays_details(base64_decode($this->uri->segment(3)));
 		  //echo'<pre>';print_r($data);exit;
-	      $this->load->view('html/header',$data);
 	     $this->load->view('employee/editholidays',$data);
-	     $this->load->view('html/sidebar',$data);
-	     $this->load->view('html/footer',$data);
+	     $this->load->view('html/footer');
   }
   }	
 	public function editholidaypost(){
@@ -557,10 +539,8 @@ public function viewholidays(){
 		 $this->uri->segment(3);
 		 $data['view_holidays']=$this->Employees_model->view_holidays_details(base64_decode($this->uri->segment(3)));
 		 //echo'<pre>';print_r($data);exit;
-		 $this->load->view('html/header',$data);
 	     $this->load->view('employee/view-holidays',$data);
-	     $this->load->view('html/sidebar',$data);
-	     $this->load->view('html/footer',$data);
+	      $this->load->view('html/footer');
 	    
    }
 }
@@ -579,15 +559,13 @@ $query = $this->db->get();
 $data['data']=$query->result();
 	
 
-		 $this->load->view('html/header');
 	     $this->load->view('employee/salarylist',$data);
-	     $this->load->view('html/sidebar');
 	     $this->load->view('html/footer');
 	    
    }
 }
 public function addsalary(){
-    if(!$this->session->userdata('hrmsdetails'))
+    if($this->session->userdata('hrmsdetails'))
 		{	
          $admindetails=$this->session->userdata('hrmsdetails');
          $this->load->library('session');
@@ -597,36 +575,32 @@ public function addsalary(){
  //$query = $this->db->get('empployee');
 $data['data']=$this->payroll_model->no_sal_emp();
 
-// print_r($data);
-// exit();
+//print_r($data);
+//exit();
             // echo $this->session->flashdata('saladded');exit;
 // if($this->session->flashdata('saladded')){
  //echo $this->session->userdata('errors').'kk'; exit;
 
-		 $this->load->view('html/header');
 	     $this->load->view('employee/addsalery', $data);
-	     $this->load->view('html/sidebar');
 	     $this->load->view('html/footer');
 	    
    }
 }	
 public function salarylist(){
-    if(!$this->session->userdata('hrmsdetails'))
+    if($this->session->userdata('hrmsdetails'))
 		{	
          $admindetails=$this->session->userdata('hrmsdetails');	
 $this->load->model('payroll_model');
 $data['data']=$this->payroll_model->emp_det_with_salary();
 	//echo '<pre>';print_r($data);exit;
-		 $this->load->view('html/header');
 	     $this->load->view('employee/salarylist',$data);
-	     $this->load->view('html/sidebar');
 	     $this->load->view('html/footer');
 	    
    }
 }	
 
    public function payslip($id){
-    if(!$this->session->userdata('hrmsdetails'))
+    if($this->session->userdata('hrmsdetails'))
 		{	
 
 			$query = $this->db->get_where('empployee', array('e_id' => $id));
@@ -653,9 +627,7 @@ $data['year']=$this->payroll_model->get_year();
 			
 			//echo '<pre>';print_r($mon); exit;
          $admindetails=$this->session->userdata('hrmsdetails');	
-		 $this->load->view('html/header');
 	     $this->load->view('employee/payslip',$data);
-	    $this->load->view('html/sidebar');
 	     $this->load->view('html/footer');  
    }
 }		
@@ -666,10 +638,8 @@ public function shiftmangement(){
          $admindetails=$this->session->userdata('hrmsdetails');	
 		 $data['employee_list']=$this->Employees_model->employee_data_list();     
            //echo'<pre>';print_r($data);exit;
-		 $this->load->view('html/header',$data);
 	     $this->load->view('employee/shift-management',$data);
-	     $this->load->view('html/sidebar',$data);
-	     $this->load->view('html/footer',$data);  
+	      $this->load->view('html/footer');  
    }
 }		
 public function shiftedit(){
@@ -679,10 +649,8 @@ if($this->session->userdata('hrmsdetails'))
 	  $this->uri->segment(3);
 		 $data['shift_edit']=$this->Employees_model->edit_shift_management_details(base64_decode($this->uri->segment(3)));
 		  //echo'<pre>';print_r($data);exit;
-	      $this->load->view('html/header',$data);
 	     $this->load->view('employee/edit-shift',$data);
-	     $this->load->view('html/sidebar',$data);
-	     $this->load->view('html/footer',$data);
+	     $this->load->view('html/footer');
   }
 }
 
@@ -693,9 +661,7 @@ public function attendance()
 		if($this->session->userdata('hrmsdetails'))
 		{
 		$admindetails=$this->session->userdata('hrmsdetails');	 
-		 $this->load->view('html/header');
 	     $this->load->view('employee/attendence');
-	     $this->load->view('html/sidebar');
 		 $this->load->view('html/footer');  
 	} 
 	  
@@ -705,9 +671,7 @@ public function attendance()
 		if($this->session->userdata('hrmsdetails'))
 		{
 		$admindetails=$this->session->userdata('hrmsdetails');	 
-		 $this->load->view('html/header');
 	     $this->load->view('employee/attendence-view');
-	     $this->load->view('html/sidebar');
 		 $this->load->view('html/footer');  
 	} 
 	  
@@ -717,9 +681,7 @@ public function leaverequests(){
     if($this->session->userdata('hrmsdetails'))
 		{	
          $admindetails=$this->session->userdata('hrmsdetails');	
-		 $this->load->view('html/header');
 	     $this->load->view('employee/leaves');
-	     $this->load->view('html/sidebar');
 	     $this->load->view('html/footer');  
    }
 }		
@@ -727,9 +689,8 @@ public function leaveslist(){
     if(!$this->session->userdata('hrmsdetails'))
 		{	
          $admindetails=$this->session->userdata('hrmsdetails');	
-		 $this->load->view('html/header');
 	     $this->load->view('employee/leaves-list');
-	     $this->load->view('html/sidebar');
+	    
 	     $this->load->view('html/footer');  
    }
 }	
@@ -741,10 +702,8 @@ if($this->session->userdata('hrmsdetails'))
          $admindetails=$this->session->userdata('hrmsdetails');	
 		 $data['deparment_list']=$this->Employees_model->department_list();
 		 //echo'<pre>';print_r($data);exit;
-		 $this->load->view('html/header',$data);
-	     $this->load->view('employee/department',$data);
-	     $this->load->view('html/sidebar',$data);
-	     $this->load->view('html/footer',$data);  
+		$this->load->view('employee/department',$data);
+		$this->load->view('html/footer'); 
    }
 }	
 public function adddepartment(){
@@ -786,10 +745,8 @@ if($this->session->userdata('hrmsdetails'))
          $admindetails=$this->session->userdata('hrmsdetails');	
 		 $data['deparment_list']=$this->Employees_model->department_list();
 		 //echo'<pre>';print_r($data);exit;
-		 $this->load->view('html/header',$data);
 	     $this->load->view('employee/department-list',$data);
-	     $this->load->view('html/sidebar',$data);
-	     $this->load->view('html/footer',$data);  
+	      $this->load->view('html/footer');  
    }
 }	
 
@@ -800,10 +757,8 @@ public function editdepartment(){
 	  $this->uri->segment(3);
 		 $data['edit_department']=$this->Employees_model->edit_department_details(base64_decode($this->uri->segment(3)));
 		  //echo'<pre>';print_r($data);exit;
-	      $this->load->view('html/header',$data);
 	     $this->load->view('employee/edit-department',$data);
-	     $this->load->view('html/sidebar',$data);
-	     $this->load->view('html/footer',$data);
+		  $this->load->view('html/footer');
   }
   }	
 public function editdepartmentpost(){
@@ -918,10 +873,8 @@ if($this->session->userdata('hrmsdetails'))
          $admindetails=$this->session->userdata('hrmsdetails');	
 		 $data['shift_list']=$this->Employees_model->shift_list();
 		 //echo'<pre>';print_r($data);exit;
-		 $this->load->view('html/header',$data);
 	     $this->load->view('shift/shift',$data);
-	     $this->load->view('html/sidebar',$data);
-	     $this->load->view('html/footer',$data);  
+		 $this->load->view('html/footer');  
    }
 }	
 public function addshift(){
@@ -965,10 +918,8 @@ if($this->session->userdata('hrmsdetails'))
          $admindetails=$this->session->userdata('hrmsdetails');	
 		 $data['shift_list']=$this->Employees_model->shift_list();
 		 //echo'<pre>';print_r($data);exit;
-		 $this->load->view('html/header',$data);
 	     $this->load->view('shift/shift-list',$data);
-	     $this->load->view('html/sidebar',$data);
-	     $this->load->view('html/footer',$data);  
+	     $this->load->view('html/footer');  
    }
 }
 public function editshift(){
@@ -978,10 +929,8 @@ public function editshift(){
 	  $this->uri->segment(3);
 		 $data['edit_shift']=$this->Employees_model->edit_shift_details(base64_decode($this->uri->segment(3)));
 		  //echo'<pre>';print_r($data);exit;
-	      $this->load->view('html/header',$data);
 	     $this->load->view('shift/edit-shift',$data);
-	     $this->load->view('html/sidebar',$data);
-	     $this->load->view('html/footer',$data);
+		 $this->load->view('html/footer');
   }
   }	
 public function editshiftpost(){
@@ -1096,10 +1045,8 @@ if($this->session->userdata('hrmsdetails'))
          $admindetails=$this->session->userdata('hrmsdetails');	
 		$data['department_data']=$this->Employees_model->department_data_details();
 		 //echo'<pre>';print_r($data);exit;
-		 $this->load->view('html/header',$data);
 	     $this->load->view('subdepartment/subdepartment',$data);
-	     $this->load->view('html/sidebar',$data);
-	     $this->load->view('html/footer',$data);  
+	     $this->load->view('html/footer');  
    }
 }
 
@@ -1144,10 +1091,8 @@ if($this->session->userdata('hrmsdetails'))
          $admindetails=$this->session->userdata('hrmsdetails');	
 		 $data['subdepartment_list']=$this->Employees_model->subdepaertment_list();
 		 //echo'<pre>';print_r($data);exit;
-		 $this->load->view('html/header',$data);
 	     $this->load->view('subdepartment/subdepartment-list',$data);
-	     $this->load->view('html/sidebar',$data);
-	     $this->load->view('html/footer',$data);  
+	     $this->load->view('html/footer'); 
    }
 }	
 public function editsubdepaertment(){
@@ -1158,10 +1103,8 @@ public function editsubdepaertment(){
 		 $data['edit_subdepartment']=$this->Employees_model->edit_subdepartment_details(base64_decode($this->uri->segment(3)));
 		 $data['department_data']=$this->Employees_model->department_data_details();
 		  //echo'<pre>';print_r($data);exit;
-	      $this->load->view('html/header',$data);
 	     $this->load->view('subdepartment/edit-subdepartment',$data);
-	     $this->load->view('html/sidebar',$data);
-	     $this->load->view('html/footer',$data);
+	     $this->load->view('html/footer');
   }
   }	
 public function editsubdepartmentpost(){
@@ -1312,12 +1255,11 @@ public function trackdetails(){
   
 public function profile(){
 	
-	if(!$this->session->userdata('hrmsdetails'))
+	if($this->session->userdata('hrmsdetails'))
 		{	
          $admindetails=$this->session->userdata('hrmsdetails');	
-		 $this->load->view('html/header');
 	     $this->load->view('html/employee-details');
-	     $this->load->view('html/sidebar');
+	     $this->load->view('html/footer');
 	     
 	    
    }
@@ -1326,7 +1268,7 @@ public function profile(){
 }
 public function editprofile(){
 	
-	if(!$this->session->userdata('hrmsdetails'))
+	if($this->session->userdata('hrmsdetails'))
 		{	 
 	    $admindetails=$this->session->userdata('hrmsdetails');
 		 $this->load->view('html/header');
