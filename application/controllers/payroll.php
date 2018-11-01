@@ -1,6 +1,6 @@
 <?php if (!defined('BASEPATH')) exit('No direct script access allowed');
-
-class payroll extends CI_Controller
+@include_once( APPPATH . 'controllers/In_frontend.php');
+class payroll extends In_frontend
 {
 // ajax call for employe ids
     public function empids($name){
@@ -22,9 +22,7 @@ $data['mon']=$this->payroll_model->get_month();
 $data['year']=$this->payroll_model->get_year();
         
 
-         $this->load->view('html/header');
          $this->load->view('employee/gen-payslip',$data);
-         $this->load->view('html/sidebar');
          $this->load->view('html/footer');  
 
         
@@ -87,7 +85,8 @@ $cnt_log=count($logdays);// number of working days
 // checking user worked or not in that month
 if($cnt_log==0){
 
-    redirect('employee/salarylist');
+     $this->session->set_flashdata('error','Employee having no login details in this month');
+	redirect('employee/salarylist');
 }
 $wdays=$last_day-$cnt_sun-$cnt_hol; //total working days
 $pay_leave_days=$wdays-$cnt_log-$cnt_gen;
@@ -104,9 +103,7 @@ $data['total_ded']=$data['sal_det']->e_net_salary-((int)$day_sal*$cnt_pay); // t
 
 
 //echo $mon_sal;
-        $this->load->view('html/header');
          $this->load->view('employee/payslip-view',$data);
-         $this->load->view('html/sidebar');
          $this->load->view('html/footer');
 
 

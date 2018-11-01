@@ -114,7 +114,7 @@ return $query->result();
 // get the  records from both empploy and employee_salary table
 public function emp_det_with_salary(){
 
-   $this->db->select('*');
+$this->db->select('*');
 $this->db->from('empployee');
 $this->db->join('employee_salary', 'empployee.e_id = employee_salary.e_id');
 $query = $this->db->get();
