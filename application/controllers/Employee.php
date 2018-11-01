@@ -566,12 +566,12 @@ public function viewholidays(){
        /* payroll management */
 
 public function salary(){
-    if(!$this->session->userdata('hrmsdetails'))
+    if($this->session->userdata('hrmsdetails'))
 		{	
          $admindetails=$this->session->userdata('hrmsdetails');	
          $this->db->select('*');
 $this->db->from('empployee');
-$this->db->join('employee_salary', 'empployee.e_id = employee_salary.e_id');
+$this->db->join('salary_tab', 'employee.e_id = salary_tab.emp_id');
 $query = $this->db->get();
 $data['data']=$query->result();
 	
@@ -586,19 +586,13 @@ $data['data']=$query->result();
 public function addsalary(){
     if(!$this->session->userdata('hrmsdetails'))
 		{	
-         $admindetails=$this->session->userdata('hrmsdetails');
-         $this->load->library('session');
-         $this->load->model('payroll_model');
-
+         $admindetails=$this->session->userdata('hrmsdetails');	
       
- //$query = $this->db->get('empployee');
-$data['data']=$this->payroll_model->no_sal_emp();
-
+ $query = $this->db->get('empployee');
+$data['data']=$query->result();
 // print_r($data);
 // exit();
-            // echo $this->session->flashdata('saladded');exit;
-// if($this->session->flashdata('saladded')){
- //echo $this->session->userdata('errors').'kk'; exit;
+             
 
 		 $this->load->view('html/header');
 	     $this->load->view('employee/addsalery', $data);
@@ -608,56 +602,25 @@ $data['data']=$this->payroll_model->no_sal_emp();
    }
 }	
 public function salarylist(){
-    if(!$this->session->userdata('hrmsdetails'))
+    if($this->session->userdata('hrmsdetails'))
 		{	
          $admindetails=$this->session->userdata('hrmsdetails');	
-$this->load->model('payroll_model');
-$data['data']=$this->payroll_model->emp_det_with_salary();
-	
 		 $this->load->view('html/header');
-	     $this->load->view('employee/salarylist',$data);
+	     $this->load->view('employee/salarylist');
 	     $this->load->view('html/sidebar');
 	     $this->load->view('html/footer');
 	    
    }
 }	
 
-<<<<<<< HEAD
-   public function payslip($id){
-    if(!$this->session->userdata('hrmsdetails'))
-=======
+
    public function payslip(){
     if($this->session->userdata('hrmsdetails'))
->>>>>>> 1ea8e4fd5af7b00a9fcf1ae7e129ced26e818413
 		{	
-
-			$query = $this->db->get_where('empployee', array('e_id' => $id));
-			$data['data']=$query->row();
-			//echo '<pre>'; print_r($data);
-			$this->load->model('payroll_model');
-$data['mon']=$this->payroll_model->get_month();
-$data['year']=$this->payroll_model->get_year();
-
-
-
-//echo '<pre>'; print_r($mon);exit;
-// foreach($mon['mon'] as $key=>$value){
-
-// 	echo $value['month'];
-// }
-// exit;
-// // 			// $query = $this->db->query('SELECT distinct(month)  FROM calendar_tab');
-			// //print_r($data); exit;
-			// $mon['month']=$query->result();
-			
-			// $query = $this->db->query('SELECT distinct(year)  FROM calendar_tab');
-			// $year['year']=$query->result();
-			
-			//echo '<pre>';print_r($mon); exit;
          $admindetails=$this->session->userdata('hrmsdetails');	
 		 $this->load->view('html/header');
-	     $this->load->view('employee/payslip',$data);
-	    $this->load->view('html/sidebar');
+	     $this->load->view('employee/payslip');
+	     $this->load->view('html/sidebar');
 	     $this->load->view('html/footer');  
    }
 }		
@@ -1321,18 +1284,7 @@ public function editprofile(){
    }
 	
 }
-	// employee delete
-
-	public function emp_delete($eid){
-
-   $this->load->model('Employees_model');
-   $this->Employees_model->emp_delete($eid);
-
-   redirect('employee/salarylist');
-
-    	
-    }
-    
+	
 
 	
 	
