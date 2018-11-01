@@ -38,16 +38,13 @@ class User extends CI_Controller
 		if(count($logindetails)>0){
 			$checklogin= $this->User_model->check_today_login($logindetails['e_id'],date('Y-m-d'));
 					//echo'<pre>';print_r($checklogin);exit;
-			$this->session->set_userdata('hrmsdetails',$logindetails);
-			$format = "Y-m-d H:i:s";
-			$logintime= date($format, strtotime("-5 minute"));
-			$logouttime= date($format, strtotime("+5 minute"));
-			$login_data=array(
-			'e_id'=>$logindetails['e_id'],
-			'e_login_time'=>$logintime,
-			'e_logout_time'=>$logouttime,
-			'l_date'=>date('Y-m-d'),
-			);
+				$this->session->set_userdata('hrmsdetails',$logindetails);
+				$logintime= "Y-m-d H:i:s";
+				$login_data=array(
+				'e_id'=>$logindetails['e_id'],
+				'e_login_time'=>$logintime,
+				'l_date'=>date('Y-m-d'),
+				);
 			//echo'<pre>';print_r($login_data);exit;
 			if(count($checklogin)==0){
 				$logindatasave = $this->User_model->save_login_time_status($login_data);

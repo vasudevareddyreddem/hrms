@@ -27,14 +27,7 @@ class Dashboard extends In_frontend {
 		}
 	}
 	
-	public function logout(){
-		$admindetails=$this->session->userdata('userdetails');
-		$userinfo = $this->session->userdata('userdetails');
-        $this->session->unset_userdata($userinfo);
-		$this->session->sess_destroy('userdetails');
-		$this->session->unset_userdata('userdetails');
-        redirect('');
-	}
+	
 	
 	
 	
