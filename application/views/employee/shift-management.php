@@ -30,23 +30,25 @@
 										</tr>
 									</thead>
 									<tbody>
-										
+										<?php foreach($employee_list as $list){?>
 									
 										<tr>
 											<td>
-												<a href="#" class="avatar">J</a>
-												<h2><a href="#">Jeffrey Warden <span>Shift Incharge</span></a></h2>
+											<a href="#" class="avatar"><?php echo substr($list['e_login_name'],0,1);?></a>
+											<h2><a href="#"><?php echo $list['e_login_name'];?><span><?php echo $list['role'];?></span></a></h2>
 											</td>
-											<td>FT-0006</td>
-											<td>jeffreywarden@example.com</td>
-											<td>9876543210</td>
-											<td>16 Jun 2013</td>
-											<td>Shift Incharge</td>
-											<td>A</td>
-											<td class="text-right"><a href="#" data-toggle="modal" data-target="#edit_employee"><span class="btn btn-sm btn-warning"><i class="fa fa-pencil m-r-5"></i> Edit</span></a>
+											<td><?php echo $list['e_emplouee_id'];?></td>
+											<td><?php echo $list['e_email_work'];?></td>
+											<td><?php echo $list['e_mobile_personal'];?></td>
+											<td><?php echo $list['e_join_date'];?></td>
+											<td><?php echo $list['role'];?></td>
+											<td><?php echo $list['shift'];?></td>
+											<td>
+											<a class="btn btn-sm btn-warning" href="<?php echo base_url('employee/shiftedit/'.base64_encode($list['e_id'])); ?>"  data-toggle="tooltip" title="Edit"><i class="fa fa-pencil m-r-5"></i></a>
+
 											</td>
 										</tr>
-										
+										<?php }?>
 									</tbody>
 								</table>
 							</div>
