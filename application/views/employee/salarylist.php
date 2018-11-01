@@ -41,7 +41,7 @@
 											<td><?php echo $row->e_email_work?></td>
 											<td><?php echo $row->e_join_date?></td>
 											<td><?php ?></td>
-											<td><?php echo $row->gross_salary?></td>
+											<td><?php echo $row->e_gross_salary?></td>
 											<td><a class="btn btn-xs btn-primary" href="<?php echo base_url('employee/payslip/'.$row->e_id); ?>">Generate Slip</a></td>
 											<td class="text-right">
 												<div class="dropdown">

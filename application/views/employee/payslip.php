@@ -1,5 +1,6 @@
+       
 
-            <div class="page-wrapper">
+       <div class="page-wrapper">
                 <div class="content container-fluid bg-white">
 					<div class="row">
 						<div class="col-xs-4">
@@ -11,40 +12,54 @@
 					</div>
 					<hr>
 					<div class="row filter-row">
+						<form action='<?php echo base_url('payroll/payslippage')?>' method='post' >
 					   <div class="col-sm-3 col-md-3 col-xs-6">  
 							<div class="form-group form-focus">
 								<label class="control-label">Employee Name</label>
-								<input type="text" class="form-control floating" />
+								<input type="text" name='ename' value='<?php echo $data->e_f_name ;?>'class="form-control floating" />
 							</div>
 					   </div>  
 						<div class="col-sm-3 col-md-3 col-xs-6">  
 							<div class="form-group form-focus">
 								<label class="control-label">Employee Id</label>
-								<input type="text" class="form-control floating" />
+								<input type="text" name='eid' value='<?php echo $data->e_id ;?>' class="form-control floating" />
 							</div>
 					   </div>
 					
 					 
 					   <div class="col-sm-3 col-md-3 col-xs-6">  
 							<div class="form-group form-focus">
-								<label class="control-label">From</label>
-								<div class="cal-icon"><input class="form-control floating datetimepicker" type="text"></div>
-							</div>
+								<label class="control-label"></label>
+								<!-- <div class="cal-icon"> -->
+									<select class="select" name='month'> 
+											<?php foreach($mon as $row):?>	
+												<option value='<?php echo $row->m_id?>'><?php echo $row->month_name ?></option> 
+											<?php endforeach?> 
+												<option>Richard Miles</option>
+											</select>
+						<!-- 	</div> -->
 						</div>
+					</div>
 					   <div class="col-sm-3 col-md-3 col-xs-6">  
 							<div class="form-group form-focus">
-								<label class="control-label">To</label>
-								<div class="cal-icon"><input class="form-control floating datetimepicker" type="text"></div>
+								<label class="control-label"></label>
+								<!-- <div class="cal-icon"> -->
+									<select class="select" name='year'> 
+												<?php foreach($year as $row):?>
+												<option><?php echo $row->year?></option>
+												<?php endforeach?> 
+												<option>Richard Miles</option>
+											</select>
+								<!-- </div> -->
 							</div>
 						</div>
 						<div class="row">
 						<div class="col-sm-3 pull-right">  
-							<a href="payslip-view.php" class="btn btn-success "> Genarate Payslip </a>  
+							<button type='submit' class="btn btn-success "> Genarate Payslip </button>  
 						</div>     
 						</div>     
                     </div>
-				
-				
+	
            
 			
 			
