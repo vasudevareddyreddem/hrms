@@ -47,7 +47,7 @@ class User extends CI_Controller
 				$login_details=$this->User_model->get_hrms_details($check_login['e_id']);
 				//echo '<pre>';print_r($login_details);exit;
 				$this->session->set_userdata('hrmsdetails',$login_details);
-				redirect('employee/add');
+				redirect('dashboard');
 			}else{
 				$this->session->set_flashdata('error',"Invalid Email Address or Password!");
 				redirect('');

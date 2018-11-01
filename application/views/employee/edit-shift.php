@@ -1,62 +1,49 @@
 
-            <div class="page-wrapper">
-                <div class="content container-fluid bg-white">	
-					<div class="row">
-						<div class="col-xs-4">
-							<h4 class="page-title"> Edit Shift</h4>
+            
+			
+			
+				<div class="modal-dialog">
+					<div class="modal-content modal-md">
+						<div class="modal-header">
+							<h4 class="modal-title">Edit Shift</h4>
 						</div>
-						
-					</div>
-					 <div class="nav-tabs-custom">
-			
-			
-			       <div class="tab-content">
-             
-					<form id="defaultForm" method="post" class="m-b-30" action="" enctype="multipart/form-data">
-
-								<div class="modal-body card-box">
+						<form id="defaultForm" method="post" action="">
+							<div class="modal-body card-box">
 								<p>Are you sure want to Edit Shift?</p>
 									<div class="">
-									<div class="form-group" >
-									<label class=" control-label">Shift</label>
-									<div class="">
-										<select id="e_shift" name="e_shift"  class="form-control" >
-										<option value="">Select</option>
-										<?php if(isset($shift_data) && count($shift_data)>0){ ?>
-											<?php foreach($shift_data as $list){ ?>
-											
-													<?php if($edit_employee['e_shift']==$list['s_id']){ ?>
-															<option selected value="<?php echo $list['s_id']; ?>"><?php echo $list['shift']; ?></option>
-													<?php }else{ ?>
-															<option value="<?php echo $list['s_id']; ?>"><?php echo $list['shift']; ?></option>
-													<?php } ?>
-											<?php } ?>
-										<?php } ?>
-										</select>
-									</div>
-								</div>
-									
+											<div class="form-group">
+											<label class="control-label">Select Shift</label>
+											<select class="select" name="shift">
+													<option value="">Select Shift</option>
+													<option value="">A</option>
+													<option value="">B</option>
+													<option value="">C</option>
+													
+											</select>
+										</div>
 									</div>
 								<div class="m-t-20"> <a href="<?php echo base_url('employee/shiftmangement');?>" class="btn btn-default" data-dismiss="modal">Close</a>
 									<button type="submit" class="btn btn-success">Change Shift</button>
 								</div>
 							</div>
-							</form>
-							
-							
-							
-							
-							
-							
-							
-							
-							
-							
-						</div>
-						</div>
+						</form>
 					</div>
 				</div>
-			</div>
+			
+
+<script>
+  $(function () {
+    $("#example1").DataTable();
+    $('#example2').DataTable({
+      "paging": true,
+      "lengthChange": false,
+      "searching": false,
+      "ordering": true,
+      "info": true,
+      "autoWidth": false
+    });
+  });
+</script>
 
 <script>
 
@@ -72,9 +59,7 @@ $(document).ready(function() {
 						message: 'Shift is required'
 					}
 				}
-            },
-			
-			
+            }
 			
 			
         }
@@ -92,6 +77,7 @@ $(document).ready(function() {
 
 
 </script>
+
 
 
 

@@ -48,14 +48,17 @@
 											<td><?php echo $list['role'];?></td>
 											<td><?php echo $list['shift'];?></td>
                                                 <td><?php if($list['status']==1){ echo "Active";}else{ echo "Deactive"; } ?></td>
-												<td>
-												
-													<a href="<?php echo base_url('employee/viewemployee/'.base64_encode($list['e_id'])); ?>"  data-toggle="tooltip" title="View"><i class="fa fa-eye m-r-5"></i></a>
-													<a href="<?php echo base_url('employee/editemployee/'.base64_encode($list['e_id'])); ?>"  data-toggle="tooltip" title="Edit"><i class="fa fa-pencil btn btn-success"></i></a>
-													<a href="<?php echo base_url('employee/status/'.base64_encode($list['e_id']).'/'.base64_encode($list['status'])); ?>" data-toggle="tooltip" title="status"><i class="fa fa-info-circle btn btn-warning"></i></a>
-													<a href="<?php echo base_url('employee/delete/'.base64_encode($list['e_id']));?>" data-toggle="tooltip"  title="Delete"><i class="fa fa-trash btn btn-danger"></i></a>
-
-												
+												<td class="text-right">
+												<div class="dropdown">
+													<a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-ellipsis-v"></i></a>
+													<ul class="dropdown-menu pull-right">
+													  <li><a href="<?php echo base_url('employee/viewemployee/'.base64_encode($list['e_id'])); ?>"  data-toggle="tooltip" title="View"><i class="fa fa-eye m-r-5"></i></a></li>
+														<li><a href="<?php echo base_url('employee/editemployee/'.base64_encode($list['e_id'])); ?>"  data-toggle="tooltip" title="Edit"><i class="fa fa-pencil btn btn-success"></i></a></li>
+														<li><a href="<?php echo base_url('employee/status/'.base64_encode($list['e_id']).'/'.base64_encode($list['status'])); ?>" data-toggle="tooltip" title="status"><i class="fa fa-info-circle btn btn-warning"></i></a></li>
+                                                        <li><a href="<?php echo base_url('employee/delete/'.base64_encode($list['e_id']));?>" data-toggle="tooltip"  title="Delete"><i class="fa fa-trash btn btn-danger"></i></a></li>
+														
+													</ul>
+												</div>
 											</td>
 												
 										</tr>

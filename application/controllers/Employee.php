@@ -642,12 +642,12 @@ if($this->session->userdata('hrmsdetails'))
 		{	
          $admindetails=$this->session->userdata('hrmsdetails');
 	  $this->uri->segment(3);
-		 //$data['edit_holiday']=$this->Employees_model->edit_holidays_details(base64_decode($this->uri->segment(3)));
+		 $data['shift_edit']=$this->Employees_model->edit_shift_management_details(base64_decode($this->uri->segment(3)));
 		  //echo'<pre>';print_r($data);exit;
-	      $this->load->view('html/header');
-	     $this->load->view('employee/edit-shift');
-	     $this->load->view('html/sidebar');
-	     $this->load->view('html/footer');
+	      $this->load->view('html/header',$data);
+	     $this->load->view('employee/edit-shift',$data);
+	     $this->load->view('html/sidebar',$data);
+	     $this->load->view('html/footer',$data);
   }
 }
 

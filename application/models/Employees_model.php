@@ -250,6 +250,11 @@ $this->db->select('*')->from('department');
 	}
 	 
 	
+	public function edit_shift_management_details($e_id){
+	$this->db->select('*')->from('empployee');
+	$this->db->where('e_id',$e_id);
+	return $this->db->get()->row_array();	
+	}
 	
 	
 	
