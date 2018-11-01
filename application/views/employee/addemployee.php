@@ -98,7 +98,7 @@
 										<div class="form-group">
 										<label class=" control-label">Designation</label>
 										<div class="">
-										<select id="e_designation" name="e_designation"  class="form-control" >
+										<select onchange="get_type(this.value);" id="e_designation" name="e_designation"  class="form-control" >
 										<option value="">Select</option>
 										<?php foreach ($roles_list as $list){ ?>
 										<option value="<?php echo $list['r_id']; ?>"><?php echo $list['role']; ?></option>
@@ -108,10 +108,10 @@
 									    </div>
 									</div>
 									
-										<div class="col-sm-2">
+										<div class="col-sm-2" id="retur_type_div">
 										<div class="form-group">
 											<label class="control-label">Supervisor</label>
-											<select class="select" name="e_supervisor">
+											<select class="select" name="e_supervisor" >
 													<option value="">Select Supervisor</option>
 													<option value="A">A</option>
 													<option value="B">B</option>
@@ -427,7 +427,21 @@
 					</div>
 				</div>
 			</div>
-<script>
+ 
+  <script type="text/javascript">
+  
+  function get_type(val){
+	  
+	  if(val=='8'){
+		  $('#retur_type_div').hide(); 
+		  $('#e_supervisor').val(''); 
+	  }else{
+		$('#retur_type_div').show(); 
+
+	  }
+	  
+  }
+
 function get_department_list(e_department){
 	if(e_department !=''){
 		    jQuery.ajax({

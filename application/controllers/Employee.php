@@ -406,9 +406,15 @@ public function addholidaypost(){
          $admindetails=$this->session->userdata('hrmsdetails');	
 		 $post=$this->input->post();	
 		 //echo'<pre>';print_r($post);exit;
+		 $date = DateTime::createFromFormat('d/m/Y', $post['holiday_date']); // \DateTime object
+		  //echo'<pre>';print_r($post['holiday_date']);exit;
+ $d=$date->format('Y-m-d');
+ //echo $d;exit;
+ 
 		 $save_data=array(
 				'holiday_name'=>isset($post['holiday_name'])?$post['holiday_name']:'',
-				'holiday_date'=>isset($post['holiday_date'])?$post['holiday_date']:'',
+				
+				'holiday_date'=>$d?$d:'',
 				'holiday_day'=>isset($post['holiday_day'])?$post['holiday_day']:'',
 				'status'=>1,
 				'created_at'=>date('Y-m-d H:i:s'),

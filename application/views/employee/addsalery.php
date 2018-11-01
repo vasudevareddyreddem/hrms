@@ -76,10 +76,10 @@
 											<label>PF</label>
 											<input class="form-control " type="text" name='pf'>
 										</div>
-										<div class="form-group">
+										<!-- <div class="form-group">
 											<label>Leave</label>
 											<input class="form-control " type="text" name=''>
-										</div>
+										</div> -->
 										<div class="form-group">
 											<label>Prof. Tax</label>
 											<input class="form-control " type="text" name='ptax'>

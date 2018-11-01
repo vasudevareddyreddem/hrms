@@ -32,10 +32,11 @@ $data['year']=$this->payroll_model->get_year();
 
     public function test(){
 
-    $this->load->library('numbertowords');
-$number=9999;
-echo $this->numbertowords->convert_number($number);
-
+//     $this->load->library('numbertowords');
+// $number=9999;
+// echo $this->numbertowords->convert_number($number);
+$date = DateTime::createFromFormat('m/d/Y', '06/16/2010'); // \DateTime object
+echo $date->format('Y-m-d');// 2010-06-16
     }
    
 	// payslip page
@@ -89,13 +90,15 @@ if($cnt_log==0){
     redirect('employee/salarylist');
 }
 $wdays=$last_day-$cnt_sun-$cnt_hol; //total working days
+$pay_leave_days=$wdays-$cnt_log-$cnt_gen;
+
 
 $day_sal=$sal/$last_day;
-$data['leave_ded']=(int)$day_sal*$cnt_pay;// leave deductions
+$data['leave_ded']=(int)$day_sal*$pay_leave_days;// leave deductions
 //$mon_sal=$sal-((int)$day_sal*$cnt_pay);
-$data['total_ded']=$data['sal_det']->e_gross_salary-$data['sal_det']->e_net_salary-((int)$day_sal*$cnt_pay); // total deductions
+$data['total_ded']=$data['sal_det']->e_net_salary-((int)$day_sal*$cnt_pay); // total deductions
 
-$leave_days=$wdays-$cnt_log;
+
 
 //print_r($data);exit;
 
@@ -175,7 +178,7 @@ $net_salary=(float)$basicsal+(float)$hra+(float)$da+(float)$allw+(float)$mallw+(
 $gross_salary=(float)$net_salary+(float)$tds+(float)$pf+(float)$esi+(float)$ptax+(float)$lwel+(float)$fund+(float)$dothers;
 
 
-echo $net_salary;exit;
+//echo $net_salary;exit;
 $data=array(
 'e_id'=> $this->input->post('uid'),
 'e_basic' => $this->input->post('bsal'),

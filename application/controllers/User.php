@@ -30,6 +30,36 @@ class User extends CI_Controller
 	}
   
 	}
+
+	public function loginpost(){
+		 if($this->session->userdata('hrmsdetails'))
+			{
+			$admindetails=$this->session->userdata('hrmsdetails');
+		$post=$this->input->post();
+		$logindetails = $this->User_model->login_details($post['e_email_work'],md5($post['e_password']));
+		//echo'<pre>';print_r($logindetails);exit;
+		
+			$checklogin= $this->User_model->check_today_login($logindetails['e_id'],date('Y-m-d'));
+					//echo'<pre>';print_r($checklogin);exit;
+			$this->session->set_userdata('hrmsdetails',$logindetails);
+			$format = "Y-m-d H:i:s";
+			$logintime= date($format, strtotime("-5 minute"));
+			$login_data=array(
+			'e_id'=>$logindetails['e_id'],
+			'e_login_time'=>$logintime,
+			'l_date'=>date('Y-m-d'),
+			);
+			//echo'<pre>';print_r($login_data);exit;
+			if(count($checklogin)==0){
+				$logindatasave = $this->User_model->save_login_time_status($login_data);
+				//echo'<pre>';print_r($logindatasave);exit;
+				if(count($logindatasave)>0){
+					redirect('dashboard');	
+				}else{
+					$this->session->set_flashdata('loginerror',"Technical problem will occured. Please try again.");
+					redirect('');
+				}
+
 	public function loginpost()
 	{
 		if(!$this->session->userdata('hrmsdetails'))
@@ -42,20 +72,25 @@ class User extends CI_Controller
 			$login_deta=array('e_email_work'=>$post['e_email_work'],'e_password'=>md5($post['e_password']));
 			$check_login=$this->User_model->login_details($login_deta);
 				$this->load->helper('cookie');
+				//echo '<pre>';print_r( $check_login); exit;
 
 				if(count($check_login)>0){
 				$login_details=$this->User_model->get_hrms_details($check_login['e_id']);
 				//echo '<pre>';print_r($login_details);exit;
+				
 				$this->session->set_userdata('hrmsdetails',$login_details);
+				//echo '<pre>'; print_r($this->session->userdata('hrmsdetails')); 
+				//exit;
 				redirect('dashboard');
+
 			}else{
-				$this->session->set_flashdata('error',"Invalid Email Address or Password!");
-				redirect('');
+				redirect('dashboard');
 			}
-		}else{
-			//$this->session->set_flashdata('error','Please login to continue');
+			}else{
+			$this->session->set_flashdata('loginerror',"Invalid Email Address or Password!");
 			redirect('');
 		}
+		
 	}
  public function forgot(){
 	 if(!$this->session->userdata('hrmsdetails'))

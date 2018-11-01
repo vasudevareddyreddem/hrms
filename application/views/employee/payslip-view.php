@@ -39,10 +39,14 @@
 								<div class="row">
 									<div class="col-lg-12 m-b-20">
 										<ul class="list-unstyled">
-											<li><h5 class="m-b-0"><strong>John Doe</strong></h5></li>
-											<li><span>Web Designer</span></li>
-											<li>Employee ID: FT-0009</li>
-											<li>Joining Date: 1 Jan 2013</li>
+											<li><h5 class="m-b-0"><strong><?php echo $sal_det->e_f_name ?></strong></h5></li>
+											<li><span><?php echo $sal_det->e_designation ?></span></li>
+											<li>Employee ID: <?php echo $sal_det->e_emplouee_id ?></li>
+											<li>Joining Date: <?php $day=explode("-",$sal_det->e_join_date);
+											echo $day[2]?$day[2]:'';
+                                         $date = date('F, Y', strtotime($sal_det->e_join_date));
+
+echo $date;  ?></li>
 										</ul>
 									</div>
 								</div>
