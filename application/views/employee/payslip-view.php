@@ -1,5 +1,4 @@
-<?php include("header.php"); ?>
-<?php include("sidebar.php"); ?>
+
 <div class="page-wrapper">
                 <div class="content container-fluid">
 					<div class="row">
@@ -17,7 +16,8 @@
 					<div class="row">
 						<div class="col-md-12">
 							<div class="card-box">
-								<h4 class="payslip-title">Payslip for the month of September 2017</h4>
+								<h4 class="payslip-title">Payslip for the month of 
+									<?php echo $month.' '.$year?></h4>
 								<div class="row">
 									<div class="col-md-6 m-b-20">
 										<img src="assets/img/logo2.png" class="m-b-20" alt="" style="width: 100px;">
@@ -31,7 +31,7 @@
 										<div class="invoice-details">
 											<h3 class="text-uppercase">Payslip #49029</h3>
 											<ul class="list-unstyled">
-												<li>Salary Month: <span>September, 2017</span></li>
+												<li>Salary Month: <span><?php echo $month.','.$year?></h4></span></li>
 											</ul>
 										</div>
 									</div>
@@ -53,19 +53,28 @@
 											<table class="table table-bordered">
 												<tbody>
 													<tr>
-														<td><strong>Basic Salary</strong> <span class="pull-right">$6500</span></td>
+														<td><strong>Basic Salary</strong> <span class="pull-right"><?php echo $sal_det->e_basic ?></span></td>
 													</tr>
 													<tr>
-														<td><strong>House Rent Allowance (H.R.A.)</strong> <span class="pull-right">$55</span></td>
+														<td><strong>DA</strong> <span class="pull-right"><?php echo $sal_det->e_da ?></span></td>
 													</tr>
 													<tr>
-														<td><strong>Conveyance</strong> <span class="pull-right">$55</span></td>
+														<td><strong>House Rent Allowance (H.R.A.)</strong> <span class="pull-right"><?php echo $sal_det->e_hra ?></span></td>
 													</tr>
 													<tr>
-														<td><strong>Other Allowance</strong> <span class="pull-right">$55</span></td>
+														<td><strong>Conveyance</strong> <span class="pull-right"><?php echo $sal_det->e_conveyance ?></span></td>
 													</tr>
 													<tr>
-														<td><strong>Total Earnings</strong> <span class="pull-right"><strong>$55</strong></span></td>
+														<td><strong> Allowance</strong> <span class="pull-right"><?php echo $sal_det->e_allowance ?></span></td>
+													</tr>
+													<tr>
+														<td><strong> Medical Allowance</strong> <span class="pull-right"><?php echo $sal_det->e_medical_allowance ?></span></td>
+													</tr>
+													<tr>
+														<td><strong>Other Allowance</strong> <span class="pull-right"><?php echo $sal_det->e_others ?></span></td>
+													</tr>
+													<tr>
+														<td><strong>Total Earnings</strong> <span class="pull-right"><strong><?php echo $sal_det->e_net_salary ?></strong></span></td>
 													</tr>
 												</tbody>
 											</table>
@@ -77,26 +86,39 @@
 											<table class="table table-bordered">
 												<tbody>
 													<tr>
-														<td><strong>Tax Deducted at Source (T.D.S.)</strong> <span class="pull-right">$0</span></td>
+														<td><strong>Tax Deducted at Source (T.D.S.)</strong> <span class="pull-right"><?php echo $sal_det->e_d_tds ?></span></td>
 													</tr>
 													<tr>
-														<td><strong>Provident Fund</strong> <span class="pull-right">$0</span></td>
+														<td><strong>Provident Fund</strong> <span class="pull-right"><?php echo $sal_det->e_d_pf ?></span></td>
 													</tr>
 													<tr>
-														<td><strong>ESI</strong> <span class="pull-right">$0</span></td>
+														<td><strong>ESI</strong> <span class="pull-right"><?php echo $sal_det->e_d_esi ?></span></td>
 													</tr>
 													<tr>
-														<td><strong>Loan</strong> <span class="pull-right">$300</span></td>
+														<td><strong>Professional Tax</strong> <span class="pull-right"><?php echo $sal_det->e_d_Prof_tax ?></span></td>
+													</tr>
+													
+													<tr>
+													<td><strong>Fund</strong> <span class="pull-right"><?php echo $sal_det->e_d_fund ?></span></td>
 													</tr>
 													<tr>
-														<td><strong>Total Deductions</strong> <span class="pull-right"><strong>$59698</strong></span></td>
+													<td><strong>Leaves</strong> <span class="pull-right"><?php echo $leave_ded ?></span></td>
+													</tr>
+													<tr>
+													<td><strong>Labour Welfare Fund</strong> <span class="pull-right"><?php echo $sal_det->e_d_labour_welfare ?></span></td>
+													</tr>
+													<tr>
+													<td><strong>Others</strong> <span class="pull-right"><?php echo $sal_det->e_d_others ?></span></td>
+													</tr>
+													<tr>
+														<td><strong>Total Deductions</strong> <span class="pull-right"><strong><?php echo $total_ded ?></strong></span></td>
 													</tr>
 												</tbody>
 											</table>
 										</div>
 									</div>
 									<div class="col-md-12">
-										<p><strong>Net Salary: $59698</strong> (Fifty nine thousand six hundred and ninety eight only.)</p>
+										<p><strong>Net Salary: <?php echo $sal_det->e_net_salary ?></strong> <?php echo $this->numbertowords->convert_number($sal_det->e_net_salary).'Rupees'; ?></p>
 									</div>
 								</div>
 							</div>
@@ -313,4 +335,3 @@
 					</div>
 				</div>
             </div>
-<?php include("footer.php"); ?>
