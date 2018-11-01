@@ -6,7 +6,7 @@
 							<h4 class="page-title">Holidays 2018</h4>
 						</div>
 						<div class="col-sm-4 text-right m-b-30">
-							<a href="#" class="btn btn-primary rounded" data-toggle="modal" data-target="#add_holiday"><i class="fa fa-plus"></i> Add New Holiday</a>
+							<a href="<?php echo base_url('employee/addholiday'); ?>" class="btn btn-primary rounded"  data-target="#add_holiday"><i class="fa fa-plus"></i> Add New Holiday</a>
 						</div>
 					</div>
 					<hr>
@@ -16,98 +16,41 @@
 								<table class="table table-striped custom-table m-b-0">
 									<thead>
 										<tr>
-											<th>#</th>
+											<th>S.No</th>
 											<th>Title </th>
 											<th>Holiday Date</th>
 											<th>Day</th>
+											<th>Status</th>
 											<th class="text-right">Action</th>
 										</tr>
 									</thead>
 									<tbody>
-										<tr class="holiday-completed">
-											<td>1</td>
-											<td>New Year</td>
-											<td>1 Jan 2017</td>
-											<td>Sunday</td>
-											<td></td>
-										</tr>
-										<tr class="holiday-completed">
-											<td>2</td>
-											<td>Good Friday</td>
-											<td>14 Apr 2017</td>
-											<td>Friday</td>
-											<td></td>
-										</tr>
-										<tr class="holiday-completed">
-											<td>3</td>
-											<td>May Day</td>
-											<td>1 May 2017</td>
-											<td>Monday</td>
-											<td class="text-center">
-											</td>
-										</tr>
-										<tr class="holiday-completed">
-											<td>4</td>
-											<td>Memorial Day</td>
-											<td>28 May 2017</td>
-											<td>Monday</td>
-											<td class="text-center">
-											</td>
-										</tr>
-										<tr class="holiday-completed">
-											<td>5</td>
-											<td>Ramzon</td>
-											<td>26 Jun 2017</td>
-											<td>Monday</td>
-											<td></td>
-										</tr>
+										<?php $cnt=1; foreach($holiday_list as $list){?>
 										<tr class="holiday-upcoming">
-											<td>6</td>
-											<td>Bakrid</td>
-											<td>2 Sep 2017</td>
-											<td>Saturday</td>
+											<td><?php echo $cnt;?></td>
+											<td><?php echo $list['holiday_name'] ?></td>
+											<td><?php echo $list['holiday_date'] ?></td>
+											<td><?php echo $list['holiday_day'] ?></td>
+											<td><?php if($list['status']==1){ echo "Active";}else{ echo "Deactive"; } ?></td>
 											<td class="text-right">
 												<div class="dropdown">
 													<a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-ellipsis-v"></i></a>
 													<ul class="dropdown-menu pull-right">
-														<li><a href="#" data-toggle="modal" data-target="#edit_holiday" title="Edit"><i class="fa fa-pencil m-r-5"></i> Edit</a></li>
-														<li><a href="#" data-toggle="modal" data-target="#delete_holiday" title="Delete"><i class="fa fa-trash-o m-r-5"></i> Delete</a></li>
+													  <li><a href="<?php echo base_url('employee/viewholidays/'.base64_encode($list['h_id'])); ?>"  data-toggle="tooltip" title="View"><i class="fa fa-eye m-r-5"></i></a></li>
+														<li><a href="<?php echo base_url('employee/editholidays/'.base64_encode($list['h_id'])); ?>"  data-toggle="tooltip" title="Edit"><i class="fa fa-pencil btn btn-success"></i></a></li>
+														<li><a href="<?php echo base_url('employee/statusholidays/'.base64_encode($list['h_id']).'/'.base64_encode($list['status'])); ?>" data-toggle="tooltip" title="status"><i class="fa fa-info-circle btn btn-warning"></i></a></li>
+                                                        <li><a href="<?php echo base_url('employee/deleteholidays/'.base64_encode($list['h_id']));?>" data-toggle="tooltip"  title="Delete"><i class="fa fa-trash btn btn-danger"></i></a></li>
+														
 													</ul>
 												</div>
 											</td>
 										</tr>
-										<tr class="holiday-upcoming">
-											<td>7</td>
-											<td>Deepavali</td>
-											<td>18 Oct 2017</td>
-											<td>Wednesday</td>
-											<td class="text-right">
-												<div class="dropdown">
-													<a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-ellipsis-v"></i></a>
-													<ul class="dropdown-menu pull-right">
-														<li><a href="#" data-toggle="modal" data-target="#edit_holiday" title="Edit"><i class="fa fa-pencil m-r-5"></i> Edit</a></li>
-														<li><a href="#" data-toggle="modal" data-target="#delete_holiday" title="Delete"><i class="fa fa-trash-o m-r-5"></i> Delete</a></li>
-													</ul>
-												</div>
-											</td>
-										</tr>
-										<tr class="holiday-upcoming">
-											<td>8</td>
-											<td>Christmas</td>
-											<td>25 Dec 2017</td>
-											<td>Monday</td>
-											<td class="text-right">
-												<div class="dropdown">
-													<a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-ellipsis-v"></i></a>
-													<ul class="dropdown-menu pull-right">
-														<li><a href="#" data-toggle="modal" data-target="#edit_holiday" title="Edit"><i class="fa fa-pencil m-r-5"></i> Edit</a></li>
-														<li><a href="#" data-toggle="modal" data-target="#delete_holiday" title="Delete"><i class="fa fa-trash-o m-r-5"></i> Delete</a></li>
-													</ul>
-												</div>
-											</td>
-										</tr>
+										
+										
 									</tbody>
+									<?php $cnt++;}?>
 								</table>
+								
 							</div>
 						</div>
 					</div>
@@ -364,6 +307,7 @@
 							</form>
 						</div>
 					</div>
+					
 				</div>
 			</div>
 			<div id="edit_holiday" class="modal custom-modal fade" role="dialog">

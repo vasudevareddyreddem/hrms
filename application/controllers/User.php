@@ -50,11 +50,11 @@ class User extends CI_Controller
 				redirect('employee/add');
 			}else{
 				$this->session->set_flashdata('error',"Invalid Email Address or Password!");
-				redirect('employee/add');
+				redirect('');
 			}
 		}else{
 			//$this->session->set_flashdata('error','Please login to continue');
-			redirect('employee/add');
+			redirect('');
 		}
 	}
  public function forgot(){

@@ -6,26 +6,15 @@
 							<h4 class="page-title">Employee</h4>
 						</div>
 						<div class="col-xs-8 text-right m-b-30">
-							<a href="<?php echo base_url('employee/lists'); ?>" class="btn btn-primary pull-right rounded"> Employees Lists</a>
+							<a href="<?php echo base_url('employee/all'); ?>" class="btn btn-primary pull-right rounded"> Employees Lists</a>
 						
 						</div>
 					</div>
-					<form id="defaultForm" method="post" class="m-b-30" action="<?php echo base_url('employee/addpost');?>">
+					<form id="defaultForm" method="post" class="m-b-30" action="<?php echo base_url('employee/addpost');?>" enctype="multipart/form-data">
 							<h2 class="text-primary">Basic Details</h2>
 							<hr>
 								<div class="row">
-								<div class="col-sm-6">  
-										<div class="form-group">
-											<label class="control-label">Role</label>
-											<select class="select" name="role_id">
-													<option value="">Role</option>
-													<option value="1">Admin</option>
-													<option value="2">Hr</option>
-													<option value="3">sales</option>
-													
-											</select>
-										</div>
-									</div>
+								
 									<div class="col-sm-6">  
 										<div class="form-group">
 											<label class="control-label">Employee ID </label>
@@ -105,22 +94,21 @@
 									
 									</div>	
 									<div class="row">
-										<div class="col-sm-3">
+										<div class="col-sm-2">
 										<div class="form-group">
-											<label class="control-label">Designation</label>
-											<select class="select" name="e_designation">
-													<option value="">Select Designation</option>
-													<option value="General Manager">General Manager</option>
-													<option value="Assistant General Manager">Assistant General Manager</option>
-													<option value="Production Manager">Production Manager</option>
-													<option value="Assistant Production Manager">Assistant Production Manager</option>
-													<option value="Shift Incharge">Shift Incharge</option>
-													<option value="Senior Trainee">Senior Trainee</option>
-													<option value="Junior  Trainee">Junior  Trainee</option>
-											</select>
+										<label class=" control-label">Designation</label>
+										<div class="">
+										<select id="e_designation" name="e_designation"  class="form-control" >
+										<option value="">Select</option>
+										<?php foreach ($roles_list as $list){ ?>
+										<option value="<?php echo $list['r_id']; ?>"><?php echo $list['role']; ?></option>
+										<?php }?>
+										</select>
 										</div>
+									    </div>
 									</div>
-										<div class="col-sm-3">
+									
+										<div class="col-sm-2">
 										<div class="form-group">
 											<label class="control-label">Supervisor</label>
 											<select class="select" name="e_supervisor">
@@ -132,31 +120,52 @@
 											</select>
 										</div>
 									</div>	
-									<div class="col-sm-3">
+									
+									<div class="col-sm-2">
 										<div class="form-group">
-											<label class="control-label">Department</label>
-											<select class="select" name="e_department">
-													<option value="">Select Department</option>
-													<option value="A">A</option>
-													<option value="B">B</option>
-													<option value="C">C</option>
-													
-											</select>
+										<label class=" control-label">Department</label>
+										<div class="">
+										<select id="e_department" name="e_department" onchange="get_department_list(this.value)" class="form-control" >
+										<option value="">Select</option>
+										<?php foreach ($deparment_data as $list){ ?>
+										<option value="<?php echo $list['d_id']; ?>"><?php echo $list['department']; ?></option>
+										<?php }?>
+										</select>
 										</div>
-									</div>
-									<div class="col-sm-3">
-										<div class="form-group">
-											<label class="control-label">Sub Department</label>
-											<select class="select" name="e_sub_department">
-													<option value="">Select Sub Department</option>
-													<option value="A">A</option>
-													<option value="B">B</option>
-													<option value="C">C</option>
-													
-											</select>
-										</div>
-									</div>
+									    </div>
+								 </div>
+									
+									
+									<div class="col-sm-2">
+									<div class="form-group">
+								<label class=" control-label">Sub Department</label>
+								<div class="">
+									<select id="e_sub_department" name="e_sub_department"  class="form-control" >
+									<option value="">Select</option>
+									</select>
 								</div>
+							</div>
+										
+									</div>
+									<div class="col-sm-2">
+									<div class="form-group">
+										<label class=" control-label">Shift</label>
+										<div class="">
+										<select id="e_shift" name="e_shift"  class="form-control" >
+										<option value="">Select</option>
+										<?php foreach ($shift_data as $list){ ?>
+										<option value="<?php echo $list['s_id']; ?>"><?php echo $list['shift']; ?></option>
+										<?php }?>
+										</select>
+										</div>
+									    </div>
+									
+									</div>
+									
+									
+								</div>
+								
+								
 								<div class="clearfix">&nbsp;</div>
 								<div class="row">
 								<h4 class="col-md-6 text-primary">Current Address</h4>
@@ -167,19 +176,19 @@
 									<div class="col-sm-6 ">
 										<div class="form-group">
 											<label class="control-label">Address 1 </label>
-											<textarea class="form-control" name="e_c_adress" placeholder="Enter Address1"></textarea>
+											<textarea class="form-control" id="e_c_adress" name="e_c_adress" placeholder="Enter Address1"></textarea>
 										</div>
 										<div class="form-group">
 											<label class="control-label">City </label>
-											<input class="form-control" name="e_c_city" type="text" placeholder="Enter City">
+											<input class="form-control"id="e_c_city" name="e_c_city" type="text" placeholder="Enter City">
 										</div>
 										<div class="form-group">
 											<label class="control-label">District </label>
-											<input class="form-control" name="e_c_district" type="text" placeholder="Enter City">
+											<input class="form-control" id="e_c_district" name="e_c_district" type="text" placeholder="Enter City">
 										</div>
 										<div class="form-group">
 											<label class="control-label">State </label>
-												<select class="form-control" id="state" name="e_c_state">
+												<select class="form-control" id="e_c_state" name="e_c_state">
 												<option value="">N/A</option>
 												<option value="AK">Alaska</option>
 												<option value="AL">Alabama</option>
@@ -235,22 +244,30 @@
 												<option value="WY">Wyoming</option>
 											</select>
 										</div>
+										
+										
 										<div class="checkbox">
-										  <label><input type="checkbox"  name="address_same" id="address_same" value="">Click here if Currrent Address is Same as Permanent</label>
-										</div>
-									</div>
+                                    <label>
+                                    <input type="checkbox" value="" name="filltoo" id="filltoo" onclick="filladd()" />Click here if Currrent Address is Same as Permanent
+
+                                    </label>
+                                </div>
+								</div>
+								<span id="same_as_above">
+								
+								
 									<div class="col-sm-6 ">
 										<div class="form-group">
 											<label class="control-label">Address 1 </label>
-											<textarea class="form-control" name="e_p_address" placeholder="Enter Address1"></textarea>
+											<textarea class="form-control" id="e_p_address" name="e_p_address" placeholder="Enter Address1"></textarea>
 										</div>
 										<div class="form-group">
 											<label class="control-label">City </label>
-											<input class="form-control" name="e_p_city" type="text" placeholder="Enter City">
+											<input class="form-control" id="e_p_city" name="e_p_city" type="text" placeholder="Enter City">
 										</div>
 										<div class="form-group">
 											<label class="control-label">District </label>
-											<input class="form-control" name="e_p_district" type="text" placeholder="Enter City">
+											<input class="form-control" id="e_p_district" name="e_p_district" type="text" placeholder="Enter City">
 										</div>
 										<div class="form-group">
 											<label class="control-label">State </label>
@@ -313,6 +330,7 @@
 									</div>
 									
 								</div>
+								</span>
 								<div class="row">
 									<div class="col-md-6">
 										<div class="form-group">
@@ -409,42 +427,82 @@
 					</div>
 				</div>
 			</div>
-
 <script>
-$(function(){
-    $('#address_same').click(function() {
-        if($(this).is(':checked'))
-			$('#same_as_above').hide();
-        else
-          $('#same_as_above').show();
-    });
-});
+function get_department_list(e_department){
+	if(e_department !=''){
+		    jQuery.ajax({
+   			url: "<?php echo base_url('employee/department_wise_list');?>",
+   			data: {
+				e_department: e_department,
+			},
+   			type: "POST",
+   			format:"Json",
+   					success:function(data){
+						
+						if(data.msg=1){
+							var parsedData = JSON.parse(data);
+						//alert(parsedData.list.length);
+							$('#e_sub_department').empty();
+							$('#e_sub_department').append("<option>select</option>");
+							for(i=0; i < parsedData.list.length; i++) {
+								//console.log(parsedData.list);
+							$('#e_sub_department').append("<option value="+parsedData.list[i].s_d_id+">"+parsedData.list[i].sub_department+"</option>");                      
+                    
+								
+							 
+							}
+						}
+						
+   					}
+           });
+	   }
+}
+</script>
+<script>
+function filladd()
+{
+	 if(filltoo.checked == true) 
+     {
+             var e_p_address =document.getElementById("e_c_adress").value;
+			 var e_p_city =document.getElementById("e_c_city").value;
+			 var e_p_district =document.getElementById("e_c_district").value;
+			 var e_p_state =document.getElementById("e_c_state").value;
+          
+
+           
+            var e_c_adress =e_p_address ;
+            var e_c_city =e_p_city ;
+            var e_c_district =e_p_district ;
+            var e_c_state =e_p_state ;
+
+            
+            document.getElementById("e_p_address").value = e_c_adress;
+            document.getElementById("e_p_city").value = e_c_city;
+            document.getElementById("e_p_district").value = e_c_district;
+            document.getElementById("e_p_state").value = e_c_state;
+	 }
+	 else if(filltoo.checked == false)
+	 {
+		 document.getElementById("e_p_address").value='';
+		 document.getElementById("e_p_city").value='';
+		 document.getElementById("e_p_district").value='';
+		 document.getElementById("e_p_state").value='';
+	 }
+}
+
+
 $(document).ready(function() {
  
    $('#defaultForm').bootstrapValidator({
 //       
         fields: {
-			role_id: {
-                validators: {
-					notEmpty: {
-						message: 'Role is required'
-					},
-					regexp: {
-					regexp: /^[a-zA-Z0-9. ]+$/,
-					message: 'Role can only consist of alphanumeric, space and dot'
-					}
-				}
-            },
 			
             e_emplouee_id: {
                 validators: {
 					notEmpty: {
 						message: 'Employee ID is required'
-					},
-					regexp: {
-					regexp: /^[a-zA-Z0-9. ]+$/,
-					message: 'Employee ID can only consist of alphanumeric, space and dot'
 					}
+					
 				}
             },
 			e_join_date: {
@@ -584,10 +642,13 @@ $(document).ready(function() {
 					}
 				}
             },
-			
-			
-			
-			
+			e_shift:{
+			validators: {
+					notEmpty: {
+						message: 'Select Shift  is required'
+					}
+				}
+            },
 			
 			e_c_adress: {
                  validators: {

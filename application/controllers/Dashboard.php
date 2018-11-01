@@ -11,14 +11,15 @@ class Dashboard extends In_frontend {
 	}
 	public function index()
 	{
-		if(!$this->session->userdata('hrmsdetails'))
+		if($this->session->userdata('hrmsdetails'))
 		{
 			$admindetails=$this->session->userdata('hrmsdetails');
-			
-			    $this->load->view('html/header');
-				$this->load->view('employee/dashboard');
-	            $this->load->view('html/sidebar');
-	            $this->load->view('html/footer');
+			$data['details']=$this->Employees_model->get_adminbasic_details($admindetails['e_id']);
+              //echo'<pre>';print_r($data);exit;
+			    $this->load->view('html/header',$data);
+				$this->load->view('employee/dashboard',$data);
+	            $this->load->view('html/sidebar',$data);
+	            $this->load->view('html/footer',$data);
 		}
 	}
 	

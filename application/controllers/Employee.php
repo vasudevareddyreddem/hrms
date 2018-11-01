@@ -40,21 +40,250 @@ public function addemployee(){
 	    
    }
 }
+public function editemployee(){
+	if($this->session->userdata('hrmsdetails'))
+		{	
+         $admindetails=$this->session->userdata('hrmsdetails');	
+	     $admindetails=$this->session->userdata('hrmsdetails');	
+		 $this->uri->segment(3);
+		 $data['deparment_data']=$this->Employees_model->department_name_list();
+		 $data['sub_deparment_data']=$this->Employees_model->sub_department_name_list();
+		 $data['shift_data']=$this->Employees_model->shift_name_list();
+		 $data['roles_list']=$this->Employees_model->roles_list();
+		 $data['edit_employee']=$this->Employees_model->edit_employee_details(base64_decode($this->uri->segment(3)));
+		//echo'<pre>';print_r($data);exit;
+		 
+		 $this->load->view('html/header',$data);
+	     $this->load->view('employee/edit-employee',$data);
+	     $this->load->view('html/sidebar',$data);
+	     $this->load->view('html/footer',$data);
+	    
+   }
+}
 
 
+
+public function editemployeepost(){
+	if($this->session->userdata('hrmsdetails'))
+		{
+	    $admindetails=$this->session->userdata('hrmsdetails');	
+		 $post=$this->input->post();	
+		//echo'<pre>';print_r($post);exit;
+		 $edit_employee=$this->Employees_model->edit_employee_details($admindetails['e_id']);
+		//echo'<pre>';print_r($edit_employee);exit;
+		
+		$user_save=$this->Employees_model->edit_employee_details($post['e_id']);
+			//echo'<pre>';print_r($user_save);exit;
+			
+			if($user_save['e_email_work']!=$post['e_email_work']){
+			$check=$this->Employees_model->saver_user_details($post['e_email_work']);
+			//echo'<pre>';print_r($check);exit;
+			if(count($check)>0){
+					 $this->session->set_flashdata('error',"email alreay to exit");
+					 redirect('employee/editemployee');
+			      }	
+			}
+		
+		if($_FILES['e_document']['name']!=''){
+					$catimg=$_FILES['e_document']['name'];
+					move_uploaded_file($_FILES['e_document']['tmp_name'], "assets/bank_documents/" . $_FILES['e_document']['name']);
+
+					}else{
+					$catimg=$edit_employee['e_document'];	
+					
+					}
+			    if($_FILES['e_profile_pic']['name']!=''){
+					$cat=$_FILES['e_profile_pic']['name'];
+					move_uploaded_file($_FILES['e_profile_pic']['tmp_name'], "assets/adminprofilepic/" . $_FILES['e_profile_pic']['name']);
+
+					}else{
+					$cat=$edit_employee['e_profile_pic'];
+					}
+		
+	     $update_data=array(
+				'e_emplouee_id'=>isset($post['e_emplouee_id'])?$post['e_emplouee_id']:'',
+				'e_join_date'=>isset($post['e_join_date'])?$post['e_join_date']:'',
+				'e_f_name'=>isset($post['e_f_name'])?$post['e_f_name']:'',
+				'e_l_name'=>isset($post['e_l_name'])?$post['e_l_name']:'',
+				'e_login_name'=>isset($post['e_login_name'])?$post['e_login_name']:'',
+				'e_email_personal'=>isset($post['e_email_personal'])?$post['e_email_personal']:'',
+				'e_email_work'=>isset($post['e_email_work'])?$post['e_email_work']:'',
+				'e_mobile_personal'=>isset($post['e_mobile_personal'])?$post['e_mobile_personal']:'',
+				'e_mobile_work'=>isset($post['e_mobile_work'])?$post['e_mobile_work']:'',
+				'e_designation'=>isset($post['e_designation'])?$post['e_designation']:'',
+				'e_supervisor'=>isset($post['e_supervisor'])?$post['e_supervisor']:'',
+				'e_department'=>isset($post['e_department'])?$post['e_department']:'',
+				'e_sub_department'=>isset($post['e_sub_department'])?$post['e_sub_department']:'',
+				'e_shift'=>isset($post['e_shift'])?$post['e_shift']:'',
+				'e_c_adress'=>isset($post['e_c_adress'])?$post['e_c_adress']:'',
+				'e_c_city'=>isset($post['e_c_city'])?$post['e_c_city']:'',
+				'e_c_district'=>isset($post['e_c_district'])?$post['e_c_district']:'',
+				'e_c_state'=>isset($post['e_c_state'])?$post['e_c_state']:'',
+				'e_c_country'=>isset($post['e_c_country'])?$post['e_c_country']:'',
+				'e_p_address'=>isset($post['e_p_address'])?$post['e_p_address']:'',
+				'e_p_city'=>isset($post['e_p_city'])?$post['e_p_city']:'',
+				'e_p_district'=>isset($post['e_p_district'])?$post['e_p_district']:'',
+				'e_p_state'=>isset($post['e_p_state'])?$post['e_p_state']:'',
+				'e_p_country'=>isset($post['e_p_country'])?$post['e_p_country']:'',
+				'e_profile_pic'=>$cat,
+				'e_document'=>$catimg,
+				'e_bank_name'=>isset($post['e_bank_name'])?$post['e_bank_name']:'',
+				'e_account_number'=>isset($post['e_account_number'])?$post['e_account_number']:'',
+				'e_bank_h_name'=>isset($post['e_bank_h_name'])?$post['e_bank_h_name']:'',
+				'e_bank_ifcs_code'=>isset($post['e_bank_ifcs_code'])?$post['e_bank_ifcs_code']:'',
+				'e_c_p_name'=>isset($post['e_c_p_name'])?$post['e_c_p_name']:'',
+				'e_c_p_mobile'=>isset($post['e_c_p_mobile'])?$post['e_c_p_mobile']:'',
+				'e_c_p_email'=>isset($post['e_c_p_email'])?$post['e_c_p_email']:'',
+				'e_c_p_relationship'=>isset($post['e_c_p_relationship'])?$post['e_c_p_relationship']:'',
+				'e_c_p_address'=>isset($post['e_c_p_address'])?$post['e_c_p_address']:'',
+				'status'=>1,
+				'created_at'=>date('Y-m-d H:i:s'),
+				'updated_at'=>date('Y-m-d H:i:s'),
+				'created_by'=>isset($login_details['u_id'])?$login_details['u_id']:''
+				 );
+			//echo'<pre>';print_r($update_data);exit;
+	        $update=$this->Employees_model->update_employee_details($post['e_id'],$update_data);
+				//echo'<pre>';print_r($update);exit;
+				if(count($update)>0){
+							$this->session->set_flashdata('success','employee details successfully Updated');
+							redirect('employee/all');
+							
+						}else{
+							$this->session->set_flashdata('error',"technical problem will occurred. Please try again.");
+							redirect('employee/all');
+						}
+				     }else{
+						$this->session->set_flashdata('error',"you don't have permission to access");
+						redirect('dashboard');
+				}
+	
+
+}
+public function status(){
+	 if($this->session->userdata('hrmsdetails'))
+		{	
+         $admindetails=$this->session->userdata('hrmsdetails');	
+	             $e_id=base64_decode($this->uri->segment(3));
+					$status=base64_decode($this->uri->segment(4));
+					if($status==1){
+						$statu=0;
+					}else{
+						$statu=1;
+					}
+					if($e_id!=''){
+						$stusdetails=array(
+							'status'=>$statu,
+							'updated_at'=>date('Y-m-d H:i:s')
+							);
+							//echo'<pre>';print_r($stusdetails);exit;
+							$statusdata=$this->Employees_model->update_employee_details($e_id,$stusdetails);
+							//echo'<pre>';print_r($statusdata);exit;
+							//echo $this->db->last_query();exit;	
+							if(count($statusdata)>0){
+								if($status==1){
+								$this->session->set_flashdata('success',"employee details successfully Deactivate.");
+								}else{
+									$this->session->set_flashdata('success',"employee details successfully Activate.");
+								}
+								redirect('employee/all');
+							}else{
+									$this->session->set_flashdata('error',"technical problem will occurred. Please try again.");
+									redirect('employee/all');
+							}
+						}else{
+						$this->session->set_flashdata('error',"technical problem will occurred. Please try again.");
+						redirect('dashboard');
+					}	
+	
+	
+  }
+
+
+}
+public function delete()
+	{	
+		if($this->session->userdata('hrmsdetails'))
+		{
+		$login_details=$this->session->userdata('hrmsdetails');
+
+			
+					$e_id=base64_decode($this->uri->segment(3));
+					
+					
+							$delete_data=$this->Employees_model->delete_employee_details($e_id);
+							if(count($delete_data)>0){
+								$this->session->set_flashdata('success',"employee details successfully deleted.");
+								
+								 redirect('employee/all/');
+							}else{
+									$this->session->set_flashdata('error',"technical problem will occurred. Please try again.");
+									redirect('employee/all/');
+							}
+					
+					
+			}else{
+					$this->session->set_flashdata('error',"You have no permission to access");
+					redirect('dashboard');
+			}
+		
+		
+	}
+	public function viewemployee(){
+		if($this->session->userdata('hrmsdetails'))
+		{	
+         $admindetails=$this->session->userdata('hrmsdetails');	
+		 $this->uri->segment(3);
+		 $data['edit_employee']=$this->Employees_model->edit_employee_details(base64_decode($this->uri->segment(3)));
+		 //echo'<pre>';print_r($data);exit;
+		 $this->load->view('html/header',$data);
+	     $this->load->view('employee/employee-details',$data);
+	     $this->load->view('html/sidebar',$data);
+	     $this->load->view('html/footer',$data);
+	    
+   }
+}
+		
+		
+	
 
 
 public function add(){
     if($this->session->userdata('hrmsdetails'))
 		{	
          $admindetails=$this->session->userdata('hrmsdetails');	
-		 $this->load->view('html/header');
-	     $this->load->view('employee/addemployee');
-	     $this->load->view('html/sidebar');
-	     $this->load->view('html/footer');
+		 $data['deparment_data']=$this->Employees_model->department_name_list();
+		 $data['sub_deparment_data']=$this->Employees_model->sub_department_name_list();
+		 $data['shift_data']=$this->Employees_model->shift_name_list();
+		 $data['roles_list']=$this->Employees_model->roles_list();
+		 //echo'<pre>';print_r($data);exit;
+		 $this->load->view('html/header',$data);
+	     $this->load->view('employee/addemployee',$data);
+	     $this->load->view('html/sidebar',$data);
+	     $this->load->view('html/footer',$data);
 	    
    }
 }	
+public function department_wise_list(){
+if($this->session->userdata('hrmsdetails'))
+		{
+         $admindetails=$this->session->userdata('hrmsdetails');	
+					$post=$this->input->post();
+					$subdepartment_list=$this->Employees_model->department_wise_list($post['e_department']);
+					if(count($subdepartment_list)>0){
+						$data['msg']=1;
+						$data['list']=$subdepartment_list;
+						echo json_encode($data);exit;	
+					}else{
+						$data['msg']=0;
+						echo json_encode($data);exit;
+					}
+				
+		}else{
+			$this->session->set_flashdata('error',"you don't have permission to access");
+			redirect('home');
+		}
+	}
+
 public function addpost(){
 	 if($this->session->userdata('hrmsdetails'))
 		{	
@@ -86,7 +315,6 @@ public function addpost(){
 					}
 				
 	          $save_data=array(
-				'role_id'=>isset($post['role_id'])?$post['role_id']:'',
 				'e_emplouee_id'=>isset($post['e_emplouee_id'])?$post['e_emplouee_id']:'',
 				'e_join_date'=>isset($post['e_join_date'])?$post['e_join_date']:'',
 				'e_f_name'=>isset($post['e_f_name'])?$post['e_f_name']:'',
@@ -102,6 +330,7 @@ public function addpost(){
 				'e_supervisor'=>isset($post['e_supervisor'])?$post['e_supervisor']:'',
 				'e_department'=>isset($post['e_department'])?$post['e_department']:'',
 				'e_sub_department'=>isset($post['e_sub_department'])?$post['e_sub_department']:'',
+				'e_shift'=>isset($post['e_shift'])?$post['e_shift']:'',
 				'e_c_adress'=>isset($post['e_c_adress'])?$post['e_c_adress']:'',
 				'e_c_city'=>isset($post['e_c_city'])?$post['e_c_city']:'',
 				'e_c_district'=>isset($post['e_c_district'])?$post['e_c_district']:'',
@@ -112,8 +341,8 @@ public function addpost(){
 				'e_p_district'=>isset($post['e_p_district'])?$post['e_p_district']:'',
 				'e_p_state'=>isset($post['e_p_state'])?$post['e_p_state']:'',
 				'e_p_country'=>isset($post['e_p_country'])?$post['e_p_country']:'',
-				'e_profile_pic'=>isset($post['e_profile_pic'])?$post['e_profile_pic']:'',
-				'e_document'=>isset($post['e_document'])?$post['e_document']:'',
+				'e_profile_pic'=>$cat,
+				'e_document'=>$catimg,
 				'e_bank_name'=>isset($post['e_bank_name'])?$post['e_bank_name']:'',
 				'e_account_number'=>isset($post['e_account_number'])?$post['e_account_number']:'',
 				'e_bank_h_name'=>isset($post['e_bank_h_name'])?$post['e_bank_h_name']:'',
@@ -138,7 +367,7 @@ public function addpost(){
 						$this->session->set_flashdata('error',"techechal probelem occur ");
 						redirect('employee/add');
 					}
-		      }else{
+		         }else{
 						$this->session->set_flashdata('error',"you don't have permission to access");
 						redirect('dashboard');
 				}
@@ -158,17 +387,182 @@ public function lists(){
 	    
    }
 }	
-
-   public function holidays(){
-    if(!$this->session->userdata('hrmsdetails'))
+public function addholiday(){
+	if($this->session->userdata('hrmsdetails'))
 		{	
          $admindetails=$this->session->userdata('hrmsdetails');	
 		 $this->load->view('html/header');
-	     $this->load->view('employee/holidays');
+	     $this->load->view('employee/addholidays');
 	     $this->load->view('html/sidebar');
 	     $this->load->view('html/footer');  
    }
 }		
+public function addholidaypost(){
+	if($this->session->userdata('hrmsdetails'))
+		{	
+         $admindetails=$this->session->userdata('hrmsdetails');	
+		 $post=$this->input->post();	
+		 //echo'<pre>';print_r($post);exit;
+		 $save_data=array(
+				'holiday_name'=>isset($post['holiday_name'])?$post['holiday_name']:'',
+				'holiday_date'=>isset($post['holiday_date'])?$post['holiday_date']:'',
+				'holiday_day'=>isset($post['holiday_day'])?$post['holiday_day']:'',
+				'status'=>1,
+				'created_at'=>date('Y-m-d H:i:s'),
+				'updated_at'=>date('Y-m-d H:i:s'),
+				'created_by'=>isset($login_details['u_id'])?$login_details['u_id']:''
+				 );
+		       $save=$this->Employees_model->save_holidays_details($save_data);	
+		       if(count($save)>0){
+					$this->session->set_flashdata('success',"add Holidays are successfully added");	
+					redirect('employee/addholiday');	
+					}else{
+						$this->session->set_flashdata('error',"techechal probelem occur ");
+						redirect('employee/addholiday');
+					}
+				   }else{
+						$this->session->set_flashdata('error',"you don't have permission to access");
+						redirect('dashboard');
+				}
+		 
+	
+}		
+   public function holidays(){
+    if($this->session->userdata('hrmsdetails'))
+		{	
+         $admindetails=$this->session->userdata('hrmsdetails');	
+		 $data['holiday_list']=$this->Employees_model->holidays_days_list();	
+		  //echo'<pre>';print_r($data);exit;
+		 $this->load->view('html/header',$data);
+	     $this->load->view('employee/holidays',$data);
+	     $this->load->view('html/sidebar',$data);
+	     $this->load->view('html/footer',$data);  
+   }
+}		
+  public function editholidays(){
+	  if($this->session->userdata('hrmsdetails'))
+		{	
+         $admindetails=$this->session->userdata('hrmsdetails');
+	  $this->uri->segment(3);
+		 $data['edit_holiday']=$this->Employees_model->edit_holidays_details(base64_decode($this->uri->segment(3)));
+		  //echo'<pre>';print_r($data);exit;
+	      $this->load->view('html/header',$data);
+	     $this->load->view('employee/editholidays',$data);
+	     $this->load->view('html/sidebar',$data);
+	     $this->load->view('html/footer',$data);
+  }
+  }	
+	public function editholidaypost(){
+		 if($this->session->userdata('hrmsdetails'))
+		{	
+         $admindetails=$this->session->userdata('hrmsdetails');
+		 $post=$this->input->post();
+		 //echo'<pre>';print_r($post);exit;
+		       $update_data=array(
+				'holiday_name'=>isset($post['holiday_name'])?$post['holiday_name']:'',
+				'holiday_date'=>isset($post['holiday_date'])?$post['holiday_date']:'',
+				'holiday_day'=>isset($post['holiday_day'])?$post['holiday_day']:'',
+				'status'=>1,
+				'created_at'=>date('Y-m-d H:i:s'),
+				'updated_at'=>date('Y-m-d H:i:s'),
+				'created_by'=>isset($login_details['u_id'])?$login_details['u_id']:''
+				);
+				 $update=$this->Employees_model->update_holidays_details($post['h_id'],$update_data);	
+				 //echo'<pre>';print_r($update);exit;
+		       if(count($update)>0){
+					$this->session->set_flashdata('success',"add Holidays are successfully added");	
+					redirect('employee/holidays');	
+					  }else{
+						$this->session->set_flashdata('error',"techechal probelem occur ");
+						redirect('employee/holidays');
+					  }
+				   }else{
+						$this->session->set_flashdata('error',"you don't have permission to access");
+						redirect('dashboard');
+				}
+	}
+public function statusholidays()
+{
+if($this->session->userdata('hrmsdetails'))
+		{	
+         $admindetails=$this->session->userdata('hrmsdetails');	
+	             $h_id=base64_decode($this->uri->segment(3));
+					$status=base64_decode($this->uri->segment(4));
+					if($status==1){
+						$statu=0;
+					}else{
+						$statu=1;
+					}
+					if($h_id!=''){
+						$stusdetails=array(
+							'status'=>$statu,
+							'updated_at'=>date('Y-m-d H:i:s')
+							);
+							//echo'<pre>';print_r($stusdetails);exit;
+							$statusdata=$this->Employees_model->update_holidays_details($h_id,$stusdetails);
+							//echo'<pre>';print_r($statusdata);exit;
+							//echo $this->db->last_query();exit;	
+							if(count($statusdata)>0){
+								if($status==1){
+								$this->session->set_flashdata('success',"holidays details successfully Deactivate.");
+								}else{
+									$this->session->set_flashdata('success',"holidays details successfully Activate.");
+								}
+								redirect('employee/holidays');
+							}else{
+									$this->session->set_flashdata('error',"technical problem will occurred. Please try again.");
+									redirect('employee/holidays');
+							}
+						}else{
+						$this->session->set_flashdata('error',"technical problem will occurred. Please try again.");
+						redirect('dashboard');
+					}	
+	
+        }
+    }
+public function deleteholidays()
+{
+if($this->session->userdata('hrmsdetails'))
+		{
+		$login_details=$this->session->userdata('hrmsdetails');
+
+			
+					$h_id=base64_decode($this->uri->segment(3));
+					
+					
+							$delete_data=$this->Employees_model->delete_holidays_details($h_id);
+							if(count($delete_data)>0){
+								$this->session->set_flashdata('success'," holidays details successfully deleted.");
+								
+								 redirect('employee/holidays');
+							}else{
+									$this->session->set_flashdata('error',"technical problem will occurred. Please try again.");
+									redirect('employee/holidays');
+							}
+					
+					
+			}else{
+					$this->session->set_flashdata('error',"You have no permission to access");
+					redirect('dashboard');
+			}
+		
+	}
+public function viewholidays(){
+		if($this->session->userdata('hrmsdetails'))
+		{	
+         $admindetails=$this->session->userdata('hrmsdetails');	
+		 $this->uri->segment(3);
+		 $data['view_holidays']=$this->Employees_model->view_holidays_details(base64_decode($this->uri->segment(3)));
+		 //echo'<pre>';print_r($data);exit;
+		 $this->load->view('html/header',$data);
+	     $this->load->view('employee/view-holidays',$data);
+	     $this->load->view('html/sidebar',$data);
+	     $this->load->view('html/footer',$data);
+	    
+   }
+}
+
+
        /* payroll management */
 
 public function salary(){
@@ -228,8 +622,13 @@ $data['data']=$this->payroll_model->emp_det_with_salary();
    }
 }	
 
+<<<<<<< HEAD
    public function payslip($id){
     if(!$this->session->userdata('hrmsdetails'))
+=======
+   public function payslip(){
+    if($this->session->userdata('hrmsdetails'))
+>>>>>>> 1ea8e4fd5af7b00a9fcf1ae7e129ced26e818413
 		{	
 
 			$query = $this->db->get_where('empployee', array('e_id' => $id));
@@ -309,7 +708,7 @@ public function leaverequests(){
    }
 }		
 public function leaveslist(){
-    if(!$this->session->userdata('hrmsdetails'))
+    if($this->session->userdata('hrmsdetails'))
 		{	
          $admindetails=$this->session->userdata('hrmsdetails');	
 		 $this->load->view('html/header');
@@ -318,6 +717,543 @@ public function leaveslist(){
 	     $this->load->view('html/footer');  
    }
 }	
+/* departments*/
+public function department(){
+if($this->session->userdata('hrmsdetails'))
+		{	
+         $admindetails=$this->session->userdata('hrmsdetails');	
+		 $data['deparment_list']=$this->Employees_model->department_list();
+		 //echo'<pre>';print_r($data);exit;
+		 $this->load->view('html/header',$data);
+	     $this->load->view('employee/department',$data);
+	     $this->load->view('html/sidebar',$data);
+	     $this->load->view('html/footer',$data);  
+   }
+}	
+public function adddepartment(){
+	if($this->session->userdata('hrmsdetails'))
+		{	
+         $admindetails=$this->session->userdata('hrmsdetails');	
+		 $post=$this->input->post();	
+		 //echo'<pre>';print_r($post);exit;
+		 $check_department_exit=$this->Employees_model->check_department_already($post['department']);
+				//echo'<pre>';print_r($check_department_exit);exit;
+				if(count($check_department_exit)>0){
+					$this->session->set_flashdata('error',"department details already exit");
+					redirect('employee/department');
+				}	
+		 $save_data=array(
+				'department'=>isset($post['department'])?$post['department']:'',
+				'status'=>1,
+				'created_at'=>date('Y-m-d H:i:s'),
+				'updated_at'=>date('Y-m-d H:i:s'),
+				'created_by'=>isset($login_details['u_id'])?$login_details['u_id']:''
+				 );
+		       $save=$this->Employees_model->save_department_details($save_data);	
+		       if(count($save)>0){
+					$this->session->set_flashdata('success',"department details are successfully added");	
+					redirect('employee/department');	
+					}else{
+						$this->session->set_flashdata('error',"techechal probelem occur ");
+						redirect('employee/department');
+					}
+				   }else{
+						$this->session->set_flashdata('error',"you don't have permission to access");
+						redirect('dashboard');
+				}
+		
+}		
+public function departmentlist(){
+if($this->session->userdata('hrmsdetails'))
+		{	
+         $admindetails=$this->session->userdata('hrmsdetails');	
+		 $data['deparment_list']=$this->Employees_model->department_list();
+		 //echo'<pre>';print_r($data);exit;
+		 $this->load->view('html/header',$data);
+	     $this->load->view('employee/department-list',$data);
+	     $this->load->view('html/sidebar',$data);
+	     $this->load->view('html/footer',$data);  
+   }
+}	
+
+public function editdepartment(){
+	  if($this->session->userdata('hrmsdetails'))
+		{	
+         $admindetails=$this->session->userdata('hrmsdetails');
+	  $this->uri->segment(3);
+		 $data['edit_department']=$this->Employees_model->edit_department_details(base64_decode($this->uri->segment(3)));
+		  //echo'<pre>';print_r($data);exit;
+	      $this->load->view('html/header',$data);
+	     $this->load->view('employee/edit-department',$data);
+	     $this->load->view('html/sidebar',$data);
+	     $this->load->view('html/footer',$data);
+  }
+  }	
+public function editdepartmentpost(){
+		 if($this->session->userdata('hrmsdetails'))
+		{	
+         $admindetails=$this->session->userdata('hrmsdetails');
+		 $post=$this->input->post();
+		 //echo'<pre>';print_r($post);exit;
+		
+		 $department_details=$this->Employees_model->get_department_details_list($post['d_id']);
+					//echo '<pre>';print_r($data['allocaterrom_details']);exit;	
+		 if($department_details['department']!=$post['department']){
+						$check=$this->Employees_model->check_department_data_exsists($post['department']);
+						if(count($check)>0){
+						$this->session->set_flashdata('error'," department details alreay exit. Please try again.");
+						redirect('employee/departmentlist');
+						}	
+					}	
+					
+					
+		       $update_data=array(
+				'department'=>isset($post['department'])?$post['department']:'',
+				'status'=>1,
+				'created_at'=>date('Y-m-d H:i:s'),
+				'updated_at'=>date('Y-m-d H:i:s'),
+				'created_by'=>isset($login_details['u_id'])?$login_details['u_id']:''
+				);
+				 $update=$this->Employees_model->update_department_details($post['d_id'],$update_data);	
+				 //echo'<pre>';print_r($update);exit;
+		       if(count($update)>0){
+					$this->session->set_flashdata('success',"department details are successfully updated");	
+					redirect('employee/departmentlist');	
+					  }else{
+						$this->session->set_flashdata('error',"techechal probelem occur ");
+						redirect('employee/departmentlist');
+					  }
+				   }else{
+						$this->session->set_flashdata('error',"you don't have permission to access");
+						redirect('dashboard');
+				}
+	}
+public function statusdepartment()
+{
+if($this->session->userdata('hrmsdetails'))
+		{	
+         $admindetails=$this->session->userdata('hrmsdetails');	
+	             $d_id=base64_decode($this->uri->segment(3));
+					$status=base64_decode($this->uri->segment(4));
+					if($status==1){
+						$statu=0;
+					}else{
+						$statu=1;
+					}
+					if($d_id!=''){
+						$stusdetails=array(
+							'status'=>$statu,
+							'updated_at'=>date('Y-m-d H:i:s')
+							);
+							//echo'<pre>';print_r($stusdetails);exit;
+							$statusdata=$this->Employees_model->update_department_details($d_id,$stusdetails);
+							//echo'<pre>';print_r($statusdata);exit;
+							//echo $this->db->last_query();exit;	
+							if(count($statusdata)>0){
+								if($status==1){
+								$this->session->set_flashdata('success',"department details successfully Deactivate.");
+								}else{
+									$this->session->set_flashdata('success',"department details successfully Activate.");
+								}
+								redirect('employee/departmentlist');
+							}else{
+									$this->session->set_flashdata('error',"technical problem will occurred. Please try again.");
+									redirect('employee/departmentlist');
+							}
+						}else{
+						$this->session->set_flashdata('error',"technical problem will occurred. Please try again.");
+						redirect('dashboard');
+					}	
+	
+        }
+    }
+public function deletedepartment()
+{
+if($this->session->userdata('hrmsdetails'))
+		{
+		$login_details=$this->session->userdata('hrmsdetails');
+
+			
+					$d_id=base64_decode($this->uri->segment(3));
+					
+					
+							$delete_data=$this->Employees_model->delete_department_details($d_id);
+							if(count($delete_data)>0){
+								$this->session->set_flashdata('success'," department details successfully deleted.");
+								
+								 redirect('employee/departmentlist');
+							}else{
+									$this->session->set_flashdata('error',"technical problem will occurred. Please try again.");
+									redirect('employee/departmentlist');
+							}
+					
+					
+			}else{
+					$this->session->set_flashdata('error',"You have no permission to access");
+					redirect('dashboard');
+			}
+		
+	}
+      /* shift */
+public function shift(){
+if($this->session->userdata('hrmsdetails'))
+		{	
+         $admindetails=$this->session->userdata('hrmsdetails');	
+		 $data['shift_list']=$this->Employees_model->shift_list();
+		 //echo'<pre>';print_r($data);exit;
+		 $this->load->view('html/header',$data);
+	     $this->load->view('shift/shift',$data);
+	     $this->load->view('html/sidebar',$data);
+	     $this->load->view('html/footer',$data);  
+   }
+}	
+public function addshift(){
+	if($this->session->userdata('hrmsdetails'))
+		{	
+         $admindetails=$this->session->userdata('hrmsdetails');	
+		 $post=$this->input->post();	
+		 //echo'<pre>';print_r($post);exit;
+		
+		 $check_department_exit=$this->Employees_model->check_shift_already($post['shift']);
+				//echo'<pre>';print_r($check_department_exit);exit;
+				if(count($check_department_exit)>0){
+					$this->session->set_flashdata('error',"shift details already exit");
+					redirect('employee/shift');
+				}	
+				
+		 $save_data=array(
+				'shift'=>isset($post['shift'])?$post['shift']:'',
+				'status'=>1,
+				'created_at'=>date('Y-m-d H:i:s'),
+				'updated_at'=>date('Y-m-d H:i:s'),
+				'created_by'=>isset($login_details['u_id'])?$login_details['u_id']:''
+				 );
+		       $save=$this->Employees_model->save_shift_details($save_data);	
+		       if(count($save)>0){
+					$this->session->set_flashdata('success',"shift details are successfully added");	
+					redirect('employee/shift');	
+					}else{
+						$this->session->set_flashdata('error',"techechal probelem occur ");
+						redirect('employee/shift');
+					}
+				   }else{
+						$this->session->set_flashdata('error',"you don't have permission to access");
+						redirect('dashboard');
+				}
+		
+}		
+public function shiftlist(){
+if($this->session->userdata('hrmsdetails'))
+		{	
+         $admindetails=$this->session->userdata('hrmsdetails');	
+		 $data['shift_list']=$this->Employees_model->shift_list();
+		 //echo'<pre>';print_r($data);exit;
+		 $this->load->view('html/header',$data);
+	     $this->load->view('shift/shift-list',$data);
+	     $this->load->view('html/sidebar',$data);
+	     $this->load->view('html/footer',$data);  
+   }
+}
+public function editshift(){
+	  if($this->session->userdata('hrmsdetails'))
+		{	
+         $admindetails=$this->session->userdata('hrmsdetails');
+	  $this->uri->segment(3);
+		 $data['edit_shift']=$this->Employees_model->edit_shift_details(base64_decode($this->uri->segment(3)));
+		  //echo'<pre>';print_r($data);exit;
+	      $this->load->view('html/header',$data);
+	     $this->load->view('shift/edit-shift',$data);
+	     $this->load->view('html/sidebar',$data);
+	     $this->load->view('html/footer',$data);
+  }
+  }	
+public function editshiftpost(){
+		 if($this->session->userdata('hrmsdetails'))
+		{	
+         $admindetails=$this->session->userdata('hrmsdetails');
+		 $post=$this->input->post();
+		 //echo'<pre>';print_r($post);exit;
+		
+		 $shift_details=$this->Employees_model->get_shift_details_list($post['s_id']);
+					//echo '<pre>';print_r($data['allocaterrom_details']);exit;	
+		 if($shift_details['shift']!=$post['shift']){
+						$check=$this->Employees_model->check_shift_data_exsists($post['shift']);
+						if(count($check)>0){
+						$this->session->set_flashdata('error'," shift details alreay exit. Please try again.");
+						redirect('employee/shiftlist');
+						}	
+					}	
+					
+					
+		       $update_data=array(
+				'shift'=>isset($post['shift'])?$post['shift']:'',
+				'status'=>1,
+				'created_at'=>date('Y-m-d H:i:s'),
+				'updated_at'=>date('Y-m-d H:i:s'),
+				'created_by'=>isset($login_details['u_id'])?$login_details['u_id']:''
+				);
+				 $update=$this->Employees_model->update_shift_details($post['s_id'],$update_data);	
+				 //echo'<pre>';print_r($update);exit;
+		       if(count($update)>0){
+					$this->session->set_flashdata('success',"shift details are successfully updated");	
+					redirect('employee/shiftlist');	
+					  }else{
+						$this->session->set_flashdata('error',"techechal probelem occur ");
+						redirect('employee/shiftlist');
+					  }
+				   }else{
+						$this->session->set_flashdata('error',"you don't have permission to access");
+						redirect('dashboard');
+				}
+	}
+public function statusshift()
+{
+if($this->session->userdata('hrmsdetails'))
+		{	
+         $admindetails=$this->session->userdata('hrmsdetails');	
+	             $s_id=base64_decode($this->uri->segment(3));
+					$status=base64_decode($this->uri->segment(4));
+					if($status==1){
+						$statu=0;
+					}else{
+						$statu=1;
+					}
+					if($s_id!=''){
+						$stusdetails=array(
+							'status'=>$statu,
+							'updated_at'=>date('Y-m-d H:i:s')
+							);
+							//echo'<pre>';print_r($stusdetails);exit;
+							$statusdata=$this->Employees_model->update_shift_details($s_id,$stusdetails);
+							//echo'<pre>';print_r($statusdata);exit;
+							//echo $this->db->last_query();exit;	
+							if(count($statusdata)>0){
+								if($status==1){
+								$this->session->set_flashdata('success',"shift details successfully Deactivate.");
+								}else{
+									$this->session->set_flashdata('success',"shift details successfully Activate.");
+								}
+								redirect('employee/shiftlist');
+							}else{
+									$this->session->set_flashdata('error',"technical problem will occurred. Please try again.");
+									redirect('employee/shiftlist');
+							}
+						}else{
+						$this->session->set_flashdata('error',"technical problem will occurred. Please try again.");
+						redirect('dashboard');
+					}	
+	
+        }
+    }
+public function deleteshift()
+{
+if($this->session->userdata('hrmsdetails'))
+		{
+		$login_details=$this->session->userdata('hrmsdetails');
+
+			
+					$s_id=base64_decode($this->uri->segment(3));
+					
+					
+							$delete_data=$this->Employees_model->delete_shift_details($s_id);
+							if(count($delete_data)>0){
+								$this->session->set_flashdata('success'," shift details successfully deleted.");
+								
+								 redirect('employee/shiftlist');
+							}else{
+									$this->session->set_flashdata('error',"technical problem will occurred. Please try again.");
+									redirect('employee/shiftlist');
+							}
+					
+					
+			}else{
+					$this->session->set_flashdata('error',"You have no permission to access");
+					redirect('dashboard');
+			}
+		
+	}
+     /* sub department */
+public function subdepartment(){
+if($this->session->userdata('hrmsdetails'))
+		{	
+         $admindetails=$this->session->userdata('hrmsdetails');	
+		$data['department_data']=$this->Employees_model->department_data_details();
+		 //echo'<pre>';print_r($data);exit;
+		 $this->load->view('html/header',$data);
+	     $this->load->view('subdepartment/subdepartment',$data);
+	     $this->load->view('html/sidebar',$data);
+	     $this->load->view('html/footer',$data);  
+   }
+}
+
+public function addsubdepartment(){
+	if($this->session->userdata('hrmsdetails'))
+		{	
+         $admindetails=$this->session->userdata('hrmsdetails');	
+		 $post=$this->input->post();	
+		 //echo'<pre>';print_r($post);exit;
+	
+		$check=$this->Employees_model->check_subdepartment_data_exsists($post['department'],$post['sub_department']);
+						//echo '<pre>';print_r($check);exit;
+						if(count($check)>0){
+							$this->session->set_flashdata('error'," subdepartment details alreay exit. Please try again.");
+							redirect('employee/subdepartment');
+						}
+		 $save_data=array(
+				'department'=>isset($post['department'])?$post['department']:'',
+				'sub_department'=>isset($post['sub_department'])?$post['sub_department']:'',
+				'status'=>1,
+				'created_at'=>date('Y-m-d H:i:s'),
+				'updated_at'=>date('Y-m-d H:i:s'),
+				'created_by'=>isset($login_details['u_id'])?$login_details['u_id']:''
+				 );
+		       $save=$this->Employees_model->save_subdepartment_details($save_data);	
+		       if(count($save)>0){
+					$this->session->set_flashdata('success',"subdepartment details are successfully added");	
+					redirect('employee/subdepartment');	
+					}else{
+						$this->session->set_flashdata('error',"techechal probelem occur ");
+						redirect('employee/subdepartment');
+					}
+				   }else{
+						$this->session->set_flashdata('error',"you don't have permission to access");
+						redirect('dashboard');
+				}
+		
+}			
+public function subdepartmentlist(){
+if($this->session->userdata('hrmsdetails'))
+		{	
+         $admindetails=$this->session->userdata('hrmsdetails');	
+		 $data['subdepartment_list']=$this->Employees_model->subdepaertment_list();
+		 //echo'<pre>';print_r($data);exit;
+		 $this->load->view('html/header',$data);
+	     $this->load->view('subdepartment/subdepartment-list',$data);
+	     $this->load->view('html/sidebar',$data);
+	     $this->load->view('html/footer',$data);  
+   }
+}	
+public function editsubdepaertment(){
+	  if($this->session->userdata('hrmsdetails'))
+		{	
+         $admindetails=$this->session->userdata('hrmsdetails');
+	  $this->uri->segment(3);
+		 $data['edit_subdepartment']=$this->Employees_model->edit_subdepartment_details(base64_decode($this->uri->segment(3)));
+		 $data['department_data']=$this->Employees_model->department_data_details();
+		  //echo'<pre>';print_r($data);exit;
+	      $this->load->view('html/header',$data);
+	     $this->load->view('subdepartment/edit-subdepartment',$data);
+	     $this->load->view('html/sidebar',$data);
+	     $this->load->view('html/footer',$data);
+  }
+  }	
+public function editsubdepartmentpost(){
+		 if($this->session->userdata('hrmsdetails'))
+		{	
+         $admindetails=$this->session->userdata('hrmsdetails');
+		 $post=$this->input->post();
+		 //echo'<pre>';print_r($post);exit;
+		$data['subdepartment_details']=$this->Employees_model->get_subdepartment_details_list($s_d_id);
+		 if($subdepartment_details['department']!=$post['department'] || $subdepartment_details['sub_department']!=$post['sub_department']){
+						$check=$this->Employees_model->check_subdepartment_data_exsists($post['department'],$post['sub_department']);
+						if(count($check)>0){
+						$this->session->set_flashdata('error'," subdepartment details alreay exit. Please try again.");
+						redirect('employee/subdepartmentlist');
+						}	
+					}	
+					
+		       $update_data=array(
+				'department'=>isset($post['department'])?$post['department']:'',
+				'sub_department'=>isset($post['sub_department'])?$post['sub_department']:'',
+				'status'=>1,
+				'created_at'=>date('Y-m-d H:i:s'),
+				'updated_at'=>date('Y-m-d H:i:s'),
+				'created_by'=>isset($login_details['u_id'])?$login_details['u_id']:''
+				);
+				 $update=$this->Employees_model->update_subdepartment_details($post['s_d_id'],$update_data);	
+				 //echo'<pre>';print_r($update);exit;
+		       if(count($update)>0){
+					$this->session->set_flashdata('success',"sub department details are successfully updated");	
+					redirect('employee/subdepartmentlist');	
+					  }else{
+						$this->session->set_flashdata('error',"techechal probelem occur ");
+						redirect('employee/subdepartmentlist');
+					  }
+				   }else{
+						$this->session->set_flashdata('error',"you don't have permission to access");
+						redirect('dashboard');
+				}
+	}	
+	public function statussubdepaertment()
+{
+if($this->session->userdata('hrmsdetails'))
+		{	
+         $admindetails=$this->session->userdata('hrmsdetails');	
+	             $s_d_id=base64_decode($this->uri->segment(3));
+					$status=base64_decode($this->uri->segment(4));
+					if($status==1){
+						$statu=0;
+					}else{
+						$statu=1;
+					}
+					if($s_d_id!=''){
+						$stusdetails=array(
+							'status'=>$statu,
+							'updated_at'=>date('Y-m-d H:i:s')
+							);
+							//echo'<pre>';print_r($stusdetails);exit;
+							$statusdata=$this->Employees_model->update_subdepartment_details($s_d_id,$stusdetails);
+							//echo'<pre>';print_r($statusdata);exit;
+							//echo $this->db->last_query();exit;	
+							if(count($statusdata)>0){
+								if($status==1){
+								$this->session->set_flashdata('success',"subdepartment details successfully Deactivate.");
+								}else{
+									$this->session->set_flashdata('success',"subdepartment details successfully Activate.");
+								}
+								redirect('employee/subdepartmentlist');
+							}else{
+									$this->session->set_flashdata('error',"technical problem will occurred. Please try again.");
+									redirect('employee/subdepartmentlist');
+							}
+						}else{
+						$this->session->set_flashdata('error',"technical problem will occurred. Please try again.");
+						redirect('dashboard');
+					}	
+	
+        }
+    }
+	public function deletesubdepartment()
+{
+if($this->session->userdata('hrmsdetails'))
+		{
+		$login_details=$this->session->userdata('hrmsdetails');
+
+			
+					$s_d_id=base64_decode($this->uri->segment(3));
+					
+					
+							$delete_data=$this->Employees_model->delete_subdepartment_details($s_d_id);
+							if(count($delete_data)>0){
+								$this->session->set_flashdata('success',"subdepartment details successfully deleted.");
+								
+								 redirect('employee/subdepartmentlist');
+							}else{
+									$this->session->set_flashdata('error',"technical problem will occurred. Please try again.");
+									redirect('employee/subdepartmentlist');
+							}
+					
+					
+			}else{
+					$this->session->set_flashdata('error',"You have no permission to access");
+					redirect('dashboard');
+			}
+		
+	}
+	
+	
+	
+	
  /* employee comunication  */
 public function chat(){
     if($this->session->userdata('hrmsdetails'))
@@ -362,7 +1298,7 @@ public function trackdetails(){
   
 public function profile(){
 	
-	if(!$this->session->userdata('hrmsdetails'))
+	if($this->session->userdata('hrmsdetails'))
 		{	
          $admindetails=$this->session->userdata('hrmsdetails');	
 		 $this->load->view('html/header');
@@ -376,7 +1312,7 @@ public function profile(){
 }
 public function editprofile(){
 	
-	if(!$this->session->userdata('hrmsdetails'))
+	if($this->session->userdata('hrmsdetails'))
 		{	 
 	    $admindetails=$this->session->userdata('hrmsdetails');
 		 $this->load->view('html/header');
