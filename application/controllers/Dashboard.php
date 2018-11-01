@@ -39,9 +39,25 @@ class Dashboard extends In_frontend {
 	
 	
 	
+	public function logout(){
+		if($this->session->userdata('hrmsdetails'))
+		{
+			$hrmsdetails=$this->session->userdata('hrmsdetails');
+			$checklogin= $this->User_model->check_today_login($hrmsdetails['e_id'],date('Y-m-d'));
+			$this->User_model->update_logout_time_status($checklogin['l_id'],$checklogin['e_id'],date('Y-m-d H:i:s'));
+			$this->session->unset_userdata($hrmsdetails);
+			$this->session->unset_userdata('hrmsdetails');
+			$this->session->sess_destroy('hrmsdetails');
+			$this->session->unset_userdata('hrmsdetails');
+			redirect('');
+		}else{
+		 $this->session->set_flashdata('loginerror','Please login to continue');
+		 redirect('');
+		} 
+	}
 	
 	
-		
+
 	
 	
 }

@@ -93,6 +93,16 @@ CREATE TABLE `shift` (
 
 
 //inserted by kasi
+<<<<<<< HEAD
+
+
+CREATE TABLE `month_tab` (
+ `m_id` int(11) NOT NULL AUTO_INCREMENT,
+ `month_name` varchar(100) NOT NULL,
+ PRIMARY KEY (`m_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=latin1
+=======
+>>>>>>> 7c420cadfee7115f4ba56f263f01c7a754d788eb
 
 <<<<<<< HEAD
 CREATE TABLE `month_tab` (
@@ -115,7 +125,24 @@ CREATE TABLE `holidays` (
   PRIMARY KEY (`h_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1
 
+<<<<<<< HEAD
+
+
+
+Create Table
+
+CREATE TABLE `role` (
+  `r_id` int(11) NOT NULL AUTO_INCREMENT,
+  `role` varchar(250) DEFAULT NULL,
+  `status` int(11) DEFAULT '1',
+  `created_at` datetime DEFAULT NULL,
+  PRIMARY KEY (`r_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1
+
+
+=======
 >>>>>>> 9b73f19c36ef47515d3a3130bb652080a04a270f
+>>>>>>> 7c420cadfee7115f4ba56f263f01c7a754d788eb
 
 
 CREATE TABLE `year_tab` (
@@ -144,3 +171,7 @@ CREATE TABLE `emp_leave_apply_tab` (
  `applied_date` date NOT NULL,
  PRIMARY KEY (`leave_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1
+<<<<<<< HEAD
+ 
+=======
+>>>>>>> 7c420cadfee7115f4ba56f263f01c7a754d788eb
