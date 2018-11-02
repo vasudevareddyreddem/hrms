@@ -8,7 +8,7 @@
 						<div class="col-sm-4 text-right m-b-30">
 							<div class="btn-group btn-group-sm">
 								<button class="btn btn-default">CSV</button>
-								<button class="btn btn-default">PDF</button>
+								<a href="<?php echo base_url('payroll/gen_pdf');?>"  class="btn btn-default">PDF</a>
 								<button class="btn btn-default"><i class="fa fa-print fa-lg"></i> Print</button>
 							</div>
 						</div>

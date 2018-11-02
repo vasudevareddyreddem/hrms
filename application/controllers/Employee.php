@@ -689,7 +689,8 @@ public function attendance()
 	   {	
 		if($this->session->userdata('hrmsdetails'))
 		{
-		$admindetails=$this->session->userdata('hrmsdetails');	 
+		$admindetails=$this->session->userdata('hrmsdetails');
+			 
 	     $this->load->view('employee/attendence');
 		 $this->load->view('html/footer');  
 	} 

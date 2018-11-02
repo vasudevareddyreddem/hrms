@@ -35,7 +35,7 @@
 											<?php foreach($mon as $row):?>	
 												<option value='<?php echo $row->m_id?>'><?php echo $row->month_name ?></option> 
 											<?php endforeach?> 
-												<option>Richard Miles</option>
+												<!-- <option>Richard Miles</option> -->
 											</select>
 						<!-- 	</div> -->
 						</div>
@@ -48,7 +48,7 @@
 												<?php foreach($year as $row):?>
 												<option><?php echo $row->year?></option>
 												<?php endforeach?> 
-												<option>Richard Miles</option>
+												<!-- <option>Richard Miles</option> -->
 											</select>
 								<!-- </div> -->
 							</div>

@@ -131,6 +131,12 @@ return 'yes';
     }
 
 
+// insert pay slips
+  public function save_payslip($data){
+  $this->db->insert('employee_salary_payslips',$data);
+return  ($this->db->affected_rows() == 1) ? true: false;
+  
+  }
 
 
 }
