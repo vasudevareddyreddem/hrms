@@ -628,7 +628,7 @@ $data['flag']=1;
 	     $this->load->view('html/footer');
 	    
    }
-}	
+	
 
 public function salarylist(){
     if($this->session->userdata('hrmsdetails'))
@@ -1304,10 +1304,6 @@ public function trackdetails(){
 
 	// employee delete
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-
 
 
 	public function emp_delete($eid){
@@ -1321,16 +1317,7 @@ public function trackdetails(){
     }
 
 
-=======
-=======
->>>>>>> 2f2cea15cf73c769bf2e66e3f2e72920acf91195
-=======
->>>>>>> 2f2cea15cf73c769bf2e66e3f2e72920acf91195
-	
-    
->>>>>>> 2f2cea15cf73c769bf2e66e3f2e72920acf91195
 
-	
 	
 	
 }	
