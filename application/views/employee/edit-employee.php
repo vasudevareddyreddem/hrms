@@ -84,7 +84,7 @@
 										<div class="form-group">
 									<label class=" control-label">Designation</label>
 									<div class="">
-										<select id="e_designation" name="e_designation"  class="form-control" >
+										<select  onchange="get_type(this.value);" id="e_designation" name="e_designation"  class="form-control" >
 										<option value="">Select</option>
 										<?php if(isset($roles_list) && count($roles_list)>0){ ?>
 											<?php foreach($roles_list as $list){ ?>
@@ -101,10 +101,10 @@
 								</div>
 					
 									</div>
-										<div class="col-sm-2">
+										<div class="col-sm-2" id="retur_type_div">
 										<div class="form-group">
 											<label class="control-label">Supervisor</label>
-											<select class="select" name="e_supervisor">
+											<select class="select" name="e_supervisor" id="retur_type_div">
 													<option value="">Select Supervisor</option>
 													<option value="A"<?php if($edit_employee['e_supervisor']=='A'){ echo "selected"; } ?>>A</option>
 													<option value="B"<?php if($edit_employee['e_supervisor']=='B'){ echo "selected"; } ?>>B</option>
@@ -233,11 +233,11 @@
 												<option value="Missouri"<?php if($edit_employee['e_c_state']=='Missouri'){ echo "selected"; } ?>>Missouri</option>
 												<option value="Mississippi"<?php if($edit_employee['e_c_state']=='Mississippi'){ echo "selected"; } ?>>Mississippi</option>
 												<option value="Montana"<?php if($edit_employee['e_c_state']=='Montana'){ echo "selected"; } ?>>Montana</option>
-												<option value="North Carolina"<?php if($edit_employee['e_c_state']=='A'){ echo "selected"; } ?>>North Carolina</option>
-												<option value="North Dakota"<?php if($edit_employee['e_c_state']=='A'){ echo "selected"; } ?>>North Dakota</option>
+												<option value="North Carolina"<?php if($edit_employee['e_c_state']=='North Carolina'){ echo "selected"; } ?>>North Carolina</option>
+												<option value="North Dakota"<?php if($edit_employee['e_c_state']=='North Dakota'){ echo "selected"; } ?>>North Dakota</option>
 												<option value="Nebraska"<?php if($edit_employee['e_c_state']=='Nebraska'){ echo "selected"; } ?>>Nebraska</option>
-												<option value="NH"<?php if($edit_employee['e_c_state']=='A'){ echo "selected"; } ?>>New Hampshire</option>
-												<option value="New Hampshire"<?php if($edit_employee['e_c_state']=='New Hampshire'){ echo "selected"; } ?>>New Jersey</option>
+												<option value="New Hampshire"<?php if($edit_employee['e_c_state']=='New Hampshire'){ echo "selected"; } ?>>New Hampshire</option>
+												<option value="New Jersey"<?php if($edit_employee['e_c_state']=='New Jersey'){ echo "selected"; } ?>>New Jersey</option>
 												<option value="New Mexico"<?php if($edit_employee['e_c_state']=='New Mexico'){ echo "selected"; } ?>>New Mexico</option>
 												<option value="Nevada"<?php if($edit_employee['e_c_state']=='Nevada'){ echo "selected"; } ?>>Nevada</option>
 												<option value="New York"<?php if($edit_employee['e_c_state']=='New York'){ echo "selected"; } ?>>New York</option>
@@ -253,7 +253,7 @@
 												<option value="Texas"<?php if($edit_employee['e_c_state']=='Texas'){ echo "selected"; } ?>>Texas</option>
 												<option value="Utah"<?php if($edit_employee['e_c_state']=='Utah'){ echo "selected"; } ?>>Utah</option>
 												<option value="Virginia"<?php if($edit_employee['e_c_state']=='Virginia'){ echo "selected"; } ?>>Virginia</option>
-												<option value="Virginia"<?php if($edit_employee['e_c_state']=='Virginia'){ echo "selected"; } ?>>Vermont</option>
+												<option value="Vermont"<?php if($edit_employee['e_c_state']=='Vermont'){ echo "selected"; } ?>>Vermont</option>
 												<option value="Washington"<?php if($edit_employee['e_c_state']=='Washington'){ echo "selected"; } ?>>Washington</option>
 												<option value="Wisconsin"<?php if($edit_employee['e_c_state']=='Wisconsin'){ echo "selected"; } ?>>Wisconsin</option>
 												<option value="West Virginia"<?php if($edit_employee['e_c_state']=='West Virginia'){ echo "selected"; } ?>>West Virginia</option>
@@ -313,10 +313,10 @@
 												<option value="Missouri"<?php if($edit_employee['e_p_state']=='Missouri'){ echo "selected"; } ?>>Missouri</option>
 												<option value="Mississippi"<?php if($edit_employee['e_p_state']=='Mississippi'){ echo "selected"; } ?>>Mississippi</option>
 												<option value="Montana"<?php if($edit_employee['e_p_state']=='Montana'){ echo "selected"; } ?>>Montana</option>
-												<option value="North Carolina"<?php if($edit_employee['e_p_state']=='A'){ echo "selected"; } ?>>North Carolina</option>
-												<option value="North Dakota"<?php if($edit_employee['e_p_state']=='A'){ echo "selected"; } ?>>North Dakota</option>
+												<option value="North Carolina"<?php if($edit_employee['e_p_state']=='North Carolina'){ echo "selected"; } ?>>North Carolina</option>
+												<option value="North Dakota"<?php if($edit_employee['e_p_state']=='North Dakota'){ echo "selected"; } ?>>North Dakota</option>
 												<option value="Nebraska"<?php if($edit_employee['e_p_state']=='Nebraska'){ echo "selected"; } ?>>Nebraska</option>
-												<option value="NH"<?php if($edit_employee['e_p_state']=='A'){ echo "selected"; } ?>>New Hampshire</option>
+												<option value="NH"<?php if($edit_employee['e_p_state']=='NH'){ echo "selected"; } ?>>New Hampshire</option>
 												<option value="New Hampshire"<?php if($edit_employee['e_p_state']=='New Hampshire'){ echo "selected"; } ?>>New Jersey</option>
 												<option value="New Mexico"<?php if($edit_employee['e_p_state']=='New Mexico'){ echo "selected"; } ?>>New Mexico</option>
 												<option value="Nevada"<?php if($edit_employee['e_p_state']=='Nevada'){ echo "selected"; } ?>>Nevada</option>
@@ -333,7 +333,7 @@
 												<option value="Texas"<?php if($edit_employee['e_p_state']=='Texas'){ echo "selected"; } ?>>Texas</option>
 												<option value="Utah"<?php if($edit_employee['e_p_state']=='Utah'){ echo "selected"; } ?>>Utah</option>
 												<option value="Virginia"<?php if($edit_employee['e_p_state']=='Virginia'){ echo "selected"; } ?>>Virginia</option>
-												<option value="Virginia"<?php if($edit_employee['e_p_state']=='Virginia'){ echo "selected"; } ?>>Vermont</option>
+												<option value="Vermont"<?php if($edit_employee['e_p_state']=='Vermont'){ echo "selected"; } ?>>Vermont</option>
 												<option value="Washington"<?php if($edit_employee['e_p_state']=='Washington'){ echo "selected"; } ?>>Washington</option>
 												<option value="Wisconsin"<?php if($edit_employee['e_p_state']=='Wisconsin'){ echo "selected"; } ?>>Wisconsin</option>
 												<option value="West Virginia"<?php if($edit_employee['e_p_state']=='West Virginia'){ echo "selected"; } ?>>West Virginia</option>
@@ -441,6 +441,20 @@
 			</div>
 
 <script>
+
+function get_type(val){
+	  
+	  if(val=='8'){
+		  $('#retur_type_div').hide(); 
+		  $('#e_supervisor').val(''); 
+	  }else{
+		$('#retur_type_div').show(); 
+
+	  }
+	  
+  }
+
+
 function filladd()
 {
 	 if(filltoo.checked == true) 

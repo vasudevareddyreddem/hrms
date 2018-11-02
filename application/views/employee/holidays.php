@@ -12,6 +12,8 @@
 					<hr>
 					<div class="row">
 						<div class="col-md-12">
+							<?php if(isset($holiday_list) && count($holiday_list)>0){ ?>
+
 							<div class="table-responsive">
 								<table class="table table-striped custom-table m-b-0">
 									<thead>
@@ -33,16 +35,11 @@
 											<td><?php echo $list['holiday_day'] ?></td>
 											<td><?php if($list['status']==1){ echo "Active";}else{ echo "Deactive"; } ?></td>
 											<td class="text-right">
-												<div class="dropdown">
-													<a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-ellipsis-v"></i></a>
-													<ul class="dropdown-menu pull-right">
-													  <li><a href="<?php echo base_url('employee/viewholidays/'.base64_encode($list['h_id'])); ?>"  data-toggle="tooltip" title="View"><i class="fa fa-eye m-r-5"></i></a></li>
-														<li><a href="<?php echo base_url('employee/editholidays/'.base64_encode($list['h_id'])); ?>"  data-toggle="tooltip" title="Edit"><i class="fa fa-pencil btn btn-success"></i></a></li>
-														<li><a href="<?php echo base_url('employee/statusholidays/'.base64_encode($list['h_id']).'/'.base64_encode($list['status'])); ?>" data-toggle="tooltip" title="status"><i class="fa fa-info-circle btn btn-warning"></i></a></li>
-                                                        <li><a href="<?php echo base_url('employee/deleteholidays/'.base64_encode($list['h_id']));?>" data-toggle="tooltip"  title="Delete"><i class="fa fa-trash btn btn-danger"></i></a></li>
-														
-													</ul>
-												</div>
+													  <a href="<?php echo base_url('employee/viewholidays/'.base64_encode($list['h_id'])); ?>"  data-toggle="tooltip" title="View"><i class="fa fa-eye m-r-5"></i></a>
+														<a href="<?php echo base_url('employee/editholidays/'.base64_encode($list['h_id'])); ?>"  data-toggle="tooltip" title="Edit"><i class="fa fa-pencil btn btn-success"></i></a>
+														<a href="<?php echo base_url('employee/statusholidays/'.base64_encode($list['h_id']).'/'.base64_encode($list['status'])); ?>" data-toggle="tooltip" title="status"><i class="fa fa-info-circle btn btn-warning"></i></a>
+                                                       <a href="<?php echo base_url('employee/deleteholidays/'.base64_encode($list['h_id']));?>" data-toggle="tooltip"  title="Delete"><i class="fa fa-trash btn btn-danger"></i></a>
+												
 											</td>
 										</tr>
 										
@@ -52,6 +49,10 @@
 								</table>
 								
 							</div>
+							<?php }else{ ?>
+                               <div> No data available</div>
+                                    <?php }?>
+							
 						</div>
 					</div>
                 </div>

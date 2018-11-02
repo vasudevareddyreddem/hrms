@@ -56,7 +56,11 @@ class Employees_model extends CI_Model
     	return $this->db->update("empployee",$data);
 	}
 	public function edit_employee_details($e_id){
-		$this->db->select('*')->from('empployee');
+		$this->db->select('empployee.*,role.role,shift.shift,department.department,subdepartment.sub_department')->from('empployee');
+		$this->db->join('role', 'role.r_id = empployee.e_designation', 'left');
+		$this->db->join('shift', 'shift.s_id = empployee.e_shift', 'left');
+		$this->db->join('department', 'department.d_id = empployee.e_department', 'left');
+		$this->db->join('subdepartment', 'subdepartment.s_d_id = empployee.e_sub_department', 'left');
 		$this->db->where('e_id',$e_id);
 		return $this->db->get()->row_array();	
 	}	
@@ -140,7 +144,7 @@ $this->db->select('*')->from('department');
 	return $this->db->delete('department');
 	}
 	public  function check_department_already($department){
-		$this->db->select('department.d_id')->from('department');
+		$this->db->select('department.*')->from('department');
 		$this->db->where('department.department',$department);
 		$this->db->where('department.status ',1);
 		return $this->db->get()->row_array();
