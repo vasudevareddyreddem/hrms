@@ -15,7 +15,7 @@ class Employee extends In_frontend {
 	
 		
 	/*  employees  */
-	public function all(){
+public function all(){
     if($this->session->userdata('hrmsdetails'))
 		{	
          $admindetails=$this->session->userdata('hrmsdetails');
@@ -147,13 +147,14 @@ public function editemployeepost(){
 							$this->session->set_flashdata('error',"technical problem will occurred. Please try again.");
 							redirect('employee/all');
 						}
-				     }else{
+				    }
+					else{
 						$this->session->set_flashdata('error',"you don't have permission to access");
 						redirect('dashboard');
 				}
 	
-
 }
+
 public function status(){
 	 if($this->session->userdata('hrmsdetails'))
 		{	
@@ -185,7 +186,8 @@ public function status(){
 									$this->session->set_flashdata('error',"technical problem will occurred. Please try again.");
 									redirect('employee/all');
 							}
-						}else{
+						}
+						else{
 						$this->session->set_flashdata('error',"technical problem will occurred. Please try again.");
 						redirect('dashboard');
 					}	
@@ -600,21 +602,9 @@ $data['flag']=1;
 
 
 
-$data['flag']=1;
 
 
 
-$data['flag']=1;
-
-
-
-$data['flag']=1;
-
-
-}else{
-	$data['flag']=0;
-	$data['data']=$this->payroll_model->no_sal_emp();
-}
 // echo '<pre>';
 
 
@@ -628,7 +618,8 @@ $data['flag']=1;
 	     $this->load->view('html/footer');
 	    
    }
-}	
+}
+	
 
 public function salarylist(){
     if($this->session->userdata('hrmsdetails'))
@@ -1305,9 +1296,6 @@ public function trackdetails(){
 
 	// employee delete
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
 
 
 
@@ -1321,15 +1309,6 @@ public function trackdetails(){
     	
     }
 
-
-=======
-=======
->>>>>>> 2f2cea15cf73c769bf2e66e3f2e72920acf91195
-=======
->>>>>>> 2f2cea15cf73c769bf2e66e3f2e72920acf91195
-	
-    
->>>>>>> 2f2cea15cf73c769bf2e66e3f2e72920acf91195
 
 	
 	
