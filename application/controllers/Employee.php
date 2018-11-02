@@ -585,7 +585,7 @@ public function addsalary(){
 $data=$this->payroll_model->no_sal_emp();
 if(count($data)>0){
 	$data['data']=$this->payroll_model->no_sal_emp();
-<<<<<<< HEAD
+
 
 
 
@@ -602,23 +602,22 @@ $data['flag']=1;
 
 $data['flag']=1;
 
-=======
+
 
 $data['flag']=1;
 
->>>>>>> 2f2cea15cf73c769bf2e66e3f2e72920acf91195
+
+
+$data['flag']=1;
+
+
 }else{
 	$data['flag']=0;
 	$data['data']=$this->payroll_model->no_sal_emp();
 }
 // echo '<pre>';
 
-<<<<<<< HEAD
 
-
-
-=======
->>>>>>> 2f2cea15cf73c769bf2e66e3f2e72920acf91195
 // print_r($data);
 // exit();
             // echo $this->session->flashdata('saladded');exit;
@@ -1307,6 +1306,7 @@ public function trackdetails(){
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 
 
@@ -1322,6 +1322,8 @@ public function trackdetails(){
 
 
 =======
+=======
+>>>>>>> 2f2cea15cf73c769bf2e66e3f2e72920acf91195
 =======
 >>>>>>> 2f2cea15cf73c769bf2e66e3f2e72920acf91195
 	
