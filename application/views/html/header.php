@@ -115,8 +115,8 @@
 							<i class="caret"></i>
 						</a>
 						<ul class="dropdown-menu">
-							<li><a href="<?php echo base_url('employee/profile');?>">My Profile</a></li>
-							<li><a href="<?php echo base_url('employee/editprofile');?>">Edit Profile</a></li>
+							<li><a href="<?php echo base_url('profile');?>">My Profile</a></li>
+							<li><a href="<?php echo base_url('profile/edit');?>">Edit Profile</a></li>
 						
 							<li><a href="<?php echo base_url('dashboard/logout'); ?>">Logout</a></li>
 						</ul>

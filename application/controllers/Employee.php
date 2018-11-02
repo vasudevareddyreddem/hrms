@@ -578,12 +578,49 @@ public function addsalary(){
          $this->load->library('session');
          $this->load->model('payroll_model');
 
+
+
       
  //$query = $this->db->get('empployee');
-$data['data']=$this->payroll_model->no_sal_emp();
+$data=$this->payroll_model->no_sal_emp();
+if(count($data)>0){
+	$data['data']=$this->payroll_model->no_sal_emp();
+<<<<<<< HEAD
 
-//print_r($data);
-//exit();
+
+
+$data['flag']=1;
+
+}else{
+	$data['flag']=0;
+	$data['data']=$this->payroll_model->no_sal_emp();
+}
+// echo '<pre>';
+
+
+
+
+$data['flag']=1;
+
+=======
+
+$data['flag']=1;
+
+>>>>>>> 2f2cea15cf73c769bf2e66e3f2e72920acf91195
+}else{
+	$data['flag']=0;
+	$data['data']=$this->payroll_model->no_sal_emp();
+}
+// echo '<pre>';
+
+<<<<<<< HEAD
+
+
+
+=======
+>>>>>>> 2f2cea15cf73c769bf2e66e3f2e72920acf91195
+// print_r($data);
+// exit();
             // echo $this->session->flashdata('saladded');exit;
 // if($this->session->flashdata('saladded')){
  //echo $this->session->userdata('errors').'kk'; exit;
@@ -593,12 +630,23 @@ $data['data']=$this->payroll_model->no_sal_emp();
 	    
    }
 }	
+
 public function salarylist(){
     if($this->session->userdata('hrmsdetails'))
 		{	
          $admindetails=$this->session->userdata('hrmsdetails');	
 $this->load->model('payroll_model');
-$data['data']=$this->payroll_model->emp_det_with_salary();
+$result=$this->payroll_model->emp_det_with_salary();
+if(count($result)>0){
+$data['flag']=1;
+$data['data']=$result;
+//echo '<pre>';print_r($data);exit;
+}
+else {
+	$data['flag']=0;
+  $data['data']=$result;
+
+}
 	//echo '<pre>';print_r($data);exit;
 	     $this->load->view('employee/salarylist',$data);
 	     $this->load->view('html/footer');
@@ -1223,9 +1271,7 @@ public function chat(){
     if($this->session->userdata('hrmsdetails'))
 		{	
          $admindetails=$this->session->userdata('hrmsdetails');	
-		 $this->load->view('html/header');
 	     $this->load->view('employee/chat');
-	     $this->load->view('html/sidebar');
 	     $this->load->view('html/footer');  
    }
 }	
@@ -1235,9 +1281,7 @@ public function salemantrack(){
 	  if($this->session->userdata('hrmsdetails'))
 		{	
          $admindetails=$this->session->userdata('hrmsdetails');	
-		 $this->load->view('html/header');
 	     $this->load->view('employee/salestrack');
-	     $this->load->view('html/sidebar');
 	     $this->load->view('html/footer');   
    }
 
@@ -1247,9 +1291,7 @@ public function trackdetails(){
 	  if($this->session->userdata('hrmsdetails'))
 		{	
          $admindetails=$this->session->userdata('hrmsdetails');	
-		 $this->load->view('html/header');
 	     $this->load->view('employee/track-details');
-	     $this->load->view('html/sidebar');
 	     $this->load->view('html/footer');   
    }
 
@@ -1260,31 +1302,13 @@ public function trackdetails(){
   
   
   
-public function profile(){
-	
-	if($this->session->userdata('hrmsdetails'))
-		{	
-         $admindetails=$this->session->userdata('hrmsdetails');	
-	     $this->load->view('html/employee-details');
-	     $this->load->view('html/footer');
-	     
-	    
-   }
-	
-	
-}
-public function editprofile(){
-	
-	if($this->session->userdata('hrmsdetails'))
-		{	 
-	    $admindetails=$this->session->userdata('hrmsdetails');
-		 $this->load->view('html/header');
-	     $this->load->view('html/edit-profile');
-	     $this->load->view('html/sidebar');  
-   }
-	
-}
+
 	// employee delete
+
+<<<<<<< HEAD
+<<<<<<< HEAD
+
+
 
 	public function emp_delete($eid){
 
@@ -1292,10 +1316,17 @@ public function editprofile(){
    $this->Employees_model->emp_delete($eid);
 
    redirect('employee/salarylist');
-
+   
     	
     }
+
+
+=======
+=======
+>>>>>>> 2f2cea15cf73c769bf2e66e3f2e72920acf91195
+	
     
+>>>>>>> 2f2cea15cf73c769bf2e66e3f2e72920acf91195
 
 	
 	

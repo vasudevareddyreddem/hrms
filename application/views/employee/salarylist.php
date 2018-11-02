@@ -21,7 +21,7 @@
 											<th>Employee ID</th>
 											<th>Email</th>
 											<th>Joining Date</th>
-											<th>Role</th>
+											<!-- <th>Role</th> -->
 											<th>Salary</th>
 											<th>Payslip</th>
 											<th class="text-right">Action</th>
@@ -31,6 +31,7 @@
 
 										<?php
 										$count=0;
+										if($flag==1){
 										foreach ($data as $row):?>	
 
 									<tr>
@@ -46,24 +47,28 @@
 											<td><?php echo $row->e_id?></td>
 											<td><?php echo $row->e_email_work?></td>
 											<td><?php echo $row->e_join_date?></td>
-											<td><?php ?></td>
+											
 											<td><?php echo $row->e_net_salary?></td>
 											<td><a class="btn btn-xs btn-primary" href="<?php echo base_url('employee/payslip/'.$row->e_id); ?>">Generate Slip</a></td>
 											<td class="text-right">
 												<div class="dropdown">
 													<a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-ellipsis-v"></i></a>
 													<ul class="dropdown-menu pull-right">
-														<li><a id='' class='salid'data-id='<?php echo $row->e_id?>' href="#" data-toggle="modal" data-target="#edit_salary" title="Edit"><i class="fa fa-pencil m-r-5"></i> Edit</a></li>
-														<?php if(!$row->status==2){?>
-														<li><a href="<?php echo base_url('employee/emp_delete/'.$row->e_id); ?>" data-toggle="modal" data-target="#delete_salary" title="Delete"><i class="fa fa-trash-o m-r-5"></i> Delete</a></li>
+														<li><a href='<?php echo base_url('payroll/editsal/'.$row->e_id); ?>'    title="Edit"><i class="fa fa-pencil m-r-5"></i> Edit</a></li>
+														<?php if(!($row->status==2)){?>
+														<li><a href="<?php echo base_url('payroll/sal_delete/'.$row->e_id); ?>" data-toggle="modal" data-target="#delete_salary" title="Delete"><i class="fa fa-trash-o m-r-5"></i> Delete</a></li>
 														<?php } ?>
 													</ul>
 												</div>
 											</td>
 										</tr>
-										<?php endforeach;?>
+										<?php endforeach;}
+										else {?>
+											<tr> no data found</tr>
+										<?php }?>
+
 										 
-										<tr>
+										<!-- <tr>
 											<td>
 												<a href="profile.html" class="avatar">J</a>
 												<h2><a href="profile.html">John Doe <span>Web Designer</span></a></h2>
@@ -83,7 +88,7 @@
 													</ul>
 												</div>
 											</td>
-										</tr>
+										</tr> -->
 										
 									</tbody>
 								</table>

@@ -6,7 +6,20 @@ class payroll extends In_frontend
     public function empids($name){
         $this->load->model('payroll_model');
         //print_r($this->payroll_model->emp_ids($name));exit;
-        echo json_encode($this->payroll_model->emp_ids($name));
+    //     $post=$this->input->post();
+    // //echo '<pre>';print_r($post);
+     $id_list=$this->payroll_model->emp_ids($name);
+    if(count($id_list) > 0)
+    {
+    $data['msg']=1;
+    $data['list']=$id_list;
+    echo json_encode($data);exit; 
+    }else{
+     $data['msg']=2;
+     echo json_encode($data);exit;
+    }
+
+        
 
 
 
@@ -110,7 +123,7 @@ $data['total_ded']=$data['sal_det']->e_net_salary-((int)$day_sal*$cnt_pay); // t
 
     }
    // retreving the employee salary deatails
-    public function empsal($id){
+    public function editsal($id){
 //$query = $this->db->get_where('salary_tab', array('emp_id' => $id));
         $this->db->select('*');
 $this->db->from('empployee');
@@ -118,10 +131,16 @@ $this->db->join('employee_salary', 'empployee.e_id = employee_salary.e_id');
 $this->db->where('employee_salary.e_id',$id);
 $query = $this->db->get();
 
-$row = $query->row_array();
- echo json_encode($row);
+$data['row'] = $query->row();
+//echo '<pre>';print_r($row); exit;
+ //echo json_encode($row);
+$this->load->view('employee/edit-salary',$data);
+         $this->load->view('html/footer');
+
+
 
     }
+
 //update the employee salaray
     public function updatesal() {
             $this->load->helper(array('form', 'url'));
@@ -204,12 +223,12 @@ $this->load->model('payroll_model');
 $result=$this->payroll_model->salary_update($data,$id);
 
 if($result==true){
-    $this->session->set_userdata('update', 'update successfully');
+    $this->session->set_flashdata('success', ' salary updated successfully');
 redirect("employee/salarylist");
 }
 else
     { 
-
+          $this->session->set_flashdata('success', ' you are updated nothing');
         redirect("employee/salarylist");
 exit;
 
@@ -353,6 +372,8 @@ $this->load->model('payroll_model');
 $result=$this->payroll_model->save_salary_det($data);
 
 if($result==true){
+  $this->session->set_flashdata('success','salary  details are successfully added'); 
+
 redirect("employee/salarylist");
 }
 else
@@ -368,6 +389,41 @@ exit;
 
 }
 
+// delete emp salare
+public function sal_delete($eid){
+
+   $this->load->model('payroll_model');
+   $this->payroll_model->emp_sal_delete($eid);
+   $this->session->set_flashdata('success','salary deleted'); 
+
+
+   redirect('');
+
+      
+    }
+
+  public function gen_pdf(){
+    ///load mPDF library
+				$path = rtrim(FCPATH,"/");
+					$file_name = 'fgfdg.pdf';                
+					$data['page_title'] = 'invoice'; // pass data to the view
+					$pdfFilePath = $path."/assets/payslips/".$file_name;
+					ini_set('memory_limit','320M'); // boost the memory limit if it's low <img src="https://s.w.org/images/core/emoji/72x72/1f609.png" alt="??" draggable="false" class="emoji">
+					$html = $this->load->view('employee/leaves', $data, true); // render the view into HTML
+					//echo '<pre>';print_r($html);exit;
+					$this->load->library('pdf');
+					$pdf = $this->pdf->load();
+					$pdf->SetFooter($_SERVER['HTTP_HOST'].'|{PAGENO}|'.date('M-d-Y')); // Add a footer for good measure <img src="https://s.w.org/images/core/emoji/72x72/1f609.png" alt="??" draggable="false" class="emoji">
+					$pdf->SetDisplayMode('fullpage');
+					$pdf->list_indent_first_level = 0;	// 1 or 0 - whether to indent the first level of a list
+					$pdf->WriteHTML($html); // write the HTML into the PDF
+					$pdf->Output($pdfFilePath, 'F');
+
+
+
+
+
+  }
 
 
 	}

@@ -61,6 +61,24 @@ public function save_login_time_status($data){
        	return $this->db->query($sql1);
 	}
 	
+	public function get_all_admin_details($e_id){
+		$this->db->select('empployee.*,role.role')->from('empployee');
+		$this->db->join('role', 'role.r_id = empployee.e_designation', 'left');
+		$this->db->where('e_id',$e_id);
+		return $this->db->get()->row_array();	
+	}
+	public  function update_profile_details($e_id,$data){
+		$this->db->where('e_id',$e_id);
+    	return $this->db->update("empployee",$data);
+	}
+	
+	public  function check_profile_email_exits($e_email_work){
+		$this->db->select('empployee.e_id,empployee.e_email_work')->from('empployee');
+		$this->db->where('e_email_work',$e_email_work);
+		$this->db->where('status !=',2);
+		return $this->db->get()->row_array();
+	}
+	
 	
 	
   }

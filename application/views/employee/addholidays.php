@@ -57,11 +57,11 @@ $(document).ready(function() {
 				}
             },
 			holiday_date: {
-                validators: {
+               validators: {
 					notEmpty: {
-						message: 'Holiday Date is required'
+						message: 'Joining Date is required'
 					},
-					holiday_date: {
+					date: {
                         format: 'DD/MM/YYYY',
                         message: 'The value is not a valid date'
                     }

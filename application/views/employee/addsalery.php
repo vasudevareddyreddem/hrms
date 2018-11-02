@@ -17,11 +17,16 @@
 										<div class="form-group">
 											<label>Select Staff</label>
 											<select class="select" name='uid'> 
+											<?php if($flag==1) {?>
+											
 												<?php foreach($data as $row):?>
 													<option value='<?php echo $row->e_id?>' ><?php echo $row->e_f_name?></option>
 												<?php endforeach?>
-												<!-- <option>John Doe</option> 
-												<option>Richard Miles</option> -->
+											<?php }else{?>
+											
+												<option value=''>No Employees</option> 
+											<?php }?>
+												<!-- <option>Richard Miles</option> -->
 											</select>
 										</div>
 									</div>
@@ -99,7 +104,7 @@
 									</div>
 								</div>
 								<div class="m-t-20 text-center">
-									<button type="submit" class="btn btn-primary" name="signup" value="Sign up">Create Salary</button>
+									<button type="submit" class="btn btn-primary" name="signup"   <?php if($flag==0){echo ' disabled ';}?> value="Sign up">Create Salary</button>
 																	</div>
 							</form>
 						
