@@ -577,12 +577,24 @@ public function addsalary(){
          $this->load->library('session');
          $this->load->model('payroll_model');
 
+
+
       
  //$query = $this->db->get('empployee');
-$data['data']=$this->payroll_model->no_sal_emp();
+$data=$this->payroll_model->no_sal_emp();
+if(count($data)>0){
+	$data['data']=$this->payroll_model->no_sal_emp();
 
-//print_r($data);
-//exit();
+$data['flag']=1;
+
+}else{
+	$data['flag']=0;
+	$data['data']=$this->payroll_model->no_sal_emp();
+}
+// echo '<pre>';
+
+// print_r($data);
+// exit();
             // echo $this->session->flashdata('saladded');exit;
 // if($this->session->flashdata('saladded')){
  //echo $this->session->userdata('errors').'kk'; exit;

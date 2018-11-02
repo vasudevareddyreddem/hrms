@@ -31,6 +31,7 @@
 
 										<?php
 										$count=0;
+										if(isset($data)){
 										foreach ($data as $row):?>	
 
 									<tr>
@@ -53,7 +54,7 @@
 												<div class="dropdown">
 													<a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-ellipsis-v"></i></a>
 													<ul class="dropdown-menu pull-right">
-														<li><a id='' class='salid'data-id='<?php echo $row->e_id?>' href="#" data-toggle="modal" data-target="#edit_salary" title="Edit"><i class="fa fa-pencil m-r-5"></i> Edit</a></li>
+														<li><a href='<?php echo base_url('payroll/editsal/'.$row->e_id); ?>'    title="Edit"><i class="fa fa-pencil m-r-5"></i> Edit</a></li>
 														<?php if(!$row->status==2){?>
 														<li><a href="<?php echo base_url('employee/emp_delete/'.$row->e_id); ?>" data-toggle="modal" data-target="#delete_salary" title="Delete"><i class="fa fa-trash-o m-r-5"></i> Delete</a></li>
 														<?php } ?>
@@ -61,9 +62,13 @@
 												</div>
 											</td>
 										</tr>
-										<?php endforeach;?>
+										<?php endforeach;}
+										else {?>
+											<tr> no data found</tr>
+										<?php }?>
+
 										 
-										<tr>
+										<!-- <tr>
 											<td>
 												<a href="profile.html" class="avatar">J</a>
 												<h2><a href="profile.html">John Doe <span>Web Designer</span></a></h2>
@@ -83,7 +88,7 @@
 													</ul>
 												</div>
 											</td>
-										</tr>
+										</tr> -->
 										
 									</tbody>
 								</table>

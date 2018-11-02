@@ -33,7 +33,7 @@
 								<!-- <div class="cal-icon"> -->
 									<select id='eid' class="select" name='eid'> 
 												
-											<option>Richard gggMiles</option>
+											
 											</select>
 								<!-- </div> -->
 							</div>
@@ -48,7 +48,7 @@
 											<?php foreach($mon as $row):?>	
 												<option value='<?php echo $row->m_id?>'><?php echo $row->month_name ?></option> 
 											<?php endforeach?> 
-												<option>Richard Miles</option>
+												<!-- <option>Richard Miles</option> -->
 											</select>
 						<!-- 	</div> -->
 						</div>
@@ -61,7 +61,7 @@
 												<?php foreach($year as $row):?>
 												<option><?php echo $row->year?></option>
 												<?php endforeach?> 
-												<option>Richard Miles</option>
+												<!-- <option>Richard Miles</option> -->
 											</select>
 								<!-- </div> -->
 							</div>
@@ -79,7 +79,8 @@
 
                     	$("#ename").change(function () {
                     		val=$('#ename').val();
-                    		alert(val);
+                    		newval='http://localhost/hrms/payroll/empids/'+val;
+                    		alert(newval);
                     		    $.ajax({
                     type: "GET",    //GET or POST or PUT or DELETE verb
                     url: 'http://localhost/hrms/payroll/empids/'+val,     // Location of the service
@@ -89,18 +90,28 @@
                     
                     success: function (result) {
                     	$("#eid option").remove();
+                    	//alert('lk');
+                    console.log(result.msg);
 
                     	console.log(result);
-                    	$.each(result, function () {
+                    	if (parseInt(result.msg)==1){
+                    		
+                    	$.each(result.list, function () {
                     		str='<option value="'+this.e_id+'">'+this.e_id+'</option>';
 
                     		$("#eid").append(str);
-        console.log("ID: " + this.e_id);
-        console.log("First Name: " + this.e_f_name);
-        console.log("Last Name: " + this.status);
+        // console.log("ID: " + this.e_id);
+        // console.log("First Name: " + this.e_f_name);
+        // console.log("Last Name: " + this.status);
         
-    });
-                    	
+     });
+                  }  	
+                  else{
+
+                      str='<option value=""> NO data foundr</option>';
+                      $("#eid").append(str);
+
+                  }
                          
                          
                          
@@ -108,7 +119,8 @@
                          }
                     ,
                     error: function() { 
-                    	alert('error from server side');
+                    	//console.log('error from server side');
+                    	//console.log(result)
 
                     } 
                 });
