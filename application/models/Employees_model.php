@@ -78,14 +78,7 @@ class Employees_model extends CI_Model
 	return $this->db->insert_id();
 }
 		
-public function emp_delete($eid){
 
-$this->db->set('status', '2');
-$this->db->where('e_id', $eid);
-$this->db->update('empployee');
-
-return 'sucesss';
-		}
 
 		// get all the employee names
 		public function all_emp(){
