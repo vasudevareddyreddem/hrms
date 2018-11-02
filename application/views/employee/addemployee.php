@@ -188,8 +188,7 @@
 										</div>
 										<div class="form-group">
 											<label class="control-label">State </label>
-												<select class="form-control" id="e_c_state" name="e_c_state">
-												 <select class="select form-control floating">
+												<select class="select form-control floating" id="e_c_state" name="e_c_state">
 														<option value="">Select State</option>
 														<option value="Andhra Pradesh">Andhra Pradesh</option>
 														<option value="Arunachal Pradesh">Arunachal Pradesh</option>
@@ -219,7 +218,7 @@
 														<option value="Delhi">Delhi</option>
 														<option value="Puducherry">Puducherry</option>
 													</select>
-											</select>
+											
 										</div>
 										
 										
@@ -249,61 +248,36 @@
 										<div class="form-group">
 											<label class="control-label">State </label>
 												<select class="form-control" id="e_p_state" name="e_p_state">
-                                                  <option value="">N/A</option>
-												<option value="Alaska">Alaska</option>
-												<option value="Alabama">Alabama</option>
-												<option value="Arkansas">Arkansas</option>
-												<option value="Arizona">Arizona</option>
-												<option value="California">California</option>
-												<option value="Colorado">Colorado</option>
-												<option value="Connecticut">Connecticut</option>
-												<option value="District of Columbia">District of Columbia</option>
-												<option value="Delaware">Delaware</option>
-												<option value="Florida">Florida</option>
-												<option value="Georgia">Georgia</option>
-												<option value="Hawaii">Hawaii</option>
-												<option value="Iowa">Iowa</option>
-												<option value="Idaho">Idaho</option>
-												<option value="Illinois">Illinois</option>
-												<option value="Indiana">Indiana</option>
-												<option value="Kansas">Kansas</option>
-												<option value="Kentucky">Kentucky</option>
-												<option value="Louisiana">Louisiana</option>
-												<option value="Massachusetts">Massachusetts</option>
-												<option value="Maryland">Maryland</option>
-												<option value="Maine">Maine</option>
-												<option value="Michigan">Michigan</option>
-												<option value="Minnesota">Minnesota</option>
-												<option value="Missouri">Missouri</option>
-												<option value="Mississippi">Mississippi</option>
-												<option value="Montana">Montana</option>
-												<option value="North Carolina">North Carolina</option>
-												<option value="North Dakota">North Dakota</option>
-												<option value="Nebraska">Nebraska</option>
-												<option value="New Hampshire">New Hampshire</option>
-												<option value="New Jersey">New Jersey</option>
-												<option value="New Mexico">New Mexico</option>
-												<option value="Nevada">Nevada</option>
-												<option value="New York">New York</option>
-												<option value="Ohio">Ohio</option>
-												<option value="Oklahoma">Oklahoma</option>
-												<option value="Oregon">Oregon</option>
-												<option value="Pennsylvania">Pennsylvania</option>
-												<option value="Puerto Rico">Puerto Rico</option>
-												<option value="Rhode Island">Rhode Island</option>
-												<option value="South Carolina">South Carolina</option>
-												<option value="South Dakota">South Dakota</option>
-												<option value="Tennessee">Tennessee</option>
-												<option value="Texas">Texas</option>
-												<option value="Utah">Utah</option>
-												<option value="Virginia">Virginia</option>
-												<option value="Vermont">Vermont</option>
-												<option value="Washington">Washington</option>
-												<option value="Wisconsin">Wisconsin</option>
-												<option value="West Virginia">West Virginia</option>
-												<option value="Wyoming">Wyoming</option>
+                                                  <option value="">Select State</option>
+														<option value="Andhra Pradesh">Andhra Pradesh</option>
+														<option value="Arunachal Pradesh">Arunachal Pradesh</option>
+														<option value="Assam">Assam</option>
+														<option value="Bihar">Bihar</option>
+														<option value="Chhattisgarh">Chhattisgarh</option>
+														<option value="Goa">Goa</option>
+														<option value="Gujarat">Gujarat</option>
+														<option value="Haryana">Haryana</option>
+														<option value="Himachal Pradesh">HHimachal Pradesh</option>
+														<option value="Jammu & Kashmir">Jammu & Kashmir</option>
+														<option value="Jharkhand">Jharkhand</option>
+														<option value="Karnataka">Karnataka</option>
+														<option value="Kerala">Kerala</option>
+														<option value="Madhya Pradesh">Madhya Pradesh</option>
+														<option value="Maharashtra">Maharashtra</option>
+														<option value="Manipur">Manipur</option>
+														<option value="Mizoram">Mizoram</option>
+														<option value="Nagaland">Nagaland</option>
+														<option value="Odisha">Odisha</option>
+														<option value="Punjab">Punjab</option>
+														<option value="Rajasthan">Rajasthan</option>
+														<option value="Sikkim">Sikkim</option>
+														<option value="Tamil Nadu">Tamil Nadu</option>
+														<option value="Telangana">Telangana</option>
+														<option value="Uttarakhand">Uttarakhand</option>
+														<option value="Delhi">Delhi</option>
+														<option value="Puducherry">Puducherry</option>
 											</select>
-											</select>
+											
 										</div>
 									</div>
 									

@@ -26,8 +26,63 @@ class Dashboard extends In_frontend {
 			 redirect('');
 		}
 	}
-	
-	
+	public function changepassword()
+	{
+		if($this->session->userdata('hrmsdetails'))
+		{
+			$admindetails=$this->session->userdata('hrmsdetails');
+				$this->load->view('html/changepassword');
+				$this->load->view('html/footer');
+			
+		}else{
+			$this->session->set_flashdata('loginerror','Please login to continue');
+			redirect('');
+		}
+	}
+	public function changepasswordpost(){
+	 
+		if($this->session->userdata('hrmsdetails'))
+		{
+			$admindetails=$this->session->userdata('hrmsdetails');
+			$post=$this->input->post();
+			 //echo'<pre>';print_r($post);exit;
+			$admin_details = $this->User_model->get_adminpassword_details($admindetails['e_id']);
+			//echo'<pre>';print_r($post);exit;
+			if($admin_details['e_password']== md5($post['oldpassword'])){
+				if(md5($post['password'])==md5($post['confirmpassword'])){
+						$updateuserdata=array(
+						'e_password'=>md5($post['confirmpassword']),
+						'e_org_password'=>$post['confirmpassword'],
+						'updated_at'=>date('Y-m-d H:i:s'),
+						);
+						//echo '<pre>';print_r($updateuserdata);exit;
+						$upddateuser = $this->User_model->update_admin_details($admindetails['e_id'],$updateuserdata);
+						//echo '<pre>';print_r($upddateuser);exit;
+						if(count($upddateuser)>0){
+							$this->session->set_flashdata('success',"password successfully updated");
+							redirect('dashboard/changepassword');
+						}else{
+							$this->session->set_flashdata('error',"technical problem will occurred. Please try again.");
+							redirect('dashboard/changepassword');
+						}
+					
+				}else{
+					$this->session->set_flashdata('error',"Password & Confirm password didn't match");
+					redirect('dashboard/changepassword');
+				}
+				
+			}else{
+				$this->session->set_flashdata('error',"Password & Confirm password didn't match");
+				redirect('dashboard/changepassword');
+			}
+				
+			
+		}else{
+			 $this->session->set_flashdata('error','Please login to continue');
+			 redirect('');
+		} 
+	 
+	}
 	
 	
 	

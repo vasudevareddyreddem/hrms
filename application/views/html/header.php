@@ -117,7 +117,7 @@
 						<ul class="dropdown-menu">
 							<li><a href="<?php echo base_url('profile');?>">My Profile</a></li>
 							<li><a href="<?php echo base_url('profile/edit');?>">Edit Profile</a></li>
-						
+						    <li><a href="<?php echo base_url('dashboard/changepassword');?>">Change Password</a></li>
 							<li><a href="<?php echo base_url('dashboard/logout'); ?>">Logout</a></li>
 						</ul>
 					</li>
