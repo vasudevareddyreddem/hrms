@@ -404,29 +404,20 @@ public function sal_delete($eid){
 
   public function gen_pdf(){
     ///load mPDF library
-    $this->load->library('Pdf');
-    //load mPDF library
- 
- 
-    //now pass the data//
-     // $this->data['title']="MY PDF TITLE 1.";
-     // $this->data['description']="";
-     // $this->data['description']=$this->official_copies;
-     //now pass the data //
- 
-    
-    $html=$this->load->view('employee/leaves'); //load the pdf_output.php by passing our data and get all data in $html varriable.
-   
-    //this the the PDF filename that user will get to download
-    //$pdfFilePath ="mypdfName-".time()."-download.pdf";
- $pdfFilePath='payslip.pdf';
-    
-    //actually, you can pass mPDF parameter on this load() function
-    $pdf= $this->pdf->load();
-    //generate the PDF!
-    $pdf->WriteHTML($html,2);
-    //offer it to user via browser download! (The PDF won't be saved on your server HDD)
-    $pdf->Output($pdfFilePath, "D");
+				$path = rtrim(FCPATH,"/");
+					$file_name = 'fgfdg.pdf';                
+					$data['page_title'] = 'invoice'; // pass data to the view
+					$pdfFilePath = $path."/assets/payslips/".$file_name;
+					ini_set('memory_limit','320M'); // boost the memory limit if it's low <img src="https://s.w.org/images/core/emoji/72x72/1f609.png" alt="??" draggable="false" class="emoji">
+					$html = $this->load->view('employee/leaves', $data, true); // render the view into HTML
+					//echo '<pre>';print_r($html);exit;
+					$this->load->library('pdf');
+					$pdf = $this->pdf->load();
+					$pdf->SetFooter($_SERVER['HTTP_HOST'].'|{PAGENO}|'.date('M-d-Y')); // Add a footer for good measure <img src="https://s.w.org/images/core/emoji/72x72/1f609.png" alt="??" draggable="false" class="emoji">
+					$pdf->SetDisplayMode('fullpage');
+					$pdf->list_indent_first_level = 0;	// 1 or 0 - whether to indent the first level of a list
+					$pdf->WriteHTML($html); // write the HTML into the PDF
+					$pdf->Output($pdfFilePath, 'F');
 
 
 
