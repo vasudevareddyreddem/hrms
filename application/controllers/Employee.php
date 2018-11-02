@@ -178,7 +178,7 @@ public function status(){
 								if($status==1){
 								$this->session->set_flashdata('success',"Employee details successfully Deactivate.");
 								}else{
-									$this->session->set_flashdata('success',"employee details successfully Activate.");
+									$this->session->set_flashdata('success',"Employee details successfully Activate.");
 								}
 								redirect('employee/all');
 							}else{
@@ -498,7 +498,7 @@ if($this->session->userdata('hrmsdetails'))
 								if($status==1){
 								$this->session->set_flashdata('success',"Holidays details successfully Deactivate.");
 								}else{
-									$this->session->set_flashdata('success',"holidays details successfully Activate.");
+									$this->session->set_flashdata('success',"Holidays details successfully Activate.");
 								}
 								redirect('employee/holidays');
 							}else{

@@ -7,7 +7,7 @@
 							<h4 class="page-title">My Profile</h4>
 
 						</div>
-						<div class="m-t-20"> <a href="<?php echo base_url('employee/all');?>" class="btn btn-default" data-dismiss="modal">Close</a>
+						<div class="m-t-20"> <a href="<?php echo base_url('employee/all');?>" class="btn btn-default" data-dismiss="modal">Back</a>
 
 						</div>
 					</div>
