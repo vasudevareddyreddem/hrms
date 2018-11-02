@@ -53,7 +53,7 @@ class User extends CI_Controller
 					redirect('dashboard');	
 				}else{
 					$this->session->set_flashdata('loginerror',"Technical problem will occured. Please try again.");
-					redirect('');
+					redirect('dashboard');
 				}
 			}else{
 				redirect('dashboard');

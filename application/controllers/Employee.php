@@ -73,8 +73,8 @@ public function editemployeepost(){
 			$check=$this->Employees_model->saver_user_details($post['e_email_work']);
 			//echo'<pre>';print_r($check);exit;
 			if(count($check)>0){
-					 $this->session->set_flashdata('error',"email alreay to exit");
-					 redirect('employee/editemployee');
+					 $this->session->set_flashdata('error',"email alreay  exit");
+					 redirect('employee/all');
 			      }	
 			}
 		
@@ -138,8 +138,9 @@ public function editemployeepost(){
 			//echo'<pre>';print_r($update_data);exit;
 	        $update=$this->Employees_model->update_employee_details($post['e_id'],$update_data);
 				//echo'<pre>';print_r($update);exit;
+				
 				if(count($update)>0){
-							$this->session->set_flashdata('success','employee details successfully Updated');
+							$this->session->set_flashdata('success','Employee details successfully updated');
 							redirect('employee/all');
 							
 						}else{
@@ -175,9 +176,9 @@ public function status(){
 							//echo $this->db->last_query();exit;	
 							if(count($statusdata)>0){
 								if($status==1){
-								$this->session->set_flashdata('success',"employee details successfully Deactivate.");
+								$this->session->set_flashdata('success',"Employee details successfully Deactivate.");
 								}else{
-									$this->session->set_flashdata('success',"employee details successfully Activate.");
+									$this->session->set_flashdata('success',"Employee details successfully Activate.");
 								}
 								redirect('employee/all');
 							}else{
@@ -206,7 +207,7 @@ public function delete()
 					
 							$delete_data=$this->Employees_model->delete_employee_details($e_id);
 							if(count($delete_data)>0){
-								$this->session->set_flashdata('success',"employee details successfully deleted.");
+								$this->session->set_flashdata('success',"Employee details successfully deleted.");
 								
 								 redirect('employee/all/');
 							}else{
@@ -354,8 +355,8 @@ public function addpost(){
 		    $save=$this->Employees_model->save_employee_details($save_data);	
 			//echo'<pre>';print_r($save);exit;    
 		      if(count($save)>0){
-					$this->session->set_flashdata('success',"Employee details are successfully added");	
-					redirect('employee/all'.base64_encode(1));	
+					$this->session->set_flashdata('success',"Employee details successfully added");	
+					redirect('employee/all');	
 					}else{
 						$this->session->set_flashdata('error',"techechal probelem occur ");
 						redirect('employee/all');
@@ -409,7 +410,7 @@ public function addholidaypost(){
 				 );
 		       $save=$this->Employees_model->save_holidays_details($save_data);	
 		       if(count($save)>0){
-					$this->session->set_flashdata('success',"add Holidays are successfully added");	
+					$this->session->set_flashdata('success',"Holidays details successfully added");	
 					redirect('employee/holidays');	
 					}else{
 						$this->session->set_flashdata('error',"techechal probelem occur ");
@@ -461,7 +462,7 @@ public function addholidaypost(){
 				 $update=$this->Employees_model->update_holidays_details($post['h_id'],$update_data);	
 				 //echo'<pre>';print_r($update);exit;
 		       if(count($update)>0){
-					$this->session->set_flashdata('success',"add Holidays are successfully added");	
+					$this->session->set_flashdata('success',"Holidays details successfully updated");	
 					redirect('employee/holidays');	
 					  }else{
 						$this->session->set_flashdata('error',"techechal probelem occur ");
@@ -495,9 +496,9 @@ if($this->session->userdata('hrmsdetails'))
 							//echo $this->db->last_query();exit;	
 							if(count($statusdata)>0){
 								if($status==1){
-								$this->session->set_flashdata('success',"holidays details successfully Deactivate.");
+								$this->session->set_flashdata('success',"Holidays details successfully Deactivate.");
 								}else{
-									$this->session->set_flashdata('success',"holidays details successfully Activate.");
+									$this->session->set_flashdata('success',"Holidays details successfully Activate.");
 								}
 								redirect('employee/holidays');
 							}else{
@@ -523,7 +524,7 @@ if($this->session->userdata('hrmsdetails'))
 					
 							$delete_data=$this->Employees_model->delete_holidays_details($h_id);
 							if(count($delete_data)>0){
-								$this->session->set_flashdata('success'," holidays details successfully deleted.");
+								$this->session->set_flashdata('success'," Holidays details successfully deleted.");
 								
 								 redirect('employee/holidays');
 							}else{
@@ -577,12 +578,24 @@ public function addsalary(){
          $this->load->library('session');
          $this->load->model('payroll_model');
 
+
+
       
  //$query = $this->db->get('empployee');
-$data['data']=$this->payroll_model->no_sal_emp();
+$data=$this->payroll_model->no_sal_emp();
+if(count($data)>0){
+	$data['data']=$this->payroll_model->no_sal_emp();
 
-//print_r($data);
-//exit();
+$data['flag']=1;
+
+}else{
+	$data['flag']=0;
+	$data['data']=$this->payroll_model->no_sal_emp();
+}
+// echo '<pre>';
+
+// print_r($data);
+// exit();
             // echo $this->session->flashdata('saladded');exit;
 // if($this->session->flashdata('saladded')){
  //echo $this->session->userdata('errors').'kk'; exit;
@@ -721,7 +734,7 @@ public function adddepartment(){
 		 $check_department_exit=$this->Employees_model->check_department_already($post['department']);
 				//echo'<pre>';print_r($check_department_exit);exit;
 				if(count($check_department_exit)>0){
-					$this->session->set_flashdata('error',"department details already exit");
+					$this->session->set_flashdata('error',"Department  already exit");
 					redirect('employee/departmentlist');
 				}	
 		 $save_data=array(
@@ -733,7 +746,7 @@ public function adddepartment(){
 				 );
 		       $save=$this->Employees_model->save_department_details($save_data);	
 		       if(count($save)>0){
-					$this->session->set_flashdata('success',"department details are successfully added");	
+					$this->session->set_flashdata('success',"Department details successfully added");	
 					redirect('employee/departmentlist');	
 					}else{
 						$this->session->set_flashdata('error',"techechal probelem occur ");
@@ -779,7 +792,7 @@ public function editdepartmentpost(){
 		 if($department_details['department']!=$post['department']){
 						$check=$this->Employees_model->check_department_data_exsists($post['department']);
 						if(count($check)>0){
-						$this->session->set_flashdata('error'," department details alreay exit. Please try again.");
+						$this->session->set_flashdata('error'," Department  alreay exit");
 						redirect('employee/departmentlist');
 						}	
 					}	
@@ -795,7 +808,7 @@ public function editdepartmentpost(){
 				 $update=$this->Employees_model->update_department_details($post['d_id'],$update_data);	
 				 //echo'<pre>';print_r($update);exit;
 		       if(count($update)>0){
-					$this->session->set_flashdata('success',"department details are successfully updated");	
+					$this->session->set_flashdata('success',"Department details successfully updated");	
 					redirect('employee/departmentlist');	
 					  }else{
 						$this->session->set_flashdata('error',"techechal probelem occur ");
@@ -829,9 +842,9 @@ if($this->session->userdata('hrmsdetails'))
 							//echo $this->db->last_query();exit;	
 							if(count($statusdata)>0){
 								if($status==1){
-								$this->session->set_flashdata('success',"department details successfully Deactivate.");
+								$this->session->set_flashdata('success',"Department details successfully  Deactivate.");
 								}else{
-									$this->session->set_flashdata('success',"department details successfully Activate.");
+									$this->session->set_flashdata('success',"Department details successfully  Activate.");
 								}
 								redirect('employee/departmentlist');
 							}else{
@@ -857,7 +870,7 @@ if($this->session->userdata('hrmsdetails'))
 					
 							$delete_data=$this->Employees_model->delete_department_details($d_id);
 							if(count($delete_data)>0){
-								$this->session->set_flashdata('success'," department details successfully deleted.");
+								$this->session->set_flashdata('success'," Department details successfully  deleted.");
 								
 								 redirect('employee/departmentlist');
 							}else{
@@ -893,7 +906,7 @@ public function addshift(){
 		 $check_department_exit=$this->Employees_model->check_shift_already($post['shift']);
 				//echo'<pre>';print_r($check_department_exit);exit;
 				if(count($check_department_exit)>0){
-					$this->session->set_flashdata('error',"shift details already exit");
+					$this->session->set_flashdata('error',"Shift  already exit");
 					redirect('employee/shiftlist');
 				}	
 				
@@ -906,7 +919,7 @@ public function addshift(){
 				 );
 		       $save=$this->Employees_model->save_shift_details($save_data);	
 		       if(count($save)>0){
-					$this->session->set_flashdata('success',"shift details are successfully added");	
+					$this->session->set_flashdata('success',"Shift details successfully added");	
 					redirect('employee/shiftlist');	
 					}else{
 						$this->session->set_flashdata('error',"techechal probelem occur ");
@@ -951,7 +964,7 @@ public function editshiftpost(){
 		 if($shift_details['shift']!=$post['shift']){
 						$check=$this->Employees_model->check_shift_data_exsists($post['shift']);
 						if(count($check)>0){
-						$this->session->set_flashdata('error'," shift details alreay exit. Please try again.");
+						$this->session->set_flashdata('error'," Shift alreay exit");
 						redirect('employee/shiftlist');
 						}	
 					}	
@@ -967,7 +980,7 @@ public function editshiftpost(){
 				 $update=$this->Employees_model->update_shift_details($post['s_id'],$update_data);	
 				 //echo'<pre>';print_r($update);exit;
 		       if(count($update)>0){
-					$this->session->set_flashdata('success',"shift details are successfully updated");	
+					$this->session->set_flashdata('success',"Shift details successfully updated");	
 					redirect('employee/shiftlist');	
 					  }else{
 						$this->session->set_flashdata('error',"techechal probelem occur ");
@@ -1001,9 +1014,9 @@ if($this->session->userdata('hrmsdetails'))
 							//echo $this->db->last_query();exit;	
 							if(count($statusdata)>0){
 								if($status==1){
-								$this->session->set_flashdata('success',"shift details successfully Deactivate.");
+								$this->session->set_flashdata('success',"Shift details successfully Deactivate.");
 								}else{
-									$this->session->set_flashdata('success',"shift details successfully Activate.");
+									$this->session->set_flashdata('success',"Shift details successfully Activate.");
 								}
 								redirect('employee/shiftlist');
 							}else{
@@ -1029,7 +1042,7 @@ if($this->session->userdata('hrmsdetails'))
 					
 							$delete_data=$this->Employees_model->delete_shift_details($s_id);
 							if(count($delete_data)>0){
-								$this->session->set_flashdata('success'," shift details successfully deleted.");
+								$this->session->set_flashdata('success'," Shift details successfully deleted.");
 								
 								 redirect('employee/shiftlist');
 							}else{
@@ -1066,7 +1079,7 @@ public function addsubdepartment(){
 		$check=$this->Employees_model->check_subdepartment_data_exsists($post['department'],$post['sub_department']);
 						//echo '<pre>';print_r($check);exit;
 						if(count($check)>0){
-							$this->session->set_flashdata('error'," subdepartment details alreay exit. Please try again.");
+							$this->session->set_flashdata('error'," subdepartment  alreay exit");
 							redirect('employee/subdepartmentlist');
 						}
 		 $save_data=array(
@@ -1079,7 +1092,7 @@ public function addsubdepartment(){
 				 );
 		       $save=$this->Employees_model->save_subdepartment_details($save_data);	
 		       if(count($save)>0){
-					$this->session->set_flashdata('success',"subdepartment details are successfully added");	
+					$this->session->set_flashdata('success',"Subdepartment details successfully added");	
 					redirect('employee/subdepartmentlist');	
 					}else{
 						$this->session->set_flashdata('error',"techechal probelem occur ");
@@ -1123,7 +1136,7 @@ public function editsubdepartmentpost(){
 		 if($subdepartment_details['department']!=$post['department'] || $subdepartment_details['sub_department']!=$post['sub_department']){
 						$check=$this->Employees_model->check_subdepartment_data_exsists($post['department'],$post['sub_department']);
 						if(count($check)>0){
-						$this->session->set_flashdata('error'," subdepartment details alreay exit. Please try again.");
+						$this->session->set_flashdata('error'," Subdepartment  alreay exit");
 						redirect('employee/subdepartmentlist');
 						}	
 					}	
@@ -1139,7 +1152,7 @@ public function editsubdepartmentpost(){
 				 $update=$this->Employees_model->update_subdepartment_details($post['s_d_id'],$update_data);	
 				 //echo'<pre>';print_r($update);exit;
 		       if(count($update)>0){
-					$this->session->set_flashdata('success',"sub department details are successfully updated");	
+					$this->session->set_flashdata('success',"Subdepartment details successfully updated");	
 					redirect('employee/subdepartmentlist');	
 					  }else{
 						$this->session->set_flashdata('error',"techechal probelem occur ");
@@ -1173,9 +1186,9 @@ if($this->session->userdata('hrmsdetails'))
 							//echo $this->db->last_query();exit;	
 							if(count($statusdata)>0){
 								if($status==1){
-								$this->session->set_flashdata('success',"subdepartment details successfully Deactivate.");
+								$this->session->set_flashdata('success',"Subdepartment details successfully Deactivate.");
 								}else{
-									$this->session->set_flashdata('success',"subdepartment details successfully Activate.");
+									$this->session->set_flashdata('success',"Subdepartment details successfully Activate.");
 								}
 								redirect('employee/subdepartmentlist');
 							}else{
@@ -1201,7 +1214,7 @@ if($this->session->userdata('hrmsdetails'))
 					
 							$delete_data=$this->Employees_model->delete_subdepartment_details($s_d_id);
 							if(count($delete_data)>0){
-								$this->session->set_flashdata('success',"subdepartment details successfully deleted.");
+								$this->session->set_flashdata('success',"Subdepartment details successfully deleted.");
 								
 								 redirect('employee/subdepartmentlist');
 							}else{

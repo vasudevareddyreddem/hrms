@@ -17,7 +17,8 @@
 								</div>
 										<div class="form-group">
 									<label>Holiday Date <span class="text-danger">*</span></label>
-									<div class="cal-icon"><input class="form-control datetimepicker" type="text" name="holiday_date" value="<?php echo isset($edit_holiday['holiday_date'])?$edit_holiday['holiday_date']:''; ?>"></div>
+									<input class="form-control"  type="text" name="holiday_date" placeholder="yyy-mm-dd" value="<?php echo isset($edit_holiday['holiday_date'])?$edit_holiday['holiday_date']:''; ?>">
+
 								</div>
 								<div class="form-group">
 									<label>Holiday Day<span class="text-danger">*</span></label>
@@ -63,7 +64,7 @@ $(document).ready(function() {
 						message: 'Holiday Date is required'
 					},
 					holiday_date: {
-                        format: 'DD/MM/YYYY',
+                        format: 'YYYY/MM/DD',
                         message: 'The value is not a valid date'
                     }
 				

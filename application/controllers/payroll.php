@@ -6,7 +6,20 @@ class payroll extends In_frontend
     public function empids($name){
         $this->load->model('payroll_model');
         //print_r($this->payroll_model->emp_ids($name));exit;
-        echo json_encode($this->payroll_model->emp_ids($name));
+    //     $post=$this->input->post();
+    // //echo '<pre>';print_r($post);
+     $id_list=$this->payroll_model->emp_ids($name);
+    if(count($id_list) > 0)
+    {
+    $data['msg']=1;
+    $data['list']=$id_list;
+    echo json_encode($data);exit; 
+    }else{
+     $data['msg']=2;
+     echo json_encode($data);exit;
+    }
+
+        
 
 
 
@@ -110,7 +123,7 @@ $data['total_ded']=$data['sal_det']->e_net_salary-((int)$day_sal*$cnt_pay); // t
 
     }
    // retreving the employee salary deatails
-    public function empsal($id){
+    public function editsal($id){
 //$query = $this->db->get_where('salary_tab', array('emp_id' => $id));
         $this->db->select('*');
 $this->db->from('empployee');
@@ -118,10 +131,16 @@ $this->db->join('employee_salary', 'empployee.e_id = employee_salary.e_id');
 $this->db->where('employee_salary.e_id',$id);
 $query = $this->db->get();
 
-$row = $query->row_array();
- echo json_encode($row);
+$data['row'] = $query->row();
+//echo '<pre>';print_r($row); exit;
+ //echo json_encode($row);
+$this->load->view('employee/edit-salary',$data);
+         $this->load->view('html/footer');
+
+
 
     }
+
 //update the employee salaray
     public function updatesal() {
             $this->load->helper(array('form', 'url'));
@@ -204,12 +223,12 @@ $this->load->model('payroll_model');
 $result=$this->payroll_model->salary_update($data,$id);
 
 if($result==true){
-    $this->session->set_userdata('update', 'update successfully');
+    $this->session->set_flashdata('success', ' salary updated successfully');
 redirect("employee/salarylist");
 }
 else
     { 
-
+          $this->session->set_flashdata('success', ' you are updated nothing');
         redirect("employee/salarylist");
 exit;
 
@@ -353,6 +372,8 @@ $this->load->model('payroll_model');
 $result=$this->payroll_model->save_salary_det($data);
 
 if($result==true){
+  $this->session->set_flashdata('success','salary  details are successfully added'); 
+
 redirect("employee/salarylist");
 }
 else
