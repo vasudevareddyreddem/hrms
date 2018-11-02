@@ -29,15 +29,18 @@
 									</thead>
 									<tbody>
 										
-									
+									<?php  if($flag==1){
+										foreach($emp_data as $row):?>
+
+
 										<tr>
 											<td>
-												<a href="#" class="avatar">J</a>
-												<h2><a href="#">Jeffrey Warden <span>Shift Incharge</span></a></h2>
+												<a href="#" class="avatar"><?php echo substr($row->e_f_name,0,1)?> </a>
+												<h2><a href="#"><?php echo $row->e_f_name ;?><span><?php echo $row->e_designation ;?></span></a></h2>
 											</td>
-											<td>FT-0006</td>
-											<td>Shift Incharge</td>
-											<td>9876543210</td>
+											<td><?php echo $row->e_emplouee_id ;?></td>
+											<td><?php echo $row->e_designation ;?></td>
+											<td><?php echo $row->e_mobile_work  ;?></td>
 											<td>
 												<select class="form-control">
 													<option>Select</option>
@@ -63,6 +66,12 @@
 												</span></a>
 											</td>
 										</tr>
+									<?php endforeach;} else{?>
+										<tr>
+											NO data found
+										</tr>
+									<?php  }?>
+
 										
 									</tbody>
 								</table>

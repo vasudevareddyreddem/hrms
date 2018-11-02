@@ -706,8 +706,20 @@ public function attendance()
 		if($this->session->userdata('hrmsdetails'))
 		{
 		$admindetails=$this->session->userdata('hrmsdetails');
+		$this->load->model('emp_manage_model');
+		$data['emp_data']=$this->emp_manage_model->get_login_details();
+		//echo'<pre>';print_r($data);exit;
+		if(count($data)>0){
+			$data['flag']=1;
+}
+else{
+
+	$data['flag']=0;
+}
+
+
 			 
-	     $this->load->view('employee/attendence');
+	     $this->load->view('employee/attendence',$data);
 		 $this->load->view('html/footer');  
 	} 
 	  
