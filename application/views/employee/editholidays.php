@@ -17,7 +17,7 @@
 								</div>
 										<div class="form-group">
 									<label>Holiday Date <span class="text-danger">*</span></label>
-									<input class="form-control"  type="text" name="holiday_date" placeholder="yyy-mm-dd" value="<?php echo isset($edit_holiday['holiday_date'])?$edit_holiday['holiday_date']:''; ?>">
+									<input class="form-control"  type="text" name="holiday_date"  value="<?php echo isset($edit_holiday['holiday_date'])?$edit_holiday['holiday_date']:''; ?>">
 
 								</div>
 								<div class="form-group">

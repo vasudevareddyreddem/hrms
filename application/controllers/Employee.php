@@ -586,6 +586,9 @@ $data=$this->payroll_model->no_sal_emp();
 if(count($data)>0){
 	$data['data']=$this->payroll_model->no_sal_emp();
 
+
+
+
 $data['flag']=1;
 
 }else{
@@ -593,6 +596,27 @@ $data['flag']=1;
 	$data['data']=$this->payroll_model->no_sal_emp();
 }
 // echo '<pre>';
+
+
+
+
+$data['flag']=1;
+
+
+
+$data['flag']=1;
+
+
+
+$data['flag']=1;
+
+
+}else{
+	$data['flag']=0;
+	$data['data']=$this->payroll_model->no_sal_emp();
+}
+// echo '<pre>';
+
 
 // print_r($data);
 // exit();
@@ -605,6 +629,7 @@ $data['flag']=1;
 	    
    }
 }	
+
 public function salarylist(){
     if($this->session->userdata('hrmsdetails'))
 		{	
@@ -1246,9 +1271,7 @@ public function chat(){
     if($this->session->userdata('hrmsdetails'))
 		{	
          $admindetails=$this->session->userdata('hrmsdetails');	
-		 $this->load->view('html/header');
 	     $this->load->view('employee/chat');
-	     $this->load->view('html/sidebar');
 	     $this->load->view('html/footer');  
    }
 }	
@@ -1258,9 +1281,7 @@ public function salemantrack(){
 	  if($this->session->userdata('hrmsdetails'))
 		{	
          $admindetails=$this->session->userdata('hrmsdetails');	
-		 $this->load->view('html/header');
 	     $this->load->view('employee/salestrack');
-	     $this->load->view('html/sidebar');
 	     $this->load->view('html/footer');   
    }
 
@@ -1270,9 +1291,7 @@ public function trackdetails(){
 	  if($this->session->userdata('hrmsdetails'))
 		{	
          $admindetails=$this->session->userdata('hrmsdetails');	
-		 $this->load->view('html/header');
 	     $this->load->view('employee/track-details');
-	     $this->load->view('html/sidebar');
 	     $this->load->view('html/footer');   
    }
 
@@ -1283,34 +1302,34 @@ public function trackdetails(){
   
   
   
-public function profile(){
-	
-	if($this->session->userdata('hrmsdetails'))
-		{	
-         $admindetails=$this->session->userdata('hrmsdetails');	
-	     $this->load->view('html/employee-details');
-	     $this->load->view('html/footer');
-	     
-	    
-   }
-	
-	
-}
-public function editprofile(){
-	
-	if($this->session->userdata('hrmsdetails'))
-		{	 
-	    $admindetails=$this->session->userdata('hrmsdetails');
-		 $this->load->view('html/header');
-	     $this->load->view('html/edit-profile');
-	     $this->load->view('html/sidebar');  
-   }
-	
-}
+
 	// employee delete
 
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+
+
+
+	public function emp_delete($eid){
+
+   $this->load->model('Employees_model');
+   $this->Employees_model->emp_delete($eid);
+
+   redirect('employee/salarylist');
+   
+    	
+    }
+
+
+=======
+=======
+>>>>>>> 2f2cea15cf73c769bf2e66e3f2e72920acf91195
+=======
+>>>>>>> 2f2cea15cf73c769bf2e66e3f2e72920acf91195
 	
     
+>>>>>>> 2f2cea15cf73c769bf2e66e3f2e72920acf91195
 
 	
 	
