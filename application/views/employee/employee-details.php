@@ -2,11 +2,14 @@
              <div class="page-wrapper">
                 <div class="content container-fluid">
 					<div class="row">
+					<div class="row">
 						<div class="col-sm-8">
 							<h4 class="page-title">My Profile</h4>
+
 						</div>
-						
-						
+						<div class="m-t-20"> <a href="<?php echo base_url('employee/all');?>" class="btn btn-default" data-dismiss="modal">Back</a>
+
+						</div>
 					</div>
 					<div class="card-box">
 						<div class="row">
@@ -17,16 +20,19 @@
 										
 									  <?php if($edit_employee['e_profile_pic']!=''){ ?>
 									  <img src="<?php echo base_url('assets/adminprofilepic/'.$edit_employee['e_profile_pic']); ?>" height="50px" width="50px">
-									  <?php } ?>
+									  <?php }else{ ?>
+								<img src="<?php echo base_url();?>assets/vendor/img/user-06.jpg" class="img-circle" alt="User Image" />
+									<?php } ?>
 														
 										</div>
 									</div>
 									<div class="profile-basic">
 										<div class="row">
 											<div class="col-md-5">
+											
 												<div class="profile-info-left">
 													<h3 class="user-name m-t-0 m-b-0"><?php echo $edit_employee['e_login_name'];?></h3>
-													<small class="text-muted"><?php echo $edit_employee['e_designation'];?></small>
+													<small class="text-muted"><?php echo $edit_employee['role'];?></small>
 													<div class="staff-id">Employee ID : <?php echo $edit_employee['e_emplouee_id'];?></div>
 												
 												</div>
@@ -96,7 +102,8 @@
 														<div><?php echo $edit_employee['e_login_name'];?></div>
 													</div>
 												</div>
-											</li>	
+											</li>																	
+
 											<li>
 												<div class="experience-user">
 													<div class="before-circle"></div>
@@ -105,9 +112,20 @@
 													<div class="timeline-content">
 														<a href="#/" class="name">Email Personal</a>
 														<div><?php echo $edit_employee['e_email_personal'];?></div>
-														<div><?php echo $edit_employee['e_email_work'];?></div>
-													</div>
+											      </div>
 												</div>
+												</li>
+												<li>
+												<div class="experience-user">
+													<div class="before-circle"></div>
+												</div>
+												<div class="experience-content">
+													<div class="timeline-content">
+														<a href="#/" class="name">Email Personal</a>
+														<div><?php echo $edit_employee['e_email_work'];?></div>
+											      </div>
+												</div>
+												
 											</li>
 											<li>
 												<div class="experience-user">
@@ -128,7 +146,7 @@
 												<div class="experience-content">
 													<div class="timeline-content">
 														<a href="#/" class="name">Designation </a>
-														<div><?php echo $edit_employee['e_designation'];?></div>
+														<div><?php echo $edit_employee['role'];?></div>
 														
 													</div>
 												</div>
@@ -152,7 +170,7 @@
 												<div class="experience-content">
 													<div class="timeline-content">
 														<a href="#/" class="name">Department   </a>
-														<div><?php echo $edit_employee['e_department'];?></div>
+														<div><?php echo $edit_employee['department'];?></div>
 														
 													</div>
 												</div>
@@ -164,7 +182,7 @@
 												<div class="experience-content">
 													<div class="timeline-content">
 														<a href="#/" class="name">Sub Department   </a>
-														<div><?php echo $edit_employee['e_sub_department'];?></div>
+														<div><?php echo $edit_employee['sub_department'];?></div>
 														
 													</div>
 												</div>
@@ -176,7 +194,7 @@
 												<div class="experience-content">
 													<div class="timeline-content">
 														<a href="#/" class="name">Shift</a>
-														<div><?php echo $edit_employee['e_shift'];?></div>
+														<div><?php echo $edit_employee['shift'];?></div>
 														
 													</div>
 												</div>

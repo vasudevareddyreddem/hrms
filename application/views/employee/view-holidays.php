@@ -2,10 +2,13 @@
              <div class="page-wrapper">
                 <div class="content container-fluid">
 					<div class="row">
+					<div class="row">
 						<div class="col-sm-8">
 							<h4 class="page-title">View</h4>
+
 						</div>
-						
+                  	<div class="m-t-20"> <a href="<?php echo base_url('employee/holidays');?>" class="btn btn-default" data-dismiss="modal">Back</a>
+                       </div>
 						
 					</div>
 					<div class="card-box">
