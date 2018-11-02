@@ -389,6 +389,18 @@ exit;
 
 }
 
+// delete emp salare
+public function sal_delete($eid){
+
+   $this->load->model('payroll_model');
+   $this->payroll_model->emp_sal_delete($eid);
+   $this->session->set_flashdata('success','salary deleted'); 
+
+
+   redirect('');
+
+      
+    }
 
 
 	}

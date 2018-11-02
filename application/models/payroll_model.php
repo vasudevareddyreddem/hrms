@@ -121,7 +121,14 @@ $query = $this->db->get();
 return $query->result();
 
 }
-// check employe working in month or not
+// employee salary delete
+public function emp_sal_delete($eid){
+  $this->db->where('e_id', $eid);
+$this->db->delete('employee_salary');
+return 'yes';
+
+
+    }
 
 
 

@@ -610,7 +610,17 @@ public function salarylist(){
 		{	
          $admindetails=$this->session->userdata('hrmsdetails');	
 $this->load->model('payroll_model');
-$data['data']=$this->payroll_model->emp_det_with_salary();
+$result=$this->payroll_model->emp_det_with_salary();
+if(count($result)>0){
+$data['flag']=1;
+$data['data']=$result;
+//echo '<pre>';print_r($data);exit;
+}
+else {
+	$data['flag']=0;
+  $data['data']=$result;
+
+}
 	//echo '<pre>';print_r($data);exit;
 	     $this->load->view('employee/salarylist',$data);
 	     $this->load->view('html/footer');
@@ -1298,15 +1308,7 @@ public function editprofile(){
 }
 	// employee delete
 
-	public function emp_delete($eid){
-
-   $this->load->model('Employees_model');
-   $this->Employees_model->emp_delete($eid);
-
-   redirect('employee/salarylist');
-
-    	
-    }
+	
     
 
 	
