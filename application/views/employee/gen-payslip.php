@@ -79,8 +79,8 @@
 
                     	$("#ename").change(function () {
                     		val=$('#ename').val();
-                    		newval='http://localhost/hrms/payroll/empids/'+val;
-                    		alert(newval);
+                    		//newval='http://localhost/hrms/payroll/empids/'+val;
+                    		//alert(newval);
                     		    $.ajax({
                     type: "GET",    //GET or POST or PUT or DELETE verb
                     url: 'http://localhost/hrms/payroll/empids/'+val,     // Location of the service
@@ -91,9 +91,9 @@
                     success: function (result) {
                     	$("#eid option").remove();
                     	//alert('lk');
-                    console.log(result.msg);
+                    //console.log(result.msg);
 
-                    	console.log(result);
+                    	//console.log(result);
                     	if (parseInt(result.msg)==1){
                     		
                     	$.each(result.list, function () {
