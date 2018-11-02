@@ -289,7 +289,7 @@ public function addpost(){
 				//echo'<pre>';print_r($check_book_exit);exit;
 				if(count($check_email_exit)>0){
 					$this->session->set_flashdata('error',"Email already exit");
-					redirect('employee/add');
+					redirect('employee/all');
 				}	
 				
 				if($_FILES['e_document']['name']!=''){
@@ -355,10 +355,10 @@ public function addpost(){
 			//echo'<pre>';print_r($save);exit;    
 		      if(count($save)>0){
 					$this->session->set_flashdata('success',"Employee details are successfully added");	
-					redirect('employee/add/'.base64_encode(1));	
+					redirect('employee/all'.base64_encode(1));	
 					}else{
 						$this->session->set_flashdata('error',"techechal probelem occur ");
-						redirect('employee/add');
+						redirect('employee/all');
 					}
 		         }else{
 						$this->session->set_flashdata('error',"you don't have permission to access");
@@ -410,10 +410,10 @@ public function addholidaypost(){
 		       $save=$this->Employees_model->save_holidays_details($save_data);	
 		       if(count($save)>0){
 					$this->session->set_flashdata('success',"add Holidays are successfully added");	
-					redirect('employee/addholiday');	
+					redirect('employee/holidays');	
 					}else{
 						$this->session->set_flashdata('error',"techechal probelem occur ");
-						redirect('employee/addholiday');
+						redirect('employee/holidays');
 					}
 				   }else{
 						$this->session->set_flashdata('error',"you don't have permission to access");
@@ -722,7 +722,7 @@ public function adddepartment(){
 				//echo'<pre>';print_r($check_department_exit);exit;
 				if(count($check_department_exit)>0){
 					$this->session->set_flashdata('error',"department details already exit");
-					redirect('employee/department');
+					redirect('employee/departmentlist');
 				}	
 		 $save_data=array(
 				'department'=>isset($post['department'])?$post['department']:'',
@@ -734,10 +734,10 @@ public function adddepartment(){
 		       $save=$this->Employees_model->save_department_details($save_data);	
 		       if(count($save)>0){
 					$this->session->set_flashdata('success',"department details are successfully added");	
-					redirect('employee/department');	
+					redirect('employee/departmentlist');	
 					}else{
 						$this->session->set_flashdata('error',"techechal probelem occur ");
-						redirect('employee/department');
+						redirect('employee/departmentlist');
 					}
 				   }else{
 						$this->session->set_flashdata('error',"you don't have permission to access");
@@ -894,7 +894,7 @@ public function addshift(){
 				//echo'<pre>';print_r($check_department_exit);exit;
 				if(count($check_department_exit)>0){
 					$this->session->set_flashdata('error',"shift details already exit");
-					redirect('employee/shift');
+					redirect('employee/shiftlist');
 				}	
 				
 		 $save_data=array(
@@ -907,10 +907,10 @@ public function addshift(){
 		       $save=$this->Employees_model->save_shift_details($save_data);	
 		       if(count($save)>0){
 					$this->session->set_flashdata('success',"shift details are successfully added");	
-					redirect('employee/shift');	
+					redirect('employee/shiftlist');	
 					}else{
 						$this->session->set_flashdata('error',"techechal probelem occur ");
-						redirect('employee/shift');
+						redirect('employee/shiftlist');
 					}
 				   }else{
 						$this->session->set_flashdata('error',"you don't have permission to access");
@@ -1067,7 +1067,7 @@ public function addsubdepartment(){
 						//echo '<pre>';print_r($check);exit;
 						if(count($check)>0){
 							$this->session->set_flashdata('error'," subdepartment details alreay exit. Please try again.");
-							redirect('employee/subdepartment');
+							redirect('employee/subdepartmentlist');
 						}
 		 $save_data=array(
 				'department'=>isset($post['department'])?$post['department']:'',
@@ -1080,10 +1080,10 @@ public function addsubdepartment(){
 		       $save=$this->Employees_model->save_subdepartment_details($save_data);	
 		       if(count($save)>0){
 					$this->session->set_flashdata('success',"subdepartment details are successfully added");	
-					redirect('employee/subdepartment');	
+					redirect('employee/subdepartmentlist');	
 					}else{
 						$this->session->set_flashdata('error',"techechal probelem occur ");
-						redirect('employee/subdepartment');
+						redirect('employee/subdepartmentlist');
 					}
 				   }else{
 						$this->session->set_flashdata('error',"you don't have permission to access");
