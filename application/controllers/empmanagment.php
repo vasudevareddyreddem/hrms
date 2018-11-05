@@ -13,6 +13,8 @@ public function __construct()
     }
 
     public function viewattendance($eid,$month){
+    	if($this->session->userdata('hrmsdetails'))
+		{
     	$year=date("Y");
 
     	$mdays=cal_days_in_month(CAL_GREGORIAN,$month,$year);//no of days
@@ -92,6 +94,39 @@ $data['attendance']=$attendance;
 
 
     }
+}
 
+// employee shift changing
+public function shiftchange(){
+if($this->session->userdata('hrmsdetails'))
+		{
+	$shift=$this->input->post('shift');
+	$eid=$this->input->post('eid');
+	//echo $eid; exit;
+	$data=array('e_shift'=>$shift);
+	$status=$this->emp_manage_model->update_emp_shift($eid,$data);
+	if($status==true){
+
+            $this->session->set_flashdata('success',"shift  details changed");
+           redirect('employee/shiftmangement');
+
+	}
+
+	else{
+		 $this->session->set_flashdata('success',"you didn't change anything in shift details");
+           redirect('employee/shiftmangement');
+
+
+
+	}
+
+
+
+
+
+
+
+}
+}
 
 }

@@ -7,22 +7,22 @@
 						<div class="modal-header">
 							<h4 class="modal-title">Edit Shift</h4>
 						</div>
-						<form id="defaultForm" method="post" action="">
+						<form id="defaultForm" method="post" action="<?php echo base_url('empmanagment/shiftchange') ?>">
 							<div class="modal-body card-box">
 								<p>Are you sure want to Edit Shift?</p>
 									<div class="">
 											<div class="form-group">
+												<input type='hidden' value='<?php echo $shift_edit['e_id']?>'  name='eid'>
 											<label class="control-label">Select Shift</label>
 											<select class="select" name="shift">
-													<option value="">Select Shift</option>
-													<option value="">A</option>
-													<option value="">B</option>
-													<option value="">C</option>
+												<?php foreach($shiftlist as $shift):?>
+												<option value='<?php echo $shift['s_id'];?>' '<?php if ($shift['s_id']== $shift_edit['e_shift']) echo 'selected';?>'><?php echo $shift['shift'];?> </option>
+												<?php endforeach?>	
 													
 											</select>
 										</div>
 									</div>
-								<div class="m-t-20"> <a href="<?php echo base_url('employee/shiftmangement');?>" class="btn btn-default" data-dismiss="modal">Close</a>
+								<div class="m-t-20"> <a href='#'  class="btn btn-default" data-dismiss="modal">Close</a>
 									<button type="submit" class="btn btn-success">Change Shift</button>
 								</div>
 							</div>

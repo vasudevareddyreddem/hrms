@@ -42,7 +42,7 @@
 											<td><?php echo $row->e_designation ;?></td>
 											<td><?php echo $row->e_mobile_work  ;?></td>
 											<td>
-												<select id='month' class="form-control" name='month'>
+												<select id='' class="form-control month" name='month'>
 													<option value='select' >Select</option>
 													<option value='1'>Jan</option>
 													<option value='2'>Feb</option>
@@ -414,12 +414,21 @@
 <script>
 $(document).ready(function(){
     $(".urlchange").click(function(){
-    	if($('#month').val()=='select'){
+    	var lastObj = $(this);
+  var parent = lastObj.parent();
+  var previousObject = parent.closest(":has(select)").find('select');
+  //$('#selection').text(previousObject.text());
+    	//$("h2").siblings("p");
+    	//ss=var link = $("this").closest("select").prev();
+    	//alert(previousObject.val());
+    	month=previousObject.val();
+    	//return false;
+    	if(month=='select'){
 
     		return false;
     	}
     	val=$(this).attr("href");
-    	newurl=val+'/'+$('#month').val();
+    	newurl=val+'/'+month;
         $(this).attr("href", newurl);
     });
 });

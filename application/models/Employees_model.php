@@ -248,7 +248,8 @@ $this->db->select('*')->from('department');
 	 
 	
 	public function edit_shift_management_details($e_id){
-	$this->db->select('*')->from('empployee');
+	$this->db->select('e_id,shift,e_shift')->from('empployee');
+	$this->db->join('shift','shift.s_id=empployee.e_shift');
 	$this->db->where('e_id',$e_id);
 	return $this->db->get()->row_array();	
 	}

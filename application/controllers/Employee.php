@@ -618,11 +618,8 @@ $data['flag']=1;
 	     $this->load->view('html/footer');
 	    
    }
-<<<<<<< HEAD
 }
-=======
->>>>>>> 881a0f513ae6d249060c6bb466b3a9aba0a82116
-	
+
 
 public function salarylist(){
     if($this->session->userdata('hrmsdetails'))
@@ -696,6 +693,8 @@ if($this->session->userdata('hrmsdetails'))
          $admindetails=$this->session->userdata('hrmsdetails');
 	  $this->uri->segment(3);
 		 $data['shift_edit']=$this->Employees_model->edit_shift_management_details(base64_decode($this->uri->segment(3)));
+		 $data['shiftlist']=$this->Employees_model->shift_list();
+
 		  //echo'<pre>';print_r($data);exit;
 	     $this->load->view('employee/edit-shift',$data);
 	     $this->load->view('html/footer');
@@ -1311,10 +1310,7 @@ public function trackdetails(){
 
 	// employee delete
 
-<<<<<<< HEAD
 
-=======
->>>>>>> 881a0f513ae6d249060c6bb466b3a9aba0a82116
 
 
 	public function emp_delete($eid){
@@ -1328,10 +1324,6 @@ public function trackdetails(){
     }
 
 
-<<<<<<< HEAD
-=======
-
->>>>>>> 881a0f513ae6d249060c6bb466b3a9aba0a82116
 	
 	
 }	
