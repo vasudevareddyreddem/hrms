@@ -23,6 +23,28 @@ $query=$this->db->get();
 return $query->result();
 
 	}
+public function emp_name_id($eid){
 
+	$this->db->select('e_id,e_f_name,e_emplouee_id');
+$this->db->where('e_id',$eid);
+	$query=$this->db->get('empployee');
+
+	return $query->row();
+
+
+}
+public function get_days($eid,$month,$year){
+
+
+
+	$this->db->select('DAY(l_date) lday');
+	$this->db->where('month(l_date)',$month);
+	$this->db->where('year(l_date)',$year);
+	$this->db->where('e_id',$eid);
+	$this->db->group_by('DAY(l_date)');
+	$query=$this->db->get('login_details');
+return $query->result_array();
+
+}
 
 }

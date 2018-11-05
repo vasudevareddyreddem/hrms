@@ -42,26 +42,26 @@
 											<td><?php echo $row->e_designation ;?></td>
 											<td><?php echo $row->e_mobile_work  ;?></td>
 											<td>
-												<select class="form-control">
-													<option>Select</option>
-													<option>Jan</option>
-													<option>Feb</option>
-													<option>Mar</option>
-													<option>Apr</option>
-													<option>May</option>
-													<option>Jun</option>
-													<option>Jul</option>
-													<option>Aug</option>
-													<option>Sep</option>
-													<option>Oct</option>
-													<option>Nov</option>
-													<option>Dec</option>
+												<select id='month' class="form-control" name='month'>
+													<option value='select' >Select</option>
+													<option value='1'>Jan</option>
+													<option value='2'>Feb</option>
+													<option value='3'>Mar</option>
+													<option value='4'>Apr</option>
+													<option value='5'>May</option>
+													<option value='6'>Jun</option>
+													<option value='7'>Jul</option>
+													<option value='8'>Aug</option>
+													<option value='9'>Sep</option>
+													<option value='10'>Oct</option>
+													<option value='11'>Nov</option>
+													<option value='12'>Dec</option>
 												</select>
 											</td>
 											
 											
 											<td class="text-center">
-												<a href="<?php echo base_url('employee/viewattendance'); ?>"><span class="btn btn-sm btn-primary">
+												<a class='urlchange' href="<?php echo base_url('empmanagment/viewattendance/'.$row->e_id); ?>"><span class="btn btn-sm btn-primary">
 												<i class="fa fa-eye m-r-5"></i> View
 												</span></a>
 											</td>
@@ -410,6 +410,19 @@
       "autoWidth": false
     });
   });
+</script>
+<script>
+$(document).ready(function(){
+    $(".urlchange").click(function(){
+    	if($('#month').val()=='select'){
+
+    		return false;
+    	}
+    	val=$(this).attr("href");
+    	newurl=val+'/'+$('#month').val();
+        $(this).attr("href", newurl);
+    });
+});
 </script>
 
 

@@ -94,7 +94,6 @@ $cnt_sun=count($days);// number of sundays
 $this->load->model('payroll_model');
 $hdays=$this->payroll_model->get_holidays($year,$month);
 $logdays=$this->payroll_model->get_login_days($year,$month,$eid);
-$logdays=$this->payroll_model->get_login_days($year,$month,$eid);
 $pay_lv=$this->payroll_model->pay_leaves($year,$month,$eid);
 $gen_lv=$this->payroll_model->general_leaves($year,$month,$eid);
 $sal=$this->payroll_model->emp_sal($eid);
