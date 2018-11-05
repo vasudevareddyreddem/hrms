@@ -40,6 +40,7 @@
 										<div class="chat-wrap-inner">
 											<div class="chat-box">
 												<div class="chats">
+													<?php ?>
 													<div class="chat chat-right">
 														<div class="chat-body">
 															<div class="chat-bubble">
