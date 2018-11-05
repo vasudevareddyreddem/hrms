@@ -1,13 +1,14 @@
 <?php if (!defined('BASEPATH')) exit('No direct script access allowed');
 @include_once( APPPATH . 'controllers/In_frontend.php');
-class payroll extends In_frontend
+class Payroll extends In_frontend
 {
 // ajax call for employe ids
 
   public function __construct() 
   {
     parent::__construct();  
-
+    $this->load->model('payroll_model');
+$this->load->library('numbertowords');
     
     }
 
@@ -51,14 +52,7 @@ $data['year']=$this->payroll_model->get_year();
         
     }
 
-    public function test(){
-
-//     $this->load->library('numbertowords');
-// $number=9999;
-// echo $this->numbertowords->convert_number($number);
-$date = DateTime::createFromFormat('m/d/Y', '06/16/2010'); // \DateTime object
-echo $date->format('Y-m-d');// 2010-06-16
-    }
+   
    
 	// payslip page
     public function payslippage(){
@@ -71,12 +65,22 @@ echo $date->format('Y-m-d');// 2010-06-16
                     redirect('employee/salarylist');
 
                 }
-    
 
-
-        $eid=$this->input->post('eid');
+     $eid=$this->input->post('eid');
         $year=$this->input->post('year');
         $month=$this->input->post('month');
+        $res=$this->payroll_model->emp_payslip_det($month,$year);
+        if(count($res)>0){
+
+          $data['pslip_det']=$res;
+          //echo '<pre>';print_r($data);exit;
+           
+
+
+        }else{
+
+//echo "vasu";exit;
+
         $data['year']=$year;
         $dateObj   = DateTime::createFromFormat('!m', $month);
       $data['month'] = $dateObj->format('F');// month in words
@@ -108,18 +112,18 @@ $cnt_log=count($logdays);// number of working days
 if($cnt_log==0){
 
      $this->session->set_flashdata('error','Employee having no login details in this month');
-	redirect('employee/salarylist');
+  redirect('employee/salarylist');
 }
 $wdays=$last_day-$cnt_sun-$cnt_hol; //total working days
 $pay_leave_days=$wdays-$cnt_log-$cnt_gen;
 
 
 $day_sal=$sal/$last_day;
-$data['leave_ded']=(int)$day_sal*$pay_leave_days;// leave deductions
+$leaves_ded=(int)$day_sal*$pay_leave_days;// leave deductions
 //$mon_sal=$sal-((int)$day_sal*$cnt_pay);
 $data['total_ded']=$data['sal_det']->e_gross_salary-$data['sal_det']->e_net_salary+((int)$day_sal*$cnt_pay); // total deductions
 
-$this->session->set_userdata($data);
+//$this->session->set_userdata($data);
 $payslip_det=array(
   'e_id'=> $saldata->e_id,
 'e_basic' => $saldata->e_basic,
@@ -138,33 +142,20 @@ $payslip_det=array(
 'e_d_others'=> $saldata->e_d_others,
 'e_net_salary' => $saldata->e_net_salary,
 'e_gross_salary'=>$saldata->e_gross_salary,
-'e_salary_month'=>$data['month'],
-'e_salary_deduction'=>$data['total_ded']
+'e_salary_month'=>$month,
+'e_salary_deduction'=>$data['total_ded'],
+'e_salary_year'=>$year,
+'e_leaves_deduction'=>$leaves_ded
 
 );
 $this->load->model('payroll_model');
 $this->payroll_model->save_payslip($payslip_det);
-//generate payslip
-// $path = rtrim(FCPATH,"/");
-//           $file_name = 'payslip.pdf';                
-//           $data['page_title'] = 'title'; // pass data to the view
-//           $pdfFilePath = $path."/assets/payslips/".$file_name;
-//           ini_set('memory_limit','320M'); // boost the memory limit if it's low <img src="https://s.w.org/images/core/emoji/72x72/1f609.png" alt="??" draggable="false" class="emoji">
-//           $this->load->library()
-//           $html = $this->load->view('employee/payslip-view', $data, true); // render the view into HTML
-//           //echo '<pre>';print_r($html);exit;
-//           $this->load->library('pdf');
-//           $pdf = $this->pdf->load();
-//           $pdf->SetFooter($_SERVER['HTTP_HOST'].'|{PAGENO}|'.date('M-d-Y')); // Add a footer for good measure <img src="https://s.w.org/images/core/emoji/72x72/1f609.png" alt="??" draggable="false" class="emoji">
-//           $pdf->SetDisplayMode('fullpage');
-//           $pdf->list_indent_first_level = 0;  // 1 or 0 - whether to indent the first level of a list
-//           $pdf->WriteHTML($html); // write the HTML into the PDF
-//           $pdf->Output($pdfFilePath, 'F');
 
-//print_r($data);exit;
+$data['pslip_det']=$this->payroll_model->emp_payslip_det($month,$year);
 
+        
+        }
 
-//echo $mon_sal;
          $this->load->view('employee/payslip-view',$data);
          $this->load->view('html/footer');
 

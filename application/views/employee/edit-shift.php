@@ -2,7 +2,7 @@
             
 			
 			
-				<div class="modal-dialog">
+				<div class="modal-dialog" style='margin-top: 80px'>
 					<div class="modal-content modal-md">
 						<div class="modal-header">
 							<h4 class="modal-title">Edit Shift</h4>
@@ -16,13 +16,13 @@
 											<label class="control-label">Select Shift</label>
 											<select class="select" name="shift">
 												<?php foreach($shiftlist as $shift):?>
-												<option value='<?php echo $shift['s_id'];?>' '<?php if ($shift['s_id']== $shift_edit['e_shift']) echo 'selected';?>'><?php echo $shift['shift'];?> </option>
+												<option value='<?php echo $shift['s_id'];?>' <?php if ($shift['s_id']== $shift_edit['e_shift']) echo ' selected';?> ><?php echo $shift['shift'];?> </option>
 												<?php endforeach?>	
 													
 											</select>
 										</div>
 									</div>
-								<div class="m-t-20"> <a href='#'  class="btn btn-default" data-dismiss="modal">Close</a>
+								<div class="m-t-20"><!-- <button type='button' class="btn btn-success" data-dismiss='modal'>Close</button> -->
 									<button type="submit" class="btn btn-success">Change Shift</button>
 								</div>
 							</div>
