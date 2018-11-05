@@ -80,35 +80,36 @@
 								<div class="col-md-6">
 									<div class="form-group form-focus">
 										<label class="control-label">State</label>
-										             <select class="select form-control floating">
-														<option value="">Select State</option>
-														<option value="Andhra Pradesh">Andhra Pradesh</option>
-														<option value="Arunachal Pradesh">Arunachal Pradesh</option>
-														<option value="Assam">Assam</option>
-														<option value="Bihar">Bihar</option>
-														<option value="Chhattisgarh">Chhattisgarh</option>
-														<option value="Goa">Goa</option>
-														<option value="Gujarat">Gujarat</option>
-														<option value="Haryana">Haryana</option>
-														<option value="Himachal Pradesh">HHimachal Pradesh</option>
-														<option value="Jammu & Kashmir">Jammu & Kashmir</option>
-														<option value="Jharkhand">Jharkhand</option>
-														<option value="Karnataka">Karnataka</option>
-														<option value="Kerala">Kerala</option>
-														<option value="Madhya Pradesh">Madhya Pradesh</option>
-														<option value="Maharashtra">Maharashtra</option>
-														<option value="Manipur">Manipur</option>
-														<option value="Mizoram">Mizoram</option>
-														<option value="Nagaland">Nagaland</option>
-														<option value="Odisha">Odisha</option>
-														<option value="Punjab">Punjab</option>
-														<option value="Rajasthan">Rajasthan</option>
-														<option value="Sikkim">Sikkim</option>
-														<option value="Tamil Nadu">Tamil Nadu</option>
-														<option value="Telangana">Telangana</option>
-														<option value="Uttarakhand">Uttarakhand</option>
-														<option value="Delhi">Delhi</option>
-														<option value="Puducherry">Puducherry</option>
+										             <select class="select form-control floating" id="e_c_state" name="e_c_state">
+														 <option value="">Select State</option>
+														<option value="Andhra Pradesh"<?php if($userdetails['e_c_state']=='Andhra Pradesh'){ echo "selected"; } ?>>Andhra Pradesh</option>
+														<option value="Arunachal Pradesh"<?php if($userdetails['e_c_state']=='Arunachal Pradesh'){ echo "selected"; } ?>>Arunachal Pradesh</option>
+														<option value="Assam"<?php if($userdetails['e_c_state']=='Assam'){ echo "selected"; } ?>>Assam</option>
+														<option value="Bihar"<?php if($userdetails['e_c_state']=='Bihar'){ echo "selected"; } ?>>Bihar</option>
+														<option value="Chhattisgarh"<?php if($userdetails['e_c_state']=='Chhattisgarh'){ echo "selected"; } ?>>Chhattisgarh</option>
+														<option value="Goa"<?php if($userdetails['e_c_state']=='Goa'){ echo "selected"; } ?>>Goa</option>
+														<option value="Gujarat"<?php if($userdetails['e_c_state']=='Gujarat'){ echo "selected"; } ?>>Gujarat</option>
+														<option value="Haryana"<?php if($userdetails['e_c_state']=='Haryana'){ echo "selected"; } ?>>Haryana</option>
+														<option value="Himachal Pradesh"<?php if($userdetails['e_c_state']=='Himachal Pradesh'){ echo "selected"; } ?>>HHimachal Pradesh</option>
+														<option value="Jammu & Kashmir"<?php if($userdetails['e_c_state']=='Jammu & Kashmir'){ echo "selected"; } ?>>Jammu & Kashmir</option>
+														<option value="Jharkhand"<?php if($userdetails['e_c_state']=='Jharkhand'){ echo "selected"; } ?>>Jharkhand</option>
+														<option value="Karnataka"<?php if($userdetails['e_c_state']=='Karnataka'){ echo "selected"; } ?>>Karnataka</option>
+														<option value="Kerala"<?php if($userdetails['e_c_state']=='Kerala'){ echo "selected"; } ?>>Kerala</option>
+														<option value="Madhya Pradesh"<?php if($userdetails['e_c_state']=='Madhya Pradesh'){ echo "selected"; } ?>>Madhya Pradesh</option>
+														<option value="Maharashtra"<?php if($userdetails['e_c_state']=='Maharashtra'){ echo "selected"; } ?>>Maharashtra</option>
+														<option value="Manipur"<?php if($userdetails['e_c_state']=='Manipur'){ echo "selected"; } ?>>Manipur</option>
+														<option value="Mizoram"<?php if($userdetails['e_c_state']=='Mizoram'){ echo "selected"; } ?>>Mizoram</option>
+														<option value="Nagaland"<?php if($userdetails['e_c_state']=='Nagaland'){ echo "selected"; } ?>>Nagaland</option>
+														<option value="Odisha"<?php if($userdetails['e_c_state']=='Odisha'){ echo "selected"; } ?>>Odisha</option>
+														<option value="Punjab"<?php if($userdetails['e_c_state']=='Punjab'){ echo "selected"; } ?>>Punjab</option>
+														<option value="Rajasthan"<?php if($userdetails['e_c_state']=='Rajasthan'){ echo "selected"; } ?>>Rajasthan</option>
+														<option value="Sikkim"<?php if($userdetails['e_c_state']=='Sikkim'){ echo "selected"; } ?>>Sikkim</option>
+														<option value="Tamil Nadu"<?php if($userdetails['e_c_state']=='Tamil Nadu'){ echo "selected"; } ?>>Tamil Nadu</option>
+														<option value="Telangana"<?php if($userdetails['e_c_state']=='Telangana'){ echo "selected"; } ?>>Telangana</option>
+														<option value="Uttarakhand"<?php if($userdetails['e_c_state']=='Uttarakhand'){ echo "selected"; } ?>>Uttarakhand</option>
+														<option value="Delhi"<?php if($userdetails['e_c_state']=='Delhi'){ echo "selected"; } ?>>Delhi</option>
+														<option value="Puducherry"<?php if($userdetails['e_c_state']=='Puducherry'){ echo "selected"; } ?>>Puducherry</option>
+												
 													</select>
 									</div>
 								</div>

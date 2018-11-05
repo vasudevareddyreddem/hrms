@@ -262,33 +262,33 @@
 											<label class="control-label">State </label>
 												<select class="form-control" id="e_p_state" name="e_p_state">
 												 <option value="">Select State</option>
-														<option value="Andhra Pradesh"<?php if($edit_employee['e_c_state']=='Andhra Pradesh'){ echo "selected"; } ?>>Andhra Pradesh</option>
-														<option value="Arunachal Pradesh"<?php if($edit_employee['e_c_state']=='Arunachal Pradesh'){ echo "selected"; } ?>>Arunachal Pradesh</option>
-														<option value="Assam"<?php if($edit_employee['e_c_state']=='Assam'){ echo "selected"; } ?>>Assam</option>
-														<option value="Bihar"<?php if($edit_employee['e_c_state']=='Bihar'){ echo "selected"; } ?>>Bihar</option>
-														<option value="Chhattisgarh"<?php if($edit_employee['e_c_state']=='Chhattisgarh'){ echo "selected"; } ?>>Chhattisgarh</option>
-														<option value="Goa"<?php if($edit_employee['e_c_state']=='Goa'){ echo "selected"; } ?>>Goa</option>
-														<option value="Gujarat"<?php if($edit_employee['e_c_state']=='Gujarat'){ echo "selected"; } ?>>Gujarat</option>
-														<option value="Haryana"<?php if($edit_employee['e_c_state']=='Haryana'){ echo "selected"; } ?>>Haryana</option>
-														<option value="Himachal Pradesh"<?php if($edit_employee['e_c_state']=='Himachal Pradesh'){ echo "selected"; } ?>>HHimachal Pradesh</option>
-														<option value="Jammu & Kashmir"<?php if($edit_employee['e_c_state']=='Jammu & Kashmir'){ echo "selected"; } ?>>Jammu & Kashmir</option>
-														<option value="Jharkhand"<?php if($edit_employee['e_c_state']=='Jharkhand'){ echo "selected"; } ?>>Jharkhand</option>
-														<option value="Karnataka"<?php if($edit_employee['e_c_state']=='Karnataka'){ echo "selected"; } ?>>Karnataka</option>
-														<option value="Kerala"<?php if($edit_employee['e_c_state']=='Kerala'){ echo "selected"; } ?>>Kerala</option>
-														<option value="Madhya Pradesh"<?php if($edit_employee['e_c_state']=='Madhya Pradesh'){ echo "selected"; } ?>>Madhya Pradesh</option>
-														<option value="Maharashtra"<?php if($edit_employee['e_c_state']=='Maharashtra'){ echo "selected"; } ?>>Maharashtra</option>
-														<option value="Manipur"<?php if($edit_employee['e_c_state']=='Manipur'){ echo "selected"; } ?>>Manipur</option>
-														<option value="Mizoram"<?php if($edit_employee['e_c_state']=='Mizoram'){ echo "selected"; } ?>>Mizoram</option>
-														<option value="Nagaland"<?php if($edit_employee['e_c_state']=='Nagaland'){ echo "selected"; } ?>>Nagaland</option>
-														<option value="Odisha"<?php if($edit_employee['e_c_state']=='Odisha'){ echo "selected"; } ?>>Odisha</option>
-														<option value="Punjab"<?php if($edit_employee['e_c_state']=='Punjab'){ echo "selected"; } ?>>Punjab</option>
-														<option value="Rajasthan"<?php if($edit_employee['e_c_state']=='Rajasthan'){ echo "selected"; } ?>>Rajasthan</option>
-														<option value="Sikkim"<?php if($edit_employee['e_c_state']=='Sikkim'){ echo "selected"; } ?>>Sikkim</option>
-														<option value="Tamil Nadu"<?php if($edit_employee['e_c_state']=='Tamil Nadu'){ echo "selected"; } ?>>Tamil Nadu</option>
-														<option value="Telangana"<?php if($edit_employee['e_c_state']=='Telangana'){ echo "selected"; } ?>>Telangana</option>
-														<option value="Uttarakhand"<?php if($edit_employee['e_c_state']=='Uttarakhand'){ echo "selected"; } ?>>Uttarakhand</option>
-														<option value="Delhi"<?php if($edit_employee['e_c_state']=='Delhi'){ echo "selected"; } ?>>Delhi</option>
-														<option value="Puducherry"<?php if($edit_employee['e_c_state']=='Puducherry'){ echo "selected"; } ?>>Puducherry</option>
+														<option value="Andhra Pradesh"<?php if($edit_employee['e_p_state']=='Andhra Pradesh'){ echo "selected"; } ?>>Andhra Pradesh</option>
+														<option value="Arunachal Pradesh"<?php if($edit_employee['e_p_state']=='Arunachal Pradesh'){ echo "selected"; } ?>>Arunachal Pradesh</option>
+														<option value="Assam"<?php if($edit_employee['e_p_state']=='Assam'){ echo "selected"; } ?>>Assam</option>
+														<option value="Bihar"<?php if($edit_employee['e_p_state']=='Bihar'){ echo "selected"; } ?>>Bihar</option>
+														<option value="Chhattisgarh"<?php if($edit_employee['e_p_state']=='Chhattisgarh'){ echo "selected"; } ?>>Chhattisgarh</option>
+														<option value="Goa"<?php if($edit_employee['e_p_state']=='Goa'){ echo "selected"; } ?>>Goa</option>
+														<option value="Gujarat"<?php if($edit_employee['e_p_state']=='Gujarat'){ echo "selected"; } ?>>Gujarat</option>
+														<option value="Haryana"<?php if($edit_employee['e_p_state']=='Haryana'){ echo "selected"; } ?>>Haryana</option>
+														<option value="Himachal Pradesh"<?php if($edit_employee['e_p_state']=='Himachal Pradesh'){ echo "selected"; } ?>>HHimachal Pradesh</option>
+														<option value="Jammu & Kashmir"<?php if($edit_employee['e_p_state']=='Jammu & Kashmir'){ echo "selected"; } ?>>Jammu & Kashmir</option>
+														<option value="Jharkhand"<?php if($edit_employee['e_p_state']=='Jharkhand'){ echo "selected"; } ?>>Jharkhand</option>
+														<option value="Karnataka"<?php if($edit_employee['e_p_state']=='Karnataka'){ echo "selected"; } ?>>Karnataka</option>
+														<option value="Kerala"<?php if($edit_employee['e_p_state']=='Kerala'){ echo "selected"; } ?>>Kerala</option>
+														<option value="Madhya Pradesh"<?php if($edit_employee['e_p_state']=='Madhya Pradesh'){ echo "selected"; } ?>>Madhya Pradesh</option>
+														<option value="Maharashtra"<?php if($edit_employee['e_p_state']=='Maharashtra'){ echo "selected"; } ?>>Maharashtra</option>
+														<option value="Manipur"<?php if($edit_employee['e_p_state']=='Manipur'){ echo "selected"; } ?>>Manipur</option>
+														<option value="Mizoram"<?php if($edit_employee['e_p_state']=='Mizoram'){ echo "selected"; } ?>>Mizoram</option>
+														<option value="Nagaland"<?php if($edit_employee['e_p_state']=='Nagaland'){ echo "selected"; } ?>>Nagaland</option>
+														<option value="Odisha"<?php if($edit_employee['e_p_state']=='Odisha'){ echo "selected"; } ?>>Odisha</option>
+														<option value="Punjab"<?php if($edit_employee['e_p_state']=='Punjab'){ echo "selected"; } ?>>Punjab</option>
+														<option value="Rajasthan"<?php if($edit_employee['e_p_state']=='Rajasthan'){ echo "selected"; } ?>>Rajasthan</option>
+														<option value="Sikkim"<?php if($edit_employee['e_p_state']=='Sikkim'){ echo "selected"; } ?>>Sikkim</option>
+														<option value="Tamil Nadu"<?php if($edit_employee['e_p_state']=='Tamil Nadu'){ echo "selected"; } ?>>Tamil Nadu</option>
+														<option value="Telangana"<?php if($edit_employee['e_p_state']=='Telangana'){ echo "selected"; } ?>>Telangana</option>
+														<option value="Uttarakhand"<?php if($edit_employee['e_p_state']=='Uttarakhand'){ echo "selected"; } ?>>Uttarakhand</option>
+														<option value="Delhi"<?php if($edit_employee['e_p_state']=='Delhi'){ echo "selected"; } ?>>Delhi</option>
+														<option value="Puducherry"<?php if($edit_employee['e_p_state']=='Puducherry'){ echo "selected"; } ?>>Puducherry</option>
 												
 											</select>
 										</div>

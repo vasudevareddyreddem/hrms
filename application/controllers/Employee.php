@@ -618,7 +618,10 @@ $data['flag']=1;
 	     $this->load->view('html/footer');
 	    
    }
+<<<<<<< HEAD
 }
+=======
+>>>>>>> 881a0f513ae6d249060c6bb466b3a9aba0a82116
 	
 
 public function salarylist(){
@@ -744,7 +747,7 @@ public function leaverequests(){
    }
 }		
 public function leaveslist(){
-    if(!$this->session->userdata('hrmsdetails'))
+    if($this->session->userdata('hrmsdetails'))
 		{	
          $admindetails=$this->session->userdata('hrmsdetails');	
 	     $this->load->view('employee/leaves-list');
@@ -1308,7 +1311,10 @@ public function trackdetails(){
 
 	// employee delete
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 881a0f513ae6d249060c6bb466b3a9aba0a82116
 
 
 	public function emp_delete($eid){
@@ -1322,7 +1328,10 @@ public function trackdetails(){
     }
 
 
-	
+<<<<<<< HEAD
+=======
+
+>>>>>>> 881a0f513ae6d249060c6bb466b3a9aba0a82116
 	
 	
 }	

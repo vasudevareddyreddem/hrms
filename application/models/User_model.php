@@ -78,6 +78,18 @@ public function save_login_time_status($data){
 		$this->db->where('status !=',2);
 		return $this->db->get()->row_array();
 	}
+	/*change password*/
+	public function get_adminpassword_details($e_id){
+		$this->db->select('empployee.e_id,empployee.e_password')->from('empployee');
+		$this->db->where('e_id', $e_id);
+		$this->db->where('status', 1);
+		return $this->db->get()->row_array();	
+	}
+	public function update_admin_details($e_id,$data){
+		$this->db->where('e_id',$e_id);
+    	return $this->db->update("empployee",$data);
+	}
+	
 	
 	
 	
