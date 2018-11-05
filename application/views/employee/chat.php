@@ -404,12 +404,15 @@
 									<div class="message-bar">
 										<div class="message-inner">
 											<a class="link attach-icon" href="#" data-toggle="modal" data-target="#drag_files"><img src="assets/img/attachment.png" alt=""></a>
-											<div class="message-area"><div class="input-group">
-												<textarea class="form-control" placeholder="Type message..."></textarea>
+											<div class="message-area">
+												<form id='message' aciton='#'>
+												<div class="input-group">
+												<textarea  class="form-control" placeholder="Type message..."></textarea>
 												<span class="input-group-btn">
 													<button class="btn btn-primary" type="button"><i class="fa fa-send"></i></button>
 												</span>
 												</div>
+											</form>
 											</div>
 										</div>
 									</div>
@@ -519,3 +522,18 @@
 				
             </div>
 
+<script type="text/javascript">
+	
+$('#message').on('submit',function(e){
+	e.preventDefault;
+
+
+
+
+
+
+
+
+})
+
+</script>

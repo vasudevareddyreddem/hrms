@@ -1278,6 +1278,8 @@ public function chat(){
          $admindetails=$this->session->userdata('hrmsdetails');	
 <<<<<<< HEAD
          $this-
+=======
+	     $this->load->view('employee/sidebar-chat');
 >>>>>>> 86a96adc95329c2ec3baf9f7c33a3c1dda026987
 	     $this->load->view('employee/chat');
 	     $this->load->view('html/footer');  
