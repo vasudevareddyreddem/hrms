@@ -1276,6 +1276,7 @@ public function chat(){
     if($this->session->userdata('hrmsdetails'))
 		{	
          $admindetails=$this->session->userdata('hrmsdetails');	
+	     $this->load->view('employee/sidebar-chat');
 	     $this->load->view('employee/chat');
 	     $this->load->view('html/footer');  
    }
