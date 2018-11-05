@@ -740,7 +740,7 @@ public function leaverequests(){
    }
 }		
 public function leaveslist(){
-    if(!$this->session->userdata('hrmsdetails'))
+    if($this->session->userdata('hrmsdetails'))
 		{	
          $admindetails=$this->session->userdata('hrmsdetails');	
 	     $this->load->view('employee/leaves-list');
