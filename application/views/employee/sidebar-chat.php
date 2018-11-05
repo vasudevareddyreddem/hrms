@@ -38,8 +38,12 @@ s<style>
 						<input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for names.." title="Type in a name">
 
 						<ul id="myUL">
-						  <li><a href="#">Adele</a></li>
-						  <li><a href="#">Agnes</a></li>
+              gh<?php foreach($emplist as $emp):?>
+
+						   <li><a href="#"><?php echo $emp->e_f_name?><span class="status online pull-right"></span></a></li>
+             <?php endforeach ?>
+;
+						<!--  <li><a href="#">Agnes</a></li>
 
 						  <li><a href="#">Billy</a></li>
 						  <li><a href="#">Bob</a></li>
@@ -55,7 +59,7 @@ s<style>
 
 						  <li><a href="#">Calvin</a></li>
 						  <li><a href="#">Christina</a></li>
-						  <li><a href="#">Cindy</a></li>
+						  <li><a href="#">Cindy</a></li> -->
 						</ul>
 					</div>
                 </div>

@@ -16,8 +16,8 @@ class Chat_model extends CI_Model
 
 }
 public function emp_det($eid){
-	$this->db->select('e_id,e_f_name');
-   $this->db->where('status',1);
+	$this->db->select('e_id,e_f_name,login_status');
+  $this->db->where('e_id !=',$eid);
 
 $query=$this->db->get('empployee');
 return $query->result();

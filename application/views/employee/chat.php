@@ -525,7 +525,29 @@
 <script type="text/javascript">
 	
 $('#message').on('submit',function(e){
+
 	e.preventDefault;
+ $.ajax({
+                    type: "POST",    //GET or POST or PUT or DELETE verb
+                    url: 'http://localhost/hrms/payroll/empsal/'+val,     // Location of the service
+                    data: "",     //Data sent to server
+                   
+                    dataType: "json",   //Expected data format from server
+                    
+                    success: function (result) {
+                    
+                         
+                         
+                         
+                         
+                                           }
+                    ,
+                    error: function() { 
+                    	alert('error from server side');
+
+                    } 
+                });
+
 
 
 
