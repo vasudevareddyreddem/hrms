@@ -165,3 +165,27 @@ CREATE TABLE `emp_leave_apply_tab` (
  `applied_date` date NOT NULL,
  PRIMARY KEY (`leave_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1
+
+
+
+Create Table
+
+CREATE TABLE `leaves` (
+  `l_id` int(11) NOT NULL AUTO_INCREMENT,
+  `leave_type` varchar(250) DEFAULT NULL,
+  `from_date` date DEFAULT NULL,
+  `to_date` date DEFAULT NULL,
+  `number_of_days` varchar(250) DEFAULT NULL,
+  `remaining_leaves` varchar(250) DEFAULT NULL,
+  `leaves_reason` varchar(250) DEFAULT NULL,
+  `status` int(11) DEFAULT NULL,
+  `created_at` datetime DEFAULT NULL,
+  `updated_at` datetime DEFAULT NULL,
+  `created_by` int(11) DEFAULT NULL,
+  PRIMARY KEY (`l_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1
+
+
+
+
+

@@ -1,4 +1,5 @@
 
+
 <div class="page-wrapper">
                 <div class="content container-fluid bg-white">
 					<div class="row">
@@ -10,6 +11,7 @@
 					
 					<div class="row">
 						<div class="col-md-12">
+						<?php if(isset($leaves) && count($leaves)>0){ ?>
 							<div class="table-responsive">
 								<table id="example1" class="table table-bordered table-striped">
 									<thead>
@@ -19,57 +21,56 @@
 											<th>From</th>
 											<th>To</th>
 											<th>No of Days</th>
+											 <th>Remaining Leaves</th>  
 											<th>Reason</th>
 											<th class="text-center">Status</th>
 											
 										</tr>
 									</thead>
 									<tbody>
+									<?php foreach($leaves as $list){ ?>
 										<tr>
-											<td>
-												<a class="avatar">R</a>
-												<h2><a href="#">Richard Miles <span>Web Developer</span></a></h2>
+										<td>
+											<a href="#" class="avatar"><?php echo substr($userdetails['e_login_name'],0,1);?></a>
+											<h2><a href="#"><?php echo $userdetails['e_login_name'];?><span><?php echo $userdetails['role'];?></span></a></h2>
 											</td>
-											<td>Casual Leave</td>
-											<td>8 Aug 2017</td>
-											<td>8 Aug 2017</td>
-											<td>2 days</td>
-											<td>Going to Hospital</td>
+											<td><?php echo $list['leave_type'];?></td>
+											<td><?php echo $list['from_date'];?></td>
+											<td><?php echo $list['to_date'];?></td>
+											<td><?php echo $list['number_of_days'];?></td>
+											<td><?php echo $list['remaining_leaves'];?></td>
+											<td><?php echo $list['leaves_reason'];?></td>
 											<td class="text-center">
+											<?php if($list['status']==1){  ?>
 												<div class="dropdown action-label">
 													<a class="btn btn-white btn-sm rounded dropdown-toggle" href="#" data-toggle="dropdown" aria-expanded="false">
 														<i class="fa fa-dot-circle-o text-success"></i> Approved</i>
 													</a>
-													
+									
 												</div>
-											</td>
-											
-										</tr>
-<tr>
-											<td>
-												<a class="avatar">R</a>
-												<h2><a href="#">Richard Miles <span>Web Developer</span></a></h2>
-											</td>
-											<td>Casual Leave</td>
-											<td>8 Aug 2017</td>
-											<td>8 Aug 2017</td>
-											<td>2 days</td>
-											<td>Going to Hospital</td>
-											<td class="text-center">
+												<?php }else{ ?>
 												<div class="dropdown action-label">
 													<a class="btn btn-white btn-sm rounded dropdown-toggle" href="#" data-toggle="dropdown" aria-expanded="false">
 														<i class="fa fa-dot-circle-o text-danger"></i> Reject</i>
 													</a>
 													
 												</div>
+												
+												
+												<?php }?>
 											</td>
 											
 										</tr>
+                                         
 										
-										
+									<?php }?>
 									</tbody>
 								</table>
 							</div>
+							<?php }else{ ?>
+                               <div> No data available</div>
+                                    <?php }?>
+							
 						</div>
 					</div>
                 </div>
