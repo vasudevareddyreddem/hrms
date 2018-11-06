@@ -13,7 +13,7 @@
 											<div class="user-info pull-left">
 												<a href="profile.html" title="Mike Litorus"><span class="font-bold">Mike Litorus</span> <i class="typing-text">Typing...</i></a>
 												<span class="last-seen">Last seen today at 7:50 AM</span>
-											</div>
+											<!-- </div> -->
 										</div>
 										<ul class="nav navbar-nav pull-right chat-menu">
 											<li class="dropdown">
@@ -40,13 +40,14 @@
 										<div class="chat-wrap-inner">
 											<div class="chat-box">
 												<div class="chats">
-													<?php ?>
-													<div class="chat chat-right">
+													<?php foreach($chatdata as $chat):
+													 ?>
+													<div class="chat chat-right ">
 														<div class="chat-body">
 															<div class="chat-bubble">
 																<div class="chat-content">
-																	<p>Hello. What can I do for you?</p>
-																	<span class="chat-time">8:30 am</span>
+																	<p style="border:10px solid red"><?php echo $chat->message?></p>
+																	<span class="chat-time"><?php echo $chat->sent_time?></span>
 																</div>
 																<div class="chat-action-btns">
 																	<ul>
@@ -58,7 +59,8 @@
 															</div>
 														</div>
 													</div>
-													<div class="chat-line">
+													<?php  endforeach ?>
+												<!-- 	<div class="chat-line">
 														<span class="chat-date">October 8th, 2015</span>
 													</div>
 													<div class="chat chat-left">
@@ -395,22 +397,24 @@
 																</div>
 															</div>
 														</div>
-													</div>
+													</div> -->
 												</div>
 											</div>
 										</div>
 									</div>
 								</div>
+								<div class="clearfix">&nbsp;</div>
 								<div class="chat-footer">
 									<div class="message-bar">
 										<div class="message-inner">
 											<a class="link attach-icon" href="#" data-toggle="modal" data-target="#drag_files"><img src="assets/img/attachment.png" alt=""></a>
 											<div class="message-area">
-												<form id='message' aciton='#'>
+												<form id='message' aciton='#' method='post'>
+												<input type='hidden' id='rid' value='<?php echo $rec_det->recevier_id?>' name='rid'>
 												<div class="input-group">
-												<textarea  class="form-control" placeholder="Type message..."></textarea>
+												<textarea  id='msg' class="form-control" placeholder="Type message..." name='message'></textarea>
 												<span class="input-group-btn">
-													<button class="btn btn-primary" type="button"><i class="fa fa-send"></i></button>
+													<button class="btn btn-primary" type="submit"><i class="fa fa-send"></i></button>
 												</span>
 												</div>
 											</form>
@@ -524,22 +528,18 @@
             </div>
 
 <script type="text/javascript">
-	
-$('#message').on('submit',function(e){
-
-	e.preventDefault;
- $.ajax({
-                    type: "POST",    //GET or POST or PUT or DELETE verb
-                    url: 'http://localhost/hrms/payroll/empsal/'+val,     // Location of the service
-                    data: "",     //Data sent to server
-                   
+	$(document).ready(function() {
+		 function recv_data()
+{
+	$.ajax({
+                    type: "GET",    //GET or POST or PUT or DELETE verb
+                    url: 'http://localhost/hrms/Chat/getmessages',     // Location of the service
+                    data: '',     //Data sent to server
                     dataType: "json",   //Expected data format from server
                     
                     success: function (result) {
-                    
-                         
-                         
-                         
+                    	console.log(result);
+  
                          
                                            }
                     ,
@@ -549,6 +549,56 @@ $('#message').on('submit',function(e){
                     } 
                 });
 
+};
+		setInterval(recv_data, 30000);
+
+
+$('#message').on('submit',function(e){
+
+	e.preventDefault();                   
+
+	alert('kdkd');
+       if($('#msg').val().length>0){
+       	val=$('#msg').val();
+       data='<p>'+val+'</p>'+'<span class="chat-time">8:30 am</span>';
+   //    data='<div class="chat chat-right">'+'<div class="chat-body">'+'<div class="chat-bubble">'+'<div class="chat-content">';
+   //    val=$('#msg').val();+
+   //    data=data+'<p>'+val+'</p>'+'<span class="chat-time">8:30 am</span>';
+   //   data= data+'</div>'+'<div class="chat-action-btns">'+'<ul>'+'<i class="fa fa-share-alt"></i>'+'</a></li>'+'<li><a href="#" class="edit-msg" title="Edit">'+'<i class="fa fa-pencil"></i>'+'</a></li>'+'<li><a href="#" class="del-msg" title="Delete">'+'<i class="fa fa-trash-o"></i>'+'</a></li>'+'</ul>'+'</div>'+'</div>'+'</div>'+'</div>';
+      $('.chats').append(data);
+      message_val=$('#msg').val();
+      rec_val=$('#rid').val();
+      //formdata=$('#msg').serialize();
+      //console.log(formdata);
+      //return false;
+
+      $.ajax({
+                    type: "POST",    //GET or POST or PUT or DELETE verb
+                    url: 'http://localhost/hrms/Chat/sendmessage',     // Location of the service
+                    data: {message: message_val,rid: rec_val},     //Data sent to server
+                    dataType: "json",   //Expected data format from server
+                    
+                    success: function (result) {
+                    
+                         
+                         
+                         alert(result);
+                         console.log(result);
+                         
+                                           }
+                    ,
+                    error: function() { 
+                    	alert('error from server side');
+
+                    } 
+                });
+   								
+																											
+			 }				
+
+
+      });
+ 
 
 
 
@@ -557,6 +607,7 @@ $('#message').on('submit',function(e){
 
 
 
-})
+
+});
 
 </script>
