@@ -248,12 +248,29 @@ $this->db->select('*')->from('department');
 	 
 	
 	public function edit_shift_management_details($e_id){
-	$this->db->select('*')->from('empployee');
+	$this->db->select('e_id,shift,e_shift')->from('empployee');
+	$this->db->join('shift','shift.s_id=empployee.e_shift');
 	$this->db->where('e_id',$e_id);
 	return $this->db->get()->row_array();	
 	}
-	
-	
+	/* leaves */
+	public function save_leaves_details($data){
+	$this->db->insert('leaves',$data);
+	return $this->db->insert_id();		
+	}
+	public function leaves_list_details(){
+	$this->db->select('*')->from('leaves');
+	$this->db->where('leaves.status!=', 2);
+	return $this->db->get()->result_array();	
+	}
+	public function update_leave_list_details_status($l_id,$data){
+	$this->db->where('l_id',$l_id);
+    return $this->db->update("leaves",$data);		
+	}
+	public function leaves_list_details_data(){
+	$this->db->select('*')->from('leaves');
+	return $this->db->get()->result_array();	
+	}
 	
  }		
 	

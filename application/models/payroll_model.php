@@ -131,6 +131,28 @@ return 'yes';
     }
 
 
+// insert pay slips
+  public function save_payslip($data){
+  $this->db->insert('employee_salary_payslips',$data);
+return  ($this->db->affected_rows() == 1) ? true: false;
+  
+  }
+  public function emp_payslip_det($month,$year){
+    
+   $this->db->select('*');
+   $this->db->from('empployee');
+   $this->db->join('employee_salary_payslips', 'employee_salary_payslips.e_id=empployee.e_id');
+   $this->db->where('e_salary_month',$month);
+   $this->db->where('e_salary_year',$year);
+ $query=$this->db->get();
+
+ return $query->row();
+
+
+
+
+  }
+  // employee payslip details
 
 
 }

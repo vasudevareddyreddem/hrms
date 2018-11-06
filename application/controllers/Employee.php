@@ -15,7 +15,7 @@ class Employee extends In_frontend {
 	
 		
 	/*  employees  */
-	public function all(){
+public function all(){
     if($this->session->userdata('hrmsdetails'))
 		{	
          $admindetails=$this->session->userdata('hrmsdetails');
@@ -147,13 +147,14 @@ public function editemployeepost(){
 							$this->session->set_flashdata('error',"technical problem will occurred. Please try again.");
 							redirect('employee/all');
 						}
-				     }else{
+				    }
+					else{
 						$this->session->set_flashdata('error',"you don't have permission to access");
 						redirect('dashboard');
 				}
 	
-
 }
+
 public function status(){
 	 if($this->session->userdata('hrmsdetails'))
 		{	
@@ -185,7 +186,8 @@ public function status(){
 									$this->session->set_flashdata('error',"technical problem will occurred. Please try again.");
 									redirect('employee/all');
 							}
-						}else{
+						}
+						else{
 						$this->session->set_flashdata('error',"technical problem will occurred. Please try again.");
 						redirect('dashboard');
 					}	
@@ -600,21 +602,14 @@ $data['flag']=1;
 
 
 
-$data['flag']=1;
 
 
 
-$data['flag']=1;
 
 
 
-$data['flag']=1;
 
 
-}else{
-	$data['flag']=0;
-	$data['data']=$this->payroll_model->no_sal_emp();
-}
 // echo '<pre>';
 
 
@@ -628,7 +623,8 @@ $data['flag']=1;
 	     $this->load->view('html/footer');
 	    
    }
-	
+}
+
 
 public function salarylist(){
     if($this->session->userdata('hrmsdetails'))
@@ -702,6 +698,8 @@ if($this->session->userdata('hrmsdetails'))
          $admindetails=$this->session->userdata('hrmsdetails');
 	  $this->uri->segment(3);
 		 $data['shift_edit']=$this->Employees_model->edit_shift_management_details(base64_decode($this->uri->segment(3)));
+		 $data['shiftlist']=$this->Employees_model->shift_list();
+
 		  //echo'<pre>';print_r($data);exit;
 	     $this->load->view('employee/edit-shift',$data);
 	     $this->load->view('html/footer');
@@ -714,8 +712,21 @@ public function attendance()
 	   {	
 		if($this->session->userdata('hrmsdetails'))
 		{
-		$admindetails=$this->session->userdata('hrmsdetails');	 
-	     $this->load->view('employee/attendence');
+		$admindetails=$this->session->userdata('hrmsdetails');
+		$this->load->model('emp_manage_model');
+		$data['emp_data']=$this->emp_manage_model->get_login_details();
+		//echo'<pre>';print_r($data);exit;
+		if(count($data)>0){
+			$data['flag']=1;
+}
+else{
+
+	$data['flag']=0;
+}
+
+
+			 
+	     $this->load->view('employee/attendence',$data);
 		 $this->load->view('html/footer');  
 	} 
 	  
@@ -735,19 +746,160 @@ public function leaverequests(){
     if($this->session->userdata('hrmsdetails'))
 		{	
          $admindetails=$this->session->userdata('hrmsdetails');	
-	     $this->load->view('employee/leaves');
+		$data['leaves_list']=$this->Employees_model->leaves_list_details(); 
+		$data['userdetails']=$this->User_model->get_all_admin_details($admindetails['e_id']);
+		 //echo'<pre>';print_r($data);exit;
+		
+	     $this->load->view('employee/leaves',$data);
+	     $this->load->view('html/footer');  
+   }
+}	
+
+public function leave(){
+    if($this->session->userdata('hrmsdetails'))
+		{	
+         $admindetails=$this->session->userdata('hrmsdetails');	
+		 
+	     $this->load->view('employee/add-leaves');
 	     $this->load->view('html/footer');  
    }
 }		
+public function addleave(){
+	if($this->session->userdata('hrmsdetails'))
+		{
+	
+	$admindetails=$this->session->userdata('hrmsdetails');
+	$post=$this->input->post();	
+		 //echo'<pre>';print_r($post);exit;
+	     $save_data=array(
+				'leave_type'=>isset($post['leave_type'])?$post['leave_type']:'',
+				'from_date'=>isset($post['from_date'])?$post['from_date']:'',
+				'to_date'=>isset($post['to_date'])?$post['to_date']:'',
+				'number_of_days'=>isset($post['number_of_days'])?$post['number_of_days']:'',
+				'remaining_leaves'=>isset($post['remaining_leaves'])?$post['remaining_leaves']:'',
+				'leaves_reason'=>isset($post['leaves_reason'])?$post['leaves_reason']:'',
+				'status'=>0,
+				'created_at'=>date('Y-m-d H:i:s'),
+				'updated_at'=>date('Y-m-d H:i:s'),
+				'created_by'=>isset($login_details['u_id'])?$login_details['u_id']:''
+				 );
+				  //echo'<pre>';print_r($save_data);exit;
+		       $save=$this->Employees_model->save_leaves_details($save_data);	
+	         if(count($save)>0){
+					$this->session->set_flashdata('success',"Leaves  successfully added");	
+					redirect('employee/leaverequests');	
+					}else{
+						$this->session->set_flashdata('error',"techechal probelem occur ");
+						redirect('employee/leaverequests');
+					}
+				   }else{
+						$this->session->set_flashdata('error',"you don't have permission to access");
+						redirect('dashboard');
+				}
+	
+}	
 public function leaveslist(){
     if($this->session->userdata('hrmsdetails'))
 		{	
          $admindetails=$this->session->userdata('hrmsdetails');	
-	     $this->load->view('employee/leaves-list');
+		 $data['leaves']=$this->Employees_model->leaves_list_details_data();
+       $data['userdetails']=$this->User_model->get_all_admin_details($admindetails['e_id']);
+		 
+		 		 //echo'<pre>';print_r($data);exit;
+	     $this->load->view('employee/leaves-list',$data);
 	    
 	     $this->load->view('html/footer');  
    }
 }	
+
+public function leavesstatus()
+	{	
+		if($this->session->userdata('hrmsdetails'))
+		{
+	$admindetails=$this->session->userdata('hrmsdetails');
+					$l_id=base64_decode($this->uri->segment(3));
+					$status=base64_decode($this->uri->segment(4));
+					if($status==1){
+						$statu=0;
+						
+					}else{
+						$statu=1;
+					}
+						
+					
+					if($l_id!=''){
+						$stusdetails=array(
+							'status'=>$statu,
+							'updated_at'=>date('Y-m-d H:i:s')
+							);
+							//echo'<pre>';print_r($stusdetails);exit;
+							$statusdata=$this->Employees_model->update_leave_list_details_status($l_id,$stusdetails);
+							//echo'<pre>';print_r($statusdata);exit;
+							//echo $this->db->last_query();exit;	
+							if(count($statusdata)>0){
+								if($status==1){
+                                 
+								
+								$this->session->set_flashdata('success',"leaves successfully pending.");
+								}else{
+									$this->session->set_flashdata('success',"leaves successfully Accept");
+
+								}
+								redirect('employee/leaverequests');
+							}else{
+									$this->session->set_flashdata('error',"technical problem will occurred. Please try again.");
+									redirect('employee/leaverequests');
+							}
+					}
+		                 
+     	}
+	}
+
+public function lstatus()
+	{	
+		if($this->session->userdata('hrmsdetails'))
+		{
+	$admindetails=$this->session->userdata('hrmsdetails');
+					$l_id=base64_decode($this->uri->segment(3));
+					$status=base64_decode($this->uri->segment(4));
+					if($status==2){
+						$statu=0;
+						
+					}else{
+						$statu=2;
+					}
+					if($l_id!=''){
+						$stusdetails=array(
+							'status'=>$statu,
+							'updated_at'=>date('Y-m-d H:i:s')
+							);
+							//echo'<pre>';print_r($stusdetails);exit;
+							$statusdata=$this->Employees_model->update_leave_list_details_status($l_id,$stusdetails);
+							//echo'<pre>';print_r($statusdata);exit;
+							//echo $this->db->last_query();exit;	
+							if(count($statusdata)>0){
+								if($status==2){
+
+								
+								$this->session->set_flashdata('success',"leaves successfully pending.");
+								}else{
+									$this->session->set_flashdata('success',"leaves successfully Reject");
+
+								}
+								redirect('employee/leaverequests');
+							}else{
+									$this->session->set_flashdata('error',"technical problem will occurred. Please try again.");
+									redirect('employee/leaverequests');
+							}
+					}
+		                 
+     	}
+	}
+
+
+
+
+
 
 /* departments*/
 public function department(){
@@ -1269,7 +1421,14 @@ if($this->session->userdata('hrmsdetails'))
 public function chat(){
     if($this->session->userdata('hrmsdetails'))
 		{	
-         $admindetails=$this->session->userdata('hrmsdetails');	
+         $empdet=$this->session->userdata('hrmsdetails');	
+         $eid=$empdet['e_id'];
+         $this->load->model('Chat_model');
+          $data['emplist']=$this->Chat_model->emp_det($eid);
+
+
+	     $this->load->view('employee/sidebar-chat',$data);
+
 	     $this->load->view('employee/chat');
 	     $this->load->view('html/footer');  
    }
@@ -1306,6 +1465,7 @@ public function trackdetails(){
 
 
 
+
 	public function emp_delete($eid){
 
    $this->load->model('Employees_model');
@@ -1315,7 +1475,6 @@ public function trackdetails(){
    
     	
     }
-
 
 
 	

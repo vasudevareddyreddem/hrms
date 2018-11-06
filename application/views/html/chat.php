@@ -1,4 +1,5 @@
-
+<?php include("header.php"); ?>
+<?php include("sidebar-chat.php"); ?> 
 <div class="page-wrapper">
 				<div class="chat-main-row">
 					<div class="chat-main-wrapper">
@@ -63,7 +64,7 @@
 													<div class="chat chat-left">
 														<div class="chat-avatar">
 															<a href="profile.html" class="avatar">
-																<img alt="John Doe" src="<?php echo base_url();?>assets/vendor/img/user.jpg" class="img-responsive img-circle">
+																<img alt="John Doe" src="assets/img/user.jpg" class="img-responsive img-circle">
 															</a>
 														</div>
 														<div class="chat-body">
@@ -129,7 +130,7 @@
 													<div class="chat chat-left">
 														<div class="chat-avatar">
 															<a href="profile.html" class="avatar">
-															<img alt="John Doe" src="<?php echo base_url();?>assets/vendor/img/user.jpg" class="img-responsive img-circle">
+															<img alt="John Doe" src="assets/img/user.jpg" class="img-responsive img-circle">
 															</a>
 														</div>
 														<div class="chat-body">
@@ -229,7 +230,7 @@
 													<div class="chat chat-left">
 														<div class="chat-avatar">
 															<a href="profile.html" class="avatar">
-																<img alt="John Doe" src="<?php echo base_url();?>assets/vendor/img/user.jpg" class="img-responsive img-circle">
+																<img alt="John Doe" src="assets/img/user.jpg" class="img-responsive img-circle">
 															</a>
 														</div>
 														<div class="chat-body">
@@ -341,7 +342,7 @@
 													<div class="chat chat-left">
 														<div class="chat-avatar">
 															<a href="profile.html" class="avatar">
-																<img alt="John Doe" src="<?php echo base_url();?>assets/vendor/img/user.jpg" class="img-responsive img-circle">
+																<img alt="John Doe" src="assets/img/user.jpg" class="img-responsive img-circle">
 															</a>
 														</div>
 														<div class="chat-body">
@@ -384,7 +385,7 @@
 													<div class="chat chat-left">
 														<div class="chat-avatar">
 															<a href="profile.html" class="avatar">
-																<img alt="John Doe" src="<?php echo base_url();?>assets/vendor/img/user.jpg" class="img-responsive img-circle">
+																<img alt="John Doe" src="assets/img/user.jpg" class="img-responsive img-circle">
 															</a>
 														</div>
 														<div class="chat-body">
@@ -404,15 +405,12 @@
 									<div class="message-bar">
 										<div class="message-inner">
 											<a class="link attach-icon" href="#" data-toggle="modal" data-target="#drag_files"><img src="assets/img/attachment.png" alt=""></a>
-											<div class="message-area">
-												<form id='message' aciton='#'>
-												<div class="input-group">
-												<textarea  class="form-control" placeholder="Type message..."></textarea>
+											<div class="message-area"><div class="input-group">
+												<textarea class="form-control" placeholder="Type message..."></textarea>
 												<span class="input-group-btn">
 													<button class="btn btn-primary" type="button"><i class="fa fa-send"></i></button>
 												</span>
 												</div>
-											</form>
 											</div>
 										</div>
 									</div>
@@ -521,41 +519,4 @@
 				
 				
             </div>
-
-<script type="text/javascript">
-	
-$('#message').on('submit',function(e){
-
-	e.preventDefault;
- $.ajax({
-                    type: "POST",    //GET or POST or PUT or DELETE verb
-                    url: 'http://localhost/hrms/payroll/empsal/'+val,     // Location of the service
-                    data: "",     //Data sent to server
-                   
-                    dataType: "json",   //Expected data format from server
-                    
-                    success: function (result) {
-                    
-                         
-                         
-                         
-                         
-                                           }
-                    ,
-                    error: function() { 
-                    	alert('error from server side');
-
-                    } 
-                });
-
-
-
-
-
-
-
-
-
-})
-
-</script>
+<?php include("footer.php"); ?>

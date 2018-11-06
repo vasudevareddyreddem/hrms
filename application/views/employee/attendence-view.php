@@ -29,12 +29,12 @@
 									</tr>
 									<tbody>
 									<tr>
-										<td>User1</td>
-										<td>FA-001</td>
-										<td>Jan</td>
-										<td>24</td>
-										<td>3</td>
-										<td>27</td>
+										<td><?php echo $emp->e_f_name;?></td>
+										<td><?php echo $emp->e_emplouee_id;?></td>
+										<td><?php echo $month;?></td>
+										<td><?php echo $logindays;?></td>
+										<td><?php echo $leaves;?></td>
+										<td><?php echo $wdays;?></td>
 									</tr>
 									</tbody>
 								</thead>
@@ -50,44 +50,25 @@
 									<thead>
 										<tr>
 											<th>Month</th>
-										
-											<th>1</th>
-											<th>2</th>
-											<th>3</th>
-											<th>4</th>
-											<th>5</th>
-											<th>6</th>
-											<th>7</th>
-											<th>8</th>
-											<th>9</th>
-											<th>10</th>
-											<th>11</th>
-											<th>12</th>
-											<th>13</th>
-											<th>14</th>
-											<th>15</th>
-											<th>16</th>
-											<th>17</th>
-											<th>18</th>
-											<th>19</th>
-											<th>20</th>
-											<th>22</th>
-											<th>23</th>
-											<th>24</th>
-											<th>25</th>
-											<th>26</th>
-											<th>27</th>
-											<th>28</th>
-											<th>29</th>
-											<th>30</th>
-											<th>31</th>
+										<?php for($i=1;$i<=$mdays;$i++){?>
+											<th><?php echo $i;?></th>
+										<?php }?>
+											
 										</tr>
 									</thead>
 									<tbody>
 										<tr>
-											<td>Jan</td>
+											<td><?php echo $month;?></td>
+											<?php for($i=1;$i<count($attendance);$i++){
+												if($attendance[$i]=='yes'){?>
+													<td><i class="fa fa-check text-success"></i></td> <?php }else{?>
+														<td><i class="fa fa-close text-danger"></i> </td>
+
+											<?php } ?>
+										<?php }?>
 											
-											<td><i class="fa fa-check text-success"></i> </td>
+											
+											<!-- <td><i class="fa fa-check text-success"></i> </td>
 											<td><i class="fa fa-check text-success"></i> </td>
 											<td><i class="fa fa-check text-success"></i> </td>
 											<td><i class="fa fa-check text-success"></i> </td>
@@ -116,7 +97,7 @@
 											<td><i class="fa fa-check text-success"></i> </td>
 											<td><i class="fa fa-close text-danger"></i> </td>
 											<td><i class="fa fa-check text-success"></i> </td>
-											<td><i class="fa fa-check text-success"></i> </td>
+											<td><i class="fa fa-check text-success"></i> </td> -->
 										</tr>
 										
 									</tbody>

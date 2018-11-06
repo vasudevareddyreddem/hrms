@@ -29,40 +29,49 @@
 									</thead>
 									<tbody>
 										
-									
+									<?php  if($flag==1){
+										foreach($emp_data as $row):?>
+
+
 										<tr>
 											<td>
-												<a href="#" class="avatar">J</a>
-												<h2><a href="#">Jeffrey Warden <span>Shift Incharge</span></a></h2>
+												<a href="#" class="avatar"><?php echo substr($row->e_f_name,0,1)?> </a>
+												<h2><a href="#"><?php echo $row->e_f_name ;?><span><?php echo $row->e_designation ;?></span></a></h2>
 											</td>
-											<td>FT-0006</td>
-											<td>Shift Incharge</td>
-											<td>9876543210</td>
+											<td><?php echo $row->e_emplouee_id ;?></td>
+											<td><?php echo $row->e_designation ;?></td>
+											<td><?php echo $row->e_mobile_work  ;?></td>
 											<td>
-												<select class="form-control">
-													<option>Select</option>
-													<option>Jan</option>
-													<option>Feb</option>
-													<option>Mar</option>
-													<option>Apr</option>
-													<option>May</option>
-													<option>Jun</option>
-													<option>Jul</option>
-													<option>Aug</option>
-													<option>Sep</option>
-													<option>Oct</option>
-													<option>Nov</option>
-													<option>Dec</option>
+												<select id='' class="form-control month" name='month'>
+													<option value='select' >Select</option>
+													<option value='1'>Jan</option>
+													<option value='2'>Feb</option>
+													<option value='3'>Mar</option>
+													<option value='4'>Apr</option>
+													<option value='5'>May</option>
+													<option value='6'>Jun</option>
+													<option value='7'>Jul</option>
+													<option value='8'>Aug</option>
+													<option value='9'>Sep</option>
+													<option value='10'>Oct</option>
+													<option value='11'>Nov</option>
+													<option value='12'>Dec</option>
 												</select>
 											</td>
 											
 											
 											<td class="text-center">
-												<a href="<?php echo base_url('employee/viewattendance'); ?>"><span class="btn btn-sm btn-primary">
+												<a class='urlchange' href="<?php echo base_url('empmanagment/viewattendance/'.$row->e_id); ?>"><span class="btn btn-sm btn-primary">
 												<i class="fa fa-eye m-r-5"></i> View
 												</span></a>
 											</td>
 										</tr>
+									<?php endforeach;} else{?>
+										<tr>
+											NO data found
+										</tr>
+									<?php  }?>
+
 										
 									</tbody>
 								</table>
@@ -401,6 +410,28 @@
       "autoWidth": false
     });
   });
+</script>
+<script>
+$(document).ready(function(){
+    $(".urlchange").click(function(){
+    	var lastObj = $(this);
+  var parent = lastObj.parent();
+  var previousObject = parent.closest(":has(select)").find('select');
+  //$('#selection').text(previousObject.text());
+    	//$("h2").siblings("p");
+    	//ss=var link = $("this").closest("select").prev();
+    	//alert(previousObject.val());
+    	month=previousObject.val();
+    	//return false;
+    	if(month=='select'){
+
+    		return false;
+    	}
+    	val=$(this).attr("href");
+    	newurl=val+'/'+month;
+        $(this).attr("href", newurl);
+    });
+});
 </script>
 
 
