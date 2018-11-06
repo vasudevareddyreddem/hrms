@@ -38,9 +38,9 @@ s<style>
 						<input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for names.." title="Type in a name">
 
 						<ul id="myUL">
-              gh<?php foreach($emplist as $emp):?>
+              <?php foreach($emplist as $emp):?>
 
-						   <li><a href="#"><?php echo $emp->e_f_name?><span class="status online pull-right"></span></a></li>
+						   <li><a href="#"><?php echo $emp->e_f_name?><?php if( $emp->login_status==1){?><span class="status online pull-right"></span><?php }?></a></li>
              <?php endforeach ?>
 ;
 						<!--  <li><a href="#">Agnes</a></li>

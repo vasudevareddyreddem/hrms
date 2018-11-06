@@ -1554,10 +1554,18 @@ public function chat(){
 		{	
          $empdet=$this->session->userdata('hrmsdetails');	
          $eid=$empdet['e_id'];
+         $data['sender']=$eid;
+         //echo $eid;exit;
          $this->load->model('Chat_model');
+         $data['chatdata']=$this->Chat_model->last_chat($eid);
+          //echo'<pre>';print_r($data);exit;
+
+
           $data['emplist']=$this->Chat_model->emp_det($eid);
+          $data['rec_det']=$this->Chat_model->last_chat_rec_id($eid);
+         // echo'<pre>';print_r($data);exit;
 
-
+ 
 	     $this->load->view('employee/sidebar-chat',$data);
 
 	     $this->load->view('employee/chat');
