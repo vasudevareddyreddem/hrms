@@ -9,6 +9,13 @@ class User_model extends CI_Model
 		parent::__construct();
 		$this->load->database("default");
 	}
+	public function get_roles_wise_details($e_id){
+		$this->db->select('empployee.*,role.role')->from('empployee');
+		$this->db->join('role', 'role.r_id = empployee.role_id', 'left');
+		$this->db->where('e_id',$e_id);
+		return $this->db->get()->row_array();	
+	}
+	
 	
 	public function employee_list_data(){
 		$this->db->select('empployee.*')->from('empployee');
@@ -89,6 +96,34 @@ public function save_login_time_status($data){
 		$this->db->where('e_id',$e_id);
     	return $this->db->update("empployee",$data);
 	}
+	
+	public function update_login_sataus_details($e_id,$login_status){
+	$sql1="UPDATE empployee SET login_status =0 WHERE  e_id = '".$e_id."'";
+       	return $this->db->query($sql1);
+	}
+	
+	
+	public function update_sataus_details_log($e_id,$data){
+	$this->db->where('e_id',$e_id);
+    	return $this->db->update("empployee",$data);
+	}
+	
+	public function check_login($e_id){
+	$this->db->select('*')->from('empployee');
+		$this->db->where('e_id', $e_id);	
+        return $this->db->get()->row_array();
+	}
+	
+	
+	public function get_all_user_details($e_id){
+	$this->db->select('empployee.*,role.role')->from('empployee');
+		$this->db->join('role', 'role.r_id = empployee.e_designation', 'left');
+		$this->db->where('empployee.e_id',$e_id);
+		$this->db->where('empployee.role_id',3);
+		return $this->db->get()->row_array();	
+	}
+	
+	
 	
 	
 	

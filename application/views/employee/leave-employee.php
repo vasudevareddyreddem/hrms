@@ -21,27 +21,26 @@
 											<th>From</th>
 											<th>To</th>
 											<th>No of Days</th>
+											 <th>Remaining Leaves</th>  
 											<th>Reason</th>
 											<th>Status</th>
 											<th  class="text-center">Actions</th>
 										</tr>
 									</thead>
 									<tbody>
-									
-									
-									
-									<?php foreach($employee_leaves_list as $list){ ?>
-									
+									<?php if(isset($leaves_list) && count($leaves_list)>0){ ?>
+									<?php foreach($leaves_list as $list){?>
 										<tr>
 										
-										 <td>
-											<a href="#" class="avatar"><?php echo substr($list['e_login_name'],0,1);?></a>
-											<h2><a href="#"><?php echo $list['e_login_name'];?><span><?php echo $list['role'];?></span></a></h2>
+										  <td>
+											<a href="#" class="avatar"><?php echo substr($userdetails['e_login_name'],0,1);?></a>
+											<h2><a href="#"><?php echo $userdetails['e_login_name'];?><span><?php echo $userdetails['role'];?></span></a></h2>
 											</td>
 											<td><?php echo $list['leave_type'];?></td>
 											<td><?php echo $list['from_date'];?></td>
 											<td><?php echo $list['to_date'];?></td>
 											<td><?php echo $list['number_of_days'];?></td>
+											<td><?php echo $list['remaining_leaves'];?></td>
 											<td><?php echo $list['leaves_reason'];?></td>
 											<td><?php  if($list['status']==1){  echo "accept";}else if($list['status']==2){  echo "reject";}else{  echo "Pending"; } ?></td>
 
@@ -56,12 +55,13 @@
 												
                                           
 										</tr>
-									
-									
-									<?php }  ?>
+	
+									<?php }?>
+										
 									</tbody>
-									
-								
+									<?php } else{ ?>
+								<div>No data available</div>
+								<?php } ?>
 								</table>
 							</div>
 						</div>

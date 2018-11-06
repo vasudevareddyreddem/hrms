@@ -93,6 +93,11 @@ class Dashboard extends In_frontend {
 			$hrmsdetails=$this->session->userdata('hrmsdetails');
 			$checklogin= $this->User_model->check_today_login($hrmsdetails['e_id'],date('Y-m-d'));
 			$this->User_model->update_logout_time_status($checklogin['l_id'],$checklogin['e_id'],date('Y-m-d H:i:s'));
+			//echo'<pre>';print_r($login);exit;
+			$update_data=array('login_status'=>0);
+			$upadte=$this->User_model->update_sataus_details_log($hrmsdetails['e_id'],$update_data);
+              //echo'<pre>';print_r($log);exit;
+				
 			$this->session->unset_userdata($hrmsdetails);
 			$this->session->unset_userdata('hrmsdetails');
 			$this->session->sess_destroy('hrmsdetails');
