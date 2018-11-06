@@ -124,10 +124,7 @@ public function forgotpost(){
 				redirect('user');	
 			}
 		
-	}else{
-		 $this->session->set_flashdata('error',"Please login and continue");
-		 redirect('');  
-	   }
+}
  
 
 }

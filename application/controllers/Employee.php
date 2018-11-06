@@ -437,7 +437,7 @@ public function addholidaypost(){
 				 );
 		       $save=$this->Employees_model->save_holidays_details($save_data);	
 		       if(count($save)>0){
-					$this->session->set_flashdata('success',"Holidays details successfully added");	
+					$this->session->set_flashdata('success',"Holiday added successfully");	
 					redirect('employee/holidays');	
 					}else{
 						$this->session->set_flashdata('error',"techechal probelem occur ");
@@ -495,7 +495,7 @@ public function addholidaypost(){
 				 $update=$this->Employees_model->update_holidays_details($post['h_id'],$update_data);	
 				 //echo'<pre>';print_r($update);exit;
 		       if(count($update)>0){
-					$this->session->set_flashdata('success',"Holidays details successfully updated");	
+					$this->session->set_flashdata('success',"Holiday edited successfully");	
 					redirect('employee/holidays');	
 					  }else{
 						$this->session->set_flashdata('error',"techechal probelem occur ");
@@ -529,9 +529,9 @@ if($this->session->userdata('hrmsdetails'))
 							//echo $this->db->last_query();exit;	
 							if(count($statusdata)>0){
 								if($status==1){
-								$this->session->set_flashdata('success',"Holidays details successfully Deactivate.");
+								$this->session->set_flashdata('success',"Holiday  Deactivate successfully Deactivate.");
 								}else{
-									$this->session->set_flashdata('success',"Holidays details successfully Activate.");
+									$this->session->set_flashdata('success',"Holiday Activate successfully .");
 								}
 								redirect('employee/holidays');
 							}else{
@@ -560,7 +560,7 @@ if($this->session->userdata('hrmsdetails'))
 					
 							$delete_data=$this->Employees_model->delete_holidays_details($h_id);
 							if(count($delete_data)>0){
-								$this->session->set_flashdata('success'," Holidays details successfully deleted.");
+								$this->session->set_flashdata('success'," Holiday deleted successfully.");
 								
 								 redirect('employee/holidays');
 							}else{
@@ -843,7 +843,7 @@ else{
 				  //echo'<pre>';print_r($save_data);exit;
 		       $save=$this->Employees_model->save_leaves_details($save_data);	
 	         if(count($save)>0){
-					$this->session->set_flashdata('success',"Leaves  successfully added");	
+					$this->session->set_flashdata('success',"Leave Request successfully sent");	
 					redirect('employee/employeeleaverequests');	
 					}else{
 						$this->session->set_flashdata('error',"techechal probelem occur ");
@@ -905,7 +905,7 @@ public function addleave(){
 				  //echo'<pre>';print_r($save_data);exit;
 		       $save=$this->Employees_model->save_leaves_details($save_data);	
 	         if(count($save)>0){
-					$this->session->set_flashdata('success',"Leaves  successfully added");	
+					$this->session->set_flashdata('success',"Leave Request successfully sent");	
 					redirect('employee/leaverequests');	
 					}else{
 						$this->session->set_flashdata('error',"techechal probelem occur ");
@@ -951,7 +951,7 @@ public function leavesstatus()
 							//echo'<pre>';print_r($statusdata);exit;
 							//echo $this->db->last_query();exit;	
 							if(count($statusdata)>0){
-									$this->session->set_flashdata('success',"leaves successfully Accept");
+									$this->session->set_flashdata('success',"Leave approved successfully");
 									redirect('employee/leaverequests');
 							}else{
 									$this->session->set_flashdata('error',"technical problem will occurred. Please try again.");
@@ -984,7 +984,7 @@ public function lstatus()
 							//echo'<pre>';print_r($statusdata);exit;
 							//echo $this->db->last_query();exit;	
 							if(count($statusdata)>0){
-								$this->session->set_flashdata('success',"leaves successfully Reject");
+								$this->session->set_flashdata('success',"Leave rejected successfully");
 								redirect('employee/leaverequests');
 							}else{
 									$this->session->set_flashdata('error',"technical problem will occurred. Please try again.");

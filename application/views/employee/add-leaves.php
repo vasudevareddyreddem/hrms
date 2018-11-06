@@ -120,7 +120,10 @@ $(document).ready(function() {
            validators: {
 					notEmpty: {
 						message: 'Number of days is required'
-					}
+					},regexp: {
+   					regexp:  /^[0-9]*$/,
+   					message:'Number of days must be digits'
+   					}
 				}
             },
 			remaining_leaves:{

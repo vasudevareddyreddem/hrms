@@ -85,7 +85,7 @@ public function edit(){
 		        $profile_update=$this->User_model->update_profile_details($admindetails['e_id'],$updatedetails);
 				//echo'<pre>';print_r($profile_update);exit;
 			if(count($profile_update)>0){
-				$this->session->set_flashdata('success','Profile Details successfully Updated');
+				$this->session->set_flashdata('success','Profile details successfully updated');
 				redirect('profile');
 				
 			}else{
