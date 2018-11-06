@@ -732,7 +732,10 @@ public function shiftmangement(){
            //echo'<pre>';print_r($data);exit;
 	     $this->load->view('employee/shift-management',$data);
 	      $this->load->view('html/footer');  
-   }
+    }else{
+		 $this->session->set_flashdata('error',"Please login and continue");
+		 redirect('');  
+	   }
 }		
 public function shiftedit(){
 if($this->session->userdata('hrmsdetails'))
@@ -745,7 +748,10 @@ if($this->session->userdata('hrmsdetails'))
 		  //echo'<pre>';print_r($data);exit;
 	     $this->load->view('employee/edit-shift',$data);
 	     $this->load->view('html/footer');
-  }
+   }else{
+		 $this->session->set_flashdata('error',"Please login and continue");
+		 redirect('');  
+	   }
 }
 
 
