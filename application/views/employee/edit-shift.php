@@ -17,10 +17,16 @@
 											<select class="select" name="shift">
 
 
+
 													<option value="">Select Shift</option>
 													<option value="A">A</option>
 													<option value="B">B</option>
 													<option value="C">C</option>
+
+												<?php foreach($shiftlist as $shift):?>
+												<option value='<?php echo $shift['s_id'];?>' <?php if ($shift['s_id']== $shift_edit['e_shift']) echo ' selected';?> ><?php echo $shift['shift'];?> </option>
+												<?php endforeach?>	
+
 
 												<?php foreach($shiftlist as $shift):?>
 												<option value='<?php echo $shift['s_id'];?>' <?php if ($shift['s_id']== $shift_edit['e_shift']) echo ' selected';?> ><?php echo $shift['shift'];?> </option>
