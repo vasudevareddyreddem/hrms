@@ -40,8 +40,10 @@
 										<div class="chat-wrap-inner">
 											<div class="chat-box">
 												<div class="chats">
-													<?php foreach($chatdata as $chat):
+													
+													<?php if($status=='yes'){foreach($chatdata as $chat):
 													 ?>
+													 <div class='msgdiv'>
 												<div class="chat-line">
 														<span class="chat-date">October 8th, 2015</span>
 													</div>
@@ -60,13 +62,15 @@
 																	<ul>
 																		<li><a href="#" class="share-msg" title="Share"><i class="fa fa-share-alt"></i></a></li>
 																		<li><a href="#" class="edit-msg" title="Edit"><i class="fa fa-pencil"></i></a></li>
-																		<li><a href="#" class="del-msg" title="Delete"><i class="fa fa-trash-o"></i></a></li>
+																		<li><button data-messageid='<?php echo $chat->message_id?>'  class="del-msg" title="Delete"><i class="fa fa-trash-o"></i></button></li>
 																	</ul>
 																</div>
 															</div>
 														</div>
 													</div>
-													<?php  endforeach ?>
+												</div>
+													<?php  endforeach; }?>
+
 												</div>
 
 											</div>
@@ -84,7 +88,7 @@
 												<div class="input-group">
 												<textarea  id='msg' class="form-control" placeholder="Type message..." name='message'></textarea>
 												<span class="input-group-btn">
-													<button class="btn btn-primary" type="submit"><i class="fa fa-send"></i></button>
+													<button class="btn btn-primary dynmsg" type="submit"><i class="fa fa-send"></i></button>
 												</span>
 												</div>
 											</form>
@@ -104,15 +108,18 @@
 													<img class="avatar" src="assets/img/user.jpg" alt="">
 													<span class="change-img">Change Image</span>
 												</div>
+												<?php if($status=='yes'){?>
 												<h3 class="user-name m-t-10 m-b-0"><?php echo $rec_det->e_f_name?></h3>
 												<small class="text-muted"><?php echo $rec_det->role?></small>
-												<a href="edit-profile.html" class="btn btn-primary edit-btn"><i class="fa fa-pencil"></i></a>
+												<a href="edit-profile.html" class="btn btn-primary edit-btn"><i class="fa fa-pencil"></i></a><?php }?>
 											</div>
 											<div class="chat-profile-info">
 												<ul class="user-det-list">
 													<li>
 														<span>Username:</span>
+														<?php if($status=='yes'){?>
 														<span class="pull-right text-muted"><?php echo $rec_det->e_f_name?></span>
+													<?php }?>
 													</li>
 													<!-- <li>
 														<span>DOB:</span>
@@ -120,11 +127,14 @@
 													</li> -->
 													<li>
 														<span>Email:</span>
-														<span class="pull-right text-muted"><?php echo $rec_det->e_email_work?></span>
+														<?php if($status=='yes'){?>
+														<span class="pull-right text-muted"><?php echo $rec_det->e_email_work?></span><?php }?>
 													</li>
 													<li>
 														<span>Phone:</span>
+														<?php if($status=='yes'){?>
 														<span class="pull-right text-muted"><?php echo $rec_det->e_mobile_work?></span>
+														<?php }?>
 													</li>
 												</ul>
 											</div>
@@ -209,19 +219,24 @@
                     
                     success: function (result) {
                     	console.log(result.lists);
+                    	//alert('kkk');
+                    	if(result.status=='yes'){
                     	$.each(result.lists, function(i, item) {
                     		//console.log(item.message);
                     		divchat='<div></div>';
-                    		var el = $('<div></div>');
+                    		var el = $('<div> </div>');
 
-      newdiv=$('.chat').append(el);
-      el.html('<div class="chat-line"><span class="chat-date">October 8th, 2015</span></div><div class="chat chat-left"><div class="chat-body"><div class="chat-bubble"><div class="chat-content"><p></p><span class="chat-time"></span></div><div class="chat-action-btns"><ul><li><a href="#" class="share-msg" title="Share"><i class="fa fa-share-alt"></i></a></li><li><a href="#" class="edit-msg" title="Edit"><i class="fa fa-pencil"></i></a></li><li><a href="#" class="del-msg" title="Delete"><i class="fa fa-trash-o"></i></a></li></ul></div></div></div></div>');
+      //newdiv=$('.chats').append(divchat);
+   newdiv=el.html('<div class="chat-line"><span class="chat-date">October 8th, 2015</span></div><div class="chat chat-left"><div class="chat-body"><div class="chat-bubble"><div class="chat-content"><p></p><span class="chat-time"></span></div><div class="chat-action-btns"><ul><li><a href="#" class="share-msg" title="Share"><i class="fa fa-share-alt"></i></a></li><li><a href="#" class="edit-msg" title="Edit"><i class="fa fa-pencil"></i></a></li><li><a href="#" class="del-msg" title="Delete"><i class="fa fa-trash-o"></i></a></li></ul></div></div></div></div>');
       //var parent = lastObj.parent();
-      var prev=$('#message').closest(":has(p)").find('p');
-                    		 msgs=item.message;
+      $('.chats').append(newdiv);
+      $("p:last").append(item.message);
+      //var prev=$('#message').closest(":has(p)").find('p');
+                    		
                     		
 
 });
+                    }
   }
                     ,
                     error: function() { 
@@ -234,24 +249,31 @@
 		setInterval(recv_data, 3000);
 
 
-$('#message').on('submit',function(e){
+$(document).on('click','.dynmsg',function(e){
 
 	e.preventDefault();                   
 
-	alert('kdkd');
+	
        if($('#msg').val().length>0){
+       	
        	val=$('#msg').val();
        data='<p>'+val+'</p>'+'<span >8:30 am</span>';
   
    divchat='<div></div>';
                     		var el = $('<div></div>');
-      newdiv=$('.chat').append(el);
-      el.html('<div class="chat-line"><span class="chat-date">October 8th, 2015</span></div><div class="chat chat-right"><div class="chat-body"><div class="chat-bubble"><div class="chat-content"><p></p><span class="chat-time"></span></div><div class="chat-action-btns"><ul><li><a href="#" class="share-msg" title="Share"><i class="fa fa-share-alt"></i></a></li><li><a href="#" class="edit-msg" title="Edit"><i class="fa fa-pencil"></i></a></li><li><a href="#" class="del-msg" title="Delete"><i class="fa fa-trash-o"></i></a></li></ul></div></div></div></div>');
-      //var parent = lastObj.parent();
-      var prev=$('#message').closest(":has(p)").find('p');
-      message_val=$('#msg').val();
 
-      prev.append(message_val);
+     newdiv= el.html('<div class="chat-line"><span class="chat-date">October 8th, 2015</span></div><div class="chat chat-right"><div class="chat-body"><div class="chat-bubble"><div class="chat-content"><p></p><span class="chat-time"></span></div><div class="chat-action-btns"><ul><li><a href="#" class="share-msg" title="Share"><i class="fa fa-share-alt"></i></a></li><li><a href="#" class="edit-msg" title="Edit"><i class="fa fa-pencil"></i></a></li><li><a href="#" class="del-msg" title="Delete"><i class="fa fa-trash-o"></i></a></li></ul></div></div></div></div>');
+      $('.chats').append(newdiv);
+      //var parent = lastObj.parent();
+      //var prev=$('#message').closest("p");
+       //alert('kdkd');
+       
+      message_val=$('#msg').val();
+     $("p:last").append(message_val);
+
+      //alert(message_val);
+
+      //prev.append(message_val);
 
 
      //alert(prev.val());
@@ -285,10 +307,10 @@ $('#message').on('submit',function(e){
       });
 //change the user
  
-$(".users").click(function(){
-    	var lastObj = $(this);
-        val=$(this).attr("id");
-        alert('kdkd');
+$(".users").on('click',function(){
+    	// var lastObj = $(this);
+       val=$(this).attr("id");
+     //    alert('kdkd');
         $.ajax({
                     type: "GET",    //GET or POST or PUT or DELETE verb
                     url: 'http://localhost/hrms/Chat/userchat/'+val,     // Location of the service
@@ -307,7 +329,15 @@ $(".users").click(function(){
                 });
 
     });
+// delete the messag
+$('.del-msg').on('click',function(e){
+ //e.preventDefault();
+val=$(this).attr("data-messageid");
 
+$(this).closest('.msgdiv').remove();
+//alert(val);
+	
+});
 
 
 

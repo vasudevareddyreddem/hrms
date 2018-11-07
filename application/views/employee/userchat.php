@@ -80,11 +80,11 @@
 											<a class="link attach-icon" href="#" data-toggle="modal" data-target="#drag_files"><img src="assets/img/attachment.png" alt=""></a>
 											<div class="message-area">
 												<form id='message' aciton='#' method='post'>
-												<input type='hidden' id='rid' value='<?php echo $rec_det->recevier_id?>' name='rid'>
+												<input type='hidden' id='rid' value='' name='rid'>
 												<div class="input-group">
 												<textarea  id='msg' class="form-control" placeholder="Type message..." name='message'></textarea>
 												<span class="input-group-btn">
-													<button class="btn btn-primary" type="submit"><i class="fa fa-send"></i></button>
+													<button class="btn btn-primary  dynmsg" type="submit"><i class="fa fa-send"></i></button>
 												</span>
 												</div>
 											</form>
@@ -99,15 +99,19 @@
 								<div class="table-row">
 									<div class="table-body">
 										<div class="table-content">
+											
 											<div class="chat-profile-img">
 												<div class="edit-profile-img">
 													<img class="avatar" src="assets/img/user.jpg" alt="">
 													<span class="change-img">Change Image</span>
 												</div>
-												<h3 class="user-name m-t-10 m-b-0"><?php echo $user->e_f_name?></h3>
+												<h3 class="user-name m-t-10 m-b-0">
+													<?php echo $user->e_f_name?></h3>
 												<small class="text-muted"><?php echo $user->role?></small>
 												<a href="edit-profile.html" class="btn btn-primary edit-btn"><i class="fa fa-pencil"></i></a>
 											</div>
+									
+											
 											<div class="chat-profile-info">
 												<ul class="user-det-list">
 													<li>
@@ -128,6 +132,7 @@
 													</li>
 												</ul>
 											</div>
+								
 											<div class="tabbable">
 												<ul class="nav nav-tabs nav-tabs-solid nav-justified m-b-0">
 													<li class="active"><a href="#all_files" data-toggle="tab">All Files</a></li>

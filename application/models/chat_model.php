@@ -41,7 +41,7 @@ public function last_chat_rec_id($eid){
 	$this->db->select('recevier_id,e_f_name,e_email_work ,e_mobile_work,role');
 	$this->db->from('empployee');
 	$this->db->join('chat_tab','empployee.e_id=chat_tab.sender_id');
-  $this->db->join('role','role.r_id=empployee.role_id','left');
+  $this->db->join('role','role.r_id=empployee.role_id');
   $this->db->where("`sent_time`=($subquery)");
   $this->db->where ('empployee.e_id', $eid);
   $query=$this->db->get();
@@ -49,23 +49,23 @@ public function last_chat_rec_id($eid){
 
 }
 // getting last chat 
-public function last_chat($eid){
-  $this->db->select('max(sent_time)');
-  $this->db->from('chat_tab');
-  $this->db->where('sender_id',$eid);
-   $subquery = $this->db->get_compiled_select();
+public function last_chat($eid,$rid){
+  // $this->db->select('max(sent_time)');
+  // $this->db->from('chat_tab');
+  // $this->db->where('sender_id',$eid);
+  //  $subquery = $this->db->get_compiled_select();
 
-  $this->db->select('recevier_id');
-  $this->db->from('chat_tab');
-   $this->db->where("`sent_time` in ($subquery)");
-   $subquery1 = $this->db->get_compiled_select();
+  // $this->db->select('recevier_id');
+  // $this->db->from('chat_tab');
+  //  $this->db->where("`sent_time` in ($subquery)");
+  //  $subquery1 = $this->db->get_compiled_select();
 
 
 
-	$this->db->select('*')->from('chat_tab')->where("`recevier_id` in ($subquery1)")->or_where ('recevier_id', $eid)
-->group_start()
-         ->where('sender_id',$eid)
-         ->or_where ('recevier_id', $eid)
+	$this->db->select('*')->from('chat_tab')->where('sender_id',$eid)->where ('recevier_id', $rid)
+->or_group_start()
+         ->where('sender_id',$rid)
+         ->where ('recevier_id', $eid)
          
       ->group_end();
   // ->group_start()
@@ -79,11 +79,13 @@ public function last_chat($eid){
 
 }
 // receving message from other side
-public function get_messages($eid){
+public function get_messages($eid,$rid){
 
   $this->db->select('*');
   $this->db->from('chat_tab');
   $this->db->where('recevier_id',$eid);
+  $this->db->where('sender_id',$rid);
+   $this->db->where('read_status','unread');
   $query=$this->db->get();
   return $query->result();
 
@@ -93,6 +95,7 @@ public function get_messages($eid){
 }
 // get the chat between two users
 public function getchat($sid,$rid){
+
    $this->db->select('*')->
   from('chat_tab')
 ->group_start()
@@ -118,6 +121,37 @@ public function employee_info($rid){
 
 
 }
+//update the messages read
+public function read_status_change($sid,$rid){
+
+  $this->db->update('chat_tab', array('read_status'=>'read'),
+  array('sender_id' => $rid,'recevier_id' => $sid));
+  return 'success';
+}
+//get lastrecord
+
+public function getlastrecord($eid){
+
+  $this->db->select('max(sent_time)');
+  $this->db->from('chat_tab');
+   $this->db->where('sender_id',$eid);
+   $this->db->or_where('recevier_id',$eid);
+   $subquery = $this->db->get_compiled_select();
+   $this->db->select('*')->from('chat_tab')->where("`sent_time`=($subquery)")
+  ->group_start()->where ('sender_id', $eid)->
+  or_where('recevier_id',$eid)->group_end();
+
+$query=$this->db->get();
+return $query->row();
+}
+public function recv_details($rid){
+
+  $this->db->select('*')->from('empployee')->join('role','empployee.role_id=role.r_id')
+->where('e_id',$rid);
+  $query=$this->db->get();
+  return $query->row();
 
 
+
+}
 }

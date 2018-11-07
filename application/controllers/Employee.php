@@ -1431,13 +1431,44 @@ public function chat(){
          $data['sender']=$eid;
          //echo $eid;exit;
          $this->load->model('Chat_model');
-         $data['chatdata']=$this->Chat_model->last_chat($eid);
+        
           //echo'<pre>';print_r($data);exit;
+         $lastdata=$this->Chat_model->getlastrecord($eid);
+
+          //echo'<pre>';print_r($lastdata);exit;
+         if(count($lastdata)>0){
+         	$data['status']='yes';
+         if($lastdata->sender_id==$eid){
+         	$rid=$lastdata->recevier_id;
+          	$this->session->set_userdata('recv',$rid);
+
+    $data['rec_det']=$this->Chat_model->recv_details($rid);
+
+         }else{
+         	$rid=$lastdata->sender_id;
+          	 $this->session->set_userdata('recv',$rid);
+          	$data['rec_det']=$this->Chat_model->recv_details($rid);
+}
+
+$data['chatdata']=$this->Chat_model->last_chat($eid,$rid);
+}
+
+         //$data['rec_det']=$this->Chat_model->last_chat_rec_id($eid);
+        
+          else{
+          	$data['status']='no';
 
 
+          }
+
+          
           $data['emplist']=$this->Chat_model->emp_det($eid);
-          $data['rec_det']=$this->Chat_model->last_chat_rec_id($eid);
-          $rid=$data['rec_det']->recevier_id;
+         
+         
+              //echo'<pre>';print_r($data);exit;
+
+          
+          //$this->session->set_userdata('recv',$rid);
       
           //echo'<pre>';print_r($data);exit;
 
