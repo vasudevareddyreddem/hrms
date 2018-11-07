@@ -33,10 +33,32 @@ public function getmessages(){
 		$userdetails=$this->session->userdata('hrmsdetails');
     $eid=$userdetails['e_id'];
 
-    $this->Chat_model->get_messages($eid);
+    $data['lists']=$this->Chat_model->get_messages($eid);
+    if(count($data['lists']>0)){
+
+    	$data['status']='yes';
+    }
+
+else{$data['status']='no';}
+echo json_encode($data);exit; 
 
 
 
+}
+
+public function userchat($rid){
+  $userdetails=$this->session->userdata('hrmsdetails');
+    $sid=$userdetails['e_id'];
+    $data['sender']=$sid;
+
+     $data['user']=$this->Chat_model->employee_info($rid);
+    $data['userchat']=$this->Chat_model->getchat($sid,$rid);
+    //echo '<pre>';print_r($data);exit;
+    if(count($data['userchat'])>0){
+
+
+    }
+    $this->load->view('employee/userchat',$data);
 
 
 }

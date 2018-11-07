@@ -1437,7 +1437,9 @@ public function chat(){
 
           $data['emplist']=$this->Chat_model->emp_det($eid);
           $data['rec_det']=$this->Chat_model->last_chat_rec_id($eid);
-         // echo'<pre>';print_r($data);exit;
+          $rid=$data['rec_det']->recevier_id;
+      
+          //echo'<pre>';print_r($data);exit;
 
  
 	     $this->load->view('employee/sidebar-chat',$data);

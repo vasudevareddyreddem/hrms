@@ -1,5 +1,5 @@
 
-<div class="page-wrapper">
+
 				<div class="chat-main-row">
 					<div class="chat-main-wrapper">
 						<div class="col-xs-9 message-view task-view">
@@ -40,7 +40,7 @@
 										<div class="chat-wrap-inner">
 											<div class="chat-box">
 												<div class="chats">
-													<?php foreach($chatdata as $chat):
+													<?php foreach($userchat as $chat):
 													 ?>
 												<div class="chat-line">
 														<span class="chat-date">October 8th, 2015</span>
@@ -104,15 +104,15 @@
 													<img class="avatar" src="assets/img/user.jpg" alt="">
 													<span class="change-img">Change Image</span>
 												</div>
-												<h3 class="user-name m-t-10 m-b-0"><?php echo $rec_det->e_f_name?></h3>
-												<small class="text-muted"><?php echo $rec_det->role?></small>
+												<h3 class="user-name m-t-10 m-b-0"><?php echo $user->e_f_name?></h3>
+												<small class="text-muted"><?php echo $user->role?></small>
 												<a href="edit-profile.html" class="btn btn-primary edit-btn"><i class="fa fa-pencil"></i></a>
 											</div>
 											<div class="chat-profile-info">
 												<ul class="user-det-list">
 													<li>
 														<span>Username:</span>
-														<span class="pull-right text-muted"><?php echo $rec_det->e_f_name?></span>
+														<span class="pull-right text-muted"><?php echo $user->e_f_name?></span>
 													</li>
 													<!-- <li>
 														<span>DOB:</span>
@@ -120,11 +120,11 @@
 													</li> -->
 													<li>
 														<span>Email:</span>
-														<span class="pull-right text-muted"><?php echo $rec_det->e_email_work?></span>
+														<span class="pull-right text-muted"><?php echo $user->e_email_work?></span>
 													</li>
 													<li>
 														<span>Phone:</span>
-														<span class="pull-right text-muted"><?php echo $rec_det->e_mobile_work?></span>
+														<span class="pull-right text-muted"><?php echo $user->e_mobile_work?></span>
 													</li>
 												</ul>
 											</div>
@@ -195,126 +195,4 @@
 				
 				
 				
-            </div>
-
-<script type="text/javascript">
-	$(document).ready(function() {
-		 function recv_data()
-{
-	$.ajax({
-                    type: "GET",    //GET or POST or PUT or DELETE verb
-                    url: 'http://localhost/hrms/Chat/getmessages',     // Location of the service
-                    data: '',     //Data sent to server
-                    dataType: "json",   //Expected data format from server
-                    
-                    success: function (result) {
-                    	console.log(result.lists);
-                    	$.each(result.lists, function(i, item) {
-                    		//console.log(item.message);
-                    		divchat='<div></div>';
-                    		var el = $('<div></div>');
-
-      newdiv=$('.chat').append(el);
-      el.html('<div class="chat-line"><span class="chat-date">October 8th, 2015</span></div><div class="chat chat-left"><div class="chat-body"><div class="chat-bubble"><div class="chat-content"><p></p><span class="chat-time"></span></div><div class="chat-action-btns"><ul><li><a href="#" class="share-msg" title="Share"><i class="fa fa-share-alt"></i></a></li><li><a href="#" class="edit-msg" title="Edit"><i class="fa fa-pencil"></i></a></li><li><a href="#" class="del-msg" title="Delete"><i class="fa fa-trash-o"></i></a></li></ul></div></div></div></div>');
-      //var parent = lastObj.parent();
-      var prev=$('#message').closest(":has(p)").find('p');
-                    		 msgs=item.message;
-                    		
-
-});
-  }
-                    ,
-                    error: function() { 
-                    	alert('error from server side');
-
-                    } 
-                });
-
-};
-		setInterval(recv_data, 3000);
-
-
-$('#message').on('submit',function(e){
-
-	e.preventDefault();                   
-
-	alert('kdkd');
-       if($('#msg').val().length>0){
-       	val=$('#msg').val();
-       data='<p>'+val+'</p>'+'<span >8:30 am</span>';
-  
-   divchat='<div></div>';
-                    		var el = $('<div></div>');
-      newdiv=$('.chat').append(el);
-      el.html('<div class="chat-line"><span class="chat-date">October 8th, 2015</span></div><div class="chat chat-right"><div class="chat-body"><div class="chat-bubble"><div class="chat-content"><p></p><span class="chat-time"></span></div><div class="chat-action-btns"><ul><li><a href="#" class="share-msg" title="Share"><i class="fa fa-share-alt"></i></a></li><li><a href="#" class="edit-msg" title="Edit"><i class="fa fa-pencil"></i></a></li><li><a href="#" class="del-msg" title="Delete"><i class="fa fa-trash-o"></i></a></li></ul></div></div></div></div>');
-      //var parent = lastObj.parent();
-      var prev=$('#message').closest(":has(p)").find('p');
-      message_val=$('#msg').val();
-
-      prev.append(message_val);
-
-
-     //alert(prev.val());
-      //message_val=$('#msg').val();
-      rec_val=$('#rid').val();
-      //formdata=$('#msg').serialize();
-      //console.log(formdata);
-      //return false;
-
-      $.ajax({
-                    type: "POST",    //GET or POST or PUT or DELETE verb
-                    url: 'http://localhost/hrms/Chat/sendmessage',     // Location of the service
-                    data: {message: message_val,rid: rec_val},     //Data sent to server
-                    dataType: "json",   //Expected data format from server
-                    
-                    success: function (result) {
-                    $('#msg').val('');
-                         
-                                           }
-                    ,
-                    error: function() { 
-                    	alert('error from server side');
-
-                    } 
-                });
-   								
-																											
-			 }				
-
-
-      });
-//change the user
- 
-$(".users").click(function(){
-    	var lastObj = $(this);
-        val=$(this).attr("id");
-        alert('kdkd');
-        $.ajax({
-                    type: "GET",    //GET or POST or PUT or DELETE verb
-                    url: 'http://localhost/hrms/Chat/userchat/'+val,     // Location of the service
-                    data:'' ,     //Data sent to server
-                    dataType: "html",   //Expected data format from server
-                    
-                    success: function (result) {
-                    $('.page-wrapper').html(result);
-                         
-                                           }
-                    ,
-                    error: function() { 
-                    	alert('error from server side');
-
-                    } 
-                });
-
-    });
-
-
-
-
-
-
-
-
-});
-
-</script>
+          
