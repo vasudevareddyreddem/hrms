@@ -64,8 +64,16 @@
                 <li class="">
                     <a href="<?php echo base_url('employee/salemantrack'); ?>"><span>Salesman Man Track </span> </a>
                 </li>
-                <li class="">
-                    <a href="<?php echo base_url('employee/workdistribution'); ?>"><span>Work Distribution</span> </a>
+                <li class="submenu">
+                    <a href="#"><span>Work Distribution</span> <span class="menu-arrow"></span></a>
+                    <ul class="list-unstyled" style="display: none;">
+                        <li>
+                            <a href="<?php echo base_url('employee/assignwork'); ?>"><span>Add Work</span> </a>
+                        </li>
+                        <li>
+                            <a href="<?php echo base_url('employee/workdistributionlist'); ?>"><span>Work List</span> </a>
+                        </li>
+                    </ul>
                 </li>
                 <li class="">
                     <a href="<?php echo base_url('employee/leavepolicy'); ?>"><span>Leave Policy</span> </a>
