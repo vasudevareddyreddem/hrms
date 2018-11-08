@@ -89,15 +89,41 @@
 					<li class="dropdown">
 			
 						<a  class="dropdown-toggle user-link" data-toggle="dropdown" title="Admin">
+						 <?php if($userdetails['role_id']==1){ ?>
 						<?php if($userdetails['e_profile_pic']!=''){?>
 							<img src="<?php echo base_url('assets/adminprofilepic/'.$userdetails['e_profile_pic']);?>" class="img-circle" width="80" height="auto" alt="<?php echo htmlentities($userdetails['e_profile_pic']); ?>" />
 							<?php }else{ ?>
 							 <img src="<?php echo base_url();?>assets/vendor/img/user-06.jpg" class="img-circle" width="60" alt="User Image" />
 							<?php } ?>
-                               
+                             
 							<span class="status online"></span></span>
 							<span><?php echo $userdetails['e_login_name']; ?></span>
 							<i class="caret"></i>
+					 <?php }else if($userdetails['role_id']==2){ ?> 
+					 <?php if($userdetails['e_profile_pic']!=''){?>
+							<img src="<?php echo base_url('assets/adminprofilepic/'.$userdetails['e_profile_pic']);?>" class="img-circle" width="80" height="auto" alt="<?php echo htmlentities($userdetails['e_profile_pic']); ?>" />
+							<?php }else{ ?>
+							 <img src="<?php echo base_url();?>assets/vendor/img/user-06.jpg" class="img-circle" width="60" alt="User Image" />
+							<?php } ?>
+                          
+							<span class="status online"></span></span>
+							<span><?php echo $userdetails['e_login_name']; ?></span>
+						<?php }else if($userdetails['role_id']==3){ ?>
+						<?php if($userdetails['e_profile_pic']!=''){?>
+							<img src="<?php echo base_url('assets/adminprofilepic/'.$userdetails['e_profile_pic']);?>" class="img-circle" width="80" height="auto" alt="<?php echo htmlentities($userdetails['e_profile_pic']); ?>" />
+							<?php }else{ ?>
+							 <img src="<?php echo base_url();?>assets/vendor/img/user-06.jpg" class="img-circle" width="60" alt="User Image" />
+							<?php } ?>
+                             
+							<span class="status online"></span></span>
+							<span><?php echo $userdetails['e_login_name']; ?></span>
+							<?php }else if($userdetails['role_id']==8){ ?>
+							<?php if($userdetails['e_profile_pic']!=''){?>
+							<img src="<?php echo base_url('assets/adminprofilepic/'.$userdetails['e_profile_pic']);?>" class="img-circle" width="80" height="auto" alt="<?php echo htmlentities($userdetails['e_profile_pic']); ?>" />
+							<?php }else{ ?>
+							 <img src="<?php echo base_url();?>assets/vendor/img/user-06.jpg" class="img-circle" width="60" alt="User Image" />
+							<?php } ?>
+							<?php } ?>
 						</a>
 						<ul class="dropdown-menu">
 							<li><a href="<?php echo base_url('profile');?>">My Profile</a></li>
