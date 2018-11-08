@@ -48,12 +48,14 @@ public function editemployee(){
          $admindetails=$this->session->userdata('hrmsdetails');	
 	     $admindetails=$this->session->userdata('hrmsdetails');	
 		 $this->uri->segment(3);
+		 $emp_id=base64_decode($this->uri->segment(3));
 		 $data['deparment_data']=$this->Employees_model->department_name_list();
 		 $data['sub_deparment_data']=$this->Employees_model->sub_department_name_list();
 		 $data['shift_data']=$this->Employees_model->shift_name_list();
 		 $data['roles_list']=$this->Employees_model->roles_list();
-		 $data['edit_employee']=$this->Employees_model->edit_employee_details(base64_decode($this->uri->segment(3)));
-		//echo'<pre>';print_r($data);exit;
+		 $data['spuervisors']=$this->Employees_model->get_all_spuervisors();
+		 $data['edit_employee']=$this->Employees_model->edit_employee_details($emp_id);
+		 //echo'<pre>';print_r($data);exit;
 		 
 	     $this->load->view('employee/edit-employee',$data);
 	      $this->load->view('html/footer');
@@ -71,7 +73,7 @@ public function editemployeepost(){
 		{
 	    $admindetails=$this->session->userdata('hrmsdetails');	
 		 $post=$this->input->post();	
-		//echo'<pre>';print_r($post);exit;
+		 //echo'<pre>';print_r($post);exit;
 		 $edit_employee=$this->Employees_model->edit_employee_details($admindetails['e_id']);
 		//echo'<pre>';print_r($edit_employee);exit;
 		
@@ -82,7 +84,7 @@ public function editemployeepost(){
 			$check=$this->Employees_model->saver_user_details($post['e_email_work']);
 			//echo'<pre>';print_r($check);exit;
 			if(count($check)>0){
-					 $this->session->set_flashdata('error',"email alreay  exit");
+				     $this->session->set_flashdata('error',"Email address already exists. Please another email address.");
 					 redirect('employee/all');
 			      }	
 			}
@@ -102,6 +104,11 @@ public function editemployeepost(){
 					}else{
 					$cat=$edit_employee['e_profile_pic'];
 					}
+		if(isset($post['e_designation']) && $post['e_designation']==8){
+			$e_supervisor='';
+		}else{
+			$e_supervisor=$post['e_supervisor'];
+		}
 		
 	     $update_data=array(
 		        'role_id'=>isset($post['e_designation'])?$post['e_designation']:'',
@@ -115,7 +122,7 @@ public function editemployeepost(){
 				'e_mobile_personal'=>isset($post['e_mobile_personal'])?$post['e_mobile_personal']:'',
 				'e_mobile_work'=>isset($post['e_mobile_work'])?$post['e_mobile_work']:'',
 				'e_designation'=>isset($post['e_designation'])?$post['e_designation']:'',
-				'e_supervisor'=>isset($post['e_supervisor'])?$post['e_supervisor']:'',
+				'e_supervisor'=>isset($e_supervisor)?$e_supervisor:'',
 				'e_department'=>isset($post['e_department'])?$post['e_department']:'',
 				'e_sub_department'=>isset($post['e_sub_department'])?$post['e_sub_department']:'',
 				'e_shift'=>isset($post['e_shift'])?$post['e_shift']:'',
@@ -269,6 +276,7 @@ public function add(){
 		 $data['sub_deparment_data']=$this->Employees_model->sub_department_name_list();
 		 $data['shift_data']=$this->Employees_model->shift_name_list();
 		 $data['roles_list']=$this->Employees_model->roles_list();
+		 $data['spuervisors']=$this->Employees_model->get_all_spuervisors();
 		 //echo'<pre>';print_r($data);exit;
 	     $this->load->view('employee/addemployee',$data);
 	     $this->load->view('html/footer');
@@ -862,6 +870,8 @@ public function leaverequests(){
 		{	
          $admindetails=$this->session->userdata('hrmsdetails');	
 		 $data['employee_leaves_list']=$this->Employees_model->get_all_employee_leaves_list_details(); 
+		  
+		 //echo'<pre>';print_r($data);exit;
 		$this->load->view('employee/leaves',$data);
 	     $this->load->view('html/footer');  
 	   }else{

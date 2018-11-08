@@ -101,18 +101,35 @@
 								</div>
 					
 									</div>
-										<div class="col-sm-2" id="retur_type_div">
+									<?php if($edit_employee['role_id']==8){
+										$supervisor='display:none';
+									}else{
+										$supervisor='';	
+									}
+									
+									?>
+										<div class="col-sm-2" id="retur_type_div" style="<?php echo $supervisor; ?>">
 										<div class="form-group">
 											<label class="control-label">Supervisor</label>
-											<select class="select" name="e_supervisor" id="retur_type_div">
+											<select class="select" name="e_supervisor" >
 													<option value="">Select Supervisor</option>
-													<option value="A"<?php if($edit_employee['e_supervisor']=='A'){ echo "selected"; } ?>>A</option>
-													<option value="B"<?php if($edit_employee['e_supervisor']=='B'){ echo "selected"; } ?>>B</option>
-													<option value="C"<?php if($edit_employee['e_supervisor']=='C'){ echo "selected"; } ?>>C</option>
+													<?php if(isset($spuervisors) && count($spuervisors)>0){ ?>
+														<?php foreach($spuervisors as $list){ ?>
+														<?php if($list['e_id']==$edit_employee['e_supervisor']){ ?>
+															<option selected value="<?php echo isset($list['e_id'])?$list['e_id']:''; ?>"><?php echo isset($list['e_login_name'])?$list['e_login_name']:''; ?></option>
+
+														<?php }else{ ?>
+															<option value="<?php echo isset($list['e_id'])?$list['e_id']:''; ?>"><?php echo isset($list['e_login_name'])?$list['e_login_name']:''; ?></option>
+														
+ 														<?php } ?>
+					
+														<?php } ?>
+													<?php } ?>
 													
 											</select>
 										</div>
 									</div>	
+									
 									<div class="col-sm-2">
 									<div class="form-group">
 									<label class=" control-label">Department</label>
@@ -202,38 +219,21 @@
 											<label class="control-label">District </label>
 											<input class="form-control" id="e_c_district" name="e_c_district" type="text" placeholder="Enter City" value="<?php echo isset($edit_employee['e_c_district'])?$edit_employee['e_c_district']:''; ?>">
 										</div>
+																				<?php $states = array ('Andhra Pradesh' => 'Andhra Pradesh', 'Arunachal Pradesh' => 'Arunachal Pradesh', 'Assam' => 'Assam', 'Bihar' => 'Bihar', 'Chhattisgarh' => 'Chhattisgarh', 'Goa' => 'Goa', 'Gujarat' => 'Gujarat', 'Haryana' => 'Haryana', 'Himachal Pradesh' => 'Himachal Pradesh', 'Jammu & Kashmir' => 'Jammu & Kashmir', 'Jharkhand' => 'Jharkhand', 'Karnataka' => 'Karnataka', 'Kerala' => 'Kerala', 'Madhya Pradesh' => 'Madhya Pradesh', 'Maharashtra' => 'Maharashtra', 'Manipur' => 'Manipur', 'Meghalaya' => 'Meghalaya', 'Mizoram' => 'Mizoram', 'Nagaland' => 'Nagaland', 'Odisha' => 'Odisha', 'Punjab' => 'Punjab', 'Rajasthan' => 'Rajasthan', 'Sikkim' => 'Sikkim', 'Tamil Nadu' => 'Tamil Nadu', 'Telangana' => 'Telangana', 'Tripura' => 'Tripura', 'Uttarakhand' => 'Uttarakhand','Uttar Pradesh' => 'Uttar Pradesh', 'West Bengal' => 'West Bengal', 'Andaman & Nicobar' => 'Andaman & Nicobar', 'Chandigarh' => 'Chandigarh', 'Dadra and Nagar Haveli' => 'Dadra and Nagar Haveli', 'Daman & Diu' => 'Daman & Diu', 'Delhi' => 'Delhi', 'Lakshadweep' => 'Lakshadweep', 'Puducherry' => 'Puducherry'); ?>
+
 										<div class="form-group">
 											<label class="control-label">State </label>
 												<select class="form-control" id="e_c_state" name="e_c_state">
 												        <option value="">Select State</option>
-														<option value="Andhra Pradesh"<?php if($edit_employee['e_c_state']=='Andhra Pradesh'){ echo "selected"; } ?>>Andhra Pradesh</option>
-														<option value="Arunachal Pradesh"<?php if($edit_employee['e_c_state']=='Arunachal Pradesh'){ echo "selected"; } ?>>Arunachal Pradesh</option>
-														<option value="Assam"<?php if($edit_employee['e_c_state']=='Assam'){ echo "selected"; } ?>>Assam</option>
-														<option value="Bihar"<?php if($edit_employee['e_c_state']=='Bihar'){ echo "selected"; } ?>>Bihar</option>
-														<option value="Chhattisgarh"<?php if($edit_employee['e_c_state']=='Chhattisgarh'){ echo "selected"; } ?>>Chhattisgarh</option>
-														<option value="Goa"<?php if($edit_employee['e_c_state']=='Goa'){ echo "selected"; } ?>>Goa</option>
-														<option value="Gujarat"<?php if($edit_employee['e_c_state']=='Gujarat'){ echo "selected"; } ?>>Gujarat</option>
-														<option value="Haryana"<?php if($edit_employee['e_c_state']=='Haryana'){ echo "selected"; } ?>>Haryana</option>
-														<option value="Himachal Pradesh"<?php if($edit_employee['e_c_state']=='Himachal Pradesh'){ echo "selected"; } ?>>HHimachal Pradesh</option>
-														<option value="Jammu & Kashmir"<?php if($edit_employee['e_c_state']=='Jammu & Kashmir'){ echo "selected"; } ?>>Jammu & Kashmir</option>
-														<option value="Jharkhand"<?php if($edit_employee['e_c_state']=='Jharkhand'){ echo "selected"; } ?>>Jharkhand</option>
-														<option value="Karnataka"<?php if($edit_employee['e_c_state']=='Karnataka'){ echo "selected"; } ?>>Karnataka</option>
-														<option value="Kerala"<?php if($edit_employee['e_c_state']=='Kerala'){ echo "selected"; } ?>>Kerala</option>
-														<option value="Madhya Pradesh"<?php if($edit_employee['e_c_state']=='Madhya Pradesh'){ echo "selected"; } ?>>Madhya Pradesh</option>
-														<option value="Maharashtra"<?php if($edit_employee['e_c_state']=='Maharashtra'){ echo "selected"; } ?>>Maharashtra</option>
-														<option value="Manipur"<?php if($edit_employee['e_c_state']=='Manipur'){ echo "selected"; } ?>>Manipur</option>
-														<option value="Mizoram"<?php if($edit_employee['e_c_state']=='Mizoram'){ echo "selected"; } ?>>Mizoram</option>
-														<option value="Nagaland"<?php if($edit_employee['e_c_state']=='Nagaland'){ echo "selected"; } ?>>Nagaland</option>
-														<option value="Odisha"<?php if($edit_employee['e_c_state']=='Odisha'){ echo "selected"; } ?>>Odisha</option>
-														<option value="Punjab"<?php if($edit_employee['e_c_state']=='Punjab'){ echo "selected"; } ?>>Punjab</option>
-														<option value="Rajasthan"<?php if($edit_employee['e_c_state']=='Rajasthan'){ echo "selected"; } ?>>Rajasthan</option>
-														<option value="Sikkim"<?php if($edit_employee['e_c_state']=='Sikkim'){ echo "selected"; } ?>>Sikkim</option>
-														<option value="Tamil Nadu"<?php if($edit_employee['e_c_state']=='Tamil Nadu'){ echo "selected"; } ?>>Tamil Nadu</option>
-														<option value="Telangana"<?php if($edit_employee['e_c_state']=='Telangana'){ echo "selected"; } ?>>Telangana</option>
-														<option value="Uttarakhand"<?php if($edit_employee['e_c_state']=='Uttarakhand'){ echo "selected"; } ?>>Uttarakhand</option>
-														<option value="Delhi"<?php if($edit_employee['e_c_state']=='Delhi'){ echo "selected"; } ?>>Delhi</option>
-														<option value="Puducherry"<?php if($edit_employee['e_c_state']=='Puducherry'){ echo "selected"; } ?>>Puducherry</option>
-												
+														<?php foreach($states as $key=>$state):
+																if($edit_employee['e_c_state'] == $state):
+																$selected ='selected=selected';
+																else : 
+																$selected = '';
+																endif;
+															 ?>
+															<option value = "<?php echo $state?>" <?php echo $selected;?> ><?php echo $state?></option>
+														<?php endforeach; ?>
 											</select>
 										</div>
 										<div class="checkbox">
@@ -256,40 +256,21 @@
 										</div>
 										<div class="form-group">
 											<label class="control-label">District </label>
-											<input class="form-control" id="e_p_district" name="e_p_district" type="text" placeholder="Enter City"value="<?php echo isset($edit_employee['e_p_district'])?$edit_employee['e_p_district']:''; ?>">
+											<input class="form-control" id="e_p_district" name="e_p_district" type="text" placeholder="Enter District"value="<?php echo isset($edit_employee['e_p_district'])?$edit_employee['e_p_district']:''; ?>">
 										</div>
 										<div class="form-group">
 											<label class="control-label">State </label>
 												<select class="form-control" id="e_p_state" name="e_p_state">
-												 <option value="">Select State</option>
-														<option value="Andhra Pradesh"<?php if($edit_employee['e_p_state']=='Andhra Pradesh'){ echo "selected"; } ?>>Andhra Pradesh</option>
-														<option value="Arunachal Pradesh"<?php if($edit_employee['e_p_state']=='Arunachal Pradesh'){ echo "selected"; } ?>>Arunachal Pradesh</option>
-														<option value="Assam"<?php if($edit_employee['e_p_state']=='Assam'){ echo "selected"; } ?>>Assam</option>
-														<option value="Bihar"<?php if($edit_employee['e_p_state']=='Bihar'){ echo "selected"; } ?>>Bihar</option>
-														<option value="Chhattisgarh"<?php if($edit_employee['e_p_state']=='Chhattisgarh'){ echo "selected"; } ?>>Chhattisgarh</option>
-														<option value="Goa"<?php if($edit_employee['e_p_state']=='Goa'){ echo "selected"; } ?>>Goa</option>
-														<option value="Gujarat"<?php if($edit_employee['e_p_state']=='Gujarat'){ echo "selected"; } ?>>Gujarat</option>
-														<option value="Haryana"<?php if($edit_employee['e_p_state']=='Haryana'){ echo "selected"; } ?>>Haryana</option>
-														<option value="Himachal Pradesh"<?php if($edit_employee['e_p_state']=='Himachal Pradesh'){ echo "selected"; } ?>>HHimachal Pradesh</option>
-														<option value="Jammu & Kashmir"<?php if($edit_employee['e_p_state']=='Jammu & Kashmir'){ echo "selected"; } ?>>Jammu & Kashmir</option>
-														<option value="Jharkhand"<?php if($edit_employee['e_p_state']=='Jharkhand'){ echo "selected"; } ?>>Jharkhand</option>
-														<option value="Karnataka"<?php if($edit_employee['e_p_state']=='Karnataka'){ echo "selected"; } ?>>Karnataka</option>
-														<option value="Kerala"<?php if($edit_employee['e_p_state']=='Kerala'){ echo "selected"; } ?>>Kerala</option>
-														<option value="Madhya Pradesh"<?php if($edit_employee['e_p_state']=='Madhya Pradesh'){ echo "selected"; } ?>>Madhya Pradesh</option>
-														<option value="Maharashtra"<?php if($edit_employee['e_p_state']=='Maharashtra'){ echo "selected"; } ?>>Maharashtra</option>
-														<option value="Manipur"<?php if($edit_employee['e_p_state']=='Manipur'){ echo "selected"; } ?>>Manipur</option>
-														<option value="Mizoram"<?php if($edit_employee['e_p_state']=='Mizoram'){ echo "selected"; } ?>>Mizoram</option>
-														<option value="Nagaland"<?php if($edit_employee['e_p_state']=='Nagaland'){ echo "selected"; } ?>>Nagaland</option>
-														<option value="Odisha"<?php if($edit_employee['e_p_state']=='Odisha'){ echo "selected"; } ?>>Odisha</option>
-														<option value="Punjab"<?php if($edit_employee['e_p_state']=='Punjab'){ echo "selected"; } ?>>Punjab</option>
-														<option value="Rajasthan"<?php if($edit_employee['e_p_state']=='Rajasthan'){ echo "selected"; } ?>>Rajasthan</option>
-														<option value="Sikkim"<?php if($edit_employee['e_p_state']=='Sikkim'){ echo "selected"; } ?>>Sikkim</option>
-														<option value="Tamil Nadu"<?php if($edit_employee['e_p_state']=='Tamil Nadu'){ echo "selected"; } ?>>Tamil Nadu</option>
-														<option value="Telangana"<?php if($edit_employee['e_p_state']=='Telangana'){ echo "selected"; } ?>>Telangana</option>
-														<option value="Uttarakhand"<?php if($edit_employee['e_p_state']=='Uttarakhand'){ echo "selected"; } ?>>Uttarakhand</option>
-														<option value="Delhi"<?php if($edit_employee['e_p_state']=='Delhi'){ echo "selected"; } ?>>Delhi</option>
-														<option value="Puducherry"<?php if($edit_employee['e_p_state']=='Puducherry'){ echo "selected"; } ?>>Puducherry</option>
-												
+												<option value="">Select State</option>
+														<?php foreach($states as $key=>$state):
+																if($edit_employee['e_p_state'] == $state):
+																$selected ='selected=selected';
+																else : 
+																$selected = '';
+																endif;
+															 ?>
+															<option value = "<?php echo $state?>" <?php echo $selected;?> ><?php echo $state?></option>
+														<?php endforeach; ?>
 											</select>
 										</div>
 									</div>
@@ -383,7 +364,7 @@
 							
 								
 								<div class="m-t-20 text-center">
-								<button type="submit" class="btn btn-primary" name="signup" value="Sign up">Create Employee</button>
+								<button type="submit" class="btn btn-primary" name="signup" value="Sign up">Update Employee</button>
 									
 								</div>
 							</form>
@@ -396,9 +377,11 @@
 
 function get_type(val){
 	  
-	  if(val=='8'){
+	  if(val==8){
 		  $('#retur_type_div').hide(); 
-		  $('#e_supervisor').val(''); 
+		  $('#e_supervisor').val('');
+			
+
 	  }else{
 		$('#retur_type_div').show(); 
 

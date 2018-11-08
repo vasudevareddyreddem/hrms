@@ -20,7 +20,10 @@ class Profile extends In_frontend {
 	     $this->load->view('html/employee-details',$data);
 	     $this->load->view('html/footer');
 	     
-   }
+  }else{
+		 $this->session->set_flashdata('loginerror','Please login to continue');
+		 redirect('');
+		} 
 
 		
  }
@@ -34,7 +37,10 @@ public function edit(){
 		 //echo'<pre>';print_r($data);exit;
 	     $this->load->view('html/edit-profile',$data);
 	     $this->load->view('html/footer');  
-   }
+   }else{
+		 $this->session->set_flashdata('loginerror','Please login to continue');
+		 redirect('');
+		} 
 	
 }	
 	public function editpost(){
