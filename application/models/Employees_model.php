@@ -301,6 +301,14 @@ $this->db->select('*')->from('department');
 	
 	
 	
+	/* supervisors  purpose*/
+	public  function get_all_spuervisors(){
+		$this->db->select('e_login_name,e_id')->from('empployee');
+		$this->db->where('role_id',8);
+		return $this->db->get()->result_array();
+	}
+	/* supervisors  purpose*/
+	
  }		
 	
 	

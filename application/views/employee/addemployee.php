@@ -113,9 +113,11 @@
 											<label class="control-label">Supervisor</label>
 											<select class="select" name="e_supervisor" >
 													<option value="">Select Supervisor</option>
-													<option value="A">A</option>
-													<option value="B">B</option>
-													<option value="C">C</option>
+													<?php if(isset($spuervisors) && count($spuervisors)>0){ ?>
+														<?php foreach($spuervisors as $list){ ?>
+															<option value="<?php echo isset($list['e_id'])?$list['e_id']:''; ?>"><?php echo isset($list['e_login_name'])?$list['e_login_name']:''; ?></option>
+														<?php } ?>
+													<?php } ?>
 													
 											</select>
 										</div>
@@ -186,37 +188,21 @@
 											<label class="control-label">District </label>
 											<input class="form-control" id="e_c_district" name="e_c_district" type="text" placeholder="Enter City">
 										</div>
+										<?php $states = array ('Andhra Pradesh' => 'Andhra Pradesh', 'Arunachal Pradesh' => 'Arunachal Pradesh', 'Assam' => 'Assam', 'Bihar' => 'Bihar', 'Chhattisgarh' => 'Chhattisgarh', 'Goa' => 'Goa', 'Gujarat' => 'Gujarat', 'Haryana' => 'Haryana', 'Himachal Pradesh' => 'Himachal Pradesh', 'Jammu & Kashmir' => 'Jammu & Kashmir', 'Jharkhand' => 'Jharkhand', 'Karnataka' => 'Karnataka', 'Kerala' => 'Kerala', 'Madhya Pradesh' => 'Madhya Pradesh', 'Maharashtra' => 'Maharashtra', 'Manipur' => 'Manipur', 'Meghalaya' => 'Meghalaya', 'Mizoram' => 'Mizoram', 'Nagaland' => 'Nagaland', 'Odisha' => 'Odisha', 'Punjab' => 'Punjab', 'Rajasthan' => 'Rajasthan', 'Sikkim' => 'Sikkim', 'Tamil Nadu' => 'Tamil Nadu', 'Telangana' => 'Telangana', 'Tripura' => 'Tripura', 'Uttarakhand' => 'Uttarakhand','Uttar Pradesh' => 'Uttar Pradesh', 'West Bengal' => 'West Bengal', 'Andaman & Nicobar' => 'Andaman & Nicobar', 'Chandigarh' => 'Chandigarh', 'Dadra and Nagar Haveli' => 'Dadra and Nagar Haveli', 'Daman & Diu' => 'Daman & Diu', 'Delhi' => 'Delhi', 'Lakshadweep' => 'Lakshadweep', 'Puducherry' => 'Puducherry'); ?>
+
 										<div class="form-group">
 											<label class="control-label">State </label>
 												<select class="select form-control floating" id="e_c_state" name="e_c_state">
 														<option value="">Select State</option>
-														<option value="Andhra Pradesh">Andhra Pradesh</option>
-														<option value="Arunachal Pradesh">Arunachal Pradesh</option>
-														<option value="Assam">Assam</option>
-														<option value="Bihar">Bihar</option>
-														<option value="Chhattisgarh">Chhattisgarh</option>
-														<option value="Goa">Goa</option>
-														<option value="Gujarat">Gujarat</option>
-														<option value="Haryana">Haryana</option>
-														<option value="Himachal Pradesh">HHimachal Pradesh</option>
-														<option value="Jammu & Kashmir">Jammu & Kashmir</option>
-														<option value="Jharkhand">Jharkhand</option>
-														<option value="Karnataka">Karnataka</option>
-														<option value="Kerala">Kerala</option>
-														<option value="Madhya Pradesh">Madhya Pradesh</option>
-														<option value="Maharashtra">Maharashtra</option>
-														<option value="Manipur">Manipur</option>
-														<option value="Mizoram">Mizoram</option>
-														<option value="Nagaland">Nagaland</option>
-														<option value="Odisha">Odisha</option>
-														<option value="Punjab">Punjab</option>
-														<option value="Rajasthan">Rajasthan</option>
-														<option value="Sikkim">Sikkim</option>
-														<option value="Tamil Nadu">Tamil Nadu</option>
-														<option value="Telangana">Telangana</option>
-														<option value="Uttarakhand">Uttarakhand</option>
-														<option value="Delhi">Delhi</option>
-														<option value="Puducherry">Puducherry</option>
+														<?php foreach($states as $key=>$state):
+																if($norma_details['state'] == $state):
+																$selected ='selected=selected';
+																else : 
+																$selected = '';
+																endif;
+															 ?>
+															<option value = "<?php echo $state?>" <?php echo $selected;?> ><?php echo $state?></option>
+														<?php endforeach; ?>
 													</select>
 											
 										</div>
@@ -249,34 +235,16 @@
 											<label class="control-label">State </label>
 												<select class="form-control" id="e_p_state" name="e_p_state">
                                                   <option value="">Select State</option>
-														<option value="Andhra Pradesh">Andhra Pradesh</option>
-														<option value="Arunachal Pradesh">Arunachal Pradesh</option>
-														<option value="Assam">Assam</option>
-														<option value="Bihar">Bihar</option>
-														<option value="Chhattisgarh">Chhattisgarh</option>
-														<option value="Goa">Goa</option>
-														<option value="Gujarat">Gujarat</option>
-														<option value="Haryana">Haryana</option>
-														<option value="Himachal Pradesh">HHimachal Pradesh</option>
-														<option value="Jammu & Kashmir">Jammu & Kashmir</option>
-														<option value="Jharkhand">Jharkhand</option>
-														<option value="Karnataka">Karnataka</option>
-														<option value="Kerala">Kerala</option>
-														<option value="Madhya Pradesh">Madhya Pradesh</option>
-														<option value="Maharashtra">Maharashtra</option>
-														<option value="Manipur">Manipur</option>
-														<option value="Mizoram">Mizoram</option>
-														<option value="Nagaland">Nagaland</option>
-														<option value="Odisha">Odisha</option>
-														<option value="Punjab">Punjab</option>
-														<option value="Rajasthan">Rajasthan</option>
-														<option value="Sikkim">Sikkim</option>
-														<option value="Tamil Nadu">Tamil Nadu</option>
-														<option value="Telangana">Telangana</option>
-														<option value="Uttarakhand">Uttarakhand</option>
-														<option value="Delhi">Delhi</option>
-														<option value="Puducherry">Puducherry</option>
-											</select>
+														<?php foreach($states as $key=>$state):
+																if($norma_details['state'] == $state):
+																$selected ='selected=selected';
+																else : 
+																$selected = '';
+																endif;
+															 ?>
+															<option value = "<?php echo $state?>" <?php echo $selected;?> ><?php echo $state?></option>
+														<?php endforeach; ?>
+											   </select>
 											
 										</div>
 									</div>
