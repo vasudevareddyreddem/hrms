@@ -44,10 +44,11 @@ public function __construct()
  	 'message'=> $message,
 );
   $status=$this->Chat_model->senddata($data);
+  $data['datenow'] = date('Y-m-d h:i:s a', time());
 
 }
  
-echo json_encode($status);exit; 
+echo json_encode($data);exit; 
 
 }
 

@@ -365,6 +365,8 @@ $(document).on('click','.dynmsg',function(e){
                     
                     success: function (result) {
                     $('#msg').val('');
+                    alert(result.datenow);
+                    $(".chat-time:last").append(result.datenow);
                          
                                            }
                     ,
