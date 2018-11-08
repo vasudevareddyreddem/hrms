@@ -53,7 +53,7 @@ class Notifications extends In_frontend {
 				}
 	}
 	
-	
+
 	
 	
 	

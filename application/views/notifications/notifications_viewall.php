@@ -33,7 +33,7 @@
     .panel-title > a {
         display: block;
         padding: 10px;
-        text-decoration: none;
+        text-decoration: none;gftjhnfgj
     }
 
     .more-less {
