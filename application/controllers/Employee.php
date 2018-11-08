@@ -1645,7 +1645,36 @@ public function trackdetails(){
    }
 
   }
+public function assignwork(){
+	   
+	  if($this->session->userdata('hrmsdetails'))
+		{	
+	     $this->load->view('employee/assign-work');
+	     $this->load->view('html/footer');   
+   }
 
+  }
+public function workdistributionlist(){
+	   
+	  if($this->session->userdata('hrmsdetails'))
+		{	
+	     $this->load->view('employee/work-distribution-list');
+	     $this->load->view('html/footer');   
+   }
+
+  }
+    
+    
+    
+public function leavepolicy(){
+	   
+	  if($this->session->userdata('hrmsdetails'))
+		{	
+	     $this->load->view('employee/leave-policy');
+	     $this->load->view('html/footer');   
+   }
+
+  }
   
   
   

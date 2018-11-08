@@ -36,6 +36,7 @@
 				<a id="mobile_btn" class="mobile_btn pull-left" href="#sidebar"><i class="fa fa-bars" aria-hidden="true"></i></a>
 				<ul class="nav navbar-nav navbar-right user-menu pull-right">
 				 <?php if(isset($employee_leaves_list) && count($employee_leaves_list)>0){   ?>
+				 <?php if($userdetails['role_id']==2){ ?>
 					<li class="dropdown hidden-xs">
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-bell-o"></i> <span class="badge bg-purple pull-right" id="notification_count"><?php if(isset($notification_list) && count($notification_list)>0){   if($notification_count['count']!=0){ echo $notification_count['count']; } } ?></span></a>
 						<div class="dropdown-menu notifications">
@@ -47,7 +48,7 @@
 								<?php $cnt=1;foreach($employee_leaves_list as $lis){ ?>
 					              <?php if($cnt<=5){ ?>
 								<li class="media notification-message">
-								<?php if($userdetails['role_id']==2){ ?>
+								
 							<a onclick="opennotification(<?php echo $lis['l_id']; ?>);"  data-target="#exampleModalLong">
 											
 												<div class="media-left">
@@ -61,7 +62,7 @@
 											</div>
 										</a>
 									
-								<?php }?>
+								
 						 </li> 
 						  
 					  <?php } ?>
@@ -76,6 +77,7 @@
 						</div>
 						
 						 <?php } ?>
+						 <?php }?>
 					</li>
 					
 					
@@ -123,7 +125,10 @@
 							<?php }else{ ?>
 							 <img src="<?php echo base_url();?>assets/vendor/img/user-06.jpg" class="img-circle" width="60" alt="User Image" />
 							<?php } ?>
+							<span class="status online"></span></span>
+							<span><?php echo $userdetails['e_login_name']; ?></span>
 							<?php } ?>
+							
 						</a>
 						<ul class="dropdown-menu">
 							<li><a href="<?php echo base_url('profile');?>">My Profile</a></li>
