@@ -274,17 +274,17 @@
 
                             if(item.login_status==1){
                             	if(item.cnt==null){
-                               val=val+'<li><button id="'+item.e_id+'" class="users btn-block">'+item.e_f_name+'<span class="pull-right"></span><span class="status online pull-right"></span></button></li>';
+                               val=val+'<li><a id="'+item.e_id+'" class="users btn-block">'+item.e_f_name+'<span class="pull-right"></span><span class="status online pull-right"></span></a></li>';
                            }
                            else{
-                           	val=val+'<li><button id="'+item.e_id+'" class="users btn-block">'+item.e_f_name+'<span class="pull-right">'+item.cnt+'</span><span class="status online pull-right"></span></button></li>';
+                           	val=val+'<li><a id="'+item.e_id+'" class="users btn-block">'+item.e_f_name+'<span class="pull-right">'+item.cnt+'</span><span class="status online pull-right"></span></a></li>';
 
                            }
 
 
                             }
                             else{
-                            	val=val+'<li><button id="'+item.e_id+'" class="users btn-block">'+item.e_f_name+'</button></li>';
+                            	val=val+'<li><a id="'+item.e_id+'" class="users btn-block">'+item.e_f_name+'</a></li>';
                             }
 
 
@@ -383,8 +383,8 @@ $(document).on('click','.dynmsg',function(e){
       });
 //change the user
  
-$(document).on('click','.users',function(){
-    	// var lastObj = $(this);
+$(document).on('click','.users',function(e){
+    	e.preventDefault();
        val=$(this).attr("id");
        $(this).children(".pull-right").empty();
      //    alert('kdkd');

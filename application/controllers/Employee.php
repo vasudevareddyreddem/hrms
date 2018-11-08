@@ -1607,7 +1607,7 @@ $this->Chat_model->read_status_change($eid,$rid);
           }
 
           
-          $data['emplist']=$this->Chat_model->emp_det($eid);
+          $data['emplist']=$this->Chat_model->updates_for_users($eid,$rid);
          
          
               //echo'<pre>';print_r($data);exit;
