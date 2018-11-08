@@ -6,7 +6,7 @@
 							<h4 class="page-title">Leave Request</h4>
 						</div>
 						<div class="col-xs-4 text-right m-b-30">
-							<a href="<?php echo base_url('employee/leave');?>" class="btn btn-primary rounded pull-right" ><i class="fa fa-plus"></i> Add Leave</a>
+							<a href="<?php echo base_url('employee/employeeleave');?>" class="btn btn-primary rounded pull-right" ><i class="fa fa-plus"></i> Add Leave</a>
 						</div>
 					</div>
 					
@@ -23,18 +23,14 @@
 											<th>No of Days</th>
 											<th>Reason</th>
 											<th>Status</th>
-											<th  class="text-center">Actions</th>
 										</tr>
 									</thead>
 									<tbody>
-									
-									
-									
-									<?php foreach($employee_leaves_list as $list){ ?>
-									
+									<?php if(isset($employee_leaves_list) && count($employee_leaves_list)>0){ ?>
+									<?php foreach($employee_leaves_list as $list){?>
 										<tr>
 										
-										 <td>
+										  <td>
 											<a href="#" class="avatar"><?php echo substr($list['e_login_name'],0,1);?></a>
 											<h2><a href="#"><?php echo $list['e_login_name'];?><span><?php echo $list['role'];?></span></a></h2>
 											</td>
@@ -43,25 +39,16 @@
 											<td><?php echo $list['to_date'];?></td>
 											<td><?php echo $list['number_of_days'];?></td>
 											<td><?php echo $list['leaves_reason'];?></td>
-											<td><?php  if($list['status']==1){  echo "accept";}else if($list['status']==2){  echo "reject";}else{  echo "Pending"; } ?></td>
+											<td><?php if($list['status']==0){echo "Pending";}else if($list['status']==1){ echo "Accepted";}else{  echo "Rejected"; }?></td>
 
-												<td>
-											<a class="btn btn-success btn-block" href="javascript;void(0);" onclick="admindeactive1('<?php echo base64_encode(htmlentities($list['l_id'])).'/'.base64_encode(htmlentities($list['status']));?>');adminstatus1('<?php echo $list['status'];?>')" href="javascript:void(0)" data-toggle="modal" data-target="#myModal2">
-
-                                                                Accept</a>
-                                                <a class= "btn btn-danger btn-block" href="javascript;void(0);" onclick="admindeactive2('<?php echo base64_encode(htmlentities($list['l_id'])).'/'.base64_encode(htmlentities($list['status']));?>');adminstatus('<?php echo $list['status'];?>')" href="javascript:void(0)" data-toggle="modal" data-target="#myModal">
-                                                Reject</a>
-    
-                                                   </td>             
-												
-                                          
 										</tr>
-									
-									
-									<?php }  ?>
+	
+									<?php }?>
+										
 									</tbody>
-									
-								
+									<?php } else{ ?>
+								<div>No data available</div>
+								<?php } ?>
 								</table>
 							</div>
 						</div>

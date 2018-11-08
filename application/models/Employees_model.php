@@ -258,19 +258,48 @@ $this->db->select('*')->from('department');
 	$this->db->insert('leaves',$data);
 	return $this->db->insert_id();		
 	}
-	public function leaves_list_details(){
-	$this->db->select('*')->from('leaves');
-	$this->db->where('leaves.status!=', 2);
-	return $this->db->get()->result_array();	
-	}
+	
+	
+	
 	public function update_leave_list_details_status($l_id,$data){
 	$this->db->where('l_id',$l_id);
     return $this->db->update("leaves",$data);		
 	}
-	public function leaves_list_details_data(){
-	$this->db->select('*')->from('leaves');
+	
+	public function employee_list_data(){
+	$this->db->select('empployee.e_id,empployee.e_login_name')->from('empployee');
+	 $this->db->where('empployee.role_id !=',1);
+	 $this->db->where('empployee.status',1);
 	return $this->db->get()->result_array();	
 	}
+	/* employee leaves */
+	
+	
+	public function employee_leaves_list_details($e_id){
+	$this->db->select('leaves.*,empployee.e_login_name,role.role')->from('leaves');
+	$this->db->join('empployee', 'empployee.e_id = leaves.emp_id', 'left');
+	$this->db->join('role', 'role.r_id = empployee.role_id', 'left');
+
+	$this->db->where('emp_id',$e_id);
+	return $this->db->get()->result_array();	
+	}
+	public function get_all_employee_leaves_list_details(){
+	$this->db->select('leaves.*,empployee.e_login_name,role.role')->from('leaves');
+	$this->db->join('empployee', 'empployee.e_id = leaves.emp_id', 'left');
+	$this->db->join('role', 'role.r_id = empployee.role_id', 'left');
+		$this->db->where('leaves.status',0);
+	return $this->db->get()->result_array();	
+	}
+	
+	public function leaves_list_details_data(){
+	$this->db->select('leaves.*,empployee.e_login_name,role.role')->from('leaves');
+	$this->db->join('empployee', 'empployee.e_id = leaves.emp_id', 'left');
+	$this->db->join('role', 'role.r_id = empployee.role_id', 'left');
+		$this->db->where('leaves.status !=',0);
+	return $this->db->get()->result_array();	
+	}
+	
+	
 	
  }		
 	

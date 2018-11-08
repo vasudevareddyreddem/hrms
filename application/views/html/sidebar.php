@@ -2,6 +2,7 @@
     <div class="sidebar-inner slimscroll">
         <div id="sidebar-menu" class="sidebar-menu">
             <ul>
+			<?php if($userdetails['role_id']==2){ ?>
                 <li class="active">
                     <a href="<?php echo base_url('dashboard');?>">Dashboard</a>
                 </li>
@@ -69,12 +70,31 @@
                 <li class="">
                     <a href="<?php echo base_url('employee/leavepolicy'); ?>"><span>Leave Policy</span> </a>
                 </li>
+				<li class="nav-item  ">
+                    <a href="<?php echo base_url('dashboard/logout'); ?>" class="nav-link "> <i class="material-icons"></i>
+                        <span class="title">Logout</span> <span class="arrow"></span>
+                    </a>
+                </li>
+				
+			<?php } else if($userdetails['role_id']==3 ||$userdetails['role_id']==8){ ?>
+			  <li class="active">
+                    <a href="<?php echo base_url('dashboard');?>">Dashboard</a>
+                </li>
+
+			 <li class="submenu">
+                    <a href="#"><span>Employee Management</span> <span class="menu-arrow"></span></a>
+                    <ul class="list-unstyled" style="display: none;">
+                        
+                        <li><a href="<?php echo base_url('employee/employeeleaverequests');?>"><span>Leave Requests</span> <span class="badge bg-primary pull-right">1</span></a></li>
+                    </ul>
+                </li>
+			
                 <li class="nav-item  ">
                     <a href="<?php echo base_url('dashboard/logout'); ?>" class="nav-link "> <i class="material-icons"></i>
                         <span class="title">Logout</span> <span class="arrow"></span>
                     </a>
                 </li>
-
+			<?php }?>
             </ul>
         </div>
     </div>

@@ -27,15 +27,35 @@ class User extends CI_Controller
 		{	 
 		
 	     $this->load->view('html/login'); 
-	}
-  
+	     }else{
+			$this->session->set_flashdata('loginerror',"Invalid Email Address or Password!");
+			redirect('');
+		}
 	}
 
 	public function loginpost(){
+		
+			
 		$post=$this->input->post();
 		$logindetails = $this->User_model->login_details($post['e_email_work'],md5($post['e_password']));
 		//echo'<pre>';print_r($logindetails);exit;
 		if(count($logindetails)>0){
+		$login= $this->User_model->check_login($logindetails['e_id']);
+             //echo'<pre>';print_r($login);exit;
+			
+		$update_data=array(
+				'login_status'=>1
+				 );
+			//echo'<pre>';print_r($update_data);exit;
+		
+				 $upadte=$this->User_model->update_sataus_details_log($login['e_id'],$update_data);
+				 
+				 //echo $this->db->last_query();exit;
+				//echo'<pre>';print_r($logindatasave);exit;
+				
+		
+		
+		
 			$checklogin= $this->User_model->check_today_login($logindetails['e_id'],date('Y-m-d'));
 					//echo'<pre>';print_r($checklogin);exit;
 				$this->session->set_userdata('hrmsdetails',$logindetails);
@@ -65,13 +85,16 @@ class User extends CI_Controller
 		}
 		
 	}
+
  public function forgot(){
 	 if(!$this->session->userdata('hrmsdetails'))
 		{	 
 		 
 	     $this->load->view('html/forget-password');   
-	} 
-		
+	      }else{
+		 $this->session->set_flashdata('error',"Please login and continue");
+		 redirect('');  
+	   }
 }
 public function forgotpost(){
 		$post=$this->input->post();
@@ -101,8 +124,7 @@ public function forgotpost(){
 				redirect('user');	
 			}
 		
-	}
-
+}
  
 
 }

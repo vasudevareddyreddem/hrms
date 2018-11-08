@@ -18,22 +18,10 @@
 							<h4 class="modal-title">Add Leave Request</h4>
 						</div>
 						<div class="modal-body">
-							<form id="defaultForm" method="post" action="<?php echo base_url('employee/addleave');?>" enctype="multipart/form-data">
-							<div class="form-group">
-									<label>Employee <span class="text-danger">*</span></label>
-									<select class="select" id="employee" name="employee">
-										<option value="">Select Leave Type</option>
-										<?php if(isset($employee_data) && count($employee_data)>0){ ?>
-									<?php foreach($employee_data as $list){ ?>
-										<option value="<?php echo $list['e_id']; ?>"><?php echo $list['e_login_name']; ?></option>
-										
-									<?php } ?>
-								<?php } ?>
-									</select>
-								</div>
+							<form id="defaultForm" method="post" action="<?php echo base_url('employee/employeeaddpost'); ?>" enctype="multipart/form-data">
 								<div class="form-group">
 									<label>Leave Type <span class="text-danger">*</span></label>
-									<select class="select" id="leave_type" name="leave_type">
+									<select class="select" id="l_type" name="l_type">
 										<option value="">Select Leave Type</option>
 										<option value="Casual Leave">Casual Leave</option>
 										<option value="Medical Leave">Medical Leave</option>
@@ -42,20 +30,20 @@
 								</div>
 								<div class="form-group">
 									<label>From <span class="text-danger">*</span></label>
-									<div class="cal-icon"><input class="form-control datetimepicker" type="text" name="from_date"></div>
+									<div class="cal-icon"><input class="form-control datetimepicker" type="text" name="f_date"></div>
 								</div>
 								<div class="form-group">
 									<label>To <span class="text-danger">*</span></label>
-									<div class="cal-icon"><input class="form-control datetimepicker" type="text" name="to_date"></div>
+									<div class="cal-icon"><input class="form-control datetimepicker" type="text" name="t_date"></div>
 								</div>
 								<div class="form-group">
 									<label>Number of days <span class="text-danger">*</span></label>
-									<input class="form-control"  type="text" name="number_of_days">
+									<input class="form-control"  type="text" name="no_days">
 								</div>
 								
 								<div class="form-group">
 									<label>Leave Reason <span class="text-danger">*</span></label>
-									<textarea rows="4" cols="5" class="form-control" name="leaves_reason"></textarea>
+									<textarea rows="4" cols="5" class="form-control" name="l_reason"></textarea>
 								</div>
 								<div class="m-t-20 text-center">
 								<button type="submit" class="btn btn-primary" name="signup" value="Sign up">Send Leave Request</button>
@@ -77,22 +65,14 @@ $(document).ready(function() {
    $('#defaultForm').bootstrapValidator({
 //       
         fields: {
-			employee:{
-			validators: {
-					notEmpty: {
-						message: 'Employee   is required'
-					}
-				}
-            },
-			
-			leave_type:{
+			l_type:{
 			validators: {
 					notEmpty: {
 						message: 'Leave Type   is required'
 					}
 				}
             },
-			from_date: {
+			f_date: {
                validators: {
 					notEmpty: {
 						message: 'From Date is required'
@@ -104,7 +84,7 @@ $(document).ready(function() {
 				
 				}
             },
-			to_date: {
+			t_date: {
                validators: {
 					notEmpty: {
 						message: 'To  Date is required'
@@ -116,7 +96,7 @@ $(document).ready(function() {
 				
 				}
             },
-			number_of_days:{
+			no_days:{
            validators: {
 					notEmpty: {
 						message: 'Number of days is required'
@@ -126,14 +106,14 @@ $(document).ready(function() {
    					}
 				}
             },
-			remaining_leaves:{
+			r_leaves:{
            validators: {
 					notEmpty: {
 						message: 'Remaining Leaves is required'
 					}
 				}
             },
-			leaves_reason:{
+			l_reason:{
 			validators: {
 					notEmpty: {
 						message: 'Leave Reason   is required'

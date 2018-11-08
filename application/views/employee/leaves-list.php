@@ -31,8 +31,8 @@
 									<?php foreach($leaves as $list){ ?>
 										<tr>
 										<td>
-											<a href="#" class="avatar"><?php echo substr($userdetails['e_login_name'],0,1);?></a>
-											<h2><a href="#"><?php echo $userdetails['e_login_name'];?><span><?php echo $userdetails['role'];?></span></a></h2>
+											<a href="#" class="avatar"><?php echo substr($list['e_login_name'],0,1);?></a>
+											<h2><a href="#"><span><?php echo $list['e_login_name'];?></span></a></h2>
 											</td>
 											<td><?php echo $list['leave_type'];?></td>
 											<td><?php echo $list['from_date'];?></td>
