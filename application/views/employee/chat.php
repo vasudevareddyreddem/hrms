@@ -6,7 +6,7 @@
 							<div class="chat-window">
 								<div class="chat-header">
 									<div class="navbar">
-										<div class="user-details">
+										<!-- <div class="user-details">
 											<div class="pull-left user-img m-r-10">
 												<a href="profile.html" title="Mike Litorus"><img src="assets/img/user.jpg" alt="" class="w-40 img-circle"><span class="status online"></span></a>
 											</div>
@@ -14,7 +14,7 @@
 												<a href="profile.html" title="Mike Litorus"><span class="font-bold">Mike Litorus</span> <i class="typing-text">Typing...</i></a>
 												<span class="last-seen">Last seen today at 7:50 AM</span>
 											</div>
-										</div>
+										</div> -->
 										<ul class="nav navbar-nav pull-right chat-menu">
 											<li class="dropdown">
 												<a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-cog"></i></a>
@@ -44,9 +44,9 @@
 													<?php if($status=='yes'){foreach($chatdata as $chat):
 													 ?>
 													 <div class='msgdiv'>
-												<div class="chat-line">
+												<!-- <div class="chat-line">
 														<span class="chat-date">October 8th, 2015</span>
-													</div>
+													</div> -->
 													<div class="chat <?php if($chat->sender_id==$sender){
 														echo 'chat-right';}else{echo 'chat-left';
 
@@ -114,6 +114,7 @@
 												<a href="edit-profile.html" class="btn btn-primary edit-btn"><i class="fa fa-pencil"></i></a><?php }?>
 											</div>
 											<div class="chat-profile-info">
+												<?php if($status=='yes'){?>
 												<ul class="user-det-list">
 													<li>
 														<span>Username:</span>
@@ -137,6 +138,7 @@
 														<?php }?>
 													</li>
 												</ul>
+												<?php }?>
 											</div>
 											<div class="tabbable">
 												<ul class="nav nav-tabs nav-tabs-solid nav-justified m-b-0">
@@ -204,8 +206,33 @@
 				
 				
 				
-				
-            </div>
+		</div>
+		<script type="text/javascript">		 
+			function recv_data()
+{
+	$.ajax({
+                    type: "GET",    //GET or POST or PUT or DELETE verb
+                    url: 'http://localhost/hrms/Chat/getmessages',     // Location of the service
+                    data: '',     //Data sent to server
+                    dataType: "json",   //Expected data format from server
+                    
+                    success: function (result) {
+                    	console.log(result.lists);
+                    	//alert('kkk');
+                    	if(result.status=='yes'){
+                    	
+                    }
+  }
+                    ,
+                    error: function() { 
+                    	
+                    } 
+                });
+
+};
+			
+
+		</script>
 
 <script type="text/javascript">
 	$(document).ready(function() {
@@ -218,8 +245,55 @@
                     dataType: "json",   //Expected data format from server
                     
                     success: function (result) {
-                    	console.log(result.lists);
-                    	//alert('kkk');
+                    	console.log(result.upmsg);
+                    	
+                    	//this code for login users 
+                    	// if(result.ustatus=1){
+
+                    	// 	$("#myUL").empty();
+                    	// 	val='';
+                    	// $.each(result.logusers, function(i, item) {
+
+                     //        if(item.login_status==1){
+                     //           val=val+'<li><button id="'+item.e_id+'" class="users btn-block">'+item.e_f_name+'<span class="pull-right">2</span><span class="status online pull-right"></span></button></li>';
+                     //        }
+                     //        else{
+                     //        	val=val+'<li><button id="'+item.e_id+'" class="users btn-block">'+item.e_f_name+'</button></li>';
+                     //        }
+
+
+                    	// });
+                    	// $("#myUL").html(val);
+
+                    	// }
+                    	if(result.mstatus==1){
+                    		alert('ok working');
+                    			$("#myUL").empty();
+                    		val='';
+                    	$.each(result.upmsg, function(i, item) {
+
+                            if(item.login_status==1){
+                            	if(item.cnt==null){
+                               val=val+'<li><button id="'+item.e_id+'" class="users btn-block">'+item.e_f_name+'<span class="pull-right"></span><span class="status online pull-right"></span></button></li>';
+                           }
+                           else{
+                           	val=val+'<li><button id="'+item.e_id+'" class="users btn-block">'+item.e_f_name+'<span class="pull-right">'+item.cnt+'</span><span class="status online pull-right"></span></button></li>';
+
+                           }
+
+
+                            }
+                            else{
+                            	val=val+'<li><button id="'+item.e_id+'" class="users btn-block">'+item.e_f_name+'</button></li>';
+                            }
+
+
+                    	});
+                    	$("#myUL").html(val);
+
+
+
+                    	}
                     	if(result.status=='yes'){
                     	$.each(result.lists, function(i, item) {
                     		//console.log(item.message);
@@ -227,7 +301,7 @@
                     		var el = $('<div> </div>');
 
       //newdiv=$('.chats').append(divchat);
-   newdiv=el.html('<div class="chat-line"><span class="chat-date">October 8th, 2015</span></div><div class="chat chat-left"><div class="chat-body"><div class="chat-bubble"><div class="chat-content"><p></p><span class="chat-time"></span></div><div class="chat-action-btns"><ul><li><a href="#" class="share-msg" title="Share"><i class="fa fa-share-alt"></i></a></li><li><a href="#" class="edit-msg" title="Edit"><i class="fa fa-pencil"></i></a></li><li><a href="#" class="del-msg" title="Delete"><i class="fa fa-trash-o"></i></a></li></ul></div></div></div></div>');
+   newdiv=el.html('<div class="chat chat-left"><div class="chat-body"><div class="chat-bubble"><div class="chat-content"><p></p><span class="chat-time"></span></div><div class="chat-action-btns"><ul><li><a href="#" class="share-msg" title="Share"><i class="fa fa-share-alt"></i></a></li><li><a href="#" class="edit-msg" title="Edit"><i class="fa fa-pencil"></i></a></li><li><a href="#" class="del-msg" title="Delete"><i class="fa fa-trash-o"></i></a></li></ul></div></div></div></div>');
       //var parent = lastObj.parent();
       $('.chats').append(newdiv);
       $("p:last").append(item.message);
@@ -240,7 +314,7 @@
   }
                     ,
                     error: function() { 
-                    	alert('error from server side');
+                    	//alert('error from server side');
 
                     } 
                 });
@@ -262,7 +336,7 @@ $(document).on('click','.dynmsg',function(e){
    divchat='<div></div>';
                     		var el = $('<div></div>');
 
-     newdiv= el.html('<div class="chat-line"><span class="chat-date">October 8th, 2015</span></div><div class="chat chat-right"><div class="chat-body"><div class="chat-bubble"><div class="chat-content"><p></p><span class="chat-time"></span></div><div class="chat-action-btns"><ul><li><a href="#" class="share-msg" title="Share"><i class="fa fa-share-alt"></i></a></li><li><a href="#" class="edit-msg" title="Edit"><i class="fa fa-pencil"></i></a></li><li><a href="#" class="del-msg" title="Delete"><i class="fa fa-trash-o"></i></a></li></ul></div></div></div></div>');
+     newdiv= el.html('</div><div class="chat chat-right"><div class="chat-body"><div class="chat-bubble"><div class="chat-content"><p></p><span class="chat-time"></span></div><div class="chat-action-btns"><ul><li><a href="#" class="share-msg" title="Share"><i class="fa fa-share-alt"></i></a></li><li><a href="#" class="edit-msg" title="Edit"><i class="fa fa-pencil"></i></a></li><li><a href="#" class="del-msg" title="Delete"><i class="fa fa-trash-o"></i></a></li></ul></div></div></div></div>');
       $('.chats').append(newdiv);
       //var parent = lastObj.parent();
       //var prev=$('#message').closest("p");
@@ -291,11 +365,13 @@ $(document).on('click','.dynmsg',function(e){
                     
                     success: function (result) {
                     $('#msg').val('');
+                    alert(result.datenow);
+                    $(".chat-time:last").append(result.datenow);
                          
                                            }
                     ,
                     error: function() { 
-                    	alert('error from server side');
+                    	//alert('error from server side');
 
                     } 
                 });
@@ -307,9 +383,10 @@ $(document).on('click','.dynmsg',function(e){
       });
 //change the user
  
-$(".users").on('click',function(){
+$(document).on('click','.users',function(){
     	// var lastObj = $(this);
        val=$(this).attr("id");
+       $(this).children(".pull-right").empty();
      //    alert('kdkd');
         $.ajax({
                     type: "GET",    //GET or POST or PUT or DELETE verb
@@ -323,7 +400,7 @@ $(".users").on('click',function(){
                                            }
                     ,
                     error: function() { 
-                    	alert('error from server side');
+                    	//alert('error from server side');
 
                     } 
                 });

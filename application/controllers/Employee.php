@@ -1586,14 +1586,17 @@ public function chat(){
 
     $data['rec_det']=$this->Chat_model->recv_details($rid);
 
-         }else{
+         }
+         else{
          	$rid=$lastdata->sender_id;
           	 $this->session->set_userdata('recv',$rid);
           	$data['rec_det']=$this->Chat_model->recv_details($rid);
-}
+            }
 
 $data['chatdata']=$this->Chat_model->last_chat($eid,$rid);
+$this->Chat_model->read_status_change($eid,$rid);
 }
+
 
          //$data['rec_det']=$this->Chat_model->last_chat_rec_id($eid);
         
@@ -1612,7 +1615,7 @@ $data['chatdata']=$this->Chat_model->last_chat($eid,$rid);
           
           //$this->session->set_userdata('recv',$rid);
       
-          echo'<pre>';print_r($data);exit;
+          //echo'<pre>';print_r($data);exit;
 
  
 	     $this->load->view('employee/sidebar-chat',$data);
