@@ -6,7 +6,7 @@
 							<div class="chat-window">
 								<div class="chat-header">
 									<div class="navbar">
-										<div class="user-details">
+										<!-- <div class="user-details">
 											<div class="pull-left user-img m-r-10">
 												<a href="profile.html" title="Mike Litorus"><img src="assets/img/user.jpg" alt="" class="w-40 img-circle"><span class="status online"></span></a>
 											</div>
@@ -14,7 +14,7 @@
 												<a href="profile.html" title="Mike Litorus"><span class="font-bold">Mike Litorus</span> <i class="typing-text">Typing...</i></a>
 												<span class="last-seen">Last seen today at 7:50 AM</span>
 											</div>
-										</div>
+										</div> -->
 										<ul class="nav navbar-nav pull-right chat-menu">
 											<li class="dropdown">
 												<a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-cog"></i></a>
@@ -42,9 +42,9 @@
 												<div class="chats">
 													<?php foreach($userchat as $chat):
 													 ?>
-												<div class="chat-line">
-														<span class="chat-date">October 8th, 2015</span>
-													</div>
+												 <!-- <div class="chat-line">
+														<span class="chat-date">October 8th, 2015</span> 
+													</div> -->
 													<div class="chat <?php if($chat->sender_id==$sender){
 														echo 'chat-right';}else{echo 'chat-left';
 
