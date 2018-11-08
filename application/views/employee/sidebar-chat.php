@@ -40,7 +40,7 @@ s<style>
 						<ul id="myUL">
               <?php foreach($emplist as $emp):?>
 
-						   <li><a href="#"><?php echo $emp->e_f_name?><?php if( $emp->login_status==1){?><span class="status online pull-right"></span><?php }?></a></li>
+						   <li><button id="<?php echo $emp->e_id;?>" class='users'><?php echo $emp->e_f_name?><?php if( $emp->login_status==1){?><span class="  pull-right">2</span><span class="status online pull-right"></span><?php }?></button></li>
              <?php endforeach ?>
 ;
 						<!--  <li><a href="#">Agnes</a></li>

@@ -88,7 +88,13 @@
                         <li><a href="<?php echo base_url('employee/employeeleaverequests');?>"><span>Leave Requests</span> <span class="badge bg-primary pull-right">1</span></a></li>
                     </ul>
                 </li>
-			
+			 <li class="submenu">
+                    <a href="#"><span>Employee communication </span> <span class="menu-arrow"></span></a>
+                    <ul class="list-unstyled" style="display: none;">
+                        <li><a href="<?php echo base_url('employee/chat');?>">Chat </a></li>
+
+                    </ul>
+                </li>
                 <li class="nav-item  ">
                     <a href="<?php echo base_url('dashboard/logout'); ?>" class="nav-link "> <i class="material-icons"></i>
                         <span class="title">Logout</span> <span class="arrow"></span>
