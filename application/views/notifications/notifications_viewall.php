@@ -16,38 +16,26 @@
                                 <tr>
                                     <th>Employee Name</th>
                                     <th>Message</th>
-                                    <th>Date</th>
+                                    <th>Created at</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody>
+                             
+                               <?php foreach($notification_view as $list){?>
                                 <tr>
-                                    <td>XXXXXXX</td>
-                                    <td>xxxxxxxxxxxxxxxx</td>
-                                    <td>Nov 6</td>
+                                     <td>
+											<a href="#" class="avatar"><?php echo substr($list['e_login_name'],0,1);?></a>
+											<h2><a href="#"><span><?php echo $list['e_login_name'];?></span></a></h2>
+											</td>
+                                    <td><?php echo $list['leave_type']; ?></td>
+                                    <td><?php echo $list['created_at']; ?></td>
                                     <td>
-                                        <a class="btn btn-sm btn-warning" href="#" data-toggle="tooltip" title="Edit"><i class="fa fa-reply"></i></a>
-                                        <a href="#" data-toggle="tooltip" title="Delete"><i class="fa fa-trash btn btn-danger"></i></a>
+                                <a href="<?php echo base_url('notifications/delete/'.base64_encode($list['l_id']));?>" data-toggle="tooltip"  title="Delete"><i class="fa fa-trash btn btn-danger"></i></a>
                                     </td>
                                 </tr>
-                                <tr>
-                                    <td>XXXXXXX</td>
-                                    <td>xxxxxxxxxxxxxxxx</td>
-                                    <td>Nov 6</td>
-                                    <td>
-                                        <a class="btn btn-sm btn-warning" href="#" data-toggle="tooltip" title="Edit"><i class="fa fa-reply"></i></a>
-                                        <a href="#" data-toggle="tooltip" title="Delete"><i class="fa fa-trash btn btn-danger"></i></a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>XXXXXXX</td>
-                                    <td>xxxxxxxxxxxxxxxx</td>
-                                    <td>Nov 6</td>
-                                    <td>
-                                        <a class="btn btn-sm btn-warning" href="#" data-toggle="tooltip" title="Edit"><i class="fa fa-reply"></i></a>
-                                        <a href="#" data-toggle="tooltip" title="Delete"><i class="fa fa-trash btn btn-danger"></i></a>
-                                    </td>
-                                </tr>
+								
+							   <?php }?>
                             </tbody>
                         </table>
                     </div>

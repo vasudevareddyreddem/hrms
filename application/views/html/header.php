@@ -1,6 +1,6 @@
 
 <?php //echo'<pre>';print_r($employee_leaves_list);exit;?>
-
+<?php //echo'<pre>';print_r($userdetails);exit;?>
 <!DOCTYPE html>
 <html>
 
@@ -48,21 +48,20 @@
 					              <?php if($cnt<=5){ ?>
 								<li class="media notification-message">
 								<?php if($userdetails['role_id']==2){ ?>
-							<a onclick="opennotification(<?php echo $lis['l_id']; ?>);" data-toggle="modal" data-target="#exampleModalLong">
+							<a onclick="opennotification(<?php echo $lis['l_id']; ?>);"  data-target="#exampleModalLong">
 											
 												<div class="media-left">
-												<span class="avatar"><?php echo $userdetails['e_login_name']; ?></span>
+												<span class="avatar"><?php echo substr($lis['e_login_name'],0,1);?></span>
 											</div>
-										
+									
 											
 											 <div class="media-body">
-												<p class="m-0 noti-details"><span class="noti-title"><?php echo $userdetails['e_login_name']; ?></span> <?php echo $lis['leave_type']; ?><span class="noti-title"><?php echo $lis['leaves_reason']; ?></span></p>
+												<p class="m-0 noti-details"><span class="noti-title"><?php echo $lis['e_login_name'];?> &nbsp;Applied For&nbsp;<?php echo $lis['leave_type']; ?></span></p>
 												<p class="m-0"><span class="notification-time"><?php echo $lis['created_at']; ?></span></p>
 											</div>
 										</a>
 									
-								 <?php } ?>
-							
+								<?php }?>
 						 </li> 
 						  
 					  <?php } ?>
@@ -85,12 +84,19 @@
 					
 					<li class="dropdown hidden-xs">
 						<a href="javascript:;" id="open_msg_box" class="hasnotifications"><i class="fa fa-comment-o"></i> <span class="badge bg-purple pull-right">8</span></a>
-					</li>	
+					</li>
+					
 					<li class="dropdown">
-						<a href="profile.html" class="dropdown-toggle user-link" data-toggle="dropdown" title="Admin">
-							<span class="user-img"><img class="img-circle" src="<?php echo base_url();?>assets/vendor/img/user.jpg" width="40" alt="Admin">
+			
+						<a  class="dropdown-toggle user-link" data-toggle="dropdown" title="Admin">
+						<?php if($userdetails['e_profile_pic']!=''){?>
+							<img src="<?php echo base_url('assets/adminprofilepic/'.$userdetails['e_profile_pic']);?>" class="img-circle" width="80" height="auto" alt="<?php echo htmlentities($userdetails['e_profile_pic']); ?>" />
+							<?php }else{ ?>
+							 <img src="<?php echo base_url();?>assets/vendor/img/user-06.jpg" class="img-circle" width="60" alt="User Image" />
+							<?php } ?>
+                               
 							<span class="status online"></span></span>
-							<span>Admin</span>
+							<span><?php echo $userdetails['e_login_name']; ?></span>
 							<i class="caret"></i>
 						</a>
 						<ul class="dropdown-menu">
@@ -101,15 +107,6 @@
 						</ul>
 					</li>
 				</ul>
-				<div class="dropdown mobile-user-menu pull-right">
-					<a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-ellipsis-v"></i></a>
-					<ul class="dropdown-menu pull-right">
-					<li><a href="employee-details.php">My Profile</a></li>
-							<li><a href="edit-profile.php">Edit Profile</a></li>
-						
-							<li><a href="login.php">Logout</a></li>
-					</ul>
-				</div>
 				
 				<div class="modal fade" id="myModal" role="dialog">
     <div class="modal-dialog">
@@ -163,6 +160,7 @@
 				
 				
             </div>
+			 </div>
 			<?php if($this->session->flashdata('success')): ?>
 <div class="alert_msg1 animated slideInUp bg-succ">
    <?php echo $this->session->flashdata('success');?> &nbsp; <i class="fa fa-check text-success ico_bac" aria-hidden="true"></i>
