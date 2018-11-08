@@ -1602,7 +1602,7 @@ $data['chatdata']=$this->Chat_model->last_chat($eid,$rid);
           
           //$this->session->set_userdata('recv',$rid);
       
-          //echo'<pre>';print_r($data);exit;
+          echo'<pre>';print_r($data);exit;
 
  
 	     $this->load->view('employee/sidebar-chat',$data);
