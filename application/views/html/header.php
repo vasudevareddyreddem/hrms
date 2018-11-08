@@ -44,35 +44,30 @@
 							</div>
 							<div class="drop-scroll">
 								<ul class="media-list">
-								
 								<?php $cnt=1;foreach($employee_leaves_list as $lis){ ?>
-					  <?php if($cnt<=5){ ?>
-						  <li >
-						  <?php if($userdetails['role_id']==2){ ?>
+					              <?php if($cnt<=5){ ?>
+								<li class="media notification-message">
+								<?php if($userdetails['role_id']==2){ ?>
 							<a onclick="opennotification(<?php echo $lis['l_id']; ?>);" data-toggle="modal" data-target="#exampleModalLong">
-							               <div class="media-left">
-												<span class="avatar">
-												<?php if($userdetails['e_profile_pic']!=''){?>
-						<img src="<?php echo base_url('assets/adminprofilepic/'.$userdetails['e_profile_pic']);?>" class="user-image" alt="<?php echo htmlentities($userdetails['e_profile_pic']); ?>" />
-					<?php }else{ ?>
-						<img src="<?php echo base_url();?>assets/vendor/user-06.png" class="user-image" alt="User Image" />
-					<?php } ?>
-												</span>
-											</div>
 											
-							                 <div class="media-body">
+												<div class="media-left">
+												<span class="avatar"><?php echo $userdetails['e_login_name']; ?></span>
+											</div>
+										
+											
+											 <div class="media-body">
 												<p class="m-0 noti-details"><span class="noti-title"><?php echo $userdetails['e_login_name']; ?></span> <?php echo $lis['leave_type']; ?><span class="noti-title"><?php echo $lis['leaves_reason']; ?></span></p>
 												<p class="m-0"><span class="notification-time"><?php echo $lis['created_at']; ?></span></p>
 											</div>
-							</a>
-						  <?php } ?>
+										</a>
+									
+								 <?php } ?>
 							
-						 
-						  </li> 
+						 </li> 
+						  
 					  <?php } ?>
 					<?php $cnt++;} ?>
-								
-								
+							
 									
 								</ul>
 							</div>
