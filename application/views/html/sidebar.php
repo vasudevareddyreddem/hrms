@@ -100,7 +100,17 @@
                         <span class="title">Logout</span> <span class="arrow"></span>
                     </a>
                 </li>
-			<?php }?>
+			<?php }else if($userdetails['role_id']==1){?>
+			
+			 <li class="submenu">
+                    <a href="#"><span>Employee communication </span> <span class="menu-arrow"></span></a>
+                    <ul class="list-unstyled" style="display: none;">
+                        <li><a href="<?php echo base_url('employee/chat');?>">Chat </a></li>
+
+                    </ul>
+                </li>
+			<?php  } ?>
+			
             </ul>
         </div>
     </div>
