@@ -207,33 +207,7 @@
 				
 				
 		</div>
-		<script type="text/javascript">		 
-			function recv_data()
-{
-	$.ajax({
-                    type: "GET",    //GET or POST or PUT or DELETE verb
-                    url: 'http://localhost/hrms/Chat/getmessages',     // Location of the service
-                    data: '',     //Data sent to server
-                    dataType: "json",   //Expected data format from server
-                    
-                    success: function (result) {
-                    	console.log(result.lists);
-                    	//alert('kkk');
-                    	if(result.status=='yes'){
-                    	
-                    }
-  }
-                    ,
-                    error: function() { 
-                    	
-                    } 
-                });
-
-};
-			
-
-		</script>
-
+		
 <script type="text/javascript">
 	$(document).ready(function() {
 		 function recv_data()
@@ -246,7 +220,7 @@
                     
                     success: function (result) {
                     	console.log(result.upmsg);
-                    	
+                    	//alert('dkd');
                     	//this code for login users 
                     	// if(result.ustatus=1){
 
@@ -266,34 +240,66 @@
                     	// $("#myUL").html(val);
 
                     	// }
+                    	//this is for update count
+                    	// if(result.mstatus==1){
+                    	// 	alert('ok working');
+                    	// 		$("#myUL").empty();
+                    	// 	val='';
+                    	// $.each(result.upmsg, function(i, item) {
+
+                     //        if(item.login_status==1){
+                     //        	if(item.cnt==null){
+                     //           val=val+'<li><a id="'+item.e_id+'" class="users btn-block">'+item.e_f_name+'<span class="pull-right"></span><span class="status online pull-right"></span></a></li>';
+                     //       }
+                     //       else{
+                     //       	val=val+'<li><a id="'+item.e_id+'" class="users btn-block">'+item.e_f_name+'<span class="pull-right">'+item.cnt+'</span><span class="status online pull-right"></span></a></li>';
+
+                     //       }
+
+
+                     //        }
+                     //        else{
+                     //        	val=val+'<li><a id="'+item.e_id+'" class="users btn-block">'+item.e_f_name+'</a></li>';
+                     //        }
+
+
+                    	// });
+                    	// $("#myUL").html(val);
+
+
+
+                    	// }
                     	if(result.mstatus==1){
-                    		alert('ok working');
-                    			$("#myUL").empty();
-                    		val='';
-                    	$.each(result.upmsg, function(i, item) {
+                    	     
+        
+        $.each(result.upmsg, function(i, item) {
+        	
+        	if(item.cnt!=null){
+        		$('#myUL li').each(function() {
+        			val=$(this).children('a').attr('id');
+                     if(val==item.e_id){
 
-                            if(item.login_status==1){
-                            	if(item.cnt==null){
-                               val=val+'<li><a id="'+item.e_id+'" class="users btn-block">'+item.e_f_name+'<span class="pull-right"></span><span class="status online pull-right"></span></a></li>';
-                           }
-                           else{
-                           	val=val+'<li><a id="'+item.e_id+'" class="users btn-block">'+item.e_f_name+'<span class="pull-right">'+item.cnt+'</span><span class="status online pull-right"></span></a></li>';
-
-                           }
-
-
-                            }
-                            else{
-                            	val=val+'<li><a id="'+item.e_id+'" class="users btn-block">'+item.e_f_name+'</a></li>';
-                            }
+                      prevcnt=$(this).children('a').children('span:first').text();
+                      if(prevcnt==''){
+                     	$(this).children('a').children('span:first').text(item.cnt);
+                     }
+                     else{
+                     	newcnt=parseInt(prevcnt)+parseInt(item.cnt);
+                     	$(this).children('a').children('span:first').text(newcnt);
+                     }
 
 
-                    	});
-                    	$("#myUL").html(val);
+          }
 
 
+        		});
 
-                    	}
+
+        	}
+
+
+     });
+    }
                     	if(result.status=='yes'){
                     	$.each(result.lists, function(i, item) {
                     		//console.log(item.message);
@@ -325,8 +331,14 @@
 
 $(document).on('click','.dynmsg',function(e){
 
-	e.preventDefault();                   
+	e.preventDefault(); 
 
+	            $('#myUL li').each(function () {
+        //vall=$(this).children('a').text();
+        //alert(vall);
+
+    });
+  
 	
        if($('#msg').val().length>0){
        	
