@@ -862,6 +862,8 @@ public function leaverequests(){
 		{	
          $admindetails=$this->session->userdata('hrmsdetails');	
 		 $data['employee_leaves_list']=$this->Employees_model->get_all_employee_leaves_list_details(); 
+		  $employee_leaves_list=$this->Employees_model->get_all_employee_leaves_list_details(); 
+		 //echo'<pre>';print_r($data);exit;
 		$this->load->view('employee/leaves',$data);
 	     $this->load->view('html/footer');  
 	   }else{

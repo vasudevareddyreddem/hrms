@@ -23,7 +23,8 @@ class In_frontend extends CI_Controller {
 				$admindetails=$this->session->userdata('hrmsdetails');
 				$data['userdetails']=$this->User_model->get_roles_wise_details($admindetails['e_id']);
 				//echo'<pre>';print_r($data);exit;
-				
+			$data['employee_leaves_list']=$this->Employees_model->get_all_employee_leaves_list_details(); 
+                      //echo'<pre>';print_r($employee_leaves_list);exit;
 				$this->load->view('html/header',$data);
 				$this->load->view('html/sidebar',$data);
 				
