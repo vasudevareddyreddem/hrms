@@ -17,7 +17,7 @@ class Chat_model extends CI_Model
 }
 public function emp_det($eid){
 	$this->db->select('e_id,e_f_name,login_status');
-  $this->db->where('e_id !=',$eid);
+$this->db->where('e_id !=',$eid);
 
 
 
@@ -124,7 +124,7 @@ public function employee_info($rid){
 //update the messages unread to read
 public function read_status_change($sid,$rid){
 
-  $this->db->update('chat_tab', array('read_status'=>'read'),
+  $this->db->update('chat_tab', array('read_status'=>'read','notified_msg'=>1),
   array('sender_id' => $rid,'recevier_id' => $sid));
   return 'success';
 }
@@ -156,7 +156,7 @@ public function recv_details($rid){
 //who are loggedin 
 public function update_login_users(){
 
-   $this->db->select('e_id,e_f_name')->from('empployee')->where('login_status',1);
+   $this->db->select('e_id,e_f_name,login_status')->from('empployee')->where('login_status',1);
    $query=$this->db->get();
    return $query->result();
 
@@ -206,6 +206,25 @@ $this->db->where('recevier_id=', $sid);
 $this->db->update('chat_tab'); 
 
 return 'success';
+
+}
+//gettin the employee count
+public function empcount(){
+
+$this->db->select('count(*) cnt')->from('empployee')->where('login_status',1);
+$query=$this->db->get();
+return $query->row();
+}
+
+// getting all users
+public function allusers(){
+
+
+$this->db->select('*')->from('empployee');
+$query=$this->db->get();
+return $query->result();
+
+
 
 }
 

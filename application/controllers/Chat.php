@@ -44,7 +44,8 @@ public function __construct()
  	 'message'=> $message,
 );
   $status=$this->Chat_model->senddata($data);
-  $data['datenow'] = date('Y-m-d h:i:s a', time());
+  date_default_timezone_set('Asia/Kolkata'); 
+  $data['datenow'] = date('Y-m-d h:i:s ' );
 
 }
  
@@ -95,6 +96,27 @@ else{$data['status']='no';}
 // get the count for notifications messsages
 
 // $data['emplist']=$this->Chat_model->emp_det($eid);
+
+// getting the newly logged users
+$ecnt=$this->session->userdata('empcount');
+$empcount=$this->Chat_model->empcount();
+$count=$empcount->cnt;
+if($count<$ecnt or $count>$ecnt){
+  $empdet=$this->Chat_model->update_login_users();
+  $data['empdet']=$empdet;
+  $data['empcount']=$empdet;
+  $data['newlogins']=1;
+  $allusers=$this->Chat_model->allusers();
+  $data['allusers']=$allusers;
+  $this->session->unset_userdata('empcount');
+  $this->session->set_userdata('empcount',$empcount);
+
+
+}
+else{
+  $data['newlogins']=0;
+}
+
 
          
 echo json_encode($data);exit; 
