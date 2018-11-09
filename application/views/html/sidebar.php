@@ -64,6 +64,14 @@
                 <li class="">
                     <a href="<?php echo base_url('employee/salemantrack'); ?>"><span>Salesman Man Track </span> </a>
                 </li>
+				
+				 <li class="submenu">
+                    <a href="#"><span>Area</span> <span class="menu-arrow"></span></a>
+                    <ul class="list-unstyled" style="display: none;">
+                        <li><a href="<?php echo base_url('employee/area');?>">Add Area</a></li>
+                        <li><a href="<?php echo base_url('employee/arealist');?>">Area List</a></li>
+                    </ul>
+                </li>
                 <li class="submenu">
                     <a href="#"><span>Work Distribution</span> <span class="menu-arrow"></span></a>
                     <ul class="list-unstyled" style="display: none;">

@@ -10,6 +10,7 @@
             <div class="row">
                 <div class="col-md-12 bg-white">
                     <div class="clearfix">&nbsp;</div>
+					<?php if(isset($assign_work_list) && count($assign_work_list)>0){ ?>
                     <div class="table-responsive">
                         <table id="example1" class="table table-bordered table-striped">
                             <thead>
@@ -18,43 +19,34 @@
                                     <th>Mobile</th>
                                     <th>Work</th>
                                     <th>Alloted Area</th>
+									<th>Status</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody>
+							<?php foreach($assign_work_list as $list){?>
                                 <tr>
-                                    <td>FT-0006</td>
-                                    <td>9876543xxx</td>
-                                    <td>Lorem ipsum dolor sit amet, consectetur elit, sed do eiusmod tempor ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</td>
-                                    <td>Kondareddy Circle</td>
+                                    <td><?php echo $list['e_emplouee_id']; ?></td>
+                                    <td><?php echo $list['mobile_number']; ?></td>
+                                    <td><?php echo $list['work']; ?></td>
+                                    <td><?php echo $list['area']; ?></td>
+									<td><?php if($list['status']==1){ echo "Active";}else{ echo "Deactive"; } ?></td>
                                     <td>
-                                        <div class="dropdown">
-                                            <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-ellipsis-v"></i></a>
-                                            <ul class="dropdown-menu pull-right">
-                                                <li><a href="#" title="Edit"><i class="fa fa-pencil m-r-5"></i> Edit</a></li>
-                                                <li><a href="#" title="Delete"><i class="fa fa-trash-o m-r-5"></i> Delete</a></li>
-                                            </ul>
-                                        </div>
+                                     
+                                    <a href="<?php echo base_url('employee/editwork/'.base64_encode($list['w_d_id'])); ?>"  data-toggle="tooltip" title="Edit"><i class="fa fa-pencil btn btn-success"></i></a>
+									<a href="<?php echo base_url('employee/statuswork/'.base64_encode($list['w_d_id']).'/'.base64_encode($list['status'])); ?>" data-toggle="tooltip" title="status"><i class="fa fa-info-circle btn btn-warning"></i></a>
+                                     <a href="<?php echo base_url('employee/deletework/'.base64_encode($list['w_d_id']));?>" data-toggle="tooltip"  title="Delete"><i class="fa fa-trash btn btn-danger"></i></a>
+                                            
+                                      
                                     </td>
                                 </tr>
-                                <tr>
-                                    <td>FT-0007</td>
-                                    <td>9835523xxx</td>
-                                    <td>Lorem ipsum dolor sit amet, consectetur elit, sed do eiusmod tempor ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</td>
-                                    <td>Kondareddy Circle</td>
-                                    <td>
-                                        <div class="dropdown">
-                                            <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-ellipsis-v"></i></a>
-                                            <ul class="dropdown-menu pull-right">
-                                                <li><a href="#" title="Edit"><i class="fa fa-pencil m-r-5"></i> Edit</a></li>
-                                                <li><a href="#" title="Delete"><i class="fa fa-trash-o m-r-5"></i> Delete</a></li>
-                                            </ul>
-                                        </div>
-                                    </td>
-                                </tr>
+                               <?php } ?>
                             </tbody>
                         </table>
                     </div>
+				<?php }else{ ?>
+               <div> No data available</div>
+               <?php }?>
                 </div>
             </div>
         </form>
