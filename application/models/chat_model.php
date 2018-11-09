@@ -113,7 +113,7 @@ public function getchat($sid,$rid){
 }
 //get individula users
 public function employee_info($rid){
-  $this->db->select('e_f_name,e_id,e_email_work,e_mobile_work,role')->
+  $this->db->select('e_f_name,e_id,e_email_work,e_mobile_work,role,e_profile_pic')->
   from('empployee')->join('role','empployee.role_id=role.r_id','left')->
   where('empployee.e_id',$rid);
   $query=$this->db->get();

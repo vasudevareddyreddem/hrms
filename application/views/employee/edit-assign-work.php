@@ -62,7 +62,7 @@
                 <div class="col-md-12">
                     <div class="form-group">
                         <label>Work</label>
-                        <input class="form-control" type="text" name='work' id='work'  value="<?php echo isset($edit_work['work'])?$edit_work['work']:''; ?>"  placeholder="Enter here...."></input>
+                        <textarea class="form-control" type="text" name='work' id='work'  value=""  placeholder="Enter here...."><?php echo isset($edit_work['work'])?$edit_work['work']:''; ?></textarea>
                     </div>
                 </div>
             </div>

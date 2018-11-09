@@ -58,8 +58,8 @@
 																</div>
 																<div class="chat-action-btns">
 																	<ul>
-																		<li><a href="#" class="share-msg" title="Share"><i class="fa fa-share-alt"></i></a></li>
-																		<li><a href="#" class="edit-msg" title="Edit"><i class="fa fa-pencil"></i></a></li>
+																		<!-- <li><a href="#" class="share-msg" title="Share"><i class="fa fa-share-alt"></i></a></li>
+																		<li><a href="#" class="edit-msg" title="Edit"><i class="fa fa-pencil"></i></a></li> -->
 																		<li><a href="#" class="del-msg" title="Delete"><i class="fa fa-trash-o"></i></a></li>
 																	</ul>
 																</div>
@@ -102,8 +102,11 @@
 											
 											<div class="chat-profile-img">
 												<div class="edit-profile-img">
-													<img class="avatar" src="assets/img/user.jpg" alt="">
-													<span class="change-img">Change Image</span>
+													<?php if($user->e_profile_pic!=''){ ?>
+													<img class="avatar" src="<?php echo base_url('assets/adminprofilepic/'.$user->e_profile_pic ); ?>" alt="">
+												<?php } else{?>
+													<img src="<?php echo base_url();?>assets/vendor/img/user-06.jpg" class="img-circle" alt="User Image" />
+									<?php } ?>
 												</div>
 												<h3 class="user-name m-t-10 m-b-0">
 													<?php echo $user->e_f_name?></h3>
@@ -133,7 +136,7 @@
 												</ul>
 											</div>
 								
-											<div class="tabbable">
+											<!-- <div class="tabbable">
 												<ul class="nav nav-tabs nav-tabs-solid nav-justified m-b-0">
 													<li class="active"><a href="#all_files" data-toggle="tab">All Files</a></li>
 													<li><a href="#my_files" data-toggle="tab">My Files</a></li>
@@ -188,7 +191,7 @@
 														</ul>
 													</div>
 												</div>
-											</div>
+											</div> -->
 										</div>
 									</div>
 								</div>

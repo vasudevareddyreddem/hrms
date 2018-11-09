@@ -214,7 +214,20 @@
 				
 		</div>
 		
-		
+		<script type="text/javascript">
+			$(document).ready(function() {
+             $('#msg').keypress(function (e) {
+ var key = e.which;
+ if(key == 13)  // the enter key code
+  {
+    alert('ok');
+    return false;  
+  }
+});   
+
+			});
+			
+		</script>
 <script type="text/javascript">
 	$(document).ready(function() {
 		 function recv_data()
@@ -367,8 +380,11 @@
 
 };
 		setInterval(recv_data, 3000);
-		function senddata(){
-//e.preventDefault(); 
+
+
+$(document).on('click','.dynmsg',function(e){
+
+	e.preventDefault(); 
 
 	            $('#myUL li').each(function () {
         //vall=$(this).children('a').text();
@@ -426,25 +442,10 @@
                 });
    								
 																											
-			 }			
-
-		};
-
-
-$(document).on('click','.dynmsg',function(e){
-	e.preventDefault();
-
-		senddata();
+			 }				
 
 
       });
- $('#msg').keypress(function (e) {
- var key = e.which;
- if(key == 13)  // the enter key code
-  {
-    senddata();
-  }
-});   
 //change the user
  
 $(document).on('click','.users',function(e){
