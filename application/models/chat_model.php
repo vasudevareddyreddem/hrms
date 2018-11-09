@@ -227,5 +227,17 @@ return $query->result();
 
 
 }
+// all users except current user
+public function allusers_ex_user($sid){
+
+
+$this->db->select('*')->from('empployee')->where('e_id',$sid);
+$query=$this->db->get();
+return $query->result();
+
+
+
+}
+
 
 }

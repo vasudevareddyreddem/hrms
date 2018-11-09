@@ -1605,7 +1605,7 @@ $data['ustatus']=1;
          //$data['rec_det']=$this->Chat_model->last_chat_rec_id($eid);
         
           else{
-          	$data['emplist']=$this->Chat_model->update_login_users();
+          	$data['emplist']=$this->Chat_model->allusers_ex_user($eid);
           	$data['ustatus']=0;
 
           	$data['status']='no';
