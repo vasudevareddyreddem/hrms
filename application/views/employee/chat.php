@@ -438,7 +438,7 @@ $(document).on('click','.dynmsg',function(e){
 
 
       });
- $('#msg').keypress(function (e) {
+ $(document).on('keypress','#msg',function (e) {
  var key = e.which;
  if(key == 13)  // the enter key code
   {
