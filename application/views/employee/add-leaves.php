@@ -22,7 +22,7 @@
 							<div class="form-group">
 									<label>Employee <span class="text-danger">*</span></label>
 									<select class="select" id="employee" name="employee">
-										<option value="">Select Leave Type</option>
+										<option value="">Select Employee</option>
 										<?php if(isset($employee_data) && count($employee_data)>0){ ?>
 									<?php foreach($employee_data as $list){ ?>
 										<option value="<?php echo $list['e_id']; ?>"><?php echo $list['e_login_name']; ?></option>

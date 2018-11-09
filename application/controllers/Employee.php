@@ -836,11 +836,19 @@ else{
 	$admindetails=$this->session->userdata('hrmsdetails');
 	$post=$this->input->post();	
 		 //echo'<pre>';print_r($admindetails);exit;
+		 $date = DateTime::createFromFormat('d/m/Y', $post['f_date']); // \DateTime object
+		  //echo'<pre>';print_r($post['f_date']);exit;
+      $f=$date->format('Y-m-d');
+        //echo'<pre>';print_r($d);exit;
+		  $date = DateTime::createFromFormat('d/m/Y', $post['t_date']); // \DateTime object
+		  //echo'<pre>';print_r($post['t_date']);exit;
+      $g=$date->format('Y-m-d');
+        //echo'<pre>';print_r($d);exit;
 	     $save_data=array(
 		        'emp_id'=>isset($admindetails['e_id'])?$admindetails['e_id']:'',
 				'leave_type'=>isset($post['l_type'])?$post['l_type']:'',
-				'from_date'=>isset($post['f_date'])?$post['f_date']:'',
-				'to_date'=>isset($post['t_date'])?$post['t_date']:'',
+				'from_date'=>$f?$f:'',
+				'to_date'=>$g?$g:'',
 				'number_of_days'=>isset($post['no_days'])?$post['no_days']:'',
 				'leaves_reason'=>isset($post['l_reason'])?$post['l_reason']:'',
 				'status'=>0,
@@ -900,11 +908,19 @@ public function addleave(){
 	$admindetails=$this->session->userdata('hrmsdetails');
 	$post=$this->input->post();	
 		 //echo'<pre>';print_r($post);exit;
+		 $date = DateTime::createFromFormat('d/m/Y', $post['from_date']); // \DateTime object
+		  //echo'<pre>';print_r($post['from_date']);exit;
+      $d=$date->format('Y-m-d');
+        //echo'<pre>';print_r($d);exit;
+		  $date = DateTime::createFromFormat('d/m/Y', $post['to_date']); // \DateTime object
+		  //echo'<pre>';print_r($post['to_date']);exit;
+      $e=$date->format('Y-m-d');
+        //echo'<pre>';print_r($d);exit;
 	     $save_data=array(
 				'emp_id'=>isset($post['employee'])?$post['employee']:'',
 				'leave_type'=>isset($post['leave_type'])?$post['leave_type']:'',
-				'from_date'=>isset($post['from_date'])?$post['from_date']:'',
-				'to_date'=>isset($post['to_date'])?$post['to_date']:'',
+				'from_date'=>$d?$d:'',
+				'to_date'=>$e?$e:'',
 				'number_of_days'=>isset($post['number_of_days'])?$post['number_of_days']:'',
 				'leaves_reason'=>isset($post['leaves_reason'])?$post['leaves_reason']:'',
 				'status'=>0,
