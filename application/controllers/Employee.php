@@ -1581,6 +1581,7 @@ public function chat(){
          if(count($lastdata)>0){
          	$data['status']='yes';
          if($lastdata->sender_id==$eid){
+
          	$rid=$lastdata->recevier_id;
           	$this->session->set_userdata('recv',$rid);
 
@@ -1594,13 +1595,19 @@ public function chat(){
             }
 
 $data['chatdata']=$this->Chat_model->last_chat($eid,$rid);
+$data['emplist']=$this->Chat_model->updates_for_users($eid,$rid);
 $this->Chat_model->read_status_change($eid,$rid);
+$data['ustatus']=1;
+
 }
 
 
          //$data['rec_det']=$this->Chat_model->last_chat_rec_id($eid);
         
           else{
+          	$data['emplist']=$this->Chat_model->update_login_users();
+          	$data['ustatus']=0;
+
           	$data['status']='no';
 
 
@@ -1613,7 +1620,7 @@ $this->Chat_model->read_status_change($eid,$rid);
           $this->session->set_userdata('empcount',$ecount);
          
          
-          $data['emplist']=$this->Chat_model->updates_for_users($eid,$rid);
+          
          
          
               //echo'<pre>';print_r($data);exit;
