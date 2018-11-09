@@ -347,7 +347,7 @@
                     		var el = $('<div> </div>');
 
       //newdiv=$('.chats').append(divchat);
-   newdiv=el.html('<div class="chat chat-left"><div class="chat-body"><div class="chat-bubble"><div class="chat-content"><p></p><span class="chat-time"></span></div><div class="chat-action-btns"><ul><li><a href="#" class="share-msg" title="Share"><i class="fa fa-share-alt"></i></a></li><li><a href="#" class="edit-msg" title="Edit"><i class="fa fa-pencil"></i></a></li><li><a href="#" class="del-msg" title="Delete"><i class="fa fa-trash-o"></i></a></li></ul></div></div></div></div>');
+   newdiv=el.html('<div class="chat chat-left"><div class="chat-body"><div class="chat-bubble"><div class="chat-content"><p></p><span class="chat-time"></span></div><div class="chat-action-btns"><ul><li><a href="#" class="del-msg" title="Delete"><i class="fa fa-trash-o"></i></a></li></ul></div></div></div></div>');
       //var parent = lastObj.parent();
       $('.chats').append(newdiv);
       $("p:last").append(item.message);
@@ -385,7 +385,7 @@
    divchat='<div></div>';
                     		var el = $('<div></div>');
 
-     newdiv= el.html('</div><div class="chat chat-right"><div class="chat-body"><div class="chat-bubble"><div class="chat-content"><p></p><span class="chat-time"></span></div><div class="chat-action-btns"><ul><li><a href="#" class="share-msg" title="Share"><i class="fa fa-share-alt"></i></a></li><li><a href="#" class="edit-msg" title="Edit"><i class="fa fa-pencil"></i></a></li><li><a href="#" class="del-msg" title="Delete"><i class="fa fa-trash-o"></i></a></li></ul></div></div></div></div>');
+     newdiv= el.html('</div><div class="chat chat-right"><div class="chat-body"><div class="chat-bubble"><div class="chat-content"><p></p><span class="chat-time"></span></div><div class="chat-action-btns"><ul><li><a href="#" class="del-msg" title="Delete"><i class="fa fa-trash-o"></i></a></li></ul></div></div></div></div>');
       $('.chats').append(newdiv);
       //var parent = lastObj.parent();
       //var prev=$('#message').closest("p");
