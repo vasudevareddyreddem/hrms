@@ -231,7 +231,7 @@ return $query->result();
 public function allusers_ex_user($sid){
 
 
-$this->db->select('*')->from('empployee')->where('e_id',$sid);
+$this->db->select('*')->from('empployee')->where('e_id !=',$sid);
 $query=$this->db->get();
 return $query->result();
 
