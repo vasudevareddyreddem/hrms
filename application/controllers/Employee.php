@@ -1605,8 +1605,14 @@ $this->Chat_model->read_status_change($eid,$rid);
 
 
           }
-
+           
           
+          $empcount=$this->Chat_model->empcount();
+         $ecount=$empcount->cnt;
+           $this->session->unset_userdata('empcount');
+          $this->session->set_userdata('empcount',$ecount);
+         
+         
           $data['emplist']=$this->Chat_model->updates_for_users($eid,$rid);
          
          

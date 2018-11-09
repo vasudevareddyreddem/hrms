@@ -124,7 +124,7 @@ public function employee_info($rid){
 //update the messages unread to read
 public function read_status_change($sid,$rid){
 
-  $this->db->update('chat_tab', array('read_status'=>'read'),
+  $this->db->update('chat_tab', array('read_status'=>'read','notified_msg'=>1),
   array('sender_id' => $rid,'recevier_id' => $sid));
   return 'success';
 }
@@ -208,5 +208,14 @@ $this->db->update('chat_tab');
 return 'success';
 
 }
+//gettin the employee count
+public function empcount(){
+
+$this->db->select('count(*) cnt')->from('empployee')->where('login_status',1);
+$query=$this->db->get();
+return $query->row();
+}
+
+// 
 
 }

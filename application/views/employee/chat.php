@@ -60,8 +60,8 @@
 																</div>
 																<div class="chat-action-btns">
 																	<ul>
-																		<li><a href="#" class="share-msg" title="Share"><i class="fa fa-share-alt"></i></a></li>
-																		<li><a href="#" class="edit-msg" title="Edit"><i class="fa fa-pencil"></i></a></li>
+																		<!-- <li><a href="#" class="share-msg" title="Share"><i class="fa fa-share-alt"></i></a></li>
+																		<li><a href="#" class="edit-msg" title="Edit"><i class="fa fa-pencil"></i></a></li> -->
 																		<li><button data-messageid='<?php echo $chat->message_id?>'  class="del-msg" title="Delete"><i class="fa fa-trash-o"></i></button></li>
 																	</ul>
 																</div>
@@ -104,11 +104,17 @@
 									<div class="table-body">
 										<div class="table-content">
 											<div class="chat-profile-img">
-												<div class="edit-profile-img">
-													<img class="avatar" src="assets/img/user.jpg" alt="">
-													<span class="change-img">Change Image</span>
-												</div>
 												<?php if($status=='yes'){?>
+												<div class="edit-profile-img">
+													<?php if($rec_det->e_profile_pic!=''){ ?>
+													<img class="avatar" src="<?php echo base_url('assets/adminprofilepic/'.$rec_det->e_profile_pic ); ?>" alt="">
+												<?php } else{?>
+													<img src="<?php echo base_url();?>assets/vendor/img/user-06.jpg" class="img-circle" alt="User Image" />
+									<?php } ?>
+
+													<!-- <span class="change-img">Change Image</span> -->
+												</div>
+												
 												<h3 class="user-name m-t-10 m-b-0"><?php echo $rec_det->e_f_name?></h3>
 												<small class="text-muted"><?php echo $rec_det->role?></small>
 												<a href="edit-profile.html" class="btn btn-primary edit-btn"><i class="fa fa-pencil"></i></a><?php }?>
@@ -140,7 +146,7 @@
 												</ul>
 												<?php }?>
 											</div>
-											<div class="tabbable">
+											<!-- <div class="tabbable">
 												<ul class="nav nav-tabs nav-tabs-solid nav-justified m-b-0">
 													<li class="active"><a href="#all_files" data-toggle="tab">All Files</a></li>
 													<li><a href="#my_files" data-toggle="tab">My Files</a></li>
@@ -195,7 +201,7 @@
 														</ul>
 													</div>
 												</div>
-											</div>
+											</div> -->
 										</div>
 									</div>
 								</div>
@@ -219,7 +225,7 @@
                     dataType: "json",   //Expected data format from server
                     
                     success: function (result) {
-                    	console.log(result.upmsg);
+                    	//console.log(result.upmsg);
                     	//alert('dkd');
                     	//this code for login users 
                     	// if(result.ustatus=1){
@@ -269,6 +275,30 @@
 
 
                     	// }
+                    	console.log(result);
+                    	if(result.newlogins==1){
+
+
+                    		$.each(result.empdet, function(i, item) {
+                    			$('#myUL li').each(function() {
+                    				val=$(this).children('a').attr('id');
+                    				//alert(val);
+                    				if(parseInt(val)==parseInt(item.e_id)){
+                    					//alert('onechanged');
+                    					$(this).children('a').children('span:last').addClass('status online');
+
+
+                    				}
+
+
+
+                    			});
+
+
+                    		});
+
+
+                    	}
                     	if(result.mstatus==1){
                     	     
         
