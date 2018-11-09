@@ -2,53 +2,72 @@
     <div class="content container-fluid bg-white">
         <div class="row">
             <div class="col-xs-4">
-                <h4 class="page-title">Assign Work</h4>
+                <h4 class="page-title">Edit Assign Work</h4>
             </div>
         </div>
-		<form id="defaultForm" method="post" class="m-b-30" action="<?php echo base_url('employee/addwork'); ?>" enctype="multipart/form-data">
+		<form id="defaultForm" method="post" class="m-b-30" action="<?php  echo base_url('employee/editassignwork');?>" enctype="multipart/form-data">
+		<input type="hidden" id="w_d_id" name="w_d_id" value="<?php echo $edit_work['w_d_id'] ?>">
+
             <div class="row">
                 <div class="col-md-6">
 				<div class="form-group">
-				<label>Select Employee</label>
-				<div class="">
-				<select id="work_emplouee_id" name="work_emplouee_id"  class="form-control" >
-				<option value="">Select</option>
-				<?php foreach ($employee_id as $list){ ?>
-				<option value="<?php echo $list['e_id']; ?>"><?php echo $list['e_emplouee_id']; ?></option>
-				<?php }?>
-				</select>
-				</div>
-			  </div>
+									<label class=" control-label">Select Employee</label>
+									<div class="">
+										<select id="work_emplouee_id" name="work_emplouee_id"  class="form-control" >
+										<option value="">Select</option>
+										<?php if(isset($employee_id) && count($employee_id)>0){ ?>
+											<?php foreach($employee_id as $list){ ?>
+											
+													<?php if($edit_work['work_emplouee_id']==$list['e_id']){ ?>
+															<option selected value="<?php echo $list['e_id']; ?>"><?php echo $list['e_emplouee_id']; ?></option>
+													<?php }else{ ?>
+															<option value="<?php echo $list['e_id']; ?>"><?php echo $list['e_emplouee_id']; ?></option>
+													<?php } ?>
+											<?php } ?>
+										<?php } ?>
+										</select>
+									</div>
+								</div>
+				
+
+			  
           </div>
                 <div class="col-md-6">
                     <div class="form-group">
 				      <label>Allocated Area</label>
 				        <div class="">
-				        <select id="allocated_area" name="allocated_area"  class="form-control" >
+				        <select id="allocated_area" name="allocated_area" value="<?php echo isset($edit_work['area'])?$edit_work['area']:''; ?>"  class="form-control" >
 				         <option value="">Select</option>
-				        <?php foreach ($area_list as $list){ ?>
-				       <option value="<?php echo $list['a_id']; ?>"><?php echo $list['area']; ?></option>
-				      <?php }?>
-				   </select>
+				       <?php if(isset($area_list) && count($area_list)>0){ ?>
+						<?php foreach($area_list as $list){ ?>
+						
+								<?php if($edit_work['allocated_area']==$list['a_id']){ ?>
+										<option selected value="<?php echo $list['a_id']; ?>"><?php echo $list['area']; ?></option>
+								<?php }else{ ?>
+										<option value="<?php echo $list['a_id']; ?>"><?php echo $list['area']; ?></option>
+								<?php } ?>
+						<?php } ?>
+					<?php } ?>
+					</select>
 				  </div>
 			      </div>
                  </div>
                 <div class="col-md-6">
                     <div class="form-group">
                         <label>Mobile Number</label>
-                        <input class="form-control" type="text" name="mobile_number" id="mobile_number">
+                        <input class="form-control" type="text" name="mobile_number" id="mobile_number" value="<?php echo isset($edit_work['mobile_number'])?$edit_work['mobile_number']:''; ?>">
                     </div>
                 </div>
               
                 <div class="col-md-12">
                     <div class="form-group">
                         <label>Work</label>
-                        <textarea class="form-control" type="text" name='work' id='work' rows="3" placeholder="Enter here...."></textarea>
+                        <input class="form-control" type="text" name='work' id='work'  value="<?php echo isset($edit_work['work'])?$edit_work['work']:''; ?>"  placeholder="Enter here...."></input>
                     </div>
                 </div>
             </div>
             <div class="m-t-20 text-center">
-			<button type="submit" class="btn btn-primary" name="signup" value="Sign up">Assign Work</button>
+			<button type="submit" class="btn btn-primary" name="signup" value="Sign up"> Edit Assign Work</button>
 
             </div>
         </form>
