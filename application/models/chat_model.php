@@ -216,6 +216,16 @@ $query=$this->db->get();
 return $query->row();
 }
 
-// 
+// getting all users
+public function allusers(){
+
+
+$this->db->select('*')->from('empployee');
+$query=$this->db->get();
+return $query->result();
+
+
+
+}
 
 }

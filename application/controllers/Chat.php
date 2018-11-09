@@ -106,8 +106,11 @@ if($count<$ecnt or $count>$ecnt){
   $data['empdet']=$empdet;
   $data['empcount']=$empdet;
   $data['newlogins']=1;
+  $allusers=$this->Chat_model->allusers();
+  $data['allusers']=$allusers;
   $this->session->unset_userdata('empcount');
   $this->session->set_userdata('empcount',$empcount);
+
 
 }
 else{

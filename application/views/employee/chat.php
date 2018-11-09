@@ -279,22 +279,25 @@
                     	if(result.newlogins==1){
 
 
-                    		$.each(result.empdet, function(i, item) {
+                    		$.each(result.allusers, function(i, item) {
                     			$('#myUL li').each(function() {
                     				val=$(this).children('a').attr('id');
                     				//alert(val);
                     				if(parseInt(val)==parseInt(item.e_id)){
+                    					if(item.login_status==1){
 
                     					//alert('onechanged');
                     					$(this).children('a').children('span:last').addClass('status online');
-
-
                     				}
                     				else{
                     					$(this).children('a').children('span:last').removeClass('status online');
 
 
                     				}
+
+
+                    				}
+
 
 
 
