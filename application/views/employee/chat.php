@@ -284,8 +284,14 @@
                     				val=$(this).children('a').attr('id');
                     				//alert(val);
                     				if(parseInt(val)==parseInt(item.e_id)){
+
                     					//alert('onechanged');
                     					$(this).children('a').children('span:last').addClass('status online');
+
+
+                    				}
+                    				else{
+                    					$(this).children('a').children('span:last').removeClass('status online');
 
 
                     				}

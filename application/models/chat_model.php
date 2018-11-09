@@ -156,7 +156,7 @@ public function recv_details($rid){
 //who are loggedin 
 public function update_login_users(){
 
-   $this->db->select('e_id,e_f_name')->from('empployee')->where('login_status',1);
+   $this->db->select('e_id,e_f_name,login_status')->from('empployee')->where('login_status',1);
    $query=$this->db->get();
    return $query->result();
 
