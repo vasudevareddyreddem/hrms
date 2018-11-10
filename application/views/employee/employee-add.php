@@ -22,23 +22,26 @@
 								<div class="form-group">
 									<label>Leave Type <span class="text-danger">*</span></label>
 									<select class="select" id="l_type" name="l_type">
-										<option value="">Select Leave Type</option>
-										<option value="Casual Leave">Casual Leave</option>
-										<option value="Medical Leave">Medical Leave</option>
-										<option value="Loss of Pay">Loss of Pay</option>
+										<option value="">Select Employee</option>
+										<?php if(isset($leaves_data) && count($leaves_data)>0){ ?>
+									<?php foreach($leaves_data as $list){ ?>
+										<option value="<?php echo $list['l_t_id']; ?>"><?php echo $list['leave_type_name']; ?></option>
+										
+									<?php } ?>
+								<?php } ?>
 									</select>
 								</div>
 								<div class="form-group">
 									<label>From <span class="text-danger">*</span></label>
-									<div class="cal-icon"><input class="form-control datetimepicker" type="text" name="f_date"></div>
+									<div class="cal-icon"><input class="form-control datetimepicker" type="text" name="f_date" id="f_date"></div>
 								</div>
 								<div class="form-group">
 									<label>To <span class="text-danger">*</span></label>
-									<div class="cal-icon"><input class="form-control datetimepicker" type="text" name="t_date"></div>
+									<div class="cal-icon"><input class="form-control datetimepicker" type="text" name="t_date" id="t_date"></div>
 								</div>
 								<div class="form-group">
 									<label>Number of days <span class="text-danger">*</span></label>
-									<input class="form-control"  type="text" name="no_days">
+									<input class="form-control"  type="text" name="no_days" id="no_days">
 								</div>
 								
 								<div class="form-group">
@@ -58,7 +61,36 @@
 			
 			
             </div>
+			
+			
+		 <script type="text/javascript" src="date.js"></script>
+        <script type="text/javascript">
+		$( document ).ready(function() {
+           // var minutes = 1000*60;
+            //var hours = minutes*60;
+           // var days = hours*24;
+			
+			from_date=$('#f_date').val();
+			  //var foo_date1 = getDateFromFormat(from_date, "d/m/y");
+			  $(document).on('focusout','#f_date',function(){
+			 
+			//alert($('#f_date').val());
+			  });
+			 to_date=$('#t_date').val(); 
+			$(document).on('focusout','#t_date',function(){
+			 
+			alert($('#t_date').val());
+			  });
 
+            var diff_date = Math.round((to_date - from_date)/days);
+           alert("Diff date is: " + diff_date );
+		   
+		   
+		   
+		});
+        </script>
+			
+			
 <script>
 $(document).ready(function() {
  
