@@ -625,12 +625,13 @@ public function addsalary(){
          $this->load->library('session');
          $this->load->model('payroll_model');
 
-
+$data['salary_type']=$this->payroll_model->salary_type();
+//print_r($data);exit;
 
       
  //$query = $this->db->get('empployee');
-$data=$this->payroll_model->no_sal_emp();
-if(count($data)>0){
+$cnt=$this->payroll_model->no_sal_emp();
+if(count($cnt)>0){
 	$data['data']=$this->payroll_model->no_sal_emp();
 
 

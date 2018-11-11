@@ -108,7 +108,7 @@
                   }  	
                   else{
 
-                      str='<option value=""> NO data foundr</option>';
+                      str='<option value=""> NO data found</option>';
                       $("#eid").append(str);
 
                   }
