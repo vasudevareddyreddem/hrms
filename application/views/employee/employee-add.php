@@ -22,23 +22,26 @@
 								<div class="form-group">
 									<label>Leave Type <span class="text-danger">*</span></label>
 									<select class="select" id="l_type" name="l_type">
-										<option value="">Select Leave Type</option>
-										<option value="Casual Leave">Casual Leave</option>
-										<option value="Medical Leave">Medical Leave</option>
-										<option value="Loss of Pay">Loss of Pay</option>
+										<option value="">Select Employee</option>
+										<?php if(isset($leaves_data) && count($leaves_data)>0){ ?>
+									<?php foreach($leaves_data as $list){ ?>
+										<option value="<?php echo $list['l_t_id']; ?>"><?php echo $list['leave_type_name']; ?></option>
+										
+									<?php } ?>
+								<?php } ?>
 									</select>
 								</div>
 								<div class="form-group">
 									<label>From <span class="text-danger">*</span></label>
-									<div class="cal-icon"><input class="form-control datetimepicker" type="text" name="f_date"></div>
+									<div class="cal-icon"><input class="form-control datetimepicker" type="text" name="f_date" id="f_date" ></div>
 								</div>
 								<div class="form-group">
 									<label>To <span class="text-danger">*</span></label>
-									<div class="cal-icon"><input class="form-control datetimepicker" type="text" name="t_date"></div>
+									<div class="cal-icon"><input class="form-control datetimepicker" type="text" name="t_date" id="t_date" ></div>
 								</div>
 								<div class="form-group">
 									<label>Number of days <span class="text-danger">*</span></label>
-									<input class="form-control"  type="text" name="no_days">
+									<input class="form-control"  onClick="CalculateDiff();" type="text" name="no_days" id="no_days">
 								</div>
 								
 								<div class="form-group">
@@ -58,7 +61,9 @@
 			
 			
             </div>
-
+			
+				
+			
 <script>
 $(document).ready(function() {
  
