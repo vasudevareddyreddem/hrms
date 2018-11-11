@@ -55,8 +55,8 @@ return $query->result();
 
 }
 public function general_leaves($year,$month,$eid){
-  $sql = "SELECT * FROM emp_leaves_tab  WHERE year(l_date)=$year AND month(l_date)=$month AND
-   e_id=$eid And leave_type='general' ";
+  $sql = "SELECT * FROM leaves  WHERE year(from_date)=$year AND month(from_date)=$month AND
+   emp_id=$eid And leave_type='1' ";
  $query=$this->db->query($sql);
 return $query->result();
 
@@ -66,8 +66,9 @@ return $query->result();
 
 
 public function pay_leaves($year,$month,$eid){
-   $sql = "SELECT * FROM emp_leaves_tab  WHERE year(l_date)=$year AND month(l_date)=$month AND
-   e_id=$eid And leave_type='pay' ";
+   $sql = "SELECT * FROM leaves  WHERE year(from_date)=$year AND month(from_date)=$month AND
+   emp_id=$eid And leave_type='2' ";
+
  $query=$this->db->query($sql);
 return $query->result();
 
@@ -142,6 +143,7 @@ return  ($this->db->affected_rows() == 1) ? true: false;
    $this->db->select('*');
    $this->db->from('empployee');
    $this->db->join('employee_salary_payslips', 'employee_salary_payslips.e_id=empployee.e_id');
+   $this->db->join('role', 'role.r_id=empployee.role_id');
    $this->db->where('e_salary_month',$month);
    $this->db->where('e_salary_year',$year);
  $query=$this->db->get();

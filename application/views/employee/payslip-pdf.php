@@ -129,7 +129,7 @@ echo $date;  ?></li>
 						</div>
 					</div>
                 </div>
-				<!-- <div class="notification-box">
+				<div class="notification-box">
 					<div class="msg-sidebar notifications msg-noti">
 						<div class="topnav-dropdown-header">
 							<span>Messages</span>
@@ -337,5 +337,5 @@ echo $date;  ?></li>
 							<a href="chat.html">See all messages</a>
 						</div>
 					</div>
-				</div> -->
+				</div>
             </div>

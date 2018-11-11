@@ -8,7 +8,7 @@
 									<div class="navbar">
 										<!-- <div class="user-details">
 											<div class="pull-left user-img m-r-10">
-												<a href="profile.html" title="Mike Litorus"><img src="assets/img/user.jpg" alt="" class="w-40 img-circle"><span class="status online"></span></a>
+												<a href="profile.html" title="Mike Litorus"><img src="assets/img/user.jpg" alt="" class="w-40  img-circle"><span class="status online"></span></a>
 											</div>
 											<div class="user-info pull-left">
 												<a href="profile.html" title="Mike Litorus"><span class="font-bold">Mike Litorus</span> <i class="typing-text">Typing...</i></a>

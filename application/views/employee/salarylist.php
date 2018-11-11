@@ -54,9 +54,9 @@
 												<div class="dropdown">
 													<a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-ellipsis-v"></i></a>
 													<ul class="dropdown-menu pull-right">
-														<li><a href='<?php echo base_url('payroll/editsal/'.$row->e_id); ?>'    title="Edit"><i class="fa fa-pencil m-r-5"></i> Edit</a></li>
+														<li><a href='<?php echo base_url('payroll/editsal/'.base64_encode($row->e_id)); ?>'    title="Edit"><i class="fa fa-pencil m-r-5"></i> Edit</a></li>
 														<?php if(!($row->status==2)){?>
-														<li><a href="<?php echo base_url('payroll/sal_delete/'.$row->e_id); ?>" data-toggle="modal" data-target="#delete_salary" title="Delete"><i class="fa fa-trash-o m-r-5"></i> Delete</a></li>
+														<li><a href="<?php echo base_url('payroll/sal_delete/'.base64_encode($row->e_id)); ?>"   title="Delete"><i class="fa fa-trash-o m-r-5"></i> Delete</a></li>
 														<?php } ?>
 													</ul>
 												</div>
@@ -64,7 +64,8 @@
 										</tr>
 										<?php endforeach;}
 										else {?>
-											<tr> no data found</tr>
+											<tr  > 
+												<td class='text-center'>no data found</td></tr>
 										<?php }?>
 
 										 
