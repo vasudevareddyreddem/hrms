@@ -31,7 +31,10 @@ $this->load->library('numbertowords');
      echo json_encode($data);exit;
     }
 }
-        
+      else{
+     $this->session->set_flashdata('error',"Please login and continue");
+     redirect('');  
+     }  
 
 
 
@@ -40,6 +43,8 @@ $this->load->library('numbertowords');
 
     // payslip page for all employees
     public function genpayslip(){
+        if($this->session->userdata('hrmsdetails'))
+    { 
         $this->load->model('Employees_model');
          $data['name']=$this->Employees_model->all_emp();
          $this->load->model('payroll_model');
@@ -52,11 +57,17 @@ $data['year']=$this->payroll_model->get_year();
 
         
     }
+    else{
+     $this->session->set_flashdata('error',"Please login and continue");
+     redirect('');  
+     }  
 
    
-   
+   }
 	// payslip page
     public function payslippage(){
+        if($this->session->userdata('hrmsdetails'))
+    { 
 
    
                   
@@ -328,11 +339,19 @@ $pdf->charset_in = 'iso-8859-4';
          $this->load->view('html/footer');
 
 }
+else{
+     $this->session->set_flashdata('error',"Please login and continue");
+     redirect('');  
+     }  
+
+}
 
 
     
    // retreving the employee salary deatails
     public function editsal($id){
+       if($this->session->userdata('hrmsdetails'))
+    { 
 //$query = $this->db->get_where('salary_tab', array('emp_id' => $id));
         $this->db->select('*');
 $this->db->from('empployee');
@@ -351,12 +370,18 @@ $data['salary_type']=$this->payroll_model->salary_type();
 $this->load->view('employee/edit-salary',$data);
          $this->load->view('html/footer');
 
-
+}
+else{
+     $this->session->set_flashdata('error',"Please login and continue");
+     redirect('');  
+     }
 
     }
 
 //update the employee salaray
     public function updatesal() {
+      if($this->session->userdata('hrmsdetails'))
+    { 
             $this->load->helper(array('form', 'url'));
     $this->load->library('session');
     $this->load->library('form_validation');
@@ -452,8 +477,11 @@ exit;
 }
 
 
-
-
+}
+else{
+     $this->session->set_flashdata('error',"Please login and continue");
+     redirect('');  
+     }
 
 
 
@@ -487,6 +515,8 @@ exit;
 // }
 
 public function addsal(){
+   if($this->session->userdata('hrmsdetails'))
+    { 
 	$this->load->helper(array('form', 'url'));
     $this->load->library('session');
 	$this->load->library('form_validation');
@@ -596,28 +626,40 @@ redirect("employee/salarylist");
 }
 else
 	{ 
+    $this->session->set_flashdata('error','salary  details are not added');
 
-		echo 'not';
-exit;
+	redirect("employee/salarylist");
+}
 
+}
+else{
+     $this->session->set_flashdata('error',"Please login and continue");
+     redirect('');  
+     }
 
 }
 
 
 
-}
+
 
 // delete emp salare
 public function sal_delete($eid){
+	 if($this->session->userdata('hrmsdetails'))
+    { 
 
    $this->load->model('payroll_model');
    $this->payroll_model->emp_sal_delete($eid);
    $this->session->set_flashdata('success','salary deleted'); 
 
 
-   redirect('');
+   redirect("employee/salarylist");
 
-      
+	}
+	else{
+     $this->session->set_flashdata('error',"Please login and continue");
+     redirect('');  
+     }
     }
 
   public function gen_pdf(){

@@ -29,6 +29,7 @@ public function __construct()
   }
 
   public function sendmessage(){
+
   	$message=$this->input->post('message');
   	//$rec_id=$this->input->post('rid');
   	//echo json_encode($rec_id);exit; 
@@ -75,13 +76,14 @@ echo json_encode($data);exit;
 }
 else{
 
-  
 }
 
 
 }
 
 public function userchat($id){
+  if($this->session->userdata('hrmsdetails'))
+      {
    $this->load->library('session');
   $userdetails=$this->session->userdata('hrmsdetails');
   //echo $id;exit;
@@ -104,10 +106,13 @@ public function userchat($id){
 
     
     $this->load->view('employee/userchat',$data);
+  }
 
 
 }
 public function deletechat(){
+  if($this->session->userdata('hrmsdetails'))
+      {
   $userdetails=$this->session->userdata('hrmsdetails');
     $eid=$userdetails['e_id'];
     //$data['sender']=$eid;
@@ -128,6 +133,7 @@ echo json_encode($data);exit;
 
 
 
+}
 }
 
 
