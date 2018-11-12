@@ -27,7 +27,10 @@ class Notification_model extends CI_Model
 		return $this->db->get()->row_array();	
 	}
 
+<<<<<<< HEAD
 	
+=======
+>>>>>>> parent of a4efb4f... Merge branch 'master' of https://github.com/vasudevareddyreddem/hrms
 	
 	public function get_notifications_view_list(){
 	$this->db->select('leaves.*')->from('leaves');
@@ -35,18 +38,27 @@ class Notification_model extends CI_Model
 <<<<<<< HEAD
 		}
 	
+<<<<<<< HEAD
 	public function get_all_notifications_leaves_list_details(){
 	$this->db->select('leaves.*,empployee.e_login_name,role.role,leave_type.leave_type_name')->from('leaves');
 	$this->db->join('empployee', 'empployee.e_id = leaves.emp_id', 'left');
 	$this->db->join('role', 'role.r_id = empployee.role_id', 'left');
 	$this->db->join('leave_type', 'leave_type.l_t_id = leaves.leave_type', 'left');
 =======
+=======
+	public function get_notifications_view_list(){
+	$this->db->select('leaves.*')->from('leaves');
+	return $this->db->get()->result_array();
+>>>>>>> parent of a4efb4f... Merge branch 'master' of https://github.com/vasudevareddyreddem/hrms
 }
 	
 	public function get_all_notifications_leaves_list_details(){
 	$this->db->select('leaves.*,empployee.e_login_name,role.role')->from('leaves');
 	$this->db->join('empployee', 'empployee.e_id = leaves.emp_id', 'left');
 	$this->db->join('role', 'role.r_id = empployee.role_id', 'left');
+<<<<<<< HEAD
+>>>>>>> parent of a4efb4f... Merge branch 'master' of https://github.com/vasudevareddyreddem/hrms
+=======
 >>>>>>> parent of a4efb4f... Merge branch 'master' of https://github.com/vasudevareddyreddem/hrms
 	$this->db->where('leaves.status',0);
 	return $this->db->get()->result_array();	

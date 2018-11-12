@@ -38,12 +38,16 @@
 								<div class="form-group">
 									<label>From <span class="text-danger">*</span></label>
 <<<<<<< HEAD:application/views/employee/emp_leave_add.php
+<<<<<<< HEAD:application/views/employee/emp_leave_add.php
 									<div id="pickup_date"><p><input type="text" class="textbox" name="f_date" id="pick_date" onchange="cal()"</p></div>
 								</div>
 								<div class="form-group">
 									<label>To <span class="text-danger">*</span></label>
 									<div id="dropoff_date"><p><input type="date" class="textbox" name="t_date" id="drop_date" onchange="cal()"/></p></div>
 									<div class="cal-icon"><input class="form-control datetimepicker" type="text" name="f_date"></div>
+=======
+									<div class="cal-icon"><input class="form-control datetimepicker" type="text" name="f_date" id="f_date" ></div>
+>>>>>>> parent of a4efb4f... Merge branch 'master' of https://github.com/vasudevareddyreddem/hrms:application/views/employee/employee-add.php
 =======
 									<div class="cal-icon"><input class="form-control datetimepicker" type="text" name="f_date" id="f_date" ></div>
 >>>>>>> parent of a4efb4f... Merge branch 'master' of https://github.com/vasudevareddyreddem/hrms:application/views/employee/employee-add.php
@@ -56,9 +60,13 @@
 								<div class="form-group">
 									<label>Number of days <span class="text-danger">*</span></label>
 <<<<<<< HEAD:application/views/employee/emp_leave_add.php
+<<<<<<< HEAD:application/views/employee/emp_leave_add.php
 									 <div id="numdays"><input  type="text" class="textbox" id="numdays2"    name="no_days" /></div>
 								</div>
 									<input class="form-control"  type="text" name="no_days">
+=======
+									<input class="form-control"  onClick="CalculateDiff();" type="text" name="no_days" id="no_days">
+>>>>>>> parent of a4efb4f... Merge branch 'master' of https://github.com/vasudevareddyreddem/hrms:application/views/employee/employee-add.php
 =======
 									<input class="form-control"  onClick="CalculateDiff();" type="text" name="no_days" id="no_days">
 >>>>>>> parent of a4efb4f... Merge branch 'master' of https://github.com/vasudevareddyreddem/hrms:application/views/employee/employee-add.php
@@ -83,6 +91,7 @@
             </div>
 			
 <<<<<<< HEAD:application/views/employee/emp_leave_add.php
+<<<<<<< HEAD:application/views/employee/emp_leave_add.php
 		<script type="text/javascript">
         function GetDays(){
                 var dropdt = new Date(document.getElementById("drop_date").value);
@@ -99,6 +108,10 @@
     </script>
 			
 
+=======
+				
+			
+>>>>>>> parent of a4efb4f... Merge branch 'master' of https://github.com/vasudevareddyreddem/hrms:application/views/employee/employee-add.php
 =======
 				
 			

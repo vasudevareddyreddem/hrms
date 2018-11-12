@@ -63,9 +63,13 @@
 											
 											 <div class="media-body">
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 												<p class="m-0 noti-details"><span class="noti-title"><?php echo $lis['e_login_name'];?> &nbsp;Applied For&nbsp;<?php echo $lis['leave_type_name']; ?></span></p>
 
+=======
+												<p class="m-0 noti-details"><span class="noti-title"><?php echo $lis['e_login_name'];?> &nbsp;Applied For&nbsp;<?php echo $lis['leave_type']; ?></span></p>
+>>>>>>> parent of a4efb4f... Merge branch 'master' of https://github.com/vasudevareddyreddem/hrms
 =======
 												<p class="m-0 noti-details"><span class="noti-title"><?php echo $lis['e_login_name'];?> &nbsp;Applied For&nbsp;<?php echo $lis['leave_type']; ?></span></p>
 >>>>>>> parent of a4efb4f... Merge branch 'master' of https://github.com/vasudevareddyreddem/hrms
@@ -102,6 +106,9 @@
 						<a href="javascript:;" id="open_msg_box" class="hasnotifications"><i class="fa fa-comment-o"></i> <span class="badge bg-purple pull-right">8</span></a>
 					</li>
 					
+<<<<<<< HEAD
+>>>>>>> parent of a4efb4f... Merge branch 'master' of https://github.com/vasudevareddyreddem/hrms
+=======
 >>>>>>> parent of a4efb4f... Merge branch 'master' of https://github.com/vasudevareddyreddem/hrms
 					<li class="dropdown">
 			

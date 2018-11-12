@@ -295,8 +295,11 @@ $this->db->select('*')->from('department');
 	$this->db->join('empployee', 'empployee.e_id = leaves.emp_id', 'left');
 	$this->db->join('role', 'role.r_id = empployee.role_id', 'left');
 <<<<<<< HEAD
+<<<<<<< HEAD
 	$this->db->where('leaves.status',0);
 =======
+=======
+>>>>>>> parent of a4efb4f... Merge branch 'master' of https://github.com/vasudevareddyreddem/hrms
 	$this->db->join('leave_type', 'leave_type.l_t_id = leaves.leave_type', 'left');
 		$this->db->where('leaves.status',0);
 >>>>>>> parent of a4efb4f... Merge branch 'master' of https://github.com/vasudevareddyreddem/hrms
@@ -320,12 +323,15 @@ $this->db->select('*')->from('department');
 		return $this->db->get()->result_array();
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 
 	/* supervisors  purpose*/
 
 
 
+=======
+>>>>>>> parent of a4efb4f... Merge branch 'master' of https://github.com/vasudevareddyreddem/hrms
 =======
 >>>>>>> parent of a4efb4f... Merge branch 'master' of https://github.com/vasudevareddyreddem/hrms
 	public function save_area_details($data){
