@@ -1,3 +1,4 @@
+<head>
 <style>
 .col-md-6{
 	width:50%;
@@ -10,6 +11,7 @@ table, th, td {
     border-collapse: collapse;
 }
 </style>
+</head>
 <div class="row">
 			<div class="col-md-12">
 				<div class="card-box">
