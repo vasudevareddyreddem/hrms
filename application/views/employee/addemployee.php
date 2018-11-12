@@ -332,8 +332,8 @@
 								<div class="row">
 									<div class="col-sm-6">
 											<div class="form-group">
-											<label class="control-label">Address 1 </label>
-											<textarea class="form-control" name="e_c_p_address" placeholder="Enter Address1"></textarea>
+											<label class="control-label">Address </label>
+											<textarea class="form-control" name="e_c_p_address" placeholder="Enter Address"></textarea>
 										</div>
 									</div>
 									
@@ -352,9 +352,7 @@
  
   <script type="text/javascript">
   function checkvalidations(){
-	  var empty_value= document.getElementById("e_emplouee_id").value;
-	  if(empty_value !=''){
-			  if(filltoo.checked == true) 
+	   if(filltoo.checked == true) 
 			 {
 				return true;
 			 }else{
@@ -373,7 +371,9 @@
 				}
 				
 			 }
-	  }
+	  
+	  
+	  
   }
   
   function get_type(val){
