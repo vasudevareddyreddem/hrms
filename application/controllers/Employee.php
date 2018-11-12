@@ -402,7 +402,7 @@ public function addpost(){
 					$this->session->set_flashdata('success',"Employee details successfully added");	
 					redirect('employee/all');	
 					}else{
-						$this->session->set_flashdata('error',"Technical problem occurred. Please  try  again once ");
+						$this->session->set_flashdata('error',"technical problem will occurred. Please try again.");
 						redirect('employee/all');
 					}
 		         }else{
@@ -462,7 +462,7 @@ public function addholidaypost(){
 					$this->session->set_flashdata('success',"Holiday added successfully");	
 					redirect('employee/holidays');	
 					}else{
-						$this->session->set_flashdata('error',"techechal probelem occur ");
+						$this->session->set_flashdata('error',"technical problem will occurred. Please try again.");
 						redirect('employee/holidays');
 					}
 				   }else{
@@ -520,7 +520,7 @@ public function addholidaypost(){
 					$this->session->set_flashdata('success',"Holiday edited successfully");	
 					redirect('employee/holidays');	
 					  }else{
-						$this->session->set_flashdata('error',"techechal probelem occur ");
+					$this->session->set_flashdata('error',"technical problem will occurred. Please try again.");
 						redirect('employee/holidays');
 					  }
 				   }else{
@@ -551,9 +551,9 @@ if($this->session->userdata('hrmsdetails'))
 							//echo $this->db->last_query();exit;	
 							if(count($statusdata)>0){
 								if($status==1){
-								$this->session->set_flashdata('success',"Holiday  Deactivate successfully Deactivate.");
+								$this->session->set_flashdata('success',"Holiday deactivate successfully.");
 								}else{
-									$this->session->set_flashdata('success',"Holiday Activate successfully .");
+									$this->session->set_flashdata('success',"Holiday activate successfully .");
 								}
 								redirect('employee/holidays');
 							}else{
