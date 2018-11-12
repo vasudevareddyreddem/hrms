@@ -29,7 +29,7 @@
 									</div>
 								</div>
 				
-				
+
 			  
           </div>
                 <div class="col-md-6">
@@ -39,16 +39,16 @@
 				        <select id="allocated_area" name="allocated_area" value="<?php echo isset($edit_work['area'])?$edit_work['area']:''; ?>"  class="form-control" >
 				         <option value="">Select</option>
 				       <?php if(isset($area_list) && count($area_list)>0){ ?>
-											<?php foreach($area_list as $list){ ?>
-											
-													<?php if($edit_work['allocated_area']==$list['a_id']){ ?>
-															<option selected value="<?php echo $list['a_id']; ?>"><?php echo $list['area']; ?></option>
-													<?php }else{ ?>
-															<option value="<?php echo $list['a_id']; ?>"><?php echo $list['area']; ?></option>
-													<?php } ?>
-											<?php } ?>
-										<?php } ?>
-										</select>
+						<?php foreach($area_list as $list){ ?>
+						
+								<?php if($edit_work['allocated_area']==$list['a_id']){ ?>
+										<option selected value="<?php echo $list['a_id']; ?>"><?php echo $list['area']; ?></option>
+								<?php }else{ ?>
+										<option value="<?php echo $list['a_id']; ?>"><?php echo $list['area']; ?></option>
+								<?php } ?>
+						<?php } ?>
+					<?php } ?>
+					</select>
 				  </div>
 			      </div>
                  </div>
