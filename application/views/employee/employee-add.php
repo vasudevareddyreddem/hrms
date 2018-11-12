@@ -31,17 +31,23 @@
 								<?php } ?>
 									</select>
 								</div>
+						
+								
+								
+								 <div id="reserve_form">
 								<div class="form-group">
 									<label>From <span class="text-danger">*</span></label>
-									<div class="cal-icon"><input class="form-control datetimepicker" type="text" name="f_date" id="f_date" ></div>
+									<div id="pickup_date"><p><input type="date" class="textbox" name="f_date" id="pick_date" onchange="cal()"</p></div>
 								</div>
 								<div class="form-group">
 									<label>To <span class="text-danger">*</span></label>
-									<div class="cal-icon"><input class="form-control datetimepicker" type="text" name="t_date" id="t_date" ></div>
+									<div id="dropoff_date"><p><input type="date" class="textbox" name="t_date" id="drop_date" onchange="cal()"/></p></div>
 								</div>
+								
 								<div class="form-group">
 									<label>Number of days <span class="text-danger">*</span></label>
-									<input class="form-control"  onClick="CalculateDiff();" type="text" name="no_days" id="no_days">
+									 <div id="numdays"><input  type="text" class="textbox" id="numdays2"    name="no_days" /></div>
+								</div>
 								</div>
 								
 								<div class="form-group">
@@ -62,7 +68,20 @@
 			
             </div>
 			
-				
+		<script type="text/javascript">
+        function GetDays(){
+                var dropdt = new Date(document.getElementById("drop_date").value);
+                var pickdt = new Date(document.getElementById("pick_date").value);
+                return parseInt(1+(dropdt - pickdt) / (24 * 3600 * 1000));
+        }
+
+        function cal(){
+        if(document.getElementById("drop_date")){
+            document.getElementById("numdays2").value=GetDays();
+        }  
+    }
+
+    </script>
 			
 <script>
 $(document).ready(function() {

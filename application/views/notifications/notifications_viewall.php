@@ -28,7 +28,7 @@
 											<a href="#" class="avatar"><?php echo substr($list['e_login_name'],0,1);?></a>
 											<h2><a href="#"><span><?php echo $list['e_login_name'];?></span></a></h2>
 											</td>
-                                    <td>Applied For <?php echo $list['leave_type']; ?></td>
+                                    <td>Applied For <?php echo $list['leave_type_name']; ?></td>
                                     <td><?php echo $list['created_at']; ?></td>
                                     <td>
                                 <a href="<?php echo base_url('notifications/delete/'.base64_encode($list['l_id']));?>" data-toggle="tooltip"  title="Delete"><i class="fa fa-trash btn btn-danger"></i></a>
