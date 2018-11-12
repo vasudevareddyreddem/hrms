@@ -29,7 +29,7 @@
                     <ul class="list-unstyled" style="display: none;">
                         <li><a href="<?php echo base_url('employee/attendance'); ?>">Employee attendance </a></li>
                         <li><a href="<?php echo base_url('employee/shiftmangement');?>">Shift Mangement </a></li>
-                        <li><a href="<?php echo base_url('employee/leaverequests');?>"><span>Leave Requests</span> <span class="badge bg-primary pull-right">1</span></a></li>
+                        <li><a href="<?php echo base_url('employee/leaverequests');?>"><span>Leave Requests</span> <span class="badge bg-primary pull-right"><?php if(isset($notification_count['cnt']) && $notification_count['cnt']>0){  echo $notification_count['cnt']; } ?></span></a></li>
                         <li><a href="<?php echo base_url('employee/leaveslist');?>">Leaves List </a></li>
                     </ul>
                 </li>
@@ -85,7 +85,7 @@
                     <a href="#"><span>Employee Management</span> <span class="menu-arrow"></span></a>
                     <ul class="list-unstyled" style="display: none;">
                         
-                        <li><a href="<?php echo base_url('employee/leaves');?>"><span>Leave Requests</span> <span class="badge bg-primary pull-right">1</span></a></li>
+                        <li><a href="<?php echo base_url('employee/leaves');?>"><span>Leave Requests</span> <span class="badge bg-primary pull-right"><?php if(isset($notification_count['cnt']) && $notification_count['cnt']>0){  echo $notification_count['cnt']; } ?></span></a></li>
                     </ul>
                 </li>
 			 <li class="submenu">

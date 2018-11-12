@@ -19,16 +19,10 @@ class Notifications extends In_frontend {
 		if($this->session->userdata('hrmsdetails'))
 		{
 				$admindetails=$this->session->userdata('hrmsdetails');
-				$employee_leaves_list=$this->Employees_model->get_all_employee_leaves_list_details(); 
-                     // echo'<pre>';print_r($employee_leaves_list);exit;
 				$post=$this->input->post();
-				//echo'<pre>';print_r($post);exit;
+				$update=array('read_count'=>0);
 				$details=$this->Notification_model->get_notifications_leaves($post['notification_id']);
-				//echo'<pre>';print_r($details);exit;
-				$this->Notification_model->get_notifications_leaves_read($post['notification_id']);
-				$school_details=$this->Notification_model->get_all_admin_details($admindetails['e_id']);
-					//echo'<pre>';print_r($school_details);exit;
-				
+				$this->Notification_model->get_notifications_leaves_read($post['notification_id'],$update);
 				$data['names_list']=$details['leave_type'];
 				$data['time']=$details['created_at'];
 				

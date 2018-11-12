@@ -847,45 +847,42 @@ else{
 	   
    }
 }			
-  public function employeeaddpost(){
+  public function leavespost(){
   if($this->session->userdata('hrmsdetails'))
 		{
 	
 	$admindetails=$this->session->userdata('hrmsdetails');
 	$post=$this->input->post();	
-		 //echo'<pre>';print_r($admindetails);exit;
-		 $date1 = DateTime::createFromFormat('Y-m-d', $post['f_date']); // \DateTime object
-		  //echo'<pre>';print_r($post['f_date']);exit;
-      $f=$date1->format('Y-m-d');
-        //echo'<pre>';print_r($f);exit;
-		  $date2 = DateTime::createFromFormat('Y-m-d', $post['t_date']); // \DateTime object
-		  //echo'<pre>';print_r($post['t_date']);exit;
-      $g=$date2->format('Y-m-d');
-        //echo'<pre>';print_r($d);exit;
-		
-		
-		///echo'<pre>';print_r($today);exit;
-		
-	     $save_data=array(
+	//echo'<pre>';print_r($post);
+	
+				$f_date = strtotime($post['f_date']);
+				$t_date = strtotime($post['t_date']);
+				$currentDate = date('Y-m-d', $f_date); 
+				$newDate = date('Y-m-d',$t_date); 
+				
+			$date1=date_create($currentDate);
+			$date2=date_create($newDate);
+			$diff=date_diff($date1,$date2);
+			$save_data=array(
 		        'emp_id'=>isset($admindetails['e_id'])?$admindetails['e_id']:'',
 				'leave_type'=>isset($post['l_type'])?$post['l_type']:'',
-				'from_date'=>$f?$f:'',
-				'to_date'=>$g?$g:'',
-				'number_of_days'=>isset($post['no_days'])?$post['no_days']:'',
+				'from_date'=>isset($currentDate)?$currentDate:'',
+				'to_date'=>isset($newDate)?$newDate:'',
+				'number_of_days'=>$diff->format("%a")+1,
 				'leaves_reason'=>isset($post['l_reason'])?$post['l_reason']:'',
 				'status'=>0,
 				'created_at'=>date('Y-m-d H:i:s'),
 				'updated_at'=>date('Y-m-d H:i:s'),
 				'created_by'=>isset($admindetails['e_id'])?$admindetails['e_id']:''
 				 );
-				  //echo'<pre>';print_r($save_data);exit;
+				//echo'<pre>';print_r($save_data);exit;
 		       $save=$this->Employees_model->save_leaves_details($save_data);	
 	         if(count($save)>0){
 					$this->session->set_flashdata('success',"Leave Request successfully sent");	
-					redirect('employee/employeeleaverequests');	
+					redirect('employee/leaves');	
 					}else{
 						$this->session->set_flashdata('error',"techechal probelem occur ");
-						redirect('employee/employeeleaverequests');
+						redirect('employee/leaves');
 					}
 				   
 	

@@ -22,9 +22,15 @@ class In_frontend extends CI_Controller {
 			{
 				$admindetails=$this->session->userdata('hrmsdetails');
 				$data['userdetails']=$this->User_model->get_roles_wise_details($admindetails['e_id']);
-				//echo'<pre>';print_r($data);exit;
-				$data['employee_leaves_list']=$this->Employees_model->get_all_employee_leaves_list_details(); 
-				//echo'<pre>';print_r($admindetails);exit;
+				$data['leaves_notification']=$this->User_model->get_all_employee_leaves_list_details(); 
+				if($admindetails['role_id']==2){
+					$data['notification_count']=$this->User_model->get_leave_notification_count(''); 
+
+				}else{
+					$data['notification_count']=$this->User_model->get_leave_notification_count($admindetails['e_id']); 
+
+				}
+				//echo '<pre>';print_r($data);exit;
 				$this->load->view('html/header',$data);
 				$this->load->view('html/sidebar',$data);
 				

@@ -123,6 +123,26 @@ public function save_login_time_status($data){
 		return $this->db->get()->row_array();	
 	}
 	
+	/*notification data*/
+	public function get_all_employee_leaves_list_details(){
+	$this->db->select('leaves.*,empployee.e_login_name,role.role')->from('leaves');
+	$this->db->join('empployee', 'empployee.e_id = leaves.emp_id', 'left');
+	$this->db->join('role', 'role.r_id = empployee.role_id', 'left');
+	$this->db->where('leaves.status',0);
+	return $this->db->get()->result_array();	
+	}
+	
+	public  function get_leave_notification_count($e_id){
+		$this->db->select('COUNT(leaves.l_id) as cnt')->from('leaves');
+		if(isset($e_id) && $e_id!=''){
+			$this->db->where('leaves.emp_id',$e_id);
+		}
+		$this->db->where('leaves.read_count',1);
+		return $this->db->get()->row_array();
+		
+	}
+	/*notification data*/
+	
 	
 	
 	

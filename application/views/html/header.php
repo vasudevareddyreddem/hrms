@@ -40,37 +40,34 @@
                 </div>
 				<a id="mobile_btn" class="mobile_btn pull-left" href="#sidebar"><i class="fa fa-bars" aria-hidden="true"></i></a>
 				<ul class="nav navbar-nav navbar-right user-menu pull-right">
-				 <?php if(isset($employee_leaves_list) && count($employee_leaves_list)>0){   ?>
 					<li class="dropdown hidden-xs">
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-bell-o"></i> <span class="badge bg-purple pull-right" id="notification_count"><?php if(isset($notification_list) && count($notification_list)>0){   if($notification_count['count']!=0){ echo $notification_count['count']; } } ?></span></a>
+						<?php if(isset($leaves_notification) && count($leaves_notification)>0){ ?>
 						<div class="dropdown-menu notifications">
 							<div class="topnav-dropdown-header">
-								<span>You have <?php echo count($employee_leaves_list); ?> notifications</span>
+								<span>You have <?php echo count($leaves_notification); ?> notifications</span>
 							</div>
 							<div class="drop-scroll">
 								<ul class="media-list">
-								<?php $cnt=1;foreach($employee_leaves_list as $lis){ ?>
+								<?php $cnt=1;foreach($leaves_notification as $lis){ ?>
 					              <?php if($cnt<=5){ ?>
 								<li class="media notification-message">
-								<?php if($userdetails['role_id']==2){ ?>
-							<a onclick="opennotification(<?php echo $lis['l_id']; ?>);" data-toggle="modal" data-target="#exampleModalLong">
+										<a onclick="opennotification(<?php echo $lis['l_id']; ?>);" data-toggle="modal" data-target="#exampleModalLong">
 											
 												<div class="media-left">
-												<span class="avatar"><?php echo $userdetails['e_login_name']; ?></span>
+												<span class="avatar"><?php echo $lis['e_login_name']; ?></span>
 											</div>
 										
 											
 											 <div class="media-body">
 
-												<p class="m-0 noti-details"><span class="noti-title"><?php echo $lis['e_login_name'];?> &nbsp;Applied For&nbsp;<?php echo $lis['leave_type_name']; ?></span></p>
+												<p class="m-0 noti-details"><span class="noti-title"><?php echo $lis['e_login_name'];?> &nbsp;Applied For&nbsp;<?php echo $lis['leave_type']; ?></span></p>
 
 												<p class="m-0"><span class="notification-time"><?php echo $lis['created_at']; ?></span></p>
 											</div>
 										</a>
-									
-								 <?php } ?>
 							
-						 </li> 
+								</li> 
 						  
 					  <?php } ?>
 					<?php $cnt++;} ?>
@@ -82,8 +79,9 @@
 								<a href="<?php echo base_url('notifications/viewall'); ?>">View all Notifications</a>
 							</div>
 						</div>
+						<?php } ?>
 						
-						 <?php } ?>
+						 
 					</li>
 					
 					
