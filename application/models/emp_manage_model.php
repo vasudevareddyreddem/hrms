@@ -49,8 +49,8 @@ return $query->result_array();
 public function update_emp_shift($eid,$data){
 
 	$this->db->where('e_id',$eid);
-    $this->db->update("empployee",$data);
-    return  ($this->db->affected_rows() == 1) ? true: false;
+	return $this->db->update("empployee",$data);
+    
 
 
 

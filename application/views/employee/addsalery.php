@@ -378,13 +378,6 @@
             
     });
    
-    // Validate the form manually
-    $('#salform').on('submit',function(){
-    
-	    	$('#salform').bootstrapValidator('validate');}
-	    	);
-
-//$('#salform').bootstrapValidator('validate');
 
     });
    
