@@ -21,6 +21,11 @@
 			<script type="text/javascript" src="<?php echo base_url(); ?>assets/vendor/js/jquery-3.2.1.min.js"></script>
         <script type="text/javascript" src="<?php echo base_url(); ?>assets/vendor/js/bootstrap.min.js"></script>
         <script type="text/javascript" src="<?php echo base_url(); ?>assets/vendor/js/bootstrapValidator.js"></script>
+		
+		
+		
+		             
+		
     </head>
     <body>
         <div class="main-wrapper">
@@ -56,7 +61,9 @@
 										
 											
 											 <div class="media-body">
-												<p class="m-0 noti-details"><span class="noti-title"><?php echo $userdetails['e_login_name']; ?></span> <?php echo $lis['leave_type']; ?><span class="noti-title"><?php echo $lis['leaves_reason']; ?></span></p>
+
+												<p class="m-0 noti-details"><span class="noti-title"><?php echo $lis['e_login_name'];?> &nbsp;Applied For&nbsp;<?php echo $lis['leave_type_name']; ?></span></p>
+
 												<p class="m-0"><span class="notification-time"><?php echo $lis['created_at']; ?></span></p>
 											</div>
 										</a>

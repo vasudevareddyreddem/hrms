@@ -22,9 +22,18 @@
                             </thead>
                             <tbody>
                                 <tr>
+<<<<<<< HEAD
+                                     <td>
+											<a href="#" class="avatar"><?php echo substr($list['e_login_name'],0,1);?></a>
+											<h2><a href="#"><span><?php echo $list['e_login_name'];?></span></a></h2>
+											</td>
+                                    <td>Applied For <?php echo $list['leave_type_name']; ?></td>
+                                    <td><?php echo $list['created_at']; ?></td>
+=======
                                     <td>XXXXXXX</td>
                                     <td>xxxxxxxxxxxxxxxx</td>
                                     <td>Nov 6</td>
+>>>>>>> a4efb4f39a9374456b42d80b5bca797e72d12390
                                     <td>
                                         <a class="btn btn-sm btn-warning" href="#" data-toggle="tooltip" title="Edit"><i class="fa fa-reply"></i></a>
                                         <a href="#" data-toggle="tooltip" title="Delete"><i class="fa fa-trash btn btn-danger"></i></a>

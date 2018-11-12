@@ -221,7 +221,9 @@
 									<div class="col-sm-6 ">
 										<div class="form-group">
 											<label class="control-label">Address  </label>
-											<textarea class="form-control" id="e_p_address" name="e_p_address" placeholder="Enter Address"></textarea>
+											
+											<label class="control-label">Address </label>
+											<textarea class="form-control" id="e_p_address" name="e_p_address" placeholder="Enter Address"  onfocus="focusFunction()"></textarea>
 										</div>
 										<div class="form-group">
 											<label class="control-label">City </label>

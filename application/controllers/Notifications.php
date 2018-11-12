@@ -20,7 +20,7 @@ class Notifications extends In_frontend {
 		{
 				$admindetails=$this->session->userdata('hrmsdetails');
 				$employee_leaves_list=$this->Employees_model->get_all_employee_leaves_list_details(); 
-                      //echo'<pre>';print_r($employee_leaves_list);exit;
+                     // echo'<pre>';print_r($employee_leaves_list);exit;
 				$post=$this->input->post();
 				//echo'<pre>';print_r($post);exit;
 				$details=$this->Notification_model->get_notifications_leaves($post['notification_id']);

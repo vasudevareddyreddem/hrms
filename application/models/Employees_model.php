@@ -418,13 +418,10 @@ $this->db->select('*')->from('department');
 		return $this->db->query($sql1);	
 	}		
 	
+}
+	
 	
 
-	
- }		
-	
-	
-	
 	
 	
 	
