@@ -1,5 +1,19 @@
+<head>
+<style>
+.col-md-6{
+	width:50%;
+}
+.pull-right{
+	float:right;
+}
+table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+</style>
+</head>
 <div class="row">
-			<div class="col-md-12">
+			<div style="width:100%">
 				<div class="card-box">
 					<h4 class="payslip-title">Payslip for the month of 
 									
