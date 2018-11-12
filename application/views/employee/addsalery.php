@@ -16,11 +16,12 @@
 									<div class="col-md-6"> 
 										<div class="form-group">
 											<label>Select Staff</label>
-											<select class="select" name='uid'> 
+											<select class="select"  id='ename'> 
+												<option value='select'>Select</option> 
 											<?php if($flag==1) {?>
 											
 												<?php foreach($data as $row):?>
-													<option value='<?php echo $row->e_id?>' ><?php echo $row->e_f_name?></option>
+													<option value='<?php echo $row->e_f_name?>' ><?php echo $row->e_f_name?></option>
 												<?php endforeach?>
 											<?php }else{?>
 											
@@ -31,12 +32,34 @@
 										</div>
 									</div>
 									<div class="col-md-6"> 
+										<label>Emp id</label>
+										<select id='eid' class="select" name='uid'>
+
+										<option value=''>No Employees</option>
+
+												
+											
+											</select>
+									</div>
+									 <div class="col-md-6"> 
+										<label>salary type</label>
+										<select id='' class="select" name='saltype'>
+										<option value=''>select</option> 
+										<?php foreach($salary_type as $sal):?>
+										<option value='<?php echo $sal->sal_id;?>'><?php echo $sal->sal_type;?></option>
+									<?php endforeach?>
+
+											
+											</select>
+									</div> 
+									<div class="col-md-6"> 
 										<label>Net Salary</label>
 										<input class="form-control" type="text" name='netsal' id='nsal'>
 									</div>
 								</div>
 								<div class="row"> 
 									<div class="col-md-6"> 
+
 										<h4 class="text-primary ">Earnings</h4>
 										<div class="form-group">
 											<label>Basic</label>
@@ -46,6 +69,7 @@
 											<label>DA(40%)</label>
 											<input class="form-control netsal" type="text"  name='da'id='da'>
 										</div>
+
 										<div class="form-group">
 											<label>HRA(15%)</label>
 											<input class="form-control netsal" type="text"  id='hra' name="hra">
@@ -133,6 +157,64 @@
 			
 <script >
 			$(document).ready(function() {
+				//start
+				     	$("#ename").change(function () {
+                    		val=$('#ename').val();
+                    		//alert(val);
+                    		if(val=='select'){
+                    			$("#eid option").remove();
+                    	//alert('lk');
+                              return false;
+
+                    		}
+                    		//newval='http://localhost/hrms/payroll/empids/'+val;
+                    		//alert(newval);
+                    		    $.ajax({
+                    type: "GET",    //GET or POST or PUT or DELETE verb
+                    url: 'http://localhost/hrms/payroll/empids/'+val,     // Location of the service
+                    data: "",     //Data sent to server
+                   
+                    dataType: "json",   //Expected data format from server
+                    
+                    success: function (result) {
+                    	$("#eid option").remove();
+                    	//alert('lk');
+                    //console.log(result.msg);
+
+                    	//console.log(result);
+                    	if (parseInt(result.msg)==1){
+                    		
+                    	$.each(result.list, function () {
+                    		str='<option value="'+this.e_id+'">'+this.e_id+'</option>';
+
+                    		$("#eid").append(str);
+        // console.log("ID: " + this.e_id);
+        // console.log("First Name: " + this.e_f_name);
+        // console.log("Last Name: " + this.status);
+        
+     });
+                  }  	
+                  else{
+
+                      str='<option value=""> No data found</option>';
+                      $("#eid").append(str);
+
+                  }
+                         
+                         
+                         
+                         
+                         }
+                    ,
+                    error: function() { 
+                    	//console.log('error from server side');
+                    	//console.log(result)
+
+                    } 
+                });
+       
+    });
+				//end
 
 
 				// net salary

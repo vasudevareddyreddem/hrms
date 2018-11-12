@@ -74,12 +74,22 @@ return $query->result();
 
 
 }
+public function medical_leaves($year,$month,$eid){
+   $sql = "SELECT * FROM leaves  WHERE year(from_date)=$year AND month(from_date)=$month AND
+   emp_id=$eid And leave_type='3' ";
+
+ $query=$this->db->query($sql);
+return $query->result();
+
+
+
+}
 public function emp_sal($eid){
 
 $query = $this->db->get_where('employee_salary', array('e_id' => $eid));
-$data=$query->row();
 
-return $data->e_net_salary;
+
+return $query->row();;
 }
 public function emp_sal_det($eid){
   $this->db->select('*');
@@ -105,7 +115,7 @@ return $query->result();
 
 public function no_sal_emp(){
 
-$sql = " select e_id,e_f_name from empployee where e_id not in (select e_id from employee_salary) ";
+$sql = " select distinct e_f_name from empployee where e_id not in (select e_id from employee_salary) ";
 
 $query=$this->db->query($sql);
 return $query->result();
@@ -152,7 +162,16 @@ return  ($this->db->affected_rows() == 1) ? true: false;
 
 
   }
-  // employee payslip details
+  // get salary type 
+
+  public function salary_type(){
+
+      $this->db->select('*')->from('salary_type_tab');
+      $query=$this->db->get();
+
+      return $query->result();
+
+  }
 
 
 }

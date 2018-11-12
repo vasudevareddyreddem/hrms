@@ -36,13 +36,13 @@
 
 									<tr>
 											<td>
-												<a href="profile.html" class="avatar">
+												<a href="<?php echo base_url('employeeprofile/profile/').base64_encode($row->e_id);?>" class="avatar">
 
 													<?php
 													$count++;
                                                   
 													echo substr($row->e_f_name,0,1)?></a>
-												<h2><a href="profile.html"><?php echo $row->e_f_name?> <span><?php echo $row->e_designation?></span></a></h2>
+												<h2><a href="#"><?php echo $row->e_f_name?> <span><?php echo $row->e_designation?></span></a></h2>
 											</td>
 											<td><?php echo $row->e_id?></td>
 											<td><?php echo $row->e_email_work?></td>

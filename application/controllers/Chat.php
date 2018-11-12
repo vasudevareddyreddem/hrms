@@ -29,6 +29,7 @@ public function __construct()
   }
 
   public function sendmessage(){
+
   	$message=$this->input->post('message');
   	//$rec_id=$this->input->post('rid');
   	//echo json_encode($rec_id);exit; 
@@ -52,6 +53,8 @@ echo json_encode($status);exit;
 }
 
 public function getmessages(){
+   if($this->session->userdata('hrmsdetails'))
+      {
 		$userdetails=$this->session->userdata('hrmsdetails');
     $eid=$userdetails['e_id'];
     //$data['sender']=$eid;
@@ -70,12 +73,17 @@ $rid=$this->session->userdata('recv');
 else{$data['status']='no';}
 echo json_encode($data);exit; 
 //$this->load->view('employee/getuserchat',$data);
+}
+else{
 
+}
 
 
 }
 
 public function userchat($id){
+  if($this->session->userdata('hrmsdetails'))
+      {
    $this->load->library('session');
   $userdetails=$this->session->userdata('hrmsdetails');
   //echo $id;exit;
@@ -98,8 +106,34 @@ public function userchat($id){
 
     
     $this->load->view('employee/userchat',$data);
+  }
 
 
+}
+public function deletechat(){
+  if($this->session->userdata('hrmsdetails'))
+      {
+  $userdetails=$this->session->userdata('hrmsdetails');
+    $eid=$userdetails['e_id'];
+    //$data['sender']=$eid;
+$sid=$eid;
+$rid=$this->session->userdata('recv');
+$status=$this->Chat_model->deletechat($sid,$rid);
+if($status=true){
+
+  $data['delstatus']='1';
+}
+else{
+  $data['delstatus']='0';
+
+}
+echo json_encode($data);exit; 
+
+
+
+
+
+}
 }
 
 
