@@ -13,9 +13,11 @@ $this->load->library('numbertowords');
     }
 
 
-    public function empids($name){
+    public function empids(){
       if($this->session->userdata('hrmsdetails'))
     { 
+
+      $name=base64_decode($this->uri->segment(3));
         $this->load->model('payroll_model');
         //print_r($this->payroll_model->emp_ids($name));exit;
     //     $post=$this->input->post();
@@ -85,6 +87,7 @@ $data['year']=$this->payroll_model->get_year();
                 }
 
      $eid=$this->input->post('eid');
+     //echo $eid;exit;
         $year=$this->input->post('year');
         $month=$this->input->post('month');
       $curyear = date('Y'); 
@@ -292,26 +295,27 @@ $path = rtrim(FCPATH,"/");
           $data['page_title'] = 'title'; // pass data to the view
           $pdfFilePath = $path."/assets/payslips/".$file_name;
           ini_set('memory_limit','320M'); // boost the memory limit if it's low <img src="https://s.w.org/images/core/emoji/72x72/1f609.png" alt="??" draggable="false" class="emoji">
-          $link1=base_url().'assets/vendor/img/favicon.png';
+         // $link1=base_url().'assets/vendor/img/favicon.png';
           //echo $link1;exit;
           $link2=base_url().'assets/vendor/css/font-awesome.min.css';
-          $link3=base_url().'assets/vendor/css/font-awesome.min.css';
-          $link4=base_url().'assets/vendor/css/dataTables.bootstrap.min.css';
-          $link5=base_url().'assets/vendor/css/select2.min.css';
-          $link6=base_url().'assets/vendor/css/bootstrap-datetimepicker.min.css';
-          $link7= base_url().'assets/vendor/plugins/morris/morris.css';
+          //$link3=base_url().'assets/vendor/css/font-awesome.min.css';
+          $link4=base_url().'assets/vendor/css/bootstrap.min.css';
+          //$link5=base_url().'assets/vendor/css/select2.min.css';
+          //$link6=base_url().'assets/vendor/css/bootstrap-datetimepicker.min.css';
+          //$link7= base_url().'assets/vendor/plugins/morris/morris.css';
           $link8=base_url().'assets/vendor/css/style.css';
-          $link9=base_url().'assets/vendor/js/jquery-3.2.1.min.js';
+         // $link9=base_url().'assets/vendor/js/jquery-3.2.1.min.js';
+
           $stylesheet='';
-          $stylesheet.=file_get_contents($link1); 
+          //$stylesheet.=file_get_contents($link1); 
            $stylesheet.=file_get_contents($link2);
-            $stylesheet.=file_get_contents($link3);
+            //$stylesheet.=file_get_contents($link3);
              $stylesheet.=file_get_contents($link4);
-              $stylesheet.=file_get_contents($link5);
-               $stylesheet.=file_get_contents($link6);
-                $stylesheet.=file_get_contents($link7);
+             // $stylesheet.=file_get_contents($link5);
+              // $stylesheet.=file_get_contents($link6);
+                //$stylesheet.=file_get_contents($link7);
                  $stylesheet.=file_get_contents($link8);
-                  $stylesheet.=file_get_contents($link9);
+                 // $stylesheet.=file_get_contents($link9);
                   
           $html = $this->load->view('employee/payslip-pdf',$data,true); // render the view into HTML
           //echo '<pre>';print_r($html);exit;
