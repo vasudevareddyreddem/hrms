@@ -172,6 +172,21 @@ return  ($this->db->affected_rows() == 1) ? true: false;
       return $query->result();
 
   }
+  // check the date for daily wage in  payslips tab
+  public function checkdate($date)
+  {
+
+    $this->db->select('*')->from('employee_salary_payslips');
+    return $this->db->get();
+  }
+  // get empployee  salary type
+
+  public function emp_sal_type(){
+  $this->db->select('e_id,sal_id,sal_type')->from('employee_salary')->join('salary_type_tab','salary_type_tab.sal_id=employee_salary.salary_type ');
+
+$query=$this->db->get();
+return $query->row();
+}
 
 
 }

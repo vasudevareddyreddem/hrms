@@ -303,18 +303,18 @@ $path = rtrim(FCPATH,"/");
           //$link5=base_url().'assets/vendor/css/select2.min.css';
           //$link6=base_url().'assets/vendor/css/bootstrap-datetimepicker.min.css';
           //$link7= base_url().'assets/vendor/plugins/morris/morris.css';
-          $link8=base_url().'assets/vendor/css/style.css';
+         // $link8=base_url().'assets/vendor/css/style.css';
          // $link9=base_url().'assets/vendor/js/jquery-3.2.1.min.js';
 
-          $stylesheet='';
-          //$stylesheet.=file_get_contents($link1); 
-           $stylesheet.=file_get_contents($link2);
-            //$stylesheet.=file_get_contents($link3);
-             $stylesheet.=file_get_contents($link4);
+          // $stylesheet='';
+          // //$stylesheet.=file_get_contents($link1); 
+          //  $stylesheet.=file_get_contents($link2);
+          //   //$stylesheet.=file_get_contents($link3);
+          //    $stylesheet.=file_get_contents($link4);
              // $stylesheet.=file_get_contents($link5);
               // $stylesheet.=file_get_contents($link6);
                 //$stylesheet.=file_get_contents($link7);
-                 $stylesheet.=file_get_contents($link8);
+                 $stylesheet=file_get_contents($link4);
                  // $stylesheet.=file_get_contents($link9);
                   
           $html = $this->load->view('employee/payslip-pdf',$data,true); // render the view into HTML
@@ -322,7 +322,7 @@ $path = rtrim(FCPATH,"/");
           $this->load->library('pdf');
           $pdf = $this->pdf->load();
           $pdf->allow_charset_conversion = true;
-$pdf->charset_in = 'iso-8859-4';
+        $pdf->charset_in = 'iso-8859-4';
           $pdf->SetFooter($_SERVER['HTTP_HOST'].'|{PAGENO}|'.date('M-d-Y')); // Add a footer for good measure <img src="https://s.w.org/images/core/emoji/72x72/1f609.png" alt="??" draggable="false" class="emoji">
           $pdf->SetDisplayMode('fullpage');
           $pdf->list_indent_first_level = 0;  // 1 or 0 - whether to indent the first level of a list
@@ -689,6 +689,113 @@ public function sal_delete($eid){
 
 
 
+
+
+  }
+  // payslipf fro daily workers
+  public function payslipdaily(){
+    if($this->session->userdata('hrmsdetails'))
+    { 
+
+    $userdet=$this->session->userdata('hrmsdetails');
+            $userid=$userdet['e_id'];
+   $eid=$this->input->post('eid');
+   $day=$this->input->post('day');
+   $date=date('Y-m-d');
+
+
+   $prev_date = date('Y-m-d', strtotime($date .' -1 day'));
+  // echo $prev_date;exit;
+   
+    if($day==0){
+      $present=$prev_date ;
+
+      
+    }
+    else{
+      $present=$date;
+
+    }
+    $payslip=$this->payroll_model->checkdate($present);
+   if(count($payslip)>0){
+     $data['pslip_det']=$res;
+
+} 
+     else{
+      $saldata=$this->payroll_model->emp_sal_det($eid);
+     $payslip_det=array(
+  'e_id'=> $saldata->e_id,
+'e_basic' => $saldata->e_basic,
+'e_hra'=>$saldata->e_hra,
+'e_da' => $saldata->e_da,
+'e_allowance'=> $saldata->e_allowance,
+'e_medical_allowance' => $saldata->e_medical_allowance,
+'e_conveyance'=> $saldata->e_conveyance,
+'e_others' => $saldata->e_others,
+'e_d_tds'=> $saldata->e_d_tds,
+'e_d_pf'=>$saldata->e_d_pf,
+'e_d_esi' => $saldata->e_d_esi,
+'e_d_Prof_tax' => $saldata->e_d_Prof_tax,
+'e_d_labour_welfare'=> $saldata->e_d_labour_welfare,
+'e_d_fund' => $saldata->e_d_fund,
+'e_d_others'=> $saldata->e_d_others,
+'e_net_salary' => $saldata->e_net_salary,
+'e_gross_salary'=>$saldata->e_gross_salary,
+'daily_date'=>$present,
+'payslip_pdf'=>$file_name,
+'created_by'=>$userid
+
+);
+     $this->payroll_model->save_payslip($payslip_det);
+$data['pslip_det']=$this->payroll_model->emp_payslip_det($month,$year);
+$file_name =time().'payslip.pdf';  
+//start
+$path = rtrim(FCPATH,"/");
+    $file_name=$data['pslip_det']->payslip_pdf;
+                        
+          $data['page_title'] = 'title'; // pass data to the view
+          $pdfFilePath = $path."/assets/payslips/".$file_name;
+          ini_set('memory_limit','320M'); // boost the memory limit if it's low <img src="https://s.w.org/images/core/emoji/72x72/1f609.png" alt="??" draggable="false" class="emoji">
+         // $link1=base_url().'assets/vendor/img/favicon.png';
+          //echo $link1;exit;
+          $link2=base_url().'assets/vendor/css/font-awesome.min.css';
+          //$link3=base_url().'assets/vendor/css/font-awesome.min.css';
+          $link4=base_url().'assets/vendor/css/bootstrap.min.css';
+         
+                 $stylesheet=file_get_contents($link4);
+               
+                  
+          $html = $this->load->view('employee/payslip-pdf',$data,true); // render the view into HTML
+          //echo '<pre>';print_r($html);exit;
+          $this->load->library('pdf');
+          $pdf = $this->pdf->load();
+          $pdf->allow_charset_conversion = true;
+        $pdf->charset_in = 'iso-8859-4';
+          $pdf->SetFooter($_SERVER['HTTP_HOST'].'|{PAGENO}|'.date('M-d-Y')); // Add a footer for good measure <img src="https://s.w.org/images/core/emoji/72x72/1f609.png" alt="??" draggable="false" class="emoji">
+          $pdf->SetDisplayMode('fullpage');
+          $pdf->list_indent_first_level = 0;  // 1 or 0 - whether to indent the first level of a list
+         
+          $pdf->WriteHTML($stylesheet,1);
+          $pdf->WriteHTML($html,2); // write the HTML into the PDF
+          $pdf->Output($pdfFilePath, 'F');
+//end
+
+
+}
+    $saltype='';
+
+     $this->load->view('employee/payslip-view',$data);
+         $this->load->view('html/footer');
+       }
+
+    
+else{
+     $this->session->set_flashdata('error',"Please login and continue");
+     redirect('');  
+     }
+    
+
+ 
 
 
   }
