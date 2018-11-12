@@ -13,7 +13,7 @@
 					<hr>
 					<div class="row filter-row">
 						<form action='<?php echo base_url('payroll/payslippage')?>' method='post' >
-					   <div class="col-sm-3 col-md-3 col-xs-6">  
+					   <div class="col-sm-4 col-md-4 col-xs-6">  
 							<div class="form-group form-focus">
 								<label class="control-label"></label>
 								<!-- <div class="cal-icon"> -->
@@ -27,7 +27,7 @@
 								<!-- </div> -->
 							</div>
 					   </div>  
-						<div class="col-sm-3 col-md-3 col-xs-6">  
+						<div class="col-sm-4 col-md-4 col-xs-6">  
 							<div class="form-group form-focus">
 								<label class="control-label"></label>
 								<!-- <div class="cal-icon"> -->
@@ -38,9 +38,23 @@
 								<!-- </div> -->
 							</div>
 					   </div>
-					
-					 
-					   <div class="col-sm-3 col-md-3 col-xs-6">  
+					   <div class="col-sm-4 col-md-4 col-xs-6">  
+							<div class="form-group form-focus">
+								<label class="control-label"></label>
+								<!-- <div class="cal-icon"> -->
+										<Select id="colorselector" class="form-control">
+							   <option >Select Salary Type</option>
+							   <option value="monthly">Monthly</option>
+							   <option value="weekly">Weekly</option>
+							   <option value="daily">Daily</option>
+							</Select>
+															<!-- </div> -->
+							</div>
+					   </div>  
+					   
+					 </div>
+					 <div class="row colors " id="monthly" style="display:none" >
+					   <div class="col-sm-4 col-md-4 col-xs-6">  
 							<div class="form-group form-focus">
 								<label class="control-label"></label>
 								<!-- <div class="cal-icon"> -->
@@ -53,7 +67,7 @@
 						<!-- 	</div> -->
 						</div>
 					</div>
-					   <div class="col-sm-3 col-md-3 col-xs-6">  
+					   <div class="col-sm-4 col-md-4 col-xs-6">  
 							<div class="form-group form-focus">
 								<label class="control-label"></label>
 								<!-- <div class="cal-icon"> -->
@@ -66,13 +80,56 @@
 								<!-- </div> -->
 							</div>
 						</div>
+					</div>
+					<div class="row colors " id="weekly" style="display:none" >
+					   <div class="col-sm-4 col-md-4 col-xs-6">  
+							<div class="form-group form-focus">
+								<label class="control-label"></label>
+								<!-- <div class="cal-icon"> -->
+									<select class="select" name='month'> 
+											<option>Select Week</option>
+											<option>Present Week</option>
+											<option>Last Week</option>
+											</select>
+						<!-- 	</div> -->
+						</div>
+					</div>
+					
+					</div>
+					<div class="row colors " id="daily" style="display:none" >
+					   <div class="col-sm-4 col-md-4 col-xs-6">  
+							<div class="form-group form-focus">
+								<label class="control-label"></label>
+								<!-- <div class="cal-icon"> -->
+									<select class="select" name='month'> 
+											<option>Select Day</option>
+											<option>Present Day</option>
+											<option>Last Day</option>
+											</select>
+						<!-- 	</div> -->
+						</div>
+					</div>
+					
+					</div>
+				
+				
+				
+				
 						<div class="row">
 						<div class="col-sm-3 pull-right">  
 							<button type='submit' class="btn btn-success "> Genarate Payslip </button>  
 						</div>     
-						</div>     
-                    </div>
-
+						</div> 
+</form>						
+                   
+<script>
+   $(function() {
+        $('#colorselector').change(function(){
+            $('.colors').hide();
+            $('#' + $(this).val()).show();
+        });
+    });
+</script>
                     <script type="text/javascript">
                     	$(document).ready(function() {
                     		
