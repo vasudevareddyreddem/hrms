@@ -10,7 +10,7 @@
 						
 						</div>
 					</div>
-					<form id="defaultForm" method="post" class="m-b-30" action="<?php echo base_url('employee/addpost');?>" enctype="multipart/form-data">
+					<form onsubmit="return checkvalidations();" id="defaultForm" method="post" class="m-b-30" action="<?php echo base_url('employee/addpost');?>" enctype="multipart/form-data">
 							<h2 class="text-primary">Basic Details</h2>
 							<hr>
 								<div class="row">
@@ -177,8 +177,8 @@
 								
 									<div class="col-sm-6 ">
 										<div class="form-group">
-											<label class="control-label">Address 1 </label>
-											<textarea class="form-control" id="e_c_adress" name="e_c_adress" placeholder="Enter Address1"></textarea>
+											<label class="control-label">Address </label>
+											<textarea class="form-control" id="e_c_adress" name="e_c_adress" placeholder="Enter Address"></textarea>
 										</div>
 										<div class="form-group">
 											<label class="control-label">City </label>
@@ -186,7 +186,7 @@
 										</div>
 										<div class="form-group">
 											<label class="control-label">District </label>
-											<input class="form-control" id="e_c_district" name="e_c_district" type="text" placeholder="Enter City">
+											<input class="form-control" id="e_c_district" name="e_c_district" type="text" placeholder="Enter District">
 										</div>
 										<?php $states = array ('Andhra Pradesh' => 'Andhra Pradesh', 'Arunachal Pradesh' => 'Arunachal Pradesh', 'Assam' => 'Assam', 'Bihar' => 'Bihar', 'Chhattisgarh' => 'Chhattisgarh', 'Goa' => 'Goa', 'Gujarat' => 'Gujarat', 'Haryana' => 'Haryana', 'Himachal Pradesh' => 'Himachal Pradesh', 'Jammu & Kashmir' => 'Jammu & Kashmir', 'Jharkhand' => 'Jharkhand', 'Karnataka' => 'Karnataka', 'Kerala' => 'Kerala', 'Madhya Pradesh' => 'Madhya Pradesh', 'Maharashtra' => 'Maharashtra', 'Manipur' => 'Manipur', 'Meghalaya' => 'Meghalaya', 'Mizoram' => 'Mizoram', 'Nagaland' => 'Nagaland', 'Odisha' => 'Odisha', 'Punjab' => 'Punjab', 'Rajasthan' => 'Rajasthan', 'Sikkim' => 'Sikkim', 'Tamil Nadu' => 'Tamil Nadu', 'Telangana' => 'Telangana', 'Tripura' => 'Tripura', 'Uttarakhand' => 'Uttarakhand','Uttar Pradesh' => 'Uttar Pradesh', 'West Bengal' => 'West Bengal', 'Andaman & Nicobar' => 'Andaman & Nicobar', 'Chandigarh' => 'Chandigarh', 'Dadra and Nagar Haveli' => 'Dadra and Nagar Haveli', 'Daman & Diu' => 'Daman & Diu', 'Delhi' => 'Delhi', 'Lakshadweep' => 'Lakshadweep', 'Puducherry' => 'Puducherry'); ?>
 
@@ -220,8 +220,10 @@
 								
 									<div class="col-sm-6 ">
 										<div class="form-group">
-											<label class="control-label">Address 1 </label>
-											<textarea class="form-control" id="e_p_address" name="e_p_address" placeholder="Enter Address1"></textarea>
+											<label class="control-label">Address  </label>
+											
+											<label class="control-label">Address </label>
+											<textarea class="form-control" id="e_p_address" name="e_p_address" placeholder="Enter Address"  onfocus="focusFunction()"></textarea>
 										</div>
 										<div class="form-group">
 											<label class="control-label">City </label>
@@ -229,7 +231,7 @@
 										</div>
 										<div class="form-group">
 											<label class="control-label">District </label>
-											<input class="form-control" id="e_p_district" name="e_p_district" type="text" placeholder="Enter City">
+											<input class="form-control" id="e_p_district" name="e_p_district" type="text" placeholder="Enter District">
 										</div>
 										<div class="form-group">
 											<label class="control-label">State </label>
@@ -330,8 +332,8 @@
 								<div class="row">
 									<div class="col-sm-6">
 											<div class="form-group">
-											<label class="control-label">Address 1 </label>
-											<textarea class="form-control" name="e_c_p_address" placeholder="Enter Address1"></textarea>
+											<label class="control-label">Address </label>
+											<textarea class="form-control" name="e_c_p_address" placeholder="Enter Address"></textarea>
 										</div>
 									</div>
 									
@@ -349,6 +351,30 @@
 			</div>
  
   <script type="text/javascript">
+  function checkvalidations(){
+	   if(filltoo.checked == true) 
+			 {
+				return true;
+			 }else{
+				var e_p_add= document.getElementById("e_p_address").value;
+				var e_p_city=document.getElementById("e_p_city").value;
+				var e_p_dost= document.getElementById("e_p_district").value;
+				var e_p_state=document.getElementById("e_p_state").value;
+				if(e_p_add==''){
+					alert('Permanent Address is required');return false;
+				}if(e_p_city==''){
+					alert('Permanent Address in city is required');return false;
+				}if(e_p_dost==''){
+					alert('Permanent Address in District is required');return false;
+				}if(e_p_state==''){
+					alert('Permanent Address in State is required');return false;
+				}
+				
+			 }
+	  
+	  
+	  
+  }
   
   function get_type(val){
 	  
@@ -631,9 +657,7 @@ $(document).ready(function() {
 			
 			e_p_address: {
                  validators: {
-					  notEmpty: {
-						message: 'Address is required'
-					},
+					
                     regexp: {
 					regexp:/^[ A-Za-z0-9_@.,/!;:}{@#&`~'"\\|=^?$%*)(_+-]*$/,
 					message: 'Address wont allow <>[]'
@@ -642,9 +666,7 @@ $(document).ready(function() {
             },
 			e_p_city: {
                  validators: {
-					  notEmpty: {
-						message: 'City is required'
-					},
+					  
                     regexp: {
 					regexp: /^[a-zA-Z]+$/,
 					message:'City can only consist of alphabets',
@@ -652,27 +674,15 @@ $(document).ready(function() {
                 }
             },
 			e_p_district: {
-                validators: {
-					notEmpty: {
-						message: 'District is required'
+               validators: {
+					  
+                    regexp: {
+					regexp: /^[a-zA-Z]+$/,
+					message:'District can only consist of alphabets',
 					}
-				}
+                }
             },
 			
-			e_p_state: {
-                validators: {
-					notEmpty: {
-						message: 'State is required'
-					}
-				}
-            },
-			e_p_country: {
-                validators: {
-					notEmpty: {
-						message: 'Country is required'
-					}
-				}
-            },
 			e_profile_pic: {
                 validators: {
 					regexp: {

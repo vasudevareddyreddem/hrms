@@ -238,7 +238,7 @@
 										</div>
 										<div class="checkbox">
                                     <label>
-                                    <input type="checkbox" value="" name="filltoo" id="filltoo" onclick="filladd()" />Click here if Currrent Address is Same as Permanent
+                                    <input type="checkbox" <?php if($edit_employee['filltoo']==1){ echo "checked";}else{ echo "";} ?> value="" name="filltoo" id="filltoo" onclick="filladd()" />Click here if Currrent Address is Same as Permanent
 
                                     </label>
                                 </div>
@@ -247,8 +247,8 @@
 								<span id="same_as_above">
 									<div class="col-sm-6 ">
 										<div class="form-group">
-											<label class="control-label">Address 1 </label>
-											<input type="text" class="form-control" id="e_p_address" name="e_p_address" placeholder="Enter Address1"value="<?php echo isset($edit_employee['e_p_address'])?$edit_employee['e_p_address']:''; ?>">
+											<label class="control-label">Address  </label>
+											<input type="text" class="form-control" id="e_p_address" name="e_p_address" placeholder="Enter Address"value="<?php echo isset($edit_employee['e_p_address'])?$edit_employee['e_p_address']:''; ?>">
 										</div>
 										<div class="form-group">
 											<label class="control-label">City </label>

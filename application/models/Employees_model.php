@@ -308,7 +308,10 @@ $this->db->select('*')->from('department');
 		return $this->db->get()->result_array();
 	}
 
+
 	/* supervisors  purpose*/
+
+
 
 	public function save_area_details($data){
 	$this->db->insert('area',$data);
@@ -421,14 +424,18 @@ $this->db->select('*')->from('department');
 		return $this->db->query($sql1);	
 	}		
 	
+
 	
 
 
 	
- }		
+ 		
+
+}
+
 	
 	
-	
+
 	
 	
 	

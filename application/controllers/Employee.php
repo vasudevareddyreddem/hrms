@@ -49,12 +49,16 @@ public function editemployee(){
 	     $admindetails=$this->session->userdata('hrmsdetails');	
 		 $this->uri->segment(3);
 		 $emp_id=base64_decode($this->uri->segment(3));
+		
+		 $data['edit_employee']=$this->Employees_model->edit_employee_details($emp_id);
+		 
+		 
+		 
 		 $data['deparment_data']=$this->Employees_model->department_name_list();
 		 $data['sub_deparment_data']=$this->Employees_model->sub_department_name_list();
 		 $data['shift_data']=$this->Employees_model->shift_name_list();
 		 $data['roles_list']=$this->Employees_model->roles_list();
 		 $data['spuervisors']=$this->Employees_model->get_all_spuervisors();
-		 $data['edit_employee']=$this->Employees_model->edit_employee_details($emp_id);
 		 //echo'<pre>';print_r($data);exit;
 		 
 	     $this->load->view('employee/edit-employee',$data);
@@ -109,6 +113,11 @@ public function editemployeepost(){
 		}else{
 			$e_supervisor=$post['e_supervisor'];
 		}
+		if(isset($post['filltoo']) && $post['filltoo']==''){
+			$filltoo=1;
+		}else{
+			$filltoo='';
+		}
 		
 	     $update_data=array(
 		        'role_id'=>isset($post['e_designation'])?$post['e_designation']:'',
@@ -126,6 +135,7 @@ public function editemployeepost(){
 				'e_department'=>isset($post['e_department'])?$post['e_department']:'',
 				'e_sub_department'=>isset($post['e_sub_department'])?$post['e_sub_department']:'',
 				'e_shift'=>isset($post['e_shift'])?$post['e_shift']:'',
+				'filltoo'=>isset($filltoo)?$filltoo:'',
 				'e_c_adress'=>isset($post['e_c_adress'])?$post['e_c_adress']:'',
 				'e_c_city'=>isset($post['e_c_city'])?$post['e_c_city']:'',
 				'e_c_district'=>isset($post['e_c_district'])?$post['e_c_district']:'',
@@ -312,14 +322,12 @@ public function addpost(){
 		{	
          $admindetails=$this->session->userdata('hrmsdetails');	
 		 $post=$this->input->post();	
-		//echo'<pre>';print_r($post);exit;
-		
-		    $details=$this->Employees_model->employee_data_list();
+		$details=$this->Employees_model->employee_data_list();
 		$check_email_exit=$this->Employees_model->check_email_already($post['e_email_work']);
 				//echo'<pre>';print_r($check_book_exit);exit;
 				if(count($check_email_exit)>0){
-					$this->session->set_flashdata('error',"Email already exit");
-					redirect('employee/all');
+					$this->session->set_flashdata('error',"Email address already exists. Please another email address.");
+					redirect('employee/add');
 				}	
 				
 				if($_FILES['e_document']['name']!=''){
@@ -335,6 +343,11 @@ public function addpost(){
 
 					}else{
 					$cat='';
+					}
+					if(isset($post['filltoo']) && $post['filltoo']==''){
+						$filltoo=1;
+					}else{
+						$filltoo='';
 					}
 				
 	          $save_data=array(
@@ -355,6 +368,7 @@ public function addpost(){
 				'e_department'=>isset($post['e_department'])?$post['e_department']:'',
 				'e_sub_department'=>isset($post['e_sub_department'])?$post['e_sub_department']:'',
 				'e_shift'=>isset($post['e_shift'])?$post['e_shift']:'',
+				'filltoo'=>isset($filltoo)?$filltoo:'',
 				'e_c_adress'=>isset($post['e_c_adress'])?$post['e_c_adress']:'',
 				'e_c_city'=>isset($post['e_c_city'])?$post['e_c_city']:'',
 				'e_c_district'=>isset($post['e_c_district'])?$post['e_c_district']:'',
@@ -388,7 +402,7 @@ public function addpost(){
 					$this->session->set_flashdata('success',"Employee details successfully added");	
 					redirect('employee/all');	
 					}else{
-						$this->session->set_flashdata('error',"techechal probelem occur ");
+						$this->session->set_flashdata('error',"Technical problem occurred. Please  try  again once ");
 						redirect('employee/all');
 					}
 		         }else{
@@ -840,11 +854,11 @@ else{
 	$admindetails=$this->session->userdata('hrmsdetails');
 	$post=$this->input->post();	
 		 //echo'<pre>';print_r($admindetails);exit;
-		 $date1 = DateTime::createFromFormat('d/m/Y', $post['f_date']); // \DateTime object
+		 $date1 = DateTime::createFromFormat('Y-m-d', $post['f_date']); // \DateTime object
 		  //echo'<pre>';print_r($post['f_date']);exit;
       $f=$date1->format('Y-m-d');
-        //echo'<pre>';print_r($d);exit;
-		  $date2 = DateTime::createFromFormat('d/m/Y', $post['t_date']); // \DateTime object
+        //echo'<pre>';print_r($f);exit;
+		  $date2 = DateTime::createFromFormat('Y-m-d', $post['t_date']); // \DateTime object
 		  //echo'<pre>';print_r($post['t_date']);exit;
       $g=$date2->format('Y-m-d');
         //echo'<pre>';print_r($d);exit;
@@ -917,18 +931,14 @@ public function addleave(){
 	$admindetails=$this->session->userdata('hrmsdetails');
 	$post=$this->input->post();	
 		 //echo'<pre>';print_r($post);exit;
-		 $date1 = DateTime::createFromFormat('d/m/Y', $post['from_date']); // \DateTime object
+		 $date1 = DateTime::createFromFormat('Y-m-d', $post['from_date']); // \DateTime object
 		  //echo'<pre>';print_r($post['from_date']);exit;
       $d=$date1->format('Y-m-d');
         //echo'<pre>';print_r($d);exit;
-		  $date2 = DateTime::createFromFormat('d/m/Y', $post['to_date']); // \DateTime object
-		  //echo'<pre>';print_r($post['to_date']);exit;
+		  $date2 = DateTime::createFromFormat('Y-m-d', $post['to_date']); // \DateTime object
+		 // echo'<pre>';print_r($post['to_date']);exit;
       $e=$date2->format('Y-m-d');
-	  
-		$days=date_diff( $date1,$date2 );
-		$day=$days->format("%a");
-		$today=$day+1;
-		///echo'<pre>';print_r($today);exit;
+	  //echo'<pre>';print_r($e);exit;
 		
 		
 		
@@ -937,7 +947,7 @@ public function addleave(){
 				'leave_type'=>isset($post['leave_type'])?$post['leave_type']:'',
 				'from_date'=>$d?$d:'',
 				'to_date'=>$e?$e:'',
-		        'number_of_days'=>$today,
+		        'number_of_days'=>isset($post['number_of_days'])?$post['number_of_days']:'',
 				'leaves_reason'=>isset($post['leaves_reason'])?$post['leaves_reason']:'',
 				'status'=>0,
 				'created_at'=>date('Y-m-d H:i:s'),
@@ -2143,10 +2153,9 @@ public function leavepolicy(){
 				'updated_at'=>date('Y-m-d H:i:s'),
 				'created_by'=>isset($admindetails['e_id'])?$admindetails['e_id']:''
 				 );
-		 $upadete=$this->Employees_model->get_update_leave_policy_details($save_data);	
-				  //echo '<pre>';print_r($save_data);exit;
 		       $save=$this->Employees_model->save_leave_policy_details($save_data);	
 		       if(count($save)>0){
+
 					$this->session->set_flashdata('success',"leavepolicy   successfully added");	
 					redirect('employee/leavepolicylist');	
 					}else{
@@ -2165,11 +2174,11 @@ public function leavepolicy(){
 	   
 	  if($this->session->userdata('hrmsdetails'))
 		{	
-	  $data['leave_policy_list']=$this->Employees_model->get_leave_policy_list();	
+	      $data['leave_policy_list']=$this->Employees_model->get_leave_policy_list();	
 		 //echo '<pre>';print_r($data);exit;
 	     $this->load->view('employee/leave-policy-list',$data);
 	     $this->load->view('html/footer');   
-          }else{
+       }else{
 		 $this->session->set_flashdata('error',"Please login and continue");
 		 redirect('');  
 	   }

@@ -28,17 +28,35 @@
 										<option value="Loss of Pay">Loss of Pay</option>
 									</select>
 								</div>
+						
+								
+								
+								 <div id="reserve_form">
 								<div class="form-group">
 									<label>From <span class="text-danger">*</span></label>
+<<<<<<< HEAD
+									<div id="pickup_date"><p><input type="date" class="textbox" name="f_date" id="pick_date" onchange="cal()"</p></div>
+								</div>
+								<div class="form-group">
+									<label>To <span class="text-danger">*</span></label>
+									<div id="dropoff_date"><p><input type="date" class="textbox" name="t_date" id="drop_date" onchange="cal()"/></p></div>
+=======
 									<div class="cal-icon"><input class="form-control datetimepicker" type="text" name="f_date"></div>
 								</div>
 								<div class="form-group">
 									<label>To <span class="text-danger">*</span></label>
 									<div class="cal-icon"><input class="form-control datetimepicker" type="text" name="t_date"></div>
+>>>>>>> a4efb4f39a9374456b42d80b5bca797e72d12390
 								</div>
+								
 								<div class="form-group">
 									<label>Number of days <span class="text-danger">*</span></label>
+<<<<<<< HEAD
+									 <div id="numdays"><input  type="text" class="textbox" id="numdays2"    name="no_days" /></div>
+								</div>
+=======
 									<input class="form-control"  type="text" name="no_days">
+>>>>>>> a4efb4f39a9374456b42d80b5bca797e72d12390
 								</div>
 								
 								<div class="form-group">
@@ -58,7 +76,26 @@
 			
 			
             </div>
+<<<<<<< HEAD
+			
+		<script type="text/javascript">
+        function GetDays(){
+                var dropdt = new Date(document.getElementById("drop_date").value);
+                var pickdt = new Date(document.getElementById("pick_date").value);
+                return parseInt(1+(dropdt - pickdt) / (24 * 3600 * 1000));
+        }
 
+        function cal(){
+        if(document.getElementById("drop_date")){
+            document.getElementById("numdays2").value=GetDays();
+        }  
+    }
+
+    </script>
+			
+=======
+
+>>>>>>> a4efb4f39a9374456b42d80b5bca797e72d12390
 <script>
 $(document).ready(function() {
  
