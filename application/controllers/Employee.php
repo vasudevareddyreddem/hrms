@@ -834,8 +834,8 @@ else{
 		if($this->session->userdata('hrmsdetails'))
 		{	
          $admindetails=$this->session->userdata('hrmsdetails');	
-		 $data['leaves_data']=$this->Employees_model->leaves_list_data();
-		 //echo'<pre>';print_r($data);exit;
+		 $data['leaves_data']=$this->Employees_model->get_employee_leaves_list($admindetails['e_id']);
+		 echo'<pre>';print_r($admindetails);exit;
 		 
 	     $this->load->view('employee/employee-add',$data);
 	     $this->load->view('html/footer');             
