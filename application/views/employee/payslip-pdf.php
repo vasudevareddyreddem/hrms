@@ -1,19 +1,8 @@
 
 
-<div class="page-wrapper">
-                <div class="content ">
-					<div class="row">
-						<div class="col-xs-12">
-							<h4 class="page-title">Payslip</h4>
-						</div>
-						<div class="col-sm-4 text-right m-b-30">
-							<div class="btn-group btn-group-sm">
-								<button class="btn btn-default">CSV</button>
-								<a href="<?php echo base_url('downloadfile/download/').base64_encode($pslip_det->payslip_pdf);?>"  class="btn btn-default">PDF</a>
-								<button class="btn btn-default"><i class="fa fa-print fa-lg"></i> Print</button>
-							</div>
-						</div>
-					</div>
+<div class="">
+                <div class=" ">
+					
 					<div class="row">
 						<div class="col-md-12">
 							<div class="card-box">
