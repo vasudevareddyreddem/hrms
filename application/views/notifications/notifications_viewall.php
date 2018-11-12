@@ -28,6 +28,9 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> parent of a4efb4f... Merge branch 'master' of https://github.com/vasudevareddyreddem/hrms
 =======
 >>>>>>> parent of a4efb4f... Merge branch 'master' of https://github.com/vasudevareddyreddem/hrms
 =======
@@ -41,6 +44,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
                                     <td>Applied For <?php echo $list['leave_type_name']; ?></td>
                                     <td><?php echo $list['created_at']; ?></td>
 =======
@@ -48,6 +52,10 @@
                                     <td>xxxxxxxxxxxxxxxx</td>
                                     <td>Nov 6</td>
 >>>>>>> a4efb4f39a9374456b42d80b5bca797e72d12390
+=======
+                                    <td>Applied For <?php echo $list['leave_type']; ?></td>
+                                    <td><?php echo $list['created_at']; ?></td>
+>>>>>>> parent of a4efb4f... Merge branch 'master' of https://github.com/vasudevareddyreddem/hrms
 =======
                                     <td>Applied For <?php echo $list['leave_type']; ?></td>
                                     <td><?php echo $list['created_at']; ?></td>

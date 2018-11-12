@@ -163,6 +163,7 @@ public function update_login_users(){
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 }
 public function updates_for_users($sid,$rid){
@@ -311,9 +312,36 @@ if($row->delete_status==$rid){
   $this->db->group_start()->where('sender_id',$sid)->where('recevier_id',$rid)
   ->group_end()->or_group_start()->where('sender_id',$rid)->where('recevier_id',$sid)->group_end()->delete('chat_tab');
   return  ($this->db->affected_rows() >=1) ? true: false;
-
+=======
+>>>>>>> parent of a4efb4f... Merge branch 'master' of https://github.com/vasudevareddyreddem/hrms
 
 }
+public function updates_for_users($sid,$rid){
+
+// $this->db->select('receiver_id,count(*) cnt')->from('chat_tab')->where('recevier_id !=',$rid)
+// ->where('sender_id',$sid)->where('read_status','unread')->group_by('recevier_id');
+//    $subquery=$this->db->get_compiled_select();
+//    $this->db->select('e_id, e_f_name,login_status,cnt')->from($subquery)->
+//    join('empployee',)
+//    return $query->result();
+  $sql='select e_id,e_f_name,cnt,login_status from (select sender_id,recevier_id,count(*) cnt from chat_tab where recevier_id ='.$sid.' and sender_id !='.$rid .' and read_status="unread" and notified_msg=0 group by sender_id,recevier_id) chat right join empployee on (empployee.e_id=chat.sender_id)  where e_id !='.$sid;
+ $query = $this->db->query($sql);
+
+// $this->db->select('e_id,e_f_name, cnt,login_status');
+//  $sub= $this->subquery->start_subquery('from');
+// $sub->select('receiver_id,count(*) cnt');
+// $sub->from('chat_tab');
+// $sub->where('recevier_id !=',$rid);
+// $sub->where('sender_id',$sid);
+// $sub->where('read_status','unread');
+// $sub->group_by('recevier_id');
+// $this->subquery->end_subquery('chat');
+// $this->db->join('empployee', 'empployee.e_id=chat.recevier_id');
+// $query=$this->db->get();
+return $query->result();
+
+}
+<<<<<<< HEAD
 else{
 $this->db->group_start()->where('sender_id',$sid)->where('recevier_id',$rid)
   ->group_end()->or_group_start()->where('sender_id',$rid)->where('recevier_id',$sid)->group_end()->update('chat_tab',array('delete_status'=>$sid));
@@ -337,6 +365,8 @@ return $query->result();
 >>>>>>> parent of a4efb4f... Merge branch 'master' of https://github.com/vasudevareddyreddem/hrms
 
 =======
+=======
+>>>>>>> parent of a4efb4f... Merge branch 'master' of https://github.com/vasudevareddyreddem/hrms
 =======
 >>>>>>> parent of a4efb4f... Merge branch 'master' of https://github.com/vasudevareddyreddem/hrms
 public function update_msg_count($sid,$rid){
@@ -392,6 +422,9 @@ return $query->result();
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+>>>>>>> parent of a4efb4f... Merge branch 'master' of https://github.com/vasudevareddyreddem/hrms
+=======
 >>>>>>> parent of a4efb4f... Merge branch 'master' of https://github.com/vasudevareddyreddem/hrms
 =======
 >>>>>>> parent of a4efb4f... Merge branch 'master' of https://github.com/vasudevareddyreddem/hrms
