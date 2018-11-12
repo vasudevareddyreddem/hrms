@@ -89,10 +89,7 @@
 					
 					
 					
-					
-					<li class="dropdown hidden-xs">
-						<a href="javascript:;" id="open_msg_box" class="hasnotifications"><i class="fa fa-comment-o"></i> <span class="badge bg-purple pull-right">8</span></a>
-					</li>	
+						
 					<li class="dropdown">
 						<a href="profile.html" class="dropdown-toggle user-link" data-toggle="dropdown" title="Admin">
 							<span class="user-img"><img class="img-circle" src="<?php echo base_url();?>assets/vendor/img/user.jpg" width="40" alt="Admin">
