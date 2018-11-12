@@ -62,7 +62,7 @@
                     </ul>
                 </li>
                 <li class="">
-                    <a href="<?php echo base_url('sales/'); ?>"><span>Salesman Man Track </span> </a>
+                    <a href="<?php echo base_url('employee/salemantrack'); ?>"><span>Salesman Man Track </span> </a>
                 </li>
                 <li class="">
                     <a href="<?php echo base_url('employee/workdistribution'); ?>"><span>Work Distribution</span> </a>
