@@ -299,6 +299,20 @@
 													</div>
 												</div>
 											</li>
+											<?php if($userdetails['e_document']!=''){ ?>
+											<li>
+												<div class="experience-user">
+													<div class="before-circle"></div>
+												</div>
+												<div class="experience-content">
+													<div class="timeline-content">
+														<a href="<?php echo base_url('assets/bank_documents/'.$userdetails['e_document']); ?>" class="name">Upload Documents</a>
+														<div><?php echo $userdetails['e_document'];?></div><a href="<?php echo base_url('assets/bank_documents/'.$userdetails['e_document']); ?>" class="name">(down load)</a>
+														
+													</div> 
+												</div>
+											</li>
+											<?php } ?>
 											
 										</ul>
 									</div>

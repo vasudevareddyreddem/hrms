@@ -65,7 +65,13 @@ public function edit(){
 					}else{
 					$cat=$userdetails['e_profile_pic'];
 					}
-		
+				if($_FILES['e_document']['name']!=''){
+					$catimg=$_FILES['e_document']['name'];
+					move_uploaded_file($_FILES['e_document']['tmp_name'], "assets/bank_documents/" . $_FILES['e_document']['name']);
+
+					}else{
+					$catimg=$userdetails['e_document'];
+					}
 		
 		           $updatedetails=array(
 					'e_f_name'=>isset($post['e_f_name'])?$post['e_f_name']:'',
@@ -87,6 +93,7 @@ public function edit(){
 					'e_c_p_relationship'=>isset($post['e_c_p_relationship'])?$post['e_c_p_relationship']:'',
 					'e_c_p_address'=>isset($post['e_c_p_address'])?$post['e_c_p_address']:'',
 					'e_profile_pic'=>$cat,
+					'e_document'=>$catimg,
 					);
 		        $profile_update=$this->User_model->update_profile_details($admindetails['e_id'],$updatedetails);
 				//echo'<pre>';print_r($profile_update);exit;
