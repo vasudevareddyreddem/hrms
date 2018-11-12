@@ -18,7 +18,7 @@
 							<h4 class="modal-title">Add Leave Request</h4>
 						</div>
 						<div class="modal-body">
-							<form autocomplete="off" id="defaultForm" method="post" action="<?php echo base_url('employee/leavespost'); ?>" enctype="multipart/form-data">
+							<form autocomplete="off" id="" method="post" action="<?php echo base_url('employee/leavespost'); ?>" enctype="multipart/form-data">
 								<div class="form-group">
 									<label>Leave Type <span class="text-danger">*</span></label>
 
@@ -30,6 +30,18 @@
 										</select>
 										
 										</div>
+										<div class="form-group">
+									<label>From <span class="text-danger">*</span></label>
+
+									<div class="cal-icon"><input class="form-control datepicker" type="text" name="f_date" id="f_date" required></div>
+									
+								</div>
+								<div class="form-group">
+									<label>To <span class="text-danger">*</span></label>
+
+									<div class="cal-icon"><input class="form-control datepicker" type="text" name="t_date" id="t_date" required></div>
+									
+								</div>
 								
 								
 								

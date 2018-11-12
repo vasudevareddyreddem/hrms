@@ -38,46 +38,29 @@ class User extends CI_Controller
 			
 		$post=$this->input->post();
 		$logindetails = $this->User_model->login_details($post['e_email_work'],md5($post['e_password']));
-		//echo'<pre>';print_r($logindetails);exit;
+		//echo'<pre>';print_r($logindetails);
 		if(count($logindetails)>0){
-		$login= $this->User_model->check_login($logindetails['e_id']);
-             //echo'<pre>';print_r($login);exit;
-			
-		$update_data=array(
-				'login_status'=>1
-				 );
-			//echo'<pre>';print_r($update_data);exit;
-		
-				 $upadte=$this->User_model->update_sataus_details_log($login['e_id'],$update_data);
-				 
-				 //echo $this->db->last_query();exit;
-				//echo'<pre>';print_r($logindatasave);exit;
-				
-		
-		
-		
+			$update_data=array('login_status'=>1);
+			$upadte=$this->User_model->update_sataus_details_log($logindetails['e_id'],$update_data);
 			$checklogin= $this->User_model->check_today_login($logindetails['e_id'],date('Y-m-d'));
-					//echo'<pre>';print_r($checklogin);exit;
-				$this->session->set_userdata('hrmsdetails',$logindetails);
-				$logintime= "Y-m-d H:i:s";
+			//echo'<pre>';print_r($checklogin);
 				$login_data=array(
 				'e_id'=>$logindetails['e_id'],
-				'e_login_time'=>$logintime,
+				'e_login_time'=>date("Y-m-d H:i:s"),
 				'l_date'=>date('Y-m-d'),
 				);
 			//echo'<pre>';print_r($login_data);exit;
+			$this->session->set_userdata('hrmsdetails',$logindetails);
+
 			if(count($checklogin)==0){
-				$logindatasave = $this->User_model->save_login_time_status($login_data);
-				//echo'<pre>';print_r($logindatasave);exit;
-				if(count($logindatasave)>0){
-					redirect('dashboard');	
-				}else{
-					$this->session->set_flashdata('loginerror',"Technical problem will occured. Please try again.");
+					$this->User_model->save_login_time_status($login_data);
 					redirect('dashboard');
-				}
+				
 			}else{
 				redirect('dashboard');
 			}
+			
+			
 					
 		}else{
 			$this->session->set_flashdata('loginerror',"Invalid Email Address or Password!");

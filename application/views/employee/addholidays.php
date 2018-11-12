@@ -19,7 +19,7 @@
 									<div class="cal-icon"><input class="form-control datetimepicker" type="text" name="holiday_date" ></div>
 								</div>
 								<div class="form-group">
-									<label>Holiday Day<span class="text-danger">*</span></label>
+									<label>Holiday Week Day<span class="text-danger">*</span></label>
 									<input class="form-control"  type="text" name="holiday_day"   >
 								</div>
 								<div class="m-t-20 text-center">

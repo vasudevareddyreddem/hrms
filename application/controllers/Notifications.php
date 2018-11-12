@@ -9,10 +9,6 @@ class Notifications extends In_frontend {
 		parent::__construct();	
 		$this->load->library('session');
 		$this->load->model('Notification_model');
-     	$this->load->view('html/footer');
-		
-
-
 	}
 	
     public function get_notification_msg()
@@ -38,8 +34,8 @@ class Notifications extends In_frontend {
 				
 				echo json_encode($data);exit;	
 		}else{
-			$this->session->set_flashdata('error',"you don't have permission to access");
-			redirect('dashboard');
+			$this->session->set_flashdata('error',"Please login and continue");
+			redirect('');  
 		}
 	}
       public  function viewall(){
@@ -47,15 +43,21 @@ class Notifications extends In_frontend {
 				{
 					$details=$this->session->userdata('hrmsdetails');
 					$data['notification_view']=$this->Notification_model->get_all_notifications_leaves_list_details(); 
-		  
-		               //echo'<pre>';print_r($data);exit;
+					$unread_list=$this->Notification_model->get_all_unread_notifications_list(); 
+					if(count($unread_list)>0){
+						foreach($unread_list as $list){
+							$update=array('read_count'=>0);
+							$this->Notification_model->get_notifications_leaves_read($list['l_id'],$update);
+						}
+					}
+					//echo'<pre>';print_r($data);exit;
 					$this->load->view('notifications/notifications_viewall',$data);
 					$this->load->view('html/footer');
 				 }else{
-		 $this->session->set_flashdata('error',"Please login and continue");
-		 redirect('');  
-	   }
-	}
+					$this->session->set_flashdata('error',"Please login and continue");
+					redirect('');  
+				}
+		}
 	
 public function delete()
 {

@@ -15,9 +15,10 @@
                             <thead>
                                 <tr>
                                     <th>Employee Name</th>
+                                    <th>Days</th>
                                     <th>Message</th>
                                     <th>Created at</th>
-                                    <th>Action</th>
+                                    <!--<th>Action</th>-->
                                 </tr>
                             </thead>
                             <tbody>
@@ -29,35 +30,13 @@
 											<a href="#" class="avatar"><?php echo substr($list['e_login_name'],0,1);?></a>
 											<h2><a href="#"><span><?php echo $list['e_login_name'];?></span></a></h2>
 											</td>
-
-                                    <td>Applied For <?php echo $list['leave_type_name']; ?></td>
-                                    <td><?php echo $list['created_at']; ?></td>
-
-                                    <td>XXXXXXX</td>
-                                    <td>xxxxxxxxxxxxxxxx</td>
-                                    <td>Nov 6</td>
-
+                                    <td><?php echo $list['number_of_days']; ?></td>
                                     <td>Applied For <?php echo $list['leave_type']; ?></td>
                                     <td><?php echo $list['created_at']; ?></td>
 
-                                    <td>Applied For <?php echo $list['leave_type']; ?></td>
-                                    <td><?php echo $list['created_at']; ?></td>
-
-                                    <td>Applied For <?php echo $list['leave_type']; ?></td>
-                                    <td><?php echo $list['created_at']; ?></td>
-
-                                    <td>Applied For <?php echo $list['leave_type']; ?></td>
-                                    <td><?php echo $list['created_at']; ?></td>
-
-                                    <td>Applied For <?php echo $list['leave_type']; ?></td>
-                                    <td><?php echo $list['created_at']; ?></td>
-
-                                    <td>Applied For <?php echo $list['leave_type']; ?></td>
-                                    <td><?php echo $list['created_at']; ?></td>
-
-                                    <td>
+                                    <!--<td>
                                 <a href="<?php echo base_url('notifications/delete/'.base64_encode($list['l_id']));?>" data-toggle="tooltip"  title="Delete"><i class="fa fa-trash btn btn-danger"></i></a>
-                                    </td>
+                                    </td>-->
                                 </tr>
 								
 							   <?php }?>
@@ -72,15 +51,10 @@
 
 
     <script>
-        $(function() {
-            $("#example1").DataTable();
-            $('#example2').DataTable({
-                "paging": true,
-                "lengthChange": false,
-                "searching": false,
-                "ordering": true,
-                "info": true,
-                "autoWidth": false
-            });
-        });
+        $(function () {
+      $('#example1').DataTable( {
+        "order": [[ 3, "desc" ]]
+    } );
+    
+  });
     </script>

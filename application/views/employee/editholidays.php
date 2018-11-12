@@ -21,11 +21,11 @@
 
 								</div>
 								<div class="form-group">
-									<label>Holiday Day<span class="text-danger">*</span></label>
+									<label>Holiday Week Day<span class="text-danger">*</span></label>
 									<input class="form-control"  type="text" name="holiday_day" value="<?php echo isset($edit_holiday['holiday_day'])?$edit_holiday['holiday_day']:''; ?>" >
 								</div>
 								<div class="m-t-20 text-center">
-								<button type="submit" class="btn btn-primary" name="signup" value="Sign up">Edit Holiday</button>
+								<button type="submit" class="btn btn-primary" name="signup" value="Sign up">Update Holiday</button>
 
 								</div>
 									

@@ -36,7 +36,11 @@ class Notification_model extends CI_Model
 		$this->db->where('e_id',$e_id);
 		return $this->db->get()->row_array();	
 	}
-
+	public  function get_all_unread_notifications_list(){
+		$this->db->select('*')->from('leaves');
+		$this->db->where('leaves.read_count',1);
+		return $this->db->get()->result_array();
+	}
 
 
 
