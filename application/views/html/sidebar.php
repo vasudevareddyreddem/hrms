@@ -29,7 +29,7 @@
                     <ul class="list-unstyled" style="display: none;">
                         <li><a href="<?php echo base_url('employee/attendance'); ?>">Employee attendance </a></li>
                         <li><a href="<?php echo base_url('employee/shiftmangement');?>">Shift Mangement </a></li>
-                        <li><a href="<?php echo base_url('employee/leaverequests');?>"><span>Leave Requests</span> <span class="badge bg-primary pull-right"><?php if(isset($notification_count['cnt']) && $notification_count['cnt']>0){  echo $notification_count['cnt']; } ?></span></a></li>
+                        <li><a href="<?php echo base_url('employee/leaverequests');?>"><span>Leave Requests</span> <span class="badge bg-primary pull-right" id="notification_unread_count"><?php if(isset($notification_count['cnt']) && $notification_count['cnt']>0){  echo $notification_count['cnt']; } ?></span></a></li>
                         <li><a href="<?php echo base_url('employee/leaveslist');?>">Leaves List </a></li>
                     </ul>
                 </li>

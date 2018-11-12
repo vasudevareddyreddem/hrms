@@ -16,6 +16,16 @@ class Notification_model extends CI_Model
 	return $this->db->get()->row_array();
 	}
 	
+	public  function get_notitifation_unread_count($e_id){
+		$this->db->select('COUNT(leaves.l_id) as cnt')->from('leaves');
+		if(isset($e_id) && $e_id!=''){
+			$this->db->where('leaves.emp_id',$e_id);
+		}
+		$this->db->where('leaves.read_count',1);
+		return $this->db->get()->row_array();
+		
+	}
+	
 	public  function get_notifications_leaves_read($l_id,$data){
 			$this->db->where('l_id',$l_id);
 			return $this->db->update('leaves',$data);
@@ -29,44 +39,8 @@ class Notification_model extends CI_Model
 
 
 
+
 	
-	public function get_notifications_view_list(){
-	$this->db->select('leaves.*')->from('leaves');
-	return $this->db->get()->result_array();
-
-		}
-
-	public function get_all_notifications_leaves_list_details(){
-	$this->db->select('leaves.*,empployee.e_login_name,role.role,leave_type.leave_type_name')->from('leaves');
-	$this->db->join('empployee', 'empployee.e_id = leaves.emp_id', 'left');
-	$this->db->join('role', 'role.r_id = empployee.role_id', 'left');
-	$this->db->join('leave_type', 'leave_type.l_t_id = leaves.leave_type', 'left');
-
-	public function get_notifications_view_list(){
-	$this->db->select('leaves.*')->from('leaves');
-	return $this->db->get()->result_array();
-
-	public function get_notifications_view_list(){
-	$this->db->select('leaves.*')->from('leaves');
-	return $this->db->get()->result_array();
-
-	public function get_notifications_view_list(){
-	$this->db->select('leaves.*')->from('leaves');
-	return $this->db->get()->result_array();
-}
-
-	public function get_notifications_view_list(){
-	$this->db->select('leaves.*')->from('leaves');
-	return $this->db->get()->result_array();
-}
-	
-
-	public function get_notifications_view_list(){
-	$this->db->select('leaves.*')->from('leaves');
-	return $this->db->get()->result_array();
-}
-	
-
 	public function get_all_notifications_leaves_list_details(){
 	$this->db->select('leaves.*,empployee.e_login_name,role.role')->from('leaves');
 	$this->db->join('empployee', 'empployee.e_id = leaves.emp_id', 'left');

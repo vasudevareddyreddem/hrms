@@ -24,8 +24,17 @@ class Notifications extends In_frontend {
 				$update=array('read_count'=>0);
 				$details=$this->Notification_model->get_notifications_leaves($post['notification_id']);
 				$this->Notification_model->get_notifications_leaves_read($post['notification_id'],$update);
+				
+				if($admindetails['role_id']==2){
+					$unread_count=$this->Notification_model->get_notitifation_unread_count(''); 
+
+				}else{
+					$unread_count=$this->Notification_model->get_notitifation_unread_count($post['notification_id']); 
+				}
+
 				$data['names_list']=$details['leave_type'];
 				$data['time']=$details['created_at'];
+				$data['unread_counts']=$unread_count['cnt'];
 				
 				echo json_encode($data);exit;	
 		}else{

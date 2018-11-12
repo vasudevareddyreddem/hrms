@@ -41,7 +41,7 @@
 				<a id="mobile_btn" class="mobile_btn pull-left" href="#sidebar"><i class="fa fa-bars" aria-hidden="true"></i></a>
 				<ul class="nav navbar-nav navbar-right user-menu pull-right">
 					<li class="dropdown hidden-xs">
-						<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-bell-o"></i> <span class="badge bg-purple pull-right" id="notification_count"><?php if(isset($notification_list) && count($notification_list)>0){   if($notification_count['count']!=0){ echo $notification_count['count']; } } ?></span></a>
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-bell-o"></i> <span class="badge bg-purple pull-right" id="notification_count"><?php if(isset($leaves_notification) && count($leaves_notification)>0){   echo count($leaves_notification); } ?></span></a>
 						<?php if(isset($leaves_notification) && count($leaves_notification)>0){ ?>
 						<div class="dropdown-menu notifications">
 							<div class="topnav-dropdown-header">
@@ -55,7 +55,7 @@
 									<a onclick="opennotification(<?php echo $lis['l_id']; ?>);" data-toggle="modal" data-target="#exampleModalLong">
 											
 												<div class="media-left">
-												<span class="avatar"><?php echo $userdetails['e_login_name']; ?></span>
+												<span class="avatar"><?php echo $lis['e_login_name']; ?></span>
 											</div>
 										
 											
@@ -180,16 +180,16 @@
    			format:"Json",
    					success:function(data){
 						
-					$('#notification_count1').empty();
+					$('#notification_unread_count').empty();
    					$('#notification_count').empty();
    					$('#notification_msg').empty();
    					$('#notification_time').empty();
    					var parsedData = JSON.parse(data);
 					//alert(parsedData.names_list);
+   					$('#notification_unread_count').append(parsedData.unread_counts);
    					$('#notification_msg').append(parsedData.names_list);
    					$('#notification_time').append(parsedData.time);
-   					$('#notification_count1').append(parsedData.Unread_count);
-   					$('#notification_count').append(parsedData.Unread_count);
+   					$('#notification_count').append(parsedData.unread_counts);
    					}
            });
 	   }
