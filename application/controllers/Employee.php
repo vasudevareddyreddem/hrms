@@ -831,9 +831,45 @@ else{
 		if($this->session->userdata('hrmsdetails'))
 		{	
          $admindetails=$this->session->userdata('hrmsdetails');	
+		 $admindetails=$this->session->userdata('hrmsdetails');	
+				$cau_leave=$this->Employees_model->get_employee_casual_leaves($admindetails['e_id'],1);
+				//echo $this->db->last_query();
+				//var_dump($cau_leave);exit;
+					$lop_leave=$this->Employees_model->get_employee_lop_leaves($admindetails['e_id'],2);
+					$m_leave=$this->Employees_model->get_employee_medical_leaves($admindetails['e_id'],3);
+					$current_month_leave=$this->Employees_model->get_employee_current_month_leaves($admindetails['e_id'],date('m'));
+					$leave_polices_list=$this->Employees_model->get_employee_policies_list();
+					if($current_month_leave['cnt']>=$leave_polices_list['monthly_limit']){
+						$m_lop_leaves=(($current_month_leave['cnt'])-($leave_polices_list['monthly_limit']));
+					}else{
+						$m_lop_leaves='';
+					}
+					$data['leave_polices_list']=$leave_polices_list;
+					$leaves=$this->Employees_model->get_emp_leaves_list_details_data($admindetails['e_id']);
+					if(isset($leaves) && count($leaves)>0){
+						$r_c_leave=$r_lop_leave=$r_m_leave='';
+						foreach($leaves as $li){
+							if($li['leave_type']==1){
+								$r_c_leave=(($leave_polices_list['casual_leaves'])-($cau_leave['cnt']));
+								$data['remaining_Casual_leaves']=isset($r_c_leave)?$r_c_leave:'';
+							}if($li['leave_type']==2){
+								$r_lop_leave=(($leave_polices_list['pay_leaves'])-($lop_leave['cnt']));
+								$data['remaining_lop_leaves']=isset($r_lop_leave)?$r_lop_leave:'';
+							}if($li['leave_type']==3){
+								$r_m_leave=(($leave_polices_list['medical_leaves'])-($m_leave['cnt']));
+								$data['remaining_mdical_leaves']=isset($r_m_leave)?$r_m_leave:'';
+							}
+						}
+					}
+					//$data['leave_details']['c_leave']=isset($cau_leave['cnt'])?$cau_leave['cnt']:'';
+					//$data['leave_details']['lop_leave']=isset($lop_leave['cnt'])?$lop_leave['cnt']:'';
+					//$data['leave_details']['m_leave']=isset($m_leave['cnt'])?$m_leave['cnt']:'';
+					//$data['leave_details']['tottal_leave']=$cau_leave['cnt']+$lop_leave['cnt']+$m_leave['cnt'];
+					$data['current_month_leave']=isset($current_month_leave['cnt'])?$current_month_leave['cnt']:'';
+					$data['current_month_lop_leave']=isset($m_lop_leaves)?$m_lop_leaves:'';
 		 //$data['leaves_data']=$this->Employees_model->get_employee_leaves_list($admindetails['e_id']);
 		 $data['leaves_types']=$this->Employees_model->get_leaves_type_list();
-		 //echo'<pre>';print_r($data);exit;
+			//echo'<pre>';print_r($data);exit;
 		 
 	     $this->load->view('employee/emp_leave_add',$data);
 	     $this->load->view('html/footer');             
@@ -908,6 +944,7 @@ public function leave(){
     if($this->session->userdata('hrmsdetails'))
 		{	
          $admindetails=$this->session->userdata('hrmsdetails');	
+		 	
 		 $data['employee_data']=$this->Employees_model->employee_list_data();
 		 $data['leaves_data']=$this->Employees_model->leaves_list_data();
 		 //echo'<pre>';print_r($data);exit;

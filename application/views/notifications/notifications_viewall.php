@@ -31,7 +31,7 @@
 											<h2><a href="#"><span><?php echo $list['e_login_name'];?></span></a></h2>
 											</td>
                                     <td><?php echo $list['number_of_days']; ?></td>
-                                    <td>Applied For <?php echo $list['leave_type']; ?></td>
+                                    <td>Applied For <?php echo $list['leave_type_name']; ?></td>
                                     <td><?php echo $list['created_at']; ?></td>
 
                                     <!--<td>
