@@ -2142,7 +2142,7 @@ public function leavepolicy(){
 				'updated_at'=>date('Y-m-d H:i:s'),
 				'created_by'=>isset($admindetails['e_id'])?$admindetails['e_id']:''
 				 );
-		 
+		 $upadete=$this->Employees_model->get_update_leave_policy_details($save_data);	
 				  //echo '<pre>';print_r($save_data);exit;
 		       $save=$this->Employees_model->save_leave_policy_details($save_data);	
 		       if(count($save)>0){

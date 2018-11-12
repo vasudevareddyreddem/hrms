@@ -421,7 +421,10 @@ $this->db->select('*')->from('department');
 	return $this->db->delete('leaves_policy');	
 	}
 	
-	
+	public function get_update_leave_policy_details($data){
+		$sql1="UPDATE leaves_policy SET status ='0'";
+		return $this->db->query($sql1);	
+	}		
 	
 	
 	

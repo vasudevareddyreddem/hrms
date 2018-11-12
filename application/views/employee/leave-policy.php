@@ -137,9 +137,8 @@ $(document).ready(function() {
             },		
 			total_leaves:{
 			validators: {
-					notEmpty: {
-						message: 'Total Leaves is required'
-					},regexp: {
+					
+					regexp: {
    					regexp:  /^[0-9]*$/,
    					message:'Total Leaves must be digits'
    					}
