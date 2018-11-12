@@ -38,7 +38,7 @@
 											<a href="#" class="avatar"><?php echo substr($list['e_login_name'],0,1);?></a>
 											<h2><a href="#"><?php echo $list['e_login_name'];?><span><?php echo $list['role'];?></span></a></h2>
 											</td>
-											<td><?php echo $list['leave_type_name'];?></td>
+											<td><?php echo $list['leave_type'];?></td>
 											<td><?php echo $list['from_date'];?></td>
 											<td><?php echo $list['to_date'];?></td>
 											<td><?php echo $list['number_of_days'];?></td>

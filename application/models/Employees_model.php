@@ -165,7 +165,7 @@ $this->db->select('*')->from('department');
 	$this->db->where('status !=', 2);
 	return $this->db->get()->result_array();	
 	}	
-	public function check_shift_already($shift){
+	public function check_shift_already(){
 	$this->db->select('shift.*')->from('shift');
 		$this->db->where('shift.shift',$shift);
 		$this->db->where('shift.status ',1);
@@ -272,29 +272,21 @@ $this->db->select('*')->from('department');
 	 $this->db->where('empployee.status',1);
 	return $this->db->get()->result_array();	
 	}
-	
-	public function leaves_list_data(){
-	$this->db->select('leave_type.l_t_id,leave_type.leave_type_name')->from('leave_type');
-	 $this->db->where('leave_type.status',1);
-	return $this->db->get()->result_array();	
-	}
-	
 	/* employee leaves */
 	
 	
 	public function employee_leaves_list_details($e_id){
-	$this->db->select('leaves.*,empployee.e_login_name,role.role,leave_type.leave_type_name')->from('leaves');
+	$this->db->select('leaves.*,empployee.e_login_name,role.role')->from('leaves');
 	$this->db->join('empployee', 'empployee.e_id = leaves.emp_id', 'left');
 	$this->db->join('role', 'role.r_id = empployee.role_id', 'left');
-    $this->db->join('leave_type', 'leave_type.l_t_id = leaves.leave_type', 'left');
+
 	$this->db->where('emp_id',$e_id);
 	return $this->db->get()->result_array();	
 	}
 	public function get_all_employee_leaves_list_details(){
-	$this->db->select('leaves.*,empployee.e_login_name,role.role,leave_type.leave_type_name')->from('leaves');
+	$this->db->select('leaves.*,empployee.e_login_name,role.role')->from('leaves');
 	$this->db->join('empployee', 'empployee.e_id = leaves.emp_id', 'left');
 	$this->db->join('role', 'role.r_id = empployee.role_id', 'left');
-	$this->db->join('leave_type', 'leave_type.l_t_id = leaves.leave_type', 'left');
 		$this->db->where('leaves.status',0);
 	return $this->db->get()->result_array();	
 	}
@@ -315,115 +307,7 @@ $this->db->select('*')->from('department');
 		$this->db->where('role_id',8);
 		return $this->db->get()->result_array();
 	}
-	public function save_area_details($data){
-	$this->db->insert('area',$data);
-	return $this->db->insert_id();		
-	}
-	public function check_area_already($area){
-	$this->db->select('area.*')->from('area');
-		$this->db->where('area.area',$area);
-		$this->db->where('area.status ',1);
-		return $this->db->get()->row_array();
-	}
-	public function area_list(){
-	$this->db->select('*')->from('area');
-	$this->db->where('area !=', 2);
-	return $this->db->get()->result_array();	
-	}	
-	public function edit_area_details($a_id){
-	$this->db->select('*')->from('area');
-	$this->db->where('a_id',$a_id);
-	return $this->db->get()->row_array();	
-	}
-	
-	public function get_area_details_list($a_id){
-	$this->db->select('*')->from('area');
-	$this->db->where('area.a_id',$a_id);
-	return $this->db->get()->row_array();
-	}
-	public function check_area_data_exsists($area){
-	$this->db->select('*')->from('area');
-	$this->db->where('area',$area);
-	return $this->db->get()->row_array();
-	}
-	public function update_area_details($a_id,$data){
-	 $this->db->where('a_id',$a_id);
-    return $this->db->update("area",$data);		
-	}
-	public function delete_area_details($a_id){
-	$this->db->where('a_id',$a_id);
-	return $this->db->delete('area');	
-	}
-	
-	/* work distibution */
-	public function get_employees_ids_details(){
-	$this->db->select('empployee.e_id,empployee.e_emplouee_id')->from('empployee');
-	$this->db->where('empployee.status',1);
-	return $this->db->get()->result_array();
-	}
-	public function get_area_list_data(){
-	$this->db->select('area.a_id,area.area')->from('area');
-	$this->db->where('area.status',1);
-	return $this->db->get()->result_array();
-	}
-	public function save_assign_work_details($data){
-	$this->db->insert('assign_work',$data);
-	return $this->db->insert_id();		
-	}
-	public function assign_work_list(){
-	$this->db->select('assign_work.*,empployee.e_emplouee_id,area.area')->from('assign_work');
-	$this->db->join('empployee', 'empployee.e_id = assign_work.work_emplouee_id', 'left');
-	$this->db->join('area', 'area.a_id = assign_work.allocated_area', 'left');
-	$this->db->where('assign_work.status !=', 2);
-	return $this->db->get()->result_array();	
-	}
-	public function  edit_work_details($w_d_id){
-	$this->db->select('*')->from('assign_work');
-	$this->db->where('w_d_id',$w_d_id);
-	return $this->db->get()->row_array();	
-	}
-	
-	public function get_employees_ids_details_data_wise($e_id){
-	$this->db->select('empployee.e_id,empployee.e_emplouee_id')->from('empployee');
-	$this->db->where('empployee.status',1);
-	return $this->db->get()->row_array();
-	}
-	public function update_assign_work_details($w_d_id,$data){
-	 $this->db->where('w_d_id',$w_d_id);
-    return $this->db->update("assign_work",$data);		
-	}
-	public function delete_assign_work_details($w_d_id){
-	$this->db->where('w_d_id',$w_d_id);
-	return $this->db->delete('assign_work');	
-	}
-	
-	/* leave policy */
-	public function save_leave_policy_details($data){
-	$this->db->insert('leaves_policy',$data);
-	return $this->db->insert_id();		
-	}
-	public function get_leave_policy_list(){
-	$this->db->select('leaves_policy.*')->from('leaves_policy');
-	$this->db->where('leaves_policy.status !=', 2);
-	return $this->db->get()->result_array();	
-	}
-	public function edit_leave_policy_details($l_p_id){
-	$this->db->select('*')->from('leaves_policy');
-	$this->db->where('l_p_id',$l_p_id);
-	return $this->db->get()->row_array();	
-	}
-	public function update_leave_policy_details($l_p_id,$data){
-	 $this->db->where('l_p_id',$l_p_id);
-    return $this->db->update("leaves_policy",$data);		
-	}
-	public function delete_leave_policy_details($l_p_id){
-	$this->db->where('l_p_id',$l_p_id);
-	return $this->db->delete('leaves_policy');	
-	}
-	
-	
-	
-	
+	/* supervisors  purpose*/
 	
  }		
 	
