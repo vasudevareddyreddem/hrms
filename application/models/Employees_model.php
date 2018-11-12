@@ -451,13 +451,55 @@ public  function get_employee_leaves_list($e_id){
 	
 /* emp  leave  purpose*/
 public  function get_emp_leaves_list_details_data($e_id){
-	$this->db->select('leaves.*,empployee.e_login_name,role.role')->from('leaves');
+	$this->db->select('leaves.*,empployee.e_login_name,role.role,leave_type.leave_type_name as l_type')->from('leaves');
 	$this->db->join('empployee', 'empployee.e_id = leaves.emp_id', 'left');
+	$this->db->join('leave_type', 'leave_type.l_t_id = leaves.leave_type', 'left');
 	$this->db->join('role', 'role.r_id = empployee.role_id', 'left');
 	$this->db->where('leaves.emp_id',$e_id);
 	return $this->db->get()->result_array();
 }
 public  function check_leave_policy_active_ornot(){
+	$this->db->select('*')->from('leaves_policy');
+	$this->db->where('leaves_policy.status',1);
+	return $this->db->get()->row_array();
+}
+
+/* leaves  type  list  purpose*/
+public function get_leaves_type_list(){
+	$this->db->select('*')->from('leave_type');
+	$this->db->where('leave_type.status',1);
+	return $this->db->get()->result_array();
+}
+public function get_employee_casual_leaves($e_id,$causal){
+	$this->db->select('SUM(number_of_days) as cnt')->from('leaves');
+	$this->db->where('leaves.status',1);
+	$this->db->where('emp_id',$e_id);
+	$this->db->where('leave_type',$causal);
+	return $this->db->get()->row_array();
+}
+public function get_employee_lop_leaves($e_id,$causal){
+	$this->db->select('SUM(number_of_days) as cnt')->from('leaves');
+	$this->db->where('leaves.status',1);
+	$this->db->where('emp_id',$e_id);
+	$this->db->where('leave_type',$causal);
+	return $this->db->get()->row_array();
+}
+public function get_employee_medical_leaves($e_id,$causal){
+	$this->db->select('SUM(number_of_days) as cnt')->from('leaves');
+	$this->db->where('leaves.status',1);
+	$this->db->where('emp_id',$e_id);
+	$this->db->where('leave_type',$causal);
+	return $this->db->get()->row_array();
+}
+public function get_employee_current_month_leaves($e_id,$month){
+	$this->db->select('SUM(number_of_days) as cnt')->from('leaves');
+	$this->db->where('leaves.status',1);
+	$this->db->where('month(created_at)',$month);
+	$this->db->where('emp_id',$e_id);
+	return $this->db->get()->row_array();
+}
+
+public  function get_employee_policies_list(){
 	$this->db->select('*')->from('leaves_policy');
 	$this->db->where('leaves_policy.status',1);
 	return $this->db->get()->row_array();

@@ -24,9 +24,11 @@
 
 									<select class="select form-control" id="l_type" name="l_type" required>
 										<option value="">Select Leave Type</option>
-										<option value="Casual Leave">Casual Leave</option>
-										<option value="Medical Leave">Medical Leave</option>
-										<option value="Loss of Pay">Loss of Pay</option>
+										<?php if(isset($leaves_types) && count($leaves_types)>0){ ?>
+											<?php foreach($leaves_types as $list){ ?>
+												<option value="<?php echo isset($list['l_t_id'])?$list['l_t_id']:''; ?>"><?php echo isset($list['leave_type_name'])?$list['leave_type_name']:''; ?></option>
+											<?php } ?>
+										<?php } ?>
 										</select>
 										
 										</div>

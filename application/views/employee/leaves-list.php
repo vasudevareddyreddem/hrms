@@ -16,8 +16,8 @@
 								<table id="example1" class="table table-bordered table-striped">
 									<thead>
 										<tr>
-											<th>Employee</th>
 											<th>Leave Type</th>
+											<th>Hr Considered</th>
 											<th>From</th>
 											<th>To</th>
 											<th>No of Days</th>
@@ -30,11 +30,9 @@
 									<tbody>
 									<?php foreach($leaves as $list){ ?>
 										<tr>
-										<td>
-											<a href="#" class="avatar"><?php echo substr($list['e_login_name'],0,1);?></a>
-											<h2><a href="#"><span><?php echo $list['e_login_name'];?></span></a></h2>
-											</td>
-											<td><?php echo $list['leave_type'];?></td>
+										
+											<td><?php echo $list['l_type'];?></td>
+											<td><?php if($list['consider_as']==0){ echo "As you applied";}else{ echo "LOP"; } ?></td>
 											<td><?php echo $list['from_date'];?></td>
 											<td><?php echo $list['to_date'];?></td>
 											<td><?php echo $list['number_of_days'];?></td>
@@ -48,6 +46,15 @@
 													</a>
 									
 												</div>
+												<?php }else if($list['status']==0){ ?>
+												<div class="dropdown action-label">
+													<a class="btn btn-white btn-sm rounded dropdown-toggle" href="#" data-toggle="dropdown" aria-expanded="false">
+														<i class="fa fa-dot-circle-o text-danger"></i> Pending</i>
+													</a>
+													
+												</div>
+												
+												
 												<?php }else{ ?>
 												<div class="dropdown action-label">
 													<a class="btn btn-white btn-sm rounded dropdown-toggle" href="#" data-toggle="dropdown" aria-expanded="false">
