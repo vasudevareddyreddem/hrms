@@ -77,14 +77,9 @@ public function editemployeepost(){
 		{
 	    $admindetails=$this->session->userdata('hrmsdetails');	
 		 $post=$this->input->post();	
-		 //echo'<pre>';print_r($post);exit;
-		 $edit_employee=$this->Employees_model->edit_employee_details($admindetails['e_id']);
-		//echo'<pre>';print_r($edit_employee);exit;
-		
-		$user_save=$this->Employees_model->edit_employee_details($post['e_id']);
-			//echo'<pre>';print_r($user_save);exit;
-			
-			if($user_save['e_email_work']!=$post['e_email_work']){
+			$edit_employee=$this->Employees_model->edit_employee_details($post['e_id']);
+			//echo'<pre>';print_r($edit_employee);
+			if($edit_employee['e_email_work']!=$post['e_email_work']){
 			$check=$this->Employees_model->saver_user_details($post['e_email_work']);
 			//echo'<pre>';print_r($check);exit;
 			if(count($check)>0){
@@ -93,8 +88,11 @@ public function editemployeepost(){
 			      }	
 			}
 		
-		if($_FILES['e_document']['name']!=''){
+				if($_FILES['e_document']['name']!=''){
 					$catimg=$_FILES['e_document']['name'];
+					if($edit_employee['e_document']!=''){
+						unlink('assets/bank_documents/'.$edit_employee['e_document']);
+					}
 					move_uploaded_file($_FILES['e_document']['tmp_name'], "assets/bank_documents/" . $_FILES['e_document']['name']);
 
 					}else{
@@ -102,6 +100,9 @@ public function editemployeepost(){
 					
 					}
 			    if($_FILES['e_profile_pic']['name']!=''){
+					if($edit_employee['e_profile_pic']!=''){
+						unlink('assets/adminprofilepic/'.$edit_employee['e_profile_pic']);
+					}
 					$cat=$_FILES['e_profile_pic']['name'];
 					move_uploaded_file($_FILES['e_profile_pic']['tmp_name'], "assets/adminprofilepic/" . $_FILES['e_profile_pic']['name']);
 
@@ -162,10 +163,7 @@ public function editemployeepost(){
 				'updated_at'=>date('Y-m-d H:i:s'),
 				'created_by'=>isset($admindetails['e_id'])?$admindetails['e_id']:''
 				 );
-			//echo'<pre>';print_r($update_data);exit;
-	        $update=$this->Employees_model->update_employee_details($post['e_id'],$update_data);
-				//echo'<pre>';print_r($update);exit;
-				
+				$update=$this->Employees_model->update_employee_details($post['e_id'],$update_data);
 				if(count($update)>0){
 							$this->session->set_flashdata('success','Employee details successfully updated');
 							redirect('employee/all');
@@ -175,9 +173,9 @@ public function editemployeepost(){
 							redirect('employee/all');
 						}
 				  
-		               }else{
-						$this->session->set_flashdata('error',"you don't have permission to access");
-						redirect('dashboard');
+		        }else{
+						 $this->session->set_flashdata('error',"Please login and continue");
+						redirect('');
 			     	}
 	
 }
@@ -259,7 +257,6 @@ public function delete()
 		if($this->session->userdata('hrmsdetails'))
 		{	
          $admindetails=$this->session->userdata('hrmsdetails');	
-		 $this->uri->segment(3);
 		 $data['edit_employee']=$this->Employees_model->edit_employee_details(base64_decode($this->uri->segment(3)));
 		 //echo'<pre>';print_r($data);exit;
 	     $this->load->view('employee/employee-details',$data);
