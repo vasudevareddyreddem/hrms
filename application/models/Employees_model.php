@@ -426,6 +426,11 @@ $this->db->select('*')->from('department');
 
 
 /* leave  data  for  employee */
+
+public  function get_employee_leaves_list($e_id){
+	$this->db->select('*')->from('leaves');
+	return $this->db->get()->result_array();
+}
 	
 /* leave  data  for  employee */	
 	

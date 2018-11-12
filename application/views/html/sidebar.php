@@ -85,7 +85,7 @@
                     <a href="#"><span>Employee Management</span> <span class="menu-arrow"></span></a>
                     <ul class="list-unstyled" style="display: none;">
                         
-                        <li><a href="<?php echo base_url('employee/employeeleaverequests');?>"><span>Leave Requests</span> <span class="badge bg-primary pull-right">1</span></a></li>
+                        <li><a href="<?php echo base_url('employee/leaves');?>"><span>Leave Requests</span> <span class="badge bg-primary pull-right">1</span></a></li>
                     </ul>
                 </li>
 			 <li class="submenu">
