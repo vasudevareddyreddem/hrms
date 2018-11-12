@@ -328,6 +328,7 @@ $this->db->select('*')->from('department');
 
 
 
+
 	public function save_area_details($data){
 	$this->db->insert('area',$data);
 	return $this->db->insert_id();		
