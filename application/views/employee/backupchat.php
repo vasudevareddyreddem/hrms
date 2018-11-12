@@ -92,8 +92,6 @@
 												</span>
 												</div>
 											</form>
-											<button class="btn btn-primary" id='deletechat' type="button"><i class="fa fa-send"></i></button>
-
 											</div>
 										</div>
 									</div>
@@ -216,7 +214,20 @@
 				
 		</div>
 		
-		
+		<script type="text/javascript">
+			$(document).ready(function() {
+             $('#msg').keypress(function (e) {
+ var key = e.which;
+ if(key == 13)  // the enter key code
+  {
+    alert('ok');
+    return false;  
+  }
+});   
+
+			});
+			
+		</script>
 <script type="text/javascript">
 	$(document).ready(function() {
 		 function recv_data()
@@ -369,8 +380,11 @@
 
 };
 		setInterval(recv_data, 3000);
-		function senddata(){
-//e.preventDefault(); 
+
+
+$(document).on('click','.dynmsg',function(e){
+
+	e.preventDefault(); 
 
 	            $('#myUL li').each(function () {
         //vall=$(this).children('a').text();
@@ -428,25 +442,10 @@
                 });
    								
 																											
-			 }			
-
-		};
-
-
-$(document).on('click','.dynmsg',function(e){
-	e.preventDefault();
-
-		senddata();
+			 }				
 
 
       });
- $(document).on('keypress','#msg',function (e) {
- var key = e.which;
- if(key == 13)  // the enter key code
-  {
-    senddata();
-  }
-});   
 //change the user
  
 $(document).on('click','.users',function(e){
@@ -481,35 +480,6 @@ $(this).closest('.msgdiv').remove();
 //alert(val);
 	
 });
-//start the delete chat
-$(document).on('click','#deletechat',function(e){
-    	e.preventDefault();
-    	
-       //val=$(this).attr("id");
-      // $(this).children(".pull-right").empty();
-     //    alert('kdkd');
-        $.ajax({
-                    type: "GET",    //GET or POST or PUT or DELETE verb
-                    url: 'http://localhost/hrms/Chat/deletechat',
-                         // Location of the service
-                    data:'' ,     //Data sent to server
-                    dataType: "html",   //Expected data format from server
-                    
-                    success: function (result) {
-                    //$('.page-wrapper').html(result);
-                         $('.chats').empty();
-                                           }
-                    ,
-                    error: function() { 
-                    	//alert('error from server side');
-
-                    } 
-                });
-
-    });
-
-
-// end the delete chat
 
 
 

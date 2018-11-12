@@ -64,12 +64,52 @@
                 <li class="">
                     <a href="<?php echo base_url('employee/salemantrack'); ?>"><span>Salesman Man Track </span> </a>
                 </li>
-                <li class="">
-                    <a href="<?php echo base_url('employee/workdistribution'); ?>"><span>Work Distribution</span> </a>
+				
+				 <li class="submenu">
+                    <a href="#"><span>Area</span> <span class="menu-arrow"></span></a>
+                    <ul class="list-unstyled" style="display: none;">
+                        <li><a href="<?php echo base_url('employee/area');?>">Add Area</a></li>
+                        <li><a href="<?php echo base_url('employee/arealist');?>">Area List</a></li>
+                    </ul>
                 </li>
-                <li class="">
-                    <a href="<?php echo base_url('employee/leavepolicy'); ?>"><span>Leave Policy</span> </a>
+				
+				<!--<li class="submenu">
+                    <a href="#"><span>Leave Type</span> <span class="menu-arrow"></span></a>
+                    <ul class="list-unstyled" style="display: none;">
+                        <li><a href="<?php echo base_url('employee/leavetype');?>">Add Leave Type</a></li>
+                        <li><a href="<?php echo base_url('employee/leavetypelist');?>">Leave Type List</a></li>
+                    </ul>
+                </li>-->
+				
+				
+				
+                <li class="submenu">
+                    <a href="#"><span>Work Distribution</span> <span class="menu-arrow"></span></a>
+                    <ul class="list-unstyled" style="display: none;">
+                        <li>
+                            <a href="<?php echo base_url('employee/assignwork'); ?>"><span>Add Work</span> </a>
+                        </li>
+                        <li>
+                            <a href="<?php echo base_url('employee/workdistributionlist'); ?>"><span>Work List</span> </a>
+                        </li>
+                    </ul>
                 </li>
+				
+				
+				<li class="submenu">
+                    <a href="#"><span>Leave Policy</span> <span class="menu-arrow"></span></a>
+                    <ul class="list-unstyled" style="display: none;">
+                        <li>
+                            <a href="<?php echo base_url('employee/leavepolicy'); ?>"><span>Add Leave Policy</span> </a>
+                        </li>
+                        <li>
+                            <a href="<?php echo base_url('employee/leavepolicylist'); ?>"><span>Leave Policy List</span> </a>
+                        </li>
+                    </ul>
+                </li>
+				
+				
+             
 				<li class="nav-item  ">
                     <a href="<?php echo base_url('dashboard/logout'); ?>" class="nav-link "> <i class="material-icons"></i>
                         <span class="title">Logout</span> <span class="arrow"></span>
@@ -100,7 +140,29 @@
                         <span class="title">Logout</span> <span class="arrow"></span>
                     </a>
                 </li>
-			<?php }?>
+			<?php }else if($userdetails['role_id']==1){?>
+			  <li class="active">
+                    <a href="<?php echo base_url('dashboard');?>">Dashboard</a>
+                </li>
+
+			 <li class="submenu">
+                    <a href="#"><span>Employee communication </span> <span class="menu-arrow"></span></a>
+					
+					
+                    <ul class="list-unstyled" style="display: none;">
+                        <li><a href="<?php echo base_url('employee/chat');?>">Chat </a></li>
+
+                    </ul>
+					<li class="nav-item  ">
+                    <a href="<?php echo base_url('dashboard/logout'); ?>" class="nav-link "> <i class="material-icons"></i>
+                        <span class="title">Logout</span> <span class="arrow"></span>
+                    </a>
+                </li>
+					
+					
+                </li>
+			<?php  } ?>
+			
             </ul>
         </div>
     </div>

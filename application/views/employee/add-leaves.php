@@ -32,7 +32,7 @@
 							<div class="form-group">
 									<label>Employee <span class="text-danger">*</span></label>
 									<select class="select" id="employee" name="employee">
-										<option value="">Select Leave Type</option>
+										<option value="">Select Employee</option>
 										<?php if(isset($employee_data) && count($employee_data)>0){ ?>
 >>>>>>> a4efb4f39a9374456b42d80b5bca797e72d12390
 									<?php foreach($employee_data as $list){ ?>
@@ -64,10 +64,13 @@
 								<div class="form-group">
 									<label>Leave Type <span class="text-danger">*</span></label>
 									<select class="select" id="leave_type" name="leave_type">
-										<option value="">Select Leave Type</option>
-										<option value="Casual Leave">Casual Leave</option>
-										<option value="Medical Leave">Medical Leave</option>
-										<option value="Loss of Pay">Loss of Pay</option>
+										<option value="">Select Employee</option>
+										<?php if(isset($leaves_data) && count($leaves_data)>0){ ?>
+									<?php foreach($leaves_data as $list){ ?>
+										<option value="<?php echo $list['l_t_id']; ?>"><?php echo $list['leave_type_name']; ?></option>
+										
+									<?php } ?>
+								<?php } ?>
 									</select>
 >>>>>>> a4efb4f39a9374456b42d80b5bca797e72d12390
 								</div>
@@ -172,7 +175,7 @@ $(document).ready(function() {
 				}
             },
 			number_of_days:{
-           validators: {
+               validators: {
 					notEmpty: {
 						message: 'Number of days is required'
 					},regexp: {

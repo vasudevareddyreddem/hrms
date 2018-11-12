@@ -165,7 +165,7 @@ $this->db->select('*')->from('department');
 	$this->db->where('status !=', 2);
 	return $this->db->get()->result_array();	
 	}	
-	public function check_shift_already(){
+	public function check_shift_already($shift){
 	$this->db->select('shift.*')->from('shift');
 		$this->db->where('shift.shift',$shift);
 		$this->db->where('shift.status ',1);
@@ -272,22 +272,34 @@ $this->db->select('*')->from('department');
 	 $this->db->where('empployee.status',1);
 	return $this->db->get()->result_array();	
 	}
+	
+	public function leaves_list_data(){
+	$this->db->select('leave_type.l_t_id,leave_type.leave_type_name')->from('leave_type');
+	 $this->db->where('leave_type.status',1);
+	return $this->db->get()->result_array();	
+	}
+	
 	/* employee leaves */
 	
 	
 	public function employee_leaves_list_details($e_id){
-	$this->db->select('leaves.*,empployee.e_login_name,role.role')->from('leaves');
+	$this->db->select('leaves.*,empployee.e_login_name,role.role,leave_type.leave_type_name')->from('leaves');
 	$this->db->join('empployee', 'empployee.e_id = leaves.emp_id', 'left');
 	$this->db->join('role', 'role.r_id = empployee.role_id', 'left');
-
+    $this->db->join('leave_type', 'leave_type.l_t_id = leaves.leave_type', 'left');
 	$this->db->where('emp_id',$e_id);
 	return $this->db->get()->result_array();	
 	}
 	public function get_all_employee_leaves_list_details(){
-	$this->db->select('leaves.*,empployee.e_login_name,role.role')->from('leaves');
+	$this->db->select('leaves.*,empployee.e_login_name,role.role,leave_type.leave_type_name')->from('leaves');
 	$this->db->join('empployee', 'empployee.e_id = leaves.emp_id', 'left');
 	$this->db->join('role', 'role.r_id = empployee.role_id', 'left');
+<<<<<<< HEAD
 	$this->db->where('leaves.status',0);
+=======
+	$this->db->join('leave_type', 'leave_type.l_t_id = leaves.leave_type', 'left');
+		$this->db->where('leaves.status',0);
+>>>>>>> parent of a4efb4f... Merge branch 'master' of https://github.com/vasudevareddyreddem/hrms
 	return $this->db->get()->result_array();	
 	}
 	
@@ -307,12 +319,15 @@ $this->db->select('*')->from('department');
 		$this->db->where('role_id',8);
 		return $this->db->get()->result_array();
 	}
+<<<<<<< HEAD
 
 
 	/* supervisors  purpose*/
 
 
 
+=======
+>>>>>>> parent of a4efb4f... Merge branch 'master' of https://github.com/vasudevareddyreddem/hrms
 	public function save_area_details($data){
 	$this->db->insert('area',$data);
 	return $this->db->insert_id();		
@@ -434,7 +449,6 @@ public  function get_employee_leaves_list($e_id){
 	
 /* leave  data  for  employee */	
 	
-
 	
 
 

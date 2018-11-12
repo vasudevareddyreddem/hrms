@@ -1,6 +1,6 @@
 
 <?php //echo'<pre>';print_r($employee_leaves_list);exit;?>
-
+<?php //echo'<pre>';print_r($userdetails);exit;?>
 <!DOCTYPE html>
 <html>
 
@@ -41,6 +41,7 @@
 				<a id="mobile_btn" class="mobile_btn pull-left" href="#sidebar"><i class="fa fa-bars" aria-hidden="true"></i></a>
 				<ul class="nav navbar-nav navbar-right user-menu pull-right">
 				 <?php if(isset($employee_leaves_list) && count($employee_leaves_list)>0){   ?>
+				 <?php if($userdetails['role_id']==2){ ?>
 					<li class="dropdown hidden-xs">
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-bell-o"></i> <span class="badge bg-purple pull-right" id="notification_count"><?php if(isset($notification_list) && count($notification_list)>0){   if($notification_count['count']!=0){ echo $notification_count['count']; } } ?></span></a>
 						<div class="dropdown-menu notifications">
@@ -52,24 +53,27 @@
 								<?php $cnt=1;foreach($employee_leaves_list as $lis){ ?>
 					              <?php if($cnt<=5){ ?>
 								<li class="media notification-message">
-								<?php if($userdetails['role_id']==2){ ?>
-							<a onclick="opennotification(<?php echo $lis['l_id']; ?>);" data-toggle="modal" data-target="#exampleModalLong">
+								
+							<a onclick="opennotification(<?php echo $lis['l_id']; ?>);"  data-target="#exampleModalLong">
 											
 												<div class="media-left">
-												<span class="avatar"><?php echo $userdetails['e_login_name']; ?></span>
+												<span class="avatar"><?php echo substr($lis['e_login_name'],0,1);?></span>
 											</div>
-										
+									
 											
 											 <div class="media-body">
+<<<<<<< HEAD
 
 												<p class="m-0 noti-details"><span class="noti-title"><?php echo $lis['e_login_name'];?> &nbsp;Applied For&nbsp;<?php echo $lis['leave_type_name']; ?></span></p>
 
+=======
+												<p class="m-0 noti-details"><span class="noti-title"><?php echo $lis['e_login_name'];?> &nbsp;Applied For&nbsp;<?php echo $lis['leave_type']; ?></span></p>
+>>>>>>> parent of a4efb4f... Merge branch 'master' of https://github.com/vasudevareddyreddem/hrms
 												<p class="m-0"><span class="notification-time"><?php echo $lis['created_at']; ?></span></p>
 											</div>
 										</a>
 									
-								 <?php } ?>
-							
+								
 						 </li> 
 						  
 					  <?php } ?>
@@ -84,18 +88,62 @@
 						</div>
 						
 						 <?php } ?>
+						 <?php }?>
 					</li>
 					
 					
 					
 					
+<<<<<<< HEAD
 						
+=======
+					
+					<li class="dropdown hidden-xs">
+						<a href="javascript:;" id="open_msg_box" class="hasnotifications"><i class="fa fa-comment-o"></i> <span class="badge bg-purple pull-right">8</span></a>
+					</li>
+					
+>>>>>>> parent of a4efb4f... Merge branch 'master' of https://github.com/vasudevareddyreddem/hrms
 					<li class="dropdown">
-						<a href="profile.html" class="dropdown-toggle user-link" data-toggle="dropdown" title="Admin">
-							<span class="user-img"><img class="img-circle" src="<?php echo base_url();?>assets/vendor/img/user.jpg" width="40" alt="Admin">
+			
+						<a  class="dropdown-toggle user-link" data-toggle="dropdown" title="Admin">
+						 <?php if($userdetails['role_id']==1){ ?>
+						<?php if($userdetails['e_profile_pic']!=''){?>
+							<img src="<?php echo base_url('assets/adminprofilepic/'.$userdetails['e_profile_pic']);?>" class="img-circle" width="80" height="auto" alt="<?php echo htmlentities($userdetails['e_profile_pic']); ?>" />
+							<?php }else{ ?>
+							 <img src="<?php echo base_url();?>assets/vendor/img/user-06.jpg" class="img-circle" width="60" alt="User Image" />
+							<?php } ?>
+                             
 							<span class="status online"></span></span>
-							<span>Admin</span>
+							<span><?php echo $userdetails['e_login_name']; ?></span>
 							<i class="caret"></i>
+					 <?php }else if($userdetails['role_id']==2){ ?> 
+					 <?php if($userdetails['e_profile_pic']!=''){?>
+							<img src="<?php echo base_url('assets/adminprofilepic/'.$userdetails['e_profile_pic']);?>" class="img-circle" width="80" height="auto" alt="<?php echo htmlentities($userdetails['e_profile_pic']); ?>" />
+							<?php }else{ ?>
+							 <img src="<?php echo base_url();?>assets/vendor/img/user-06.jpg" class="img-circle" width="60" alt="User Image" />
+							<?php } ?>
+                          
+							<span class="status online"></span></span>
+							<span><?php echo $userdetails['e_login_name']; ?></span>
+						<?php }else if($userdetails['role_id']==3){ ?>
+						<?php if($userdetails['e_profile_pic']!=''){?>
+							<img src="<?php echo base_url('assets/adminprofilepic/'.$userdetails['e_profile_pic']);?>" class="img-circle" width="80" height="auto" alt="<?php echo htmlentities($userdetails['e_profile_pic']); ?>" />
+							<?php }else{ ?>
+							 <img src="<?php echo base_url();?>assets/vendor/img/user-06.jpg" class="img-circle" width="60" alt="User Image" />
+							<?php } ?>
+                             
+							<span class="status online"></span></span>
+							<span><?php echo $userdetails['e_login_name']; ?></span>
+							<?php }else if($userdetails['role_id']==8){ ?>
+							<?php if($userdetails['e_profile_pic']!=''){?>
+							<img src="<?php echo base_url('assets/adminprofilepic/'.$userdetails['e_profile_pic']);?>" class="img-circle" width="80" height="auto" alt="<?php echo htmlentities($userdetails['e_profile_pic']); ?>" />
+							<?php }else{ ?>
+							 <img src="<?php echo base_url();?>assets/vendor/img/user-06.jpg" class="img-circle" width="60" alt="User Image" />
+							<?php } ?>
+							<span class="status online"></span></span>
+							<span><?php echo $userdetails['e_login_name']; ?></span>
+							<?php } ?>
+							
 						</a>
 						<ul class="dropdown-menu">
 							<li><a href="<?php echo base_url('profile');?>">My Profile</a></li>
@@ -105,15 +153,6 @@
 						</ul>
 					</li>
 				</ul>
-				<div class="dropdown mobile-user-menu pull-right">
-					<a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-ellipsis-v"></i></a>
-					<ul class="dropdown-menu pull-right">
-					<li><a href="employee-details.php">My Profile</a></li>
-							<li><a href="edit-profile.php">Edit Profile</a></li>
-						
-							<li><a href="login.php">Logout</a></li>
-					</ul>
-				</div>
 				
 				<div class="modal fade" id="myModal" role="dialog">
     <div class="modal-dialog">
@@ -167,6 +206,7 @@
 				
 				
             </div>
+			 </div>
 			<?php if($this->session->flashdata('success')): ?>
 <div class="alert_msg1 animated slideInUp bg-succ">
    <?php echo $this->session->flashdata('success');?> &nbsp; <i class="fa fa-check text-success ico_bac" aria-hidden="true"></i>
