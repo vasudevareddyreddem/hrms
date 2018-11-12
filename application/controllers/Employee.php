@@ -966,8 +966,8 @@ public function leaveslist(){
     if($this->session->userdata('hrmsdetails'))
 		{	
          $admindetails=$this->session->userdata('hrmsdetails');	
-		 $data['leaves']=$this->Employees_model->leaves_list_details_data();
-		  //echo'<pre>';print_r($data);exit;
+		 $data['leaves']=$this->Employees_model->get_emp_leaves_list_details_data($admindetails['e_id']);
+		 //echo'<pre>';print_r($data);exit;
 		 
 	     $this->load->view('employee/leaves-list',$data);
 	    
@@ -2133,8 +2133,11 @@ public function leavepolicy(){
          $admindetails=$this->session->userdata('hrmsdetails');	
 		 $post=$this->input->post();	
 		 //echo'<pre>';print_r($post);exit;
-		
-		
+		$check_ative=$this->Employees_model->check_leave_policy_active_ornot();
+		if(count($check_ative)>0){
+			$this->session->set_flashdata('error',"At time only one leave policy is active. Please try again");	
+			redirect('employee/leavepolicylist');	
+		}
 		 $save_data=array(
 				'casual_leaves'=>isset($post['casual_leaves'])?$post['casual_leaves']:'',
 				'pay_leaves'=>isset($post['pay_leaves'])?$post['pay_leaves']:'',

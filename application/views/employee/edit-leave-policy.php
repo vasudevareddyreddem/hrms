@@ -62,7 +62,7 @@
 				if($('#casual_leaves').val().length>0 && $('#pay_leaves').val().length>0 && $('#medical_leaves').val().length>0 && $('#monthly_limit').val().length>0 ){
 					
 
-				val=parseInt($('#casual_leaves').val())+parseInt($('#pay_leaves').val())+parseInt($('#medical_leaves').val())+parseInt($('#monthly_limit').val());
+				val=parseInt($('#casual_leaves').val())+parseInt($('#pay_leaves').val())+parseInt($('#medical_leaves').val());
 				$('#total_leaves').val(val);
 				}
 				

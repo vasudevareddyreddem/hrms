@@ -126,6 +126,7 @@
                     <ul class="list-unstyled" style="display: none;">
                         
                         <li><a href="<?php echo base_url('employee/leaves');?>"><span>Leave Requests</span> <span class="badge bg-primary pull-right"><?php if(isset($notification_count['cnt']) && $notification_count['cnt']>0){  echo $notification_count['cnt']; } ?></span></a></li>
+						<li><a href="<?php echo base_url('employee/leaveslist');?>"><span>Leave Lists</span> <span class="badge bg-primary pull-right"></a></li>
                     </ul>
                 </li>
 			 <li class="submenu">
