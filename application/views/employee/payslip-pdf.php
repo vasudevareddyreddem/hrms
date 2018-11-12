@@ -1,8 +1,9 @@
 
+
 <div class="page-wrapper">
-                <div class="content container-fluid">
+                <div class="content ">
 					<div class="row">
-						<div class="col-xs-8">
+						<div class="col-xs-12">
 							<h4 class="page-title">Payslip</h4>
 						</div>
 						<div class="col-sm-4 text-right m-b-30">
@@ -29,7 +30,7 @@
 									</div>
 									<div class="col-md-6 m-b-20">
 										<div class="invoice-details">
-											<h3 class="text-uppercase">Payslip #49029</h3>
+											<h3 class="text-uppercase">Payslip <?php echo $pslip_det->e_s_p_id  ?></h3>
 											<ul class="list-unstyled">
 												<li>Salary Month: <span><?php echo $pslip_det->e_salary_month.','.$pslip_det->e_salary_year?></h4></span></li>
 											</ul>

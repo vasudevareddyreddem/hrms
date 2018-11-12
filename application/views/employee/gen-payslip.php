@@ -17,11 +17,11 @@
 							<div class="form-group form-focus">
 								<label class="control-label"></label>
 								<!-- <div class="cal-icon"> -->
-									<select id='ename' class="select" name='ename'>
-									<option value='nnnx3'>Select</option> 
+									<select id='ename' class="select" name='ename' >
+									<option value='nnnx3'>Select Employee</option> 
 												<?php foreach($name as $row):?>
 												
-												<option value='<?php echo $row->e_f_name ?>'><?php echo $row->e_f_name ?></option>
+						               <option value='<?php echo base64_encode($row->e_f_name) ?>'><?php echo $row->e_f_name ?></option>
 											<?php endforeach ?>
 											</select>
 								<!-- </div> -->
@@ -31,7 +31,7 @@
 							<div class="form-group form-focus">
 								<label class="control-label"></label>
 								<!-- <div class="cal-icon"> -->
-									<select id='eid' class="select" name='eid'> 
+									<select id='eid' class="select" name='eid' placeholder='employee ids' > 
 												
 											
 											</select>
@@ -79,6 +79,7 @@
 
                     	$("#ename").change(function () {
                     		val=$('#ename').val();
+                    		//newval=base64_encode(val);
                     		//newval='http://localhost/hrms/payroll/empids/'+val;
                     		//alert(newval);
                     		    $.ajax({
