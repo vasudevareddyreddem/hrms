@@ -449,7 +449,19 @@ public  function get_employee_leaves_list($e_id){
 }
 
 	
-
+/* emp  leave  purpose*/
+public  function get_emp_leaves_list_details_data($e_id){
+	$this->db->select('leaves.*,empployee.e_login_name,role.role')->from('leaves');
+	$this->db->join('empployee', 'empployee.e_id = leaves.emp_id', 'left');
+	$this->db->join('role', 'role.r_id = empployee.role_id', 'left');
+	$this->db->where('leaves.emp_id',$e_id);
+	return $this->db->get()->result_array();
+}
+public  function check_leave_policy_active_ornot(){
+	$this->db->select('*')->from('leaves_policy');
+	$this->db->where('leaves_policy.status',1);
+	return $this->db->get()->row_array();
+}
 	
 
 
