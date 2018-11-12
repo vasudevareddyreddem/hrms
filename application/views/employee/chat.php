@@ -242,7 +242,7 @@
   }
                     ,
                     error: function() { 
-                    	alert('error from server side');
+                    	//alert('error from server side');
 
                     } 
                 });
