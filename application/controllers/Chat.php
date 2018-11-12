@@ -52,6 +52,8 @@ echo json_encode($status);exit;
 }
 
 public function getmessages(){
+   if($this->session->userdata('hrmsdetails'))
+      {
 		$userdetails=$this->session->userdata('hrmsdetails');
     $eid=$userdetails['e_id'];
     //$data['sender']=$eid;
@@ -70,7 +72,11 @@ $rid=$this->session->userdata('recv');
 else{$data['status']='no';}
 echo json_encode($data);exit; 
 //$this->load->view('employee/getuserchat',$data);
+}
+else{
 
+  
+}
 
 
 }

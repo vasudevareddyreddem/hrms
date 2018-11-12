@@ -57,14 +57,12 @@ $data['year']=$this->payroll_model->get_year();
    
 	// payslip page
     public function payslippage(){
-<<<<<<< HEAD
-      if($this->session->userdata('hrmsdetails'))
-    { 
+
+   
                   
             $userdet=$this->session->userdata('hrmsdetails');
             $userid=$userdet['e_id'];
-=======
->>>>>>> a4efb4f39a9374456b42d80b5bca797e72d12390
+
         $this->load->library('form_validation');
     $this->form_validation->set_rules('eid', 'employee id', 'required');
 
@@ -122,7 +120,7 @@ $cnt_sun=count($days);// number of sundays
 $this->load->model('payroll_model');
 $hdays=$this->payroll_model->get_holidays($year,$month);
 $logdays=$this->payroll_model->get_login_days($year,$month,$eid);
-<<<<<<< HEAD
+
 $cnt_log=count($logdays);// number of working days
 if($cnt_log==0){
 
@@ -202,11 +200,11 @@ $i++;
 $cnt_med=$mleaves;
 //end of sick leaves
 
-=======
+
 $pay_lv=$this->payroll_model->pay_leaves($year,$month,$eid);
 $gen_lv=$this->payroll_model->general_leaves($year,$month,$eid);
 $sal=$this->payroll_model->emp_sal($eid);
->>>>>>> a4efb4f39a9374456b42d80b5bca797e72d12390
+
 $this->load->library('numbertowords');
 $saldata=$this->payroll_model->emp_sal_det($eid);
 $data['sal_det']=$saldata;
@@ -230,7 +228,6 @@ if($sal->salary_type==2){
 }
 if($sal->salary_type==3){
 
-<<<<<<< HEAD
   $day_sal=$sal->e_basic;
 }
 
@@ -240,9 +237,9 @@ $leaves_ded=(int)$day_sal*$pleaves;// leave deductions
 $data['total_ded']=$data['sal_det']->e_gross_salary-$data['sal_det']->e_net_salary+((int)$day_sal*$cnt_pay); // total deductions
       
 $file_name =time().'payslip.pdf';  
-=======
+
 //$this->session->set_userdata($data);
->>>>>>> a4efb4f39a9374456b42d80b5bca797e72d12390
+
 $payslip_det=array(
   'e_id'=> $saldata->e_id,
 'e_basic' => $saldata->e_basic,
@@ -276,7 +273,6 @@ $this->load->model('payroll_model');
 $this->payroll_model->save_payslip($payslip_det);
 
 
-<<<<<<< HEAD
 $data['pslip_det']=$this->payroll_model->emp_payslip_det($month,$year);
 //start
 $path = rtrim(FCPATH,"/");
@@ -320,23 +316,21 @@ $pdf->charset_in = 'iso-8859-4';
           $pdf->WriteHTML($html,2); // write the HTML into the PDF
           $pdf->Output($pdfFilePath, 'F');
 //end
-=======
-        
+
         }
->>>>>>> a4efb4f39a9374456b42d80b5bca797e72d12390
 
 
+
         
-        }
- 
+         
 
          $this->load->view('employee/payslip-view',$data);
          $this->load->view('html/footer');
 
+}
 
 
-
-    }
+    
    // retreving the employee salary deatails
     public function editsal($id){
 //$query = $this->db->get_where('salary_tab', array('emp_id' => $id));
@@ -347,13 +341,13 @@ $this->db->where('employee_salary.e_id',$id);
 $query = $this->db->get();
 
 $data['row'] = $query->row();
-<<<<<<< HEAD
+
 $data['salary_type']=$this->payroll_model->salary_type();
 
-=======
+
 //echo '<pre>';print_r($row); exit;
  //echo json_encode($row);
->>>>>>> a4efb4f39a9374456b42d80b5bca797e72d12390
+
 $this->load->view('employee/edit-salary',$data);
          $this->load->view('html/footer');
 
