@@ -8,7 +8,7 @@
 						<div class="col-sm-4 text-right m-b-30">
 							<div class="btn-group btn-group-sm">
 								<button class="btn btn-default">CSV</button>
-								<a href="<?php echo base_url('payroll/gen_pdf');?>"  class="btn btn-default">PDF</a>
+								<a href="<?php echo base_url('downloadfile/download/').base64_encode($pslip_det->payslip_pdf);?>"  class="btn btn-default">PDF</a>
 								<button class="btn btn-default"><i class="fa fa-print fa-lg"></i> Print</button>
 							</div>
 						</div>
@@ -123,6 +123,11 @@ echo $date;  ?></li>
 									</div>
 									<div class="col-md-12">
 										<p><strong>Net Salary: <?php echo $pslip_det->e_net_salary ?></strong> <?php echo $this->numbertowords->convert_number($pslip_det->e_net_salary).'Rupees'; ?></p>
+									</div>
+									<div class="col-md-12">
+										<p><?php echo'payleavedays'.$pslip_det->payleave_days  ?></p>
+										<p><?php echo'generalleavedays'.$pslip_det->genleave_days  ?></p>
+										<p><?php echo'medicalleavedays'.$pslip_det->medleave_days  ?></p>
 									</div>
 								</div>
 							</div>
@@ -339,3 +344,7 @@ echo $date;  ?></li>
 					</div>
 				</div>
             </div>
+            
+
+
+

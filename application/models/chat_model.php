@@ -62,12 +62,13 @@ public function last_chat($eid,$rid){
 
 
 
-	$this->db->select('*')->from('chat_tab')->where('sender_id',$eid)->where ('recevier_id', $rid)
+	$this->db->select('*')->from('chat_tab')->where('delete_status !=',$eid)->
+ group_start()->group_start()->where('sender_id',$eid)->where ('recevier_id', $rid)->group_end()
 ->or_group_start()
          ->where('sender_id',$rid)
          ->where ('recevier_id', $eid)
          
-      ->group_end();
+      ->group_end()->group_end();
   // ->group_start()
   //        ->where('sender_id',$rid)
   //        ->where ('recevier_id', $sid)
@@ -154,4 +155,91 @@ public function recv_details($rid){
 
 
 }
+
+public function update_msg_count($sid,$rid){
+
+
+  $sql='select sender_id,recevier_id,count(*) cnt from chat_tab where recevier_id ='.$sid.' and sender_id !='.$rid .' and read_status="unread" and notified_msg=0 group by sender_id,recevier_id ';
+ $query = $this->db->query($sql);
+
+
+return $query->result();
+
+}
+
+
+public function notified_change($sid)
+{
+  $this->db->set('notified_msg', 1);
+$this->db->where('recevier_id=', $sid);
+$this->db->update('chat_tab'); 
+
+return 'success';
+
+}
+//gettin the employee count
+public function empcount(){
+
+$this->db->select('count(*) cnt')->from('empployee')->where('login_status',1);
+$query=$this->db->get();
+return $query->row();
+}
+
+// getting all users
+public function allusers(){
+
+
+$this->db->select('*')->from('empployee');
+$query=$this->db->get();
+return $query->result();
+
+
+
+}
+// all users except current user
+public function allusers_ex_user($sid){
+
+
+$this->db->select('*')->from('empployee')->where('e_id !=',$sid);
+$query=$this->db->get();
+return $query->result();
+
+
+
+}
+//delete the chat
+public function deletechat($sid,$rid){
+  $this->db->select('delete_status')->from('chat_tab')->group_start()->where('sender_id',$sid)->where('recevier_id',$rid)
+  ->group_end()->or_group_start()->where('sender_id',$rid)->where('recevier_id',$sid)->group_end();
+$query=$this->db->get();
+$row=$query->row();
+if($row->delete_status==$rid){
+
+  $this->db->group_start()->where('sender_id',$sid)->where('recevier_id',$rid)
+  ->group_end()->or_group_start()->where('sender_id',$rid)->where('recevier_id',$sid)->group_end()->delete('chat_tab');
+  return  ($this->db->affected_rows() >=1) ? true: false;
+
+
+}
+else{
+$this->db->group_start()->where('sender_id',$sid)->where('recevier_id',$rid)
+  ->group_end()->or_group_start()->where('sender_id',$rid)->where('recevier_id',$sid)->group_end()->update('chat_tab',array('delete_status'=>$sid));
+  return  ($this->db->affected_rows() >=1) ? true: false;
+
+  }
+
+}
+public function updates_for_users($sid,$rid){
+
+
+  $sql='select e_id,e_f_name,cnt,login_status from (select sender_id,recevier_id,count(*) cnt from chat_tab where recevier_id ='.$sid.' and sender_id !='.$rid .' and read_status="unread" and notified_msg=0 group by sender_id,recevier_id) chat right join empployee on (empployee.e_id=chat.sender_id)  where e_id !='.$sid;
+ $query = $this->db->query($sql);
+
+
+return $query->result();
+
+}
+
+
+
 }
