@@ -15,27 +15,12 @@
 												<input type='hidden' value='<?php echo $shift_edit['e_id']?>'  name='eid'>
 											<label class="control-label">Select Shift</label>
 											<select class="select" name="shift">
-
-
-
-													<option value="">Select Shift</option>
-													<option value="A">A</option>
-													<option value="B">B</option>
-													<option value="C">C</option>
-
+												<option value="">Select Shift</option>
+													
 												<?php foreach($shiftlist as $shift):?>
 												<option value='<?php echo $shift['s_id'];?>' <?php if ($shift['s_id']== $shift_edit['e_shift']) echo ' selected';?> ><?php echo $shift['shift'];?> </option>
 												<?php endforeach?>	
 
-
-												<?php foreach($shiftlist as $shift):?>
-												<option value='<?php echo $shift['s_id'];?>' <?php if ($shift['s_id']== $shift_edit['e_shift']) echo ' selected';?> ><?php echo $shift['shift'];?> </option>
-												<?php endforeach?>	
-
-
-												<?php foreach($shiftlist as $shift):?>
-												<option value='<?php echo $shift['s_id'];?>' <?php if ($shift['s_id']== $shift_edit['e_shift']) echo ' selected';?> ><?php echo $shift['shift'];?> </option>
-												<?php endforeach?>	
 
 													
 											</select>
@@ -50,19 +35,7 @@
 				</div>
 			
 
-<script>
-  $(function () {
-    $("#example1").DataTable();
-    $('#example2').DataTable({
-      "paging": true,
-      "lengthChange": false,
-      "searching": false,
-      "ordering": true,
-      "info": true,
-      "autoWidth": false
-    });
-  });
-</script>
+
 
 <script>
 

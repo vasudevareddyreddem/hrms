@@ -761,11 +761,10 @@ public function shiftedit(){
 if($this->session->userdata('hrmsdetails'))
 		{	
          $admindetails=$this->session->userdata('hrmsdetails');
-	  $this->uri->segment(3);
 		 $data['shift_edit']=$this->Employees_model->edit_shift_management_details(base64_decode($this->uri->segment(3)));
 		 $data['shiftlist']=$this->Employees_model->shift_list();
 
-		  //echo'<pre>';print_r($data);exit;
+		 //echo'<pre>';print_r($data);exit;
 	     $this->load->view('employee/edit-shift',$data);
 	     $this->load->view('html/footer');
    }else{

@@ -105,15 +105,13 @@ if($this->session->userdata('hrmsdetails'))
 	//echo $eid; exit;
 	$data=array('e_shift'=>$shift);
 	$status=$this->emp_manage_model->update_emp_shift($eid,$data);
-	if($status==true){
+	if(count($status)>0){
 
-            $this->session->set_flashdata('success',"shift  details changed");
+            $this->session->set_flashdata('success',"Shift details successfully changed");
            redirect('employee/shiftmangement');
 
-	}
-
-	else{
-		 $this->session->set_flashdata('success',"you didn't change anything in shift details");
+	}else{
+		 $this->session->set_flashdata('error',"you didn't change anything in shift details");
            redirect('employee/shiftmangement');
 
 
