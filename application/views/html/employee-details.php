@@ -13,7 +13,7 @@
 							<div class="col-md-12">
 								<div class="profile-img-wrap">
 										<?php if($userdetails['e_profile_pic']!=''){ ?>
-										<img class="inline-block" src="<?php echo base_url('assets/adminprofilepic/'.$userdetails['e_profile_pic']); ?>" alt="user">
+										<img class="inline-block img-circle" src="<?php echo base_url('assets/adminprofilepic/'.$userdetails['e_profile_pic']); ?>" alt="user">
 										<?php }else{ ?>
 								         <img src="<?php echo base_url();?>assets/vendor/img/user-06.jpg" class="img-circle" alt="User Image" />
 									      <?php } ?>
