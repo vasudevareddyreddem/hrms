@@ -44,12 +44,10 @@ public function __construct()
  	 'message'=> $message,
 );
   $status=$this->Chat_model->senddata($data);
-  date_default_timezone_set('Asia/Kolkata'); 
-  $data['datenow'] = date('Y-m-d h:i:s ' );
 
 }
  
-echo json_encode($data);exit; 
+echo json_encode($status);exit; 
 
 }
 
@@ -60,24 +58,9 @@ public function getmessages(){
 $sid=$eid;
 $rid=$this->session->userdata('recv');
 //echo $sid.$rid;exit;
-    $data['lists']=$this->Chat_model->get_messages($sid,$rid);
+    $data['lists']=$this->Chat_model->get_messages($eid,$rid);
     //echo count($data['lists']);exit;
     // echo '<pre>';print_r($data);exit;
-    $msgcnt=$this->Chat_model->update_msg_count($sid,$rid);
-     //echo '<pre>';print_r($msgcnt);exit;
-
-if(count($msgcnt)>0){
-  $data['mstatus']=1;
- $upmsg=$this->Chat_model->updates_for_users($sid,$rid);
- $data['upmsg']=$upmsg;
-   //echo '<pre>';print_r($data);exit;
-
-   }
-   else{
-    $data['mstatus']=0;
-
-   }
-$this->Chat_model->notified_change($sid);
     $this->Chat_model->read_status_change($sid,$rid);
     if(count($data['lists'])>0){
 
@@ -85,40 +68,6 @@ $this->Chat_model->notified_change($sid);
     }
 
 else{$data['status']='no';}
-// $logusers=$this->Chat_model->update_login_users();
-// if(count($logusers)>0){
-//   $data['logusers']=$logusers;
-
-//   $data['ustatus']=1;
-
-// }
-// else { $data['ustatus']=0;}
-// get the count for notifications messsages
-
-// $data['emplist']=$this->Chat_model->emp_det($eid);
-
-// getting the newly logged users
-$ecnt=$this->session->userdata('empcount');
-$empcount=$this->Chat_model->empcount();
-$count=$empcount->cnt;
-if($count<$ecnt or $count>$ecnt){
-  $empdet=$this->Chat_model->update_login_users();
-  $data['empdet']=$empdet;
-  $data['empcount']=$empdet;
-  $data['newlogins']=1;
-  $allusers=$this->Chat_model->allusers();
-  $data['allusers']=$allusers;
-  $this->session->unset_userdata('empcount');
-  $this->session->set_userdata('empcount',$empcount);
-
-
-}
-else{
-  $data['newlogins']=0;
-}
-
-
-         
 echo json_encode($data);exit; 
 //$this->load->view('employee/getuserchat',$data);
 
@@ -139,7 +88,6 @@ public function userchat($id){
    
      $data['user']=$this->Chat_model->employee_info($rid);
     $data['userchat']=$this->Chat_model->getchat($sid,$rid);
-    $this->Chat_model->read_status_change($sid,$rid);
 
     //echo '<pre>';print_r($data);exit;
     // if(count($data['userchat'])>0){
