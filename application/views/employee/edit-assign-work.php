@@ -29,11 +29,7 @@
 									</div>
 								</div>
 				
-<<<<<<< HEAD
 
-=======
-				
->>>>>>> parent of a4efb4f... Merge branch 'master' of https://github.com/vasudevareddyreddem/hrms
 			  
           </div>
                 <div class="col-md-6">
@@ -43,7 +39,7 @@
 				        <select id="allocated_area" name="allocated_area" value="<?php echo isset($edit_work['area'])?$edit_work['area']:''; ?>"  class="form-control" >
 				         <option value="">Select</option>
 				       <?php if(isset($area_list) && count($area_list)>0){ ?>
-<<<<<<< HEAD
+
 						<?php foreach($area_list as $list){ ?>
 						
 								<?php if($edit_work['allocated_area']==$list['a_id']){ ?>
@@ -54,7 +50,7 @@
 						<?php } ?>
 					<?php } ?>
 					</select>
-=======
+
 											<?php foreach($area_list as $list){ ?>
 											
 													<?php if($edit_work['allocated_area']==$list['a_id']){ ?>
@@ -64,8 +60,7 @@
 													<?php } ?>
 											<?php } ?>
 										<?php } ?>
-										</select>
->>>>>>> parent of a4efb4f... Merge branch 'master' of https://github.com/vasudevareddyreddem/hrms
+
 				  </div>
 			      </div>
                  </div>

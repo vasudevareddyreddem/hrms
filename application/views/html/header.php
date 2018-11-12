@@ -62,29 +62,23 @@
 									
 											
 											 <div class="media-body">
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
+
 
 												<p class="m-0 noti-details"><span class="noti-title"><?php echo $lis['e_login_name'];?> &nbsp;Applied For&nbsp;<?php echo $lis['leave_type_name']; ?></span></p>
 
-=======
+
 												<p class="m-0 noti-details"><span class="noti-title"><?php echo $lis['e_login_name'];?> &nbsp;Applied For&nbsp;<?php echo $lis['leave_type']; ?></span></p>
->>>>>>> parent of a4efb4f... Merge branch 'master' of https://github.com/vasudevareddyreddem/hrms
-=======
+
 												<p class="m-0 noti-details"><span class="noti-title"><?php echo $lis['e_login_name'];?> &nbsp;Applied For&nbsp;<?php echo $lis['leave_type']; ?></span></p>
->>>>>>> parent of a4efb4f... Merge branch 'master' of https://github.com/vasudevareddyreddem/hrms
-=======
+
 												<p class="m-0 noti-details"><span class="noti-title"><?php echo $lis['e_login_name'];?> &nbsp;Applied For&nbsp;<?php echo $lis['leave_type']; ?></span></p>
->>>>>>> parent of a4efb4f... Merge branch 'master' of https://github.com/vasudevareddyreddem/hrms
-=======
+
 												<p class="m-0 noti-details"><span class="noti-title"><?php echo $lis['e_login_name'];?> &nbsp;Applied For&nbsp;<?php echo $lis['leave_type']; ?></span></p>
->>>>>>> parent of a4efb4f... Merge branch 'master' of https://github.com/vasudevareddyreddem/hrms
-=======
+
 												<p class="m-0 noti-details"><span class="noti-title"><?php echo $lis['e_login_name'];?> &nbsp;Applied For&nbsp;<?php echo $lis['leave_type']; ?></span></p>
->>>>>>> parent of a4efb4f... Merge branch 'master' of https://github.com/vasudevareddyreddem/hrms
+
+												<p class="m-0 noti-details"><span class="noti-title"><?php echo $lis['e_login_name'];?> &nbsp;Applied For&nbsp;<?php echo $lis['leave_type']; ?></span></p>
+
 												<p class="m-0"><span class="notification-time"><?php echo $lis['created_at']; ?></span></p>
 											</div>
 										</a>
@@ -110,27 +104,13 @@
 					
 					
 					
-<<<<<<< HEAD
-						
-=======
+
 					
 					<li class="dropdown hidden-xs">
 						<a href="javascript:;" id="open_msg_box" class="hasnotifications"><i class="fa fa-comment-o"></i> <span class="badge bg-purple pull-right">8</span></a>
 					</li>
 					
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
->>>>>>> parent of a4efb4f... Merge branch 'master' of https://github.com/vasudevareddyreddem/hrms
-=======
->>>>>>> parent of a4efb4f... Merge branch 'master' of https://github.com/vasudevareddyreddem/hrms
-=======
->>>>>>> parent of a4efb4f... Merge branch 'master' of https://github.com/vasudevareddyreddem/hrms
-=======
->>>>>>> parent of a4efb4f... Merge branch 'master' of https://github.com/vasudevareddyreddem/hrms
-=======
->>>>>>> parent of a4efb4f... Merge branch 'master' of https://github.com/vasudevareddyreddem/hrms
+
 					<li class="dropdown">
 			
 						<a  class="dropdown-toggle user-link" data-toggle="dropdown" title="Admin">
