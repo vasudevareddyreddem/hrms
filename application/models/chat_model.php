@@ -229,6 +229,16 @@ $this->db->group_start()->where('sender_id',$sid)->where('recevier_id',$rid)
   }
 
 }
+public function updates_for_users($sid,$rid){
+
+
+  $sql='select e_id,e_f_name,cnt,login_status from (select sender_id,recevier_id,count(*) cnt from chat_tab where recevier_id ='.$sid.' and sender_id !='.$rid .' and read_status="unread" and notified_msg=0 group by sender_id,recevier_id) chat right join empployee on (empployee.e_id=chat.sender_id)  where e_id !='.$sid;
+ $query = $this->db->query($sql);
+
+
+return $query->result();
+
+}
 
 
 
