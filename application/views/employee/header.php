@@ -115,7 +115,7 @@
 							<i class="caret"></i>
 						</a>
 						<ul class="dropdown-menu">
-							<li><a href="employee-details.php">My Profile</a></li>
+							<li><a href="employee-details.php">My newProfile</a></li>
 							<li><a href="edit-profile.php">Edit Profile</a></li>
 						
 							<li><a href="login.php">Logout</a></li>

@@ -153,6 +153,28 @@ public function userchat($id){
 
 
 }
+public function deletechat(){
+  $userdetails=$this->session->userdata('hrmsdetails');
+    $eid=$userdetails['e_id'];
+    //$data['sender']=$eid;
+$sid=$eid;
+$rid=$this->session->userdata('recv');
+$status=$this->Chat_model->deletechat($sid,$rid);
+if($status=true){
+
+  $data['delstatus']='1';
+}
+else{
+  $data['delstatus']='0';
+
+}
+echo json_encode($data);exit; 
+
+
+
+
+
+}
 
 
 }

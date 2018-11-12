@@ -338,6 +338,7 @@ $this->db->where('employee_salary.e_id',$id);
 $query = $this->db->get();
 
 $data['row'] = $query->row();
+$data['salary_type']=$this->payroll_model->salary_type();
 
 $this->load->view('employee/edit-salary',$data);
          $this->load->view('html/footer');
@@ -369,13 +370,15 @@ $this->load->view('employee/edit-salary',$data);
     $this->form_validation->set_rules('lwel', 'labour welfare', 'required|numeric');
     $this->form_validation->set_rules('fund', 'fund', 'required|numeric');
     $this->form_validation->set_rules('dothers', 'deduction others', 'numeric');
+    //$this->form_validation->set_rules('saltype', 'salary type ', 'required');
 
      if ($this->form_validation->run() == FALSE)
                 {
                   
-                    $this->session->set_userdata('errors', 'some_value');
-                    
-                      redirect("employee/addsalary");
+                   $this->session->set_flashdata('error', validation_errors());
+                   $val=base64_encode($this->input->post('uid'));
+                  
+                      redirect("payroll/editsal/".$val);
                 }
 
 
@@ -419,8 +422,8 @@ $data=array(
 'e_d_fund' => $this->input->post('fund'),
 'e_d_others'=> $this->input->post('dothers'),
 'e_net_salary' => $net_salary,
-'e_gross_salary'=>$gross_salary
-
+'e_gross_salary'=>$gross_salary,
+'salary_type'=>$this->input->post('saltype')
 
 );
 //echo'<pre>';print_r($data);exit;

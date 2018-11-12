@@ -13,7 +13,7 @@
 					<form id="salform" method="post" class="m-b-30" action="<?php echo base_url('payroll/updatesal');?>">
 					
 								<div class="row"> 
-									<div class="col-md-6"> 
+									<div class="col-md-4"> 
 										<div class="form-group">
 											
 											<input type='hidden' name='uid' value='<?php echo $row->e_id?>'>
@@ -22,9 +22,20 @@
 											<input class="form-control netsal" type="text" value='<?php echo $row->e_f_name?>'  readonly>
 										</div>
 									</div>
-									<div class="col-md-6"> 
+									<div class="col-md-4"> 
 										<label>Net Salary</label>
 										<input class="form-control" type="text" name='netsal' id='nsal'value='<?php echo $row->e_net_salary?>' >
+									</div>
+									<div class="col-md-4"> 
+										<label>salarytype</label>
+										<select id='' class="select" name='saltype'>
+
+                                       <?php foreach($salary_type as $sal): ?>
+										<option value='<?php echo $sal->sal_id; ?>'
+										 '<?php if($sal->sal_id==$row->salary_type){echo ' selected="selected"';}?>'> <?php echo $sal->sal_type ?></option>
+                                   <?php endforeach?>											
+											<?php echo $sal->sal_type ?>
+											</select>
 									</div>
 								</div>
 								<div class="row"> 

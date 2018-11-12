@@ -62,12 +62,13 @@ public function last_chat($eid,$rid){
 
 
 
-	$this->db->select('*')->from('chat_tab')->where('sender_id',$eid)->where ('recevier_id', $rid)
+	$this->db->select('*')->from('chat_tab')->where('delete_status !=',$eid)->
+ group_start()->group_start()->where('sender_id',$eid)->where ('recevier_id', $rid)->group_end()
 ->or_group_start()
          ->where('sender_id',$rid)
          ->where ('recevier_id', $eid)
          
-      ->group_end();
+      ->group_end()->group_end();
   // ->group_start()
   //        ->where('sender_id',$rid)
   //        ->where ('recevier_id', $sid)
@@ -236,6 +237,28 @@ $query=$this->db->get();
 return $query->result();
 
 
+
+}
+//delete the chat
+public function deletechat($sid,$rid){
+  $this->db->select('delete_status')->from('chat_tab')->group_start()->where('sender_id',$sid)->where('recevier_id',$rid)
+  ->group_end()->or_group_start()->where('sender_id',$rid)->where('recevier_id',$sid)->group_end();
+$query=$this->db->get();
+$row=$query->row();
+if($row->delete_status==$rid){
+
+  $this->db->group_start()->where('sender_id',$sid)->where('recevier_id',$rid)
+  ->group_end()->or_group_start()->where('sender_id',$rid)->where('recevier_id',$sid)->group_end()->delete('chat_tab');
+  return  ($this->db->affected_rows() >=1) ? true: false;
+
+
+}
+else{
+$this->db->group_start()->where('sender_id',$sid)->where('recevier_id',$rid)
+  ->group_end()->or_group_start()->where('sender_id',$rid)->where('recevier_id',$sid)->group_end()->update('chat_tab',array('delete_status'=>$sid));
+  return  ($this->db->affected_rows() >=1) ? true: false;
+
+  }
 
 }
 
