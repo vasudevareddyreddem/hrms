@@ -6,15 +6,15 @@
 							<div class="chat-window">
 								<div class="chat-header">
 									<div class="navbar">
-										<!-- <div class="user-details">
+										<div class="user-details">
 											<div class="pull-left user-img m-r-10">
-												<a href="profile.html" title="Mike Litorus"><img src="assets/img/user.jpg" alt="" class="w-40  img-circle"><span class="status online"></span></a>
+												<a href="profile.html" title="Mike Litorus"><img src="assets/img/user.jpg" alt="" class="w-40 img-circle"><span class="status online"></span></a>
 											</div>
 											<div class="user-info pull-left">
 												<a href="profile.html" title="Mike Litorus"><span class="font-bold">Mike Litorus</span> <i class="typing-text">Typing...</i></a>
 												<span class="last-seen">Last seen today at 7:50 AM</span>
 											</div>
-										</div> -->
+										</div>
 										<ul class="nav navbar-nav pull-right chat-menu">
 											<li class="dropdown">
 												<a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-cog"></i></a>
@@ -44,9 +44,9 @@
 													<?php if($status=='yes'){foreach($chatdata as $chat):
 													 ?>
 													 <div class='msgdiv'>
-												<!-- <div class="chat-line">
+												<div class="chat-line">
 														<span class="chat-date">October 8th, 2015</span>
-													</div> -->
+													</div>
 													<div class="chat <?php if($chat->sender_id==$sender){
 														echo 'chat-right';}else{echo 'chat-left';
 
@@ -60,8 +60,8 @@
 																</div>
 																<div class="chat-action-btns">
 																	<ul>
-																		<!-- <li><a href="#" class="share-msg" title="Share"><i class="fa fa-share-alt"></i></a></li>
-																		<li><a href="#" class="edit-msg" title="Edit"><i class="fa fa-pencil"></i></a></li> -->
+																		<li><a href="#" class="share-msg" title="Share"><i class="fa fa-share-alt"></i></a></li>
+																		<li><a href="#" class="edit-msg" title="Edit"><i class="fa fa-pencil"></i></a></li>
 																		<li><button data-messageid='<?php echo $chat->message_id?>'  class="del-msg" title="Delete"><i class="fa fa-trash-o"></i></button></li>
 																	</ul>
 																</div>
@@ -104,23 +104,16 @@
 									<div class="table-body">
 										<div class="table-content">
 											<div class="chat-profile-img">
-												<?php if($status=='yes'){?>
 												<div class="edit-profile-img">
-													<?php if($rec_det->e_profile_pic!=''){ ?>
-													<img class="avatar" src="<?php echo base_url('assets/adminprofilepic/'.$rec_det->e_profile_pic ); ?>" alt="">
-												<?php } else{?>
-													<img src="<?php echo base_url();?>assets/vendor/img/user-06.jpg" class="img-circle" alt="User Image" />
-									<?php } ?>
-
-													<!-- <span class="change-img">Change Image</span> -->
+													<img class="avatar" src="assets/img/user.jpg" alt="">
+													<span class="change-img">Change Image</span>
 												</div>
-												
+												<?php if($status=='yes'){?>
 												<h3 class="user-name m-t-10 m-b-0"><?php echo $rec_det->e_f_name?></h3>
 												<small class="text-muted"><?php echo $rec_det->role?></small>
 												<a href="edit-profile.html" class="btn btn-primary edit-btn"><i class="fa fa-pencil"></i></a><?php }?>
 											</div>
 											<div class="chat-profile-info">
-												<?php if($status=='yes'){?>
 												<ul class="user-det-list">
 													<li>
 														<span>Username:</span>
@@ -144,9 +137,8 @@
 														<?php }?>
 													</li>
 												</ul>
-												<?php }?>
 											</div>
-											<!-- <div class="tabbable">
+											<div class="tabbable">
 												<ul class="nav nav-tabs nav-tabs-solid nav-justified m-b-0">
 													<li class="active"><a href="#all_files" data-toggle="tab">All Files</a></li>
 													<li><a href="#my_files" data-toggle="tab">My Files</a></li>
@@ -201,7 +193,7 @@
 														</ul>
 													</div>
 												</div>
-											</div> -->
+											</div>
 										</div>
 									</div>
 								</div>
@@ -212,9 +204,9 @@
 				
 				
 				
-		</div>
-		
-		
+				
+            </div>
+
 <script type="text/javascript">
 	$(document).ready(function() {
 		 function recv_data()
@@ -226,120 +218,8 @@
                     dataType: "json",   //Expected data format from server
                     
                     success: function (result) {
-                    	//console.log(result.upmsg);
-                    	//alert('dkd');
-                    	//this code for login users 
-                    	// if(result.ustatus=1){
-
-                    	// 	$("#myUL").empty();
-                    	// 	val='';
-                    	// $.each(result.logusers, function(i, item) {
-
-                     //        if(item.login_status==1){
-                     //           val=val+'<li><button id="'+item.e_id+'" class="users btn-block">'+item.e_f_name+'<span class="pull-right">2</span><span class="status online pull-right"></span></button></li>';
-                     //        }
-                     //        else{
-                     //        	val=val+'<li><button id="'+item.e_id+'" class="users btn-block">'+item.e_f_name+'</button></li>';
-                     //        }
-
-
-                    	// });
-                    	// $("#myUL").html(val);
-
-                    	// }
-                    	//this is for update count
-                    	// if(result.mstatus==1){
-                    	// 	alert('ok working');
-                    	// 		$("#myUL").empty();
-                    	// 	val='';
-                    	// $.each(result.upmsg, function(i, item) {
-
-                     //        if(item.login_status==1){
-                     //        	if(item.cnt==null){
-                     //           val=val+'<li><a id="'+item.e_id+'" class="users btn-block">'+item.e_f_name+'<span class="pull-right"></span><span class="status online pull-right"></span></a></li>';
-                     //       }
-                     //       else{
-                     //       	val=val+'<li><a id="'+item.e_id+'" class="users btn-block">'+item.e_f_name+'<span class="pull-right">'+item.cnt+'</span><span class="status online pull-right"></span></a></li>';
-
-                     //       }
-
-
-                     //        }
-                     //        else{
-                     //        	val=val+'<li><a id="'+item.e_id+'" class="users btn-block">'+item.e_f_name+'</a></li>';
-                     //        }
-
-
-                    	// });
-                    	// $("#myUL").html(val);
-
-
-
-                    	// }
-                    	console.log(result);
-                    	if(result.newlogins==1){
-
-
-                    		$.each(result.allusers, function(i, item) {
-                    			$('#myUL li').each(function() {
-                    				val=$(this).children('a').attr('id');
-                    				//alert(val);
-                    				if(parseInt(val)==parseInt(item.e_id)){
-                    					if(item.login_status==1){
-
-                    					//alert('onechanged');
-                    					$(this).children('a').children('span:last').addClass('status online');
-                    				}
-                    				else{
-                    					$(this).children('a').children('span:last').removeClass('status online');
-
-
-                    				}
-
-
-                    				}
-
-
-
-
-                    			});
-
-
-                    		});
-
-
-                    	}
-                    	if(result.mstatus==1){
-                    	     
-        
-        $.each(result.upmsg, function(i, item) {
-        	
-        	if(item.cnt!=null){
-        		$('#myUL li').each(function() {
-        			val=$(this).children('a').attr('id');
-                     if(val==item.e_id){
-
-                      prevcnt=$(this).children('a').children('span:first').text();
-                      if(prevcnt==''){
-                     	$(this).children('a').children('span:first').text(item.cnt);
-                     }
-                     else{
-                     	newcnt=parseInt(prevcnt)+parseInt(item.cnt);
-                     	$(this).children('a').children('span:first').text(newcnt);
-                     }
-
-
-          }
-
-
-        		});
-
-
-        	}
-
-
-     });
-    }
+                    	console.log(result.lists);
+                    	//alert('kkk');
                     	if(result.status=='yes'){
                     	$.each(result.lists, function(i, item) {
                     		//console.log(item.message);
@@ -347,7 +227,7 @@
                     		var el = $('<div> </div>');
 
       //newdiv=$('.chats').append(divchat);
-   newdiv=el.html('<div class="chat chat-left"><div class="chat-body"><div class="chat-bubble"><div class="chat-content"><p></p><span class="chat-time"></span></div><div class="chat-action-btns"><ul><li><a href="#" class="del-msg" title="Delete"><i class="fa fa-trash-o"></i></a></li></ul></div></div></div></div>');
+   newdiv=el.html('<div class="chat-line"><span class="chat-date">October 8th, 2015</span></div><div class="chat chat-left"><div class="chat-body"><div class="chat-bubble"><div class="chat-content"><p></p><span class="chat-time"></span></div><div class="chat-action-btns"><ul><li><a href="#" class="share-msg" title="Share"><i class="fa fa-share-alt"></i></a></li><li><a href="#" class="edit-msg" title="Edit"><i class="fa fa-pencil"></i></a></li><li><a href="#" class="del-msg" title="Delete"><i class="fa fa-trash-o"></i></a></li></ul></div></div></div></div>');
       //var parent = lastObj.parent();
       $('.chats').append(newdiv);
       $("p:last").append(item.message);
@@ -360,32 +240,29 @@
   }
                     ,
                     error: function() { 
-                    	//alert('error from server side');
+                    	alert('error from server side');
 
                     } 
                 });
 
 };
 		setInterval(recv_data, 3000);
-		function senddata(){
-//e.preventDefault(); 
 
-	            $('#myUL li').each(function () {
-        //vall=$(this).children('a').text();
-        //alert(vall);
 
-    });
-  
+$(document).on('click','.dynmsg',function(e){
+
+	e.preventDefault();                   
+
 	
        if($('#msg').val().length>0){
        	
        	val=$('#msg').val();
-       data='<p>'+val+'</p>'+'<span ></span>';
+       data='<p>'+val+'</p>'+'<span >8:30 am</span>';
   
    divchat='<div></div>';
                     		var el = $('<div></div>');
 
-     newdiv= el.html('</div><div class="chat chat-right"><div class="chat-body"><div class="chat-bubble"><div class="chat-content"><p></p><span class="chat-time"></span></div><div class="chat-action-btns"><ul><li><a href="#" class="del-msg" title="Delete"><i class="fa fa-trash-o"></i></a></li></ul></div></div></div></div>');
+     newdiv= el.html('<div class="chat-line"><span class="chat-date">October 8th, 2015</span></div><div class="chat chat-right"><div class="chat-body"><div class="chat-bubble"><div class="chat-content"><p></p><span class="chat-time"></span></div><div class="chat-action-btns"><ul><li><a href="#" class="share-msg" title="Share"><i class="fa fa-share-alt"></i></a></li><li><a href="#" class="edit-msg" title="Edit"><i class="fa fa-pencil"></i></a></li><li><a href="#" class="del-msg" title="Delete"><i class="fa fa-trash-o"></i></a></li></ul></div></div></div></div>');
       $('.chats').append(newdiv);
       //var parent = lastObj.parent();
       //var prev=$('#message').closest("p");
@@ -414,43 +291,25 @@
                     
                     success: function (result) {
                     $('#msg').val('');
-                    //alert(result.datenow);
-                    $(".chat-time:last").append(result.datenow);
                          
                                            }
                     ,
                     error: function() { 
-                    	//alert('error from server side');
+                    	alert('error from server side');
 
                     } 
                 });
    								
 																											
-			 }			
-
-		};
-
-
-$(document).on('click','.dynmsg',function(e){
-	e.preventDefault();
-
-		senddata();
+			 }				
 
 
       });
- $(document).on('keypress','#msg',function (e) {
- var key = e.which;
- if(key == 13)  // the enter key code
-  {
-    senddata();
-  }
-});   
 //change the user
  
-$(document).on('click','.users',function(e){
-    	e.preventDefault();
+$(".users").on('click',function(){
+    	// var lastObj = $(this);
        val=$(this).attr("id");
-       $(this).children(".pull-right").empty();
      //    alert('kdkd');
         $.ajax({
                     type: "GET",    //GET or POST or PUT or DELETE verb
@@ -464,7 +323,7 @@ $(document).on('click','.users',function(e){
                                            }
                     ,
                     error: function() { 
-                    	//alert('error from server side');
+                    	alert('error from server side');
 
                     } 
                 });

@@ -2138,10 +2138,6 @@ public function leavepolicy(){
 				'updated_at'=>date('Y-m-d H:i:s'),
 				'created_by'=>isset($admindetails['e_id'])?$admindetails['e_id']:''
 				 );
-		 
-			$upadete=$this->Employees_model->get_update_leave_policy_details($save_data);	
-
-				  //echo '<pre>';print_r($save_data);exit;
 		       $save=$this->Employees_model->save_leave_policy_details($save_data);	
 		       if(count($save)>0){
 
@@ -2163,11 +2159,11 @@ public function leavepolicy(){
 	   
 	  if($this->session->userdata('hrmsdetails'))
 		{	
-	  $data['leave_policy_list']=$this->Employees_model->get_leave_policy_list();	
+	      $data['leave_policy_list']=$this->Employees_model->get_leave_policy_list();	
 		 //echo '<pre>';print_r($data);exit;
 	     $this->load->view('employee/leave-policy-list',$data);
 	     $this->load->view('html/footer');   
-          }else{
+       }else{
 		 $this->session->set_flashdata('error',"Please login and continue");
 		 redirect('');  
 	   }

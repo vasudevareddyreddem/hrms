@@ -115,7 +115,21 @@
 			
 <!-- modal -->
   
+<div class="modal fade" id="m12" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-sm" role="document">
+        <div class="modal-content">
+            <div class="modal-body text-center">
+                <p id='para'>
+                	<?php if($this->session->flashdata('errors')){
 
+                		  echo validation_errors();
+                	} ?>
+                </p>
+                <button type="button" class="btn btn-sm btn-secondary" data-dismiss="modal">Ok</button>
+            </div>
+        </div>
+    </div>
+</div>
 			
 <script >
 			$(document).ready(function() {
@@ -139,7 +153,12 @@
 
 			 });
 
-				
+				<?php if($this->session->userdata('errors')){?>
+					
+                   alert('errors in page');
+                   //$('#m12').modal('show');
+
+			<?php	} ?>
 
 
  

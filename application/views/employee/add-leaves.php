@@ -19,6 +19,7 @@
 						</div>
 						<div class="modal-body">
 							<form id="defaultForm" method="post" action="<?php echo base_url('employee/addleave');?>" enctype="multipart/form-data">
+<<<<<<< HEAD
 							
 									<div class="col-sm-13">  
 									<div class="form-group">
@@ -27,6 +28,13 @@
 								<select  name="employee" id="employee" class="form-control" >
 								<option value="">Select</option>
 								<?php if(isset($employee_data) && count($employee_data)>0){ ?>
+=======
+							<div class="form-group">
+									<label>Employee <span class="text-danger">*</span></label>
+									<select class="select" id="employee" name="employee">
+										<option value="">Select Leave Type</option>
+										<?php if(isset($employee_data) && count($employee_data)>0){ ?>
+>>>>>>> a4efb4f39a9374456b42d80b5bca797e72d12390
 									<?php foreach($employee_data as $list){ ?>
 										<option value="<?php echo $list['e_id']; ?>"><?php echo $list['e_login_name']; ?></option>
 										
@@ -34,6 +42,7 @@
 								<?php } ?>
 								</select>
 								</div>
+<<<<<<< HEAD
 							</div>
 									</div>
 										
@@ -51,6 +60,16 @@
 									<?php } ?>
 								<?php } ?>
 								</select>
+=======
+								<div class="form-group">
+									<label>Leave Type <span class="text-danger">*</span></label>
+									<select class="select" id="leave_type" name="leave_type">
+										<option value="">Select Leave Type</option>
+										<option value="Casual Leave">Casual Leave</option>
+										<option value="Medical Leave">Medical Leave</option>
+										<option value="Loss of Pay">Loss of Pay</option>
+									</select>
+>>>>>>> a4efb4f39a9374456b42d80b5bca797e72d12390
 								</div>
 							</div>
 									</div>
@@ -153,7 +172,7 @@ $(document).ready(function() {
 				}
             },
 			number_of_days:{
-               validators: {
+           validators: {
 					notEmpty: {
 						message: 'Number of days is required'
 					},regexp: {

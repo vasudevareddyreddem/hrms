@@ -16,13 +16,13 @@
 					   <div class="col-sm-3 col-md-3 col-xs-6">  
 							<div class="form-group form-focus">
 								<label class="control-label">Employee Name</label>
-								<input type="text" name='ename' value='<?php echo $data->e_f_name ;?>'class="form-control floating" readonly />
+								<input type="text" name='ename' value='<?php echo $data->e_f_name ;?>'class="form-control floating" />
 							</div>
 					   </div>  
 						<div class="col-sm-3 col-md-3 col-xs-6">  
 							<div class="form-group form-focus">
 								<label class="control-label">Employee Id</label>
-								<input type="text" name='eid' value='<?php echo $data->e_id ;?>' class="form-control floating"  readonly/>
+								<input type="text" name='eid' value='<?php echo $data->e_id ;?>' class="form-control floating" />
 							</div>
 					   </div>
 					
