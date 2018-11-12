@@ -18,52 +18,10 @@
 							<h4 class="modal-title">Add Leave Request</h4>
 						</div>
 						<div class="modal-body">
-							<form id="defaultForm" method="post" action="<?php echo base_url('employee/addleave');?>" enctype="multipart/form-data">
-<<<<<<< HEAD
-							
-									<div class="col-sm-13">  
-									<div class="form-group">
-								<label class=" control-label">Employee</label>
-								<div class="">
-								<select  name="employee" id="employee" class="form-control" >
-								<option value="">Select</option>
-								<?php if(isset($employee_data) && count($employee_data)>0){ ?>
-=======
-							<div class="form-group">
-									<label>Employee <span class="text-danger">*</span></label>
-									<select class="select" id="employee" name="employee">
-										<option value="">Select Employee</option>
-										<?php if(isset($employee_data) && count($employee_data)>0){ ?>
->>>>>>> a4efb4f39a9374456b42d80b5bca797e72d12390
-									<?php foreach($employee_data as $list){ ?>
-										<option value="<?php echo $list['e_id']; ?>"><?php echo $list['e_login_name']; ?></option>
-										
-									<?php } ?>
-								<?php } ?>
-								</select>
-								</div>
-<<<<<<< HEAD
-							</div>
-									</div>
-										
-										
-							<div class="col-sm-13">  
-									<div class="form-group">
-								<label class=" control-label">Leave Type</label>
-								<div class="">
-								<select  name="leave_type" id="leave_type" class="form-control" >
-								<option value="">Select</option>
-								<?php if(isset($leaves_data) && count($leaves_data)>0){ ?>
-									<?php foreach($leaves_data as $list){ ?>
-										<option value="<?php echo $list['l_t_id']; ?>"><?php echo $list['leave_type_name']; ?></option>
-										
-									<?php } ?>
-								<?php } ?>
-								</select>
-=======
+							<form id="defaultForm" method="post" action="<?php echo base_url('employee/employeeaddpost'); ?>" enctype="multipart/form-data">
 								<div class="form-group">
 									<label>Leave Type <span class="text-danger">*</span></label>
-									<select class="select" id="leave_type" name="leave_type">
+									<select class="select" id="l_type" name="l_type">
 										<option value="">Select Employee</option>
 										<?php if(isset($leaves_data) && count($leaves_data)>0){ ?>
 									<?php foreach($leaves_data as $list){ ?>
@@ -72,38 +30,23 @@
 									<?php } ?>
 								<?php } ?>
 									</select>
->>>>>>> a4efb4f39a9374456b42d80b5bca797e72d12390
 								</div>
-							</div>
-									</div>
-							
-							
-							
-								
-								 <div id="reserve_form">
 								<div class="form-group">
 									<label>From <span class="text-danger">*</span></label>
-									<div id="from_date"><p><input type="date" class="textbox" name="from_date" id="pick_date" onchange="cal()"</p></div>
+									<div class="cal-icon"><input class="form-control datetimepicker" type="text" name="f_date" id="f_date" ></div>
 								</div>
 								<div class="form-group">
 									<label>To <span class="text-danger">*</span></label>
-									<div id="to_date"><p><input type="date" class="textbox" name="to_date" id="drop_date" onchange="cal()"/></p></div>
+									<div class="cal-icon"><input class="form-control datetimepicker" type="text" name="t_date" id="t_date" ></div>
 								</div>
-								
 								<div class="form-group">
 									<label>Number of days <span class="text-danger">*</span></label>
-									 <div id="number_of_days"><input  type="text" class="textbox" id="numdays2"    name="number_of_days" /></div>
+									<input class="form-control"  onClick="CalculateDiff();" type="text" name="no_days" id="no_days">
 								</div>
-								</div>
-								
-								
-								
-								
-								
 								
 								<div class="form-group">
 									<label>Leave Reason <span class="text-danger">*</span></label>
-									<textarea rows="4" cols="5" class="form-control" name="leaves_reason"></textarea>
+									<textarea rows="4" cols="5" class="form-control" name="l_reason"></textarea>
 								</div>
 								<div class="m-t-20 text-center">
 								<button type="submit" class="btn btn-primary" name="signup" value="Sign up">Send Leave Request</button>
@@ -113,44 +56,28 @@
 						</div>
 					</div>
 				</div>
-				
+			
+			
+			
+			
             </div>
-			<script type="text/javascript">
-        function GetDays(){
-                var dropdt = new Date(document.getElementById("drop_date").value);
-                var pickdt = new Date(document.getElementById("pick_date").value);
-                return parseInt(1+(dropdt - pickdt) / (24 * 3600 * 1000));
-        }
-
-        function cal(){
-        if(document.getElementById("drop_date")){
-            document.getElementById("numdays2").value=GetDays();
-        }  
-    }
-
-    </script>		
+			
+				
+			
 <script>
 $(document).ready(function() {
  
    $('#defaultForm').bootstrapValidator({
 //       
         fields: {
-			employee:{
-			validators: {
-					notEmpty: {
-						message: 'Employee   is required'
-					}
-				}
-            },
-			
-			leave_type:{
+			l_type:{
 			validators: {
 					notEmpty: {
 						message: 'Leave Type   is required'
 					}
 				}
             },
-			from_date: {
+			f_date: {
                validators: {
 					notEmpty: {
 						message: 'From Date is required'
@@ -162,7 +89,7 @@ $(document).ready(function() {
 				
 				}
             },
-			to_date: {
+			t_date: {
                validators: {
 					notEmpty: {
 						message: 'To  Date is required'
@@ -174,8 +101,8 @@ $(document).ready(function() {
 				
 				}
             },
-			number_of_days:{
-               validators: {
+			no_days:{
+           validators: {
 					notEmpty: {
 						message: 'Number of days is required'
 					},regexp: {
@@ -184,14 +111,14 @@ $(document).ready(function() {
    					}
 				}
             },
-			remaining_leaves:{
+			r_leaves:{
            validators: {
 					notEmpty: {
 						message: 'Remaining Leaves is required'
 					}
 				}
             },
-			leaves_reason:{
+			l_reason:{
 			validators: {
 					notEmpty: {
 						message: 'Leave Reason   is required'

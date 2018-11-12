@@ -1,6 +1,6 @@
 
 <?php //echo'<pre>';print_r($employee_leaves_list);exit;?>
-
+<?php //echo'<pre>';print_r($userdetails);exit;?>
 <!DOCTYPE html>
 <html>
 
@@ -52,10 +52,10 @@
 								<?php $cnt=1;foreach($leaves_notification as $lis){ ?>
 					              <?php if($cnt<=5){ ?>
 								<li class="media notification-message">
-										<a onclick="opennotification(<?php echo $lis['l_id']; ?>);" data-toggle="modal" data-target="#exampleModalLong">
+									<a onclick="opennotification(<?php echo $lis['l_id']; ?>);" data-toggle="modal" data-target="#exampleModalLong">
 											
 												<div class="media-left">
-												<span class="avatar"><?php echo $lis['e_login_name']; ?></span>
+												<span class="avatar"><?php echo $userdetails['e_login_name']; ?></span>
 											</div>
 										
 											
@@ -67,7 +67,7 @@
 											</div>
 										</a>
 							
-								</li> 
+						 </li> 
 						  
 					  <?php } ?>
 					<?php $cnt++;} ?>
@@ -81,7 +81,6 @@
 						</div>
 						<?php } ?>
 						
-						 
 					</li>
 					
 					
@@ -103,15 +102,6 @@
 						</ul>
 					</li>
 				</ul>
-				<div class="dropdown mobile-user-menu pull-right">
-					<a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-ellipsis-v"></i></a>
-					<ul class="dropdown-menu pull-right">
-					<li><a href="employee-details.php">My Profile</a></li>
-							<li><a href="edit-profile.php">Edit Profile</a></li>
-						
-							<li><a href="login.php">Logout</a></li>
-					</ul>
-				</div>
 				
 				<div class="modal fade" id="myModal" role="dialog">
     <div class="modal-dialog">
@@ -165,6 +155,7 @@
 				
 				
             </div>
+			 </div>
 			<?php if($this->session->flashdata('success')): ?>
 <div class="alert_msg1 animated slideInUp bg-succ">
    <?php echo $this->session->flashdata('success');?> &nbsp; <i class="fa fa-check text-success ico_bac" aria-hidden="true"></i>

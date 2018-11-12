@@ -9,8 +9,9 @@ class Notifications extends In_frontend {
 		parent::__construct();	
 		$this->load->library('session');
 		$this->load->model('Notification_model');
-		$this->load->view('html/header');
-		$this->load->view('html/sidebar');
+     	$this->load->view('html/footer');
+		
+
 
 	}
 	
@@ -36,18 +37,45 @@ class Notifications extends In_frontend {
 		if($this->session->userdata('hrmsdetails'))
 				{
 					$details=$this->session->userdata('hrmsdetails');
-					
-					
-					//echo '<pre>';print_r($data);exit;
-					$this->load->view('notifications/notifications_viewall');
+					$data['notification_view']=$this->Notification_model->get_all_notifications_leaves_list_details(); 
+		  
+		               //echo'<pre>';print_r($data);exit;
+					$this->load->view('notifications/notifications_viewall',$data);
 					$this->load->view('html/footer');
-				}else{
-					$this->session->set_flashdata('error',"you don't have permission to access");
-					redirect('home');
-				}
+				 }else{
+		 $this->session->set_flashdata('error',"Please login and continue");
+		 redirect('');  
+	   }
 	}
 	
+public function delete()
+{
+if($this->session->userdata('hrmsdetails'))
+		{
+		$login_details=$this->session->userdata('hrmsdetails');
 
+			
+					$l_id=base64_decode($this->uri->segment(3));
+					
+					
+							$delete_data=$this->Notification_model->delete_notifications_details($l_id);
+							if(count($delete_data)>0){
+								$this->session->set_flashdata('success',"notifications successfully deleted.");
+								
+								 redirect('notifications/viewall');
+							}else{
+									$this->session->set_flashdata('error',"technical problem will occurred. Please try again.");
+									redirect('notifications/viewall');
+							}
+					
+					
+			    }else{
+					$this->session->set_flashdata('error',"You have no permission to access");
+					redirect('dashboard');
+			}
+		
+	}
+	
 	
 	
 	

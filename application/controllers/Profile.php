@@ -17,12 +17,13 @@ class Profile extends In_frontend {
          $admindetails=$this->session->userdata('hrmsdetails');	
 		$data['userdetails']=$this->User_model->get_all_admin_details($admindetails['e_id']);
 		 //echo'<pre>';print_r($data);exit;
-		  $employee_leaves_list=$this->Employees_model->get_all_employee_leaves_list_details(); 
-		 //echo'<pre>';print_r($data);exit;
 	     $this->load->view('html/employee-details',$data);
 	     $this->load->view('html/footer');
 	     
-   }
+  }else{
+		 $this->session->set_flashdata('loginerror','Please login to continue');
+		 redirect('');
+		} 
 
 		
  }
@@ -36,7 +37,10 @@ public function edit(){
 		 //echo'<pre>';print_r($data);exit;
 	     $this->load->view('html/edit-profile',$data);
 	     $this->load->view('html/footer');  
-   }
+   }else{
+		 $this->session->set_flashdata('loginerror','Please login to continue');
+		 redirect('');
+		} 
 	
 }	
 	public function editpost(){

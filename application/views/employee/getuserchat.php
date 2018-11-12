@@ -1,9 +1,9 @@
 <?php foreach($chatdata as $chat):
 													 ?>
 													 <div class='msgdiv'>
-												<div class="chat-line">
+												<!-- <div class="chat-line">
 														<span class="chat-date">October 8th, 2015</span>
-													</div>
+													</div> -->
 													<div class="chat <?php if($chat->sender_id==$sender){
 														echo 'chat-right';}else{echo 'chat-left';
 
