@@ -15,7 +15,7 @@
 												<span class="last-seen">Last seen today at 7:50 AM</span>
 											</div>
 										</div> -->
-										<ul class="nav navbar-nav pull-right chat-menu">
+										<!-- <ul class="nav navbar-nav pull-right chat-menu">
 											<li class="dropdown">
 												<a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-cog"></i></a>
 												<ul class="dropdown-menu">
@@ -23,15 +23,11 @@
 													<li><a href="javascript:void(0)">Settings</a></li>
 												</ul>
 											</li>
-										</ul>
+										</ul> -->
 										<a href="#task_window" class="task-chat profile-rightbar pull-right"><i class="fa fa-user" aria-hidden="true"></i></a>
-										<div class="message-search pull-right">
-											<div class="input-group input-group-sm">
-												<input type="text" class="form-control" placeholder="Search" required="">
-												<span class="input-group-btn">
-													<button class="btn" type="button"><i class="fa fa-search"></i></button>
-												</span>
-											</div>
+										<div class=" pull-right">
+											<button class="btn btn-warning" id='deletechat' type="button"><i class="fa fa-send"></i>clear chat</button>
+											
 										</div>
 									</div>
 								</div>
