@@ -187,27 +187,27 @@ public function update_login_users(){
 
 
 
-public function update_msg_count($sid,$rid){
+// public function update_msg_count($sid,$rid){
 
 
-  $sql='select sender_id,recevier_id,count(*) cnt from chat_tab where recevier_id ='.$sid.' and sender_id !='.$rid .' and read_status="unread" and notified_msg=0 group by sender_id,recevier_id ';
- $query = $this->db->query($sql);
+//   $sql='select sender_id,recevier_id,count(*) cnt from chat_tab where recevier_id ='.$sid.' and sender_id !='.$rid .' and read_status="unread" and notified_msg=0 group by sender_id,recevier_id ';
+//  $query = $this->db->query($sql);
 
 
-return $query->result();
+// return $query->result();
 
-}
+// }
 
 
-public function notified_change($sid)
-{
-  $this->db->set('notified_msg', 1);
-$this->db->where('recevier_id=', $sid);
-$this->db->update('chat_tab'); 
+// public function notified_change($sid)
+// {
+//   $this->db->set('notified_msg', 1);
+// $this->db->where('recevier_id=', $sid);
+// $this->db->update('chat_tab'); 
 
-return 'success';
+// return 'success';
 
-}
+// }
 //gettin the employee count
 public function empcount(){
 
