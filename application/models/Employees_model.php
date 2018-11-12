@@ -307,10 +307,9 @@ $this->db->select('*')->from('department');
 		$this->db->where('role_id',8);
 		return $this->db->get()->result_array();
 	}
-<<<<<<< HEAD
+
 	/* supervisors  purpose*/
-=======
-<<<<<<< HEAD
+
 	public function save_area_details($data){
 	$this->db->insert('area',$data);
 	return $this->db->insert_id();		
@@ -424,7 +423,7 @@ $this->db->select('*')->from('department');
 	
 	
 
->>>>>>> a4efb4f39a9374456b42d80b5bca797e72d12390
+
 	
  }		
 	

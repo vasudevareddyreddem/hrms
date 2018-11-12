@@ -155,7 +155,7 @@ public function recv_details($rid){
 
 
 }
-<<<<<<< HEAD
+
 public function update_msg_count($sid,$rid){
 
 
@@ -231,6 +231,5 @@ $this->db->group_start()->where('sender_id',$sid)->where('recevier_id',$rid)
 }
 
 
-=======
->>>>>>> a4efb4f39a9374456b42d80b5bca797e72d12390
+
 }
