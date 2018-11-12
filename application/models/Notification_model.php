@@ -46,9 +46,11 @@ class Notification_model extends CI_Model
 
 	
 	public function get_all_notifications_leaves_list_details(){
-	$this->db->select('leaves.*,empployee.e_login_name,role.role')->from('leaves');
+	$this->db->select('leaves.*,empployee.e_login_name,role.role,leave_type.leave_type_name')->from('leaves');
 	$this->db->join('empployee', 'empployee.e_id = leaves.emp_id', 'left');
 	$this->db->join('role', 'role.r_id = empployee.role_id', 'left');
+		$this->db->join('leave_type', 'leave_type.l_t_id = leaves.leave_type', 'left');
+
 
 
 	$this->db->where('leaves.status',0);
