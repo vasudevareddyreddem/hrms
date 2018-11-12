@@ -831,7 +831,6 @@ else{
 		if($this->session->userdata('hrmsdetails'))
 		{	
          $admindetails=$this->session->userdata('hrmsdetails');	
-		 $admindetails=$this->session->userdata('hrmsdetails');	
 				$cau_leave=$this->Employees_model->get_employee_casual_leaves($admindetails['e_id'],1);
 				//echo $this->db->last_query();
 				//var_dump($cau_leave);exit;
@@ -929,11 +928,50 @@ public function leaverequests(){
     if($this->session->userdata('hrmsdetails'))
 		{	
          $admindetails=$this->session->userdata('hrmsdetails');	
-		 $data['employee_leaves_list']=$this->Employees_model->get_all_employee_leaves_list_details(); 
-		  
-		 //echo'<pre>';print_r($data);exit;
-		$this->load->view('employee/leaves',$data);
+		 $data['employee_leaves_list']=$this->Employees_model->get_all_employee_leaves_list_details();
+		 $this->load->view('employee/leaves',$data);
 	     $this->load->view('html/footer');  
+	   }else{
+		 $this->session->set_flashdata('error',"Please login and continue");
+		 redirect('');  
+	   }
+}
+public function leavedetails(){
+    if($this->session->userdata('hrmsdetails'))
+		{	
+         $admindetails=$this->session->userdata('hrmsdetails');
+		 $emp_id=base64_decode($this->uri->segment(3));	 
+		 $admindetails=$this->session->userdata('hrmsdetails');	
+				$cau_leave=$this->Employees_model->get_employee_casual_leaves($emp_id,1);
+				//echo $this->db->last_query();
+				//var_dump($cau_leave);exit;
+					$lop_leave=$this->Employees_model->get_employee_lop_leaves($emp_id,2);
+					$m_leave=$this->Employees_model->get_employee_medical_leaves($emp_id,3);
+					$current_month_leave=$this->Employees_model->get_employee_current_month_leaves($emp_id,date('m'));
+					$leave_polices_list=$this->Employees_model->get_employee_policies_list();
+					if($current_month_leave['cnt']>=$leave_polices_list['monthly_limit']){
+						$m_lop_leaves=(($current_month_leave['cnt'])-($leave_polices_list['monthly_limit']));
+					}else{
+						$m_lop_leaves='';
+					}
+					$data['leave_polices_list']=$leave_polices_list;
+					$r_c_leave=(($leave_polices_list['casual_leaves'])-($cau_leave['cnt']));
+					$data['remaining_Casual_leaves']=isset($r_c_leave)?$r_c_leave:'';
+					$r_lop_leave=(($leave_polices_list['pay_leaves'])-($lop_leave['cnt']));
+					$data['remaining_lop_leaves']=isset($r_lop_leave)?$r_lop_leave:'';
+					$r_m_leave=(($leave_polices_list['medical_leaves'])-($m_leave['cnt']));
+					$data['remaining_mdical_leaves']=isset($r_m_leave)?$r_m_leave:'';
+					$data['leave_details']['c_leave']=isset($cau_leave['cnt'])?$cau_leave['cnt']:'';
+					$data['leave_details']['lop_leave']=isset($lop_leave['cnt'])?$lop_leave['cnt']:'';
+					$data['leave_details']['m_leave']=isset($m_leave['cnt'])?$m_leave['cnt']:'';
+					$data['leave_details']['tottal_leave']=$cau_leave['cnt']+$lop_leave['cnt']+$m_leave['cnt'];
+					$data['current_month_leave']=isset($current_month_leave['cnt'])?$current_month_leave['cnt']:'';
+					$data['current_month_lop_leave']=isset($m_lop_leaves)?$m_lop_leaves:'';
+				    $data['emp_details']=$this->Employees_model->get_employee_details($emp_id);
+					//echo'<pre>';print_r($data);exit;
+		 
+	     $this->load->view('employee/emp_leave_details',$data);
+	     $this->load->view('html/footer'); 
 	   }else{
 		 $this->session->set_flashdata('error',"Please login and continue");
 		 redirect('');  
@@ -946,8 +984,9 @@ public function leave(){
          $admindetails=$this->session->userdata('hrmsdetails');	
 		 	
 		 $data['employee_data']=$this->Employees_model->employee_list_data();
-		 $data['leaves_data']=$this->Employees_model->leaves_list_data();
-		 //echo'<pre>';print_r($data);exit;
+		 $data['leaves_types']=$this->Employees_model->leaves_list_data();
+
+		//echo'<pre>';print_r($data);exit;
 	     $this->load->view('employee/add-leaves',$data);
 	     $this->load->view('html/footer');  
         }else{
@@ -961,31 +1000,28 @@ public function addleave(){
 	
 	$admindetails=$this->session->userdata('hrmsdetails');
 	$post=$this->input->post();	
-		 //echo'<pre>';print_r($post);exit;
-		 $date1 = DateTime::createFromFormat('Y-m-d', $post['from_date']); // \DateTime object
-		  //echo'<pre>';print_r($post['from_date']);exit;
-      $d=$date1->format('Y-m-d');
-        //echo'<pre>';print_r($d);exit;
-		  $date2 = DateTime::createFromFormat('Y-m-d', $post['to_date']); // \DateTime object
-		 // echo'<pre>';print_r($post['to_date']);exit;
-      $e=$date2->format('Y-m-d');
-	  //echo'<pre>';print_r($e);exit;
-		
-		
-		
-	     $save_data=array(
+		//echo'<pre>';print_r($post);
+		$f_date = strtotime($post['f_date']);
+				$t_date = strtotime($post['t_date']);
+				$currentDate = date('Y-m-d', $f_date); 
+				$newDate = date('Y-m-d',$t_date); 
+				
+			$date1=date_create($currentDate);
+			$date2=date_create($newDate);
+			$diff=date_diff($date1,$date2);
+			$save_data=array(
 				'emp_id'=>isset($post['employee'])?$post['employee']:'',
-				'leave_type'=>isset($post['leave_type'])?$post['leave_type']:'',
-				'from_date'=>$d?$d:'',
-				'to_date'=>$e?$e:'',
-		        'number_of_days'=>isset($post['number_of_days'])?$post['number_of_days']:'',
-				'leaves_reason'=>isset($post['leaves_reason'])?$post['leaves_reason']:'',
+				'leave_type'=>isset($post['l_type'])?$post['l_type']:'',
+				'from_date'=>isset($currentDate)?$currentDate:'',
+				'to_date'=>isset($newDate)?$newDate:'',
+				'number_of_days'=>$diff->format("%a")+1,
+				'leaves_reason'=>isset($post['l_reason'])?$post['l_reason']:'',
 				'status'=>0,
 				'created_at'=>date('Y-m-d H:i:s'),
 				'updated_at'=>date('Y-m-d H:i:s'),
 				'created_by'=>isset($admindetails['e_id'])?$admindetails['e_id']:''
 				 );
-				 //echo'<pre>';print_r($save_data);exit;
+				//echo'<pre>';print_r($save_data);exit;
 		       $save=$this->Employees_model->save_leaves_details($save_data);	
 	         if(count($save)>0){
 					$this->session->set_flashdata('success',"Leave Request successfully sent");	

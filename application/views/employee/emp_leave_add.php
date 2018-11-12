@@ -22,7 +22,7 @@
 											<th>Remaining Pay Leaves</th>
 											<th>Remaining Medical Leaves</th>
 											<th>Current Month Leaves</th>
-											<th>Current Month  LOP Leaves</th>
+											<th>Current Month  Lop Leaves</th>
 											
 										</tr>
 									</thead>

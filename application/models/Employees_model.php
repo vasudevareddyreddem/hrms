@@ -504,6 +504,12 @@ public  function get_employee_policies_list(){
 	$this->db->where('leaves_policy.status',1);
 	return $this->db->get()->row_array();
 }
+
+public  function get_employee_details($e_id){
+	$this->db->select('e_login_name,e_id,e_f_name,e_l_name')->from('empployee');
+	$this->db->where('empployee.e_id',$e_id);
+	return $this->db->get()->row_array();
+}
 	
 
 

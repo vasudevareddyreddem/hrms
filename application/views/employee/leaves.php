@@ -23,6 +23,7 @@
 											<th>No of Days</th>
 											<th>Reason</th>
 											<th>Status</th>
+											<th>Created Date & Time</th>
 											<th  class="text-center">Actions</th>
 										</tr>
 									</thead>
@@ -44,6 +45,7 @@
 											<td><?php echo $list['number_of_days'];?></td>
 											<td><?php echo $list['leaves_reason'];?></td>
 											<td><?php  if($list['status']==1){  echo "accept";}else if($list['status']==2){  echo "reject";}else{  echo "Pending"; } ?></td>
+											<td><?php echo $list['created_at'];?></td>
 
 												<td>
 											<a class="btn btn-success btn-block" href="javascript;void(0);" onclick="admindeactive1('<?php echo base64_encode(htmlentities($list['l_id'])).'/'.base64_encode(htmlentities($list['status']));?>');adminstatus1('<?php echo $list['status'];?>')" href="javascript:void(0)" data-toggle="modal" data-target="#myModal2">
@@ -51,6 +53,7 @@
                                                                 Accept</a>
                                                 <a class= "btn btn-danger btn-block" href="javascript;void(0);" onclick="admindeactive2('<?php echo base64_encode(htmlentities($list['l_id'])).'/'.base64_encode(htmlentities($list['status']));?>');adminstatus('<?php echo $list['status'];?>')" href="javascript:void(0)" data-toggle="modal" data-target="#myModal">
                                                 Reject</a>
+												<a class= "btn btn-warning btn-block" target="_blank" href="<?php echo base_url('employee/leavedetails/'.base64_encode($list['emp_id'])); ?>">View</a>
     
                                                    </td>             
 												
@@ -171,19 +174,12 @@ function adminstatus(id){
 	
 }
 
-
-
-
-
+</script>
+<script>
   $(function () {
-    $("#example1").DataTable();
-    $('#example2').DataTable({
-      "paging": true,
-      "lengthChange": false,
-      "searching": false,
-      "ordering": true,
-      "info": true,
-      "autoWidth": false
-    });
+      $('#example1').DataTable( {
+        "order": [[7, "desc" ]]
+    } );
+    
   });
 </script>
