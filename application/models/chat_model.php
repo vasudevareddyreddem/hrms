@@ -20,11 +20,6 @@ public function emp_det($eid){
 $this->db->where('e_id !=',$eid);
 
 
-
-
-
-
-
 $query=$this->db->get('empployee');
 return $query->result();
 
@@ -164,31 +159,31 @@ public function update_login_users(){
 
 
 }
-public function updates_for_users($sid,$rid){
+// public function updates_for_users($sid,$rid){
 
-// $this->db->select('receiver_id,count(*) cnt')->from('chat_tab')->where('recevier_id !=',$rid)
-// ->where('sender_id',$sid)->where('read_status','unread')->group_by('recevier_id');
-//    $subquery=$this->db->get_compiled_select();
-//    $this->db->select('e_id, e_f_name,login_status,cnt')->from($subquery)->
-//    join('empployee',)
-//    return $query->result();
-  $sql='select e_id,e_f_name,cnt,login_status from (select sender_id,recevier_id,count(*) cnt from chat_tab where recevier_id ='.$sid.' and sender_id !='.$rid .' and read_status="unread" and notified_msg=0 group by sender_id,recevier_id) chat right join empployee on (empployee.e_id=chat.sender_id)  where e_id !='.$sid;
- $query = $this->db->query($sql);
+// // $this->db->select('receiver_id,count(*) cnt')->from('chat_tab')->where('recevier_id !=',$rid)
+// // ->where('sender_id',$sid)->where('read_status','unread')->group_by('recevier_id');
+// //    $subquery=$this->db->get_compiled_select();
+// //    $this->db->select('e_id, e_f_name,login_status,cnt')->from($subquery)->
+// //    join('empployee',)
+// //    return $query->result();
+//   $sql='select e_id,e_f_name,cnt,login_status from (select sender_id,recevier_id,count(*) cnt from chat_tab where recevier_id ='.$sid.' and sender_id !='.$rid .' and read_status="unread" and notified_msg=0 group by sender_id,recevier_id) chat right join empployee on (empployee.e_id=chat.sender_id)  where e_id !='.$sid;
+//  $query = $this->db->query($sql);
 
-// $this->db->select('e_id,e_f_name, cnt,login_status');
-//  $sub= $this->subquery->start_subquery('from');
-// $sub->select('receiver_id,count(*) cnt');
-// $sub->from('chat_tab');
-// $sub->where('recevier_id !=',$rid);
-// $sub->where('sender_id',$sid);
-// $sub->where('read_status','unread');
-// $sub->group_by('recevier_id');
-// $this->subquery->end_subquery('chat');
-// $this->db->join('empployee', 'empployee.e_id=chat.recevier_id');
-// $query=$this->db->get();
-return $query->result();
+// // $this->db->select('e_id,e_f_name, cnt,login_status');
+// //  $sub= $this->subquery->start_subquery('from');
+// // $sub->select('receiver_id,count(*) cnt');
+// // $sub->from('chat_tab');
+// // $sub->where('recevier_id !=',$rid);
+// // $sub->where('sender_id',$sid);
+// // $sub->where('read_status','unread');
+// // $sub->group_by('recevier_id');
+// // $this->subquery->end_subquery('chat');
+// // $this->db->join('empployee', 'empployee.e_id=chat.recevier_id');
+// // $query=$this->db->get();
+// return $query->result();
 
-}
+// }
 
 
 
@@ -222,11 +217,7 @@ return $query->row();
 }
 
 // getting all users
-public function allusers(){
-=======
->>>>>>> parent of a4efb4f... Merge branch 'master' of https://github.com/vasudevareddyreddem/hrms
 
-}
 public function updates_for_users($sid,$rid){
 
 // $this->db->select('receiver_id,count(*) cnt')->from('chat_tab')->where('recevier_id !=',$rid)
@@ -258,69 +249,44 @@ return $query->result();
 
 }
 
-public function updates_for_users($sid,$rid){
 
-// $this->db->select('receiver_id,count(*) cnt')->from('chat_tab')->where('recevier_id !=',$rid)
-// ->where('sender_id',$sid)->where('read_status','unread')->group_by('recevier_id');
-//    $subquery=$this->db->get_compiled_select();
-//    $this->db->select('e_id, e_f_name,login_status,cnt')->from($subquery)->
-//    join('empployee',)
-//    return $query->result();
-  $sql='select e_id,e_f_name,cnt,login_status from (select sender_id,recevier_id,count(*) cnt from chat_tab where recevier_id ='.$sid.' and sender_id !='.$rid .' and read_status="unread" and notified_msg=0 group by sender_id,recevier_id) chat right join empployee on (empployee.e_id=chat.sender_id)  where e_id !='.$sid;
- $query = $this->db->query($sql);
-
-// $this->db->select('e_id,e_f_name, cnt,login_status');
-//  $sub= $this->subquery->start_subquery('from');
-// $sub->select('receiver_id,count(*) cnt');
-// $sub->from('chat_tab');
-// $sub->where('recevier_id !=',$rid);
-// $sub->where('sender_id',$sid);
-// $sub->where('read_status','unread');
-// $sub->group_by('recevier_id');
-// $this->subquery->end_subquery('chat');
-// $this->db->join('empployee', 'empployee.e_id=chat.recevier_id');
-// $query=$this->db->get();
-return $query->result();
-
-}
 
 // all users except current user
-public function allusers_ex_user($sid){
+// public function allusers_ex_user($sid){
 
 
-$this->db->select('*')->from('empployee')->where('e_id !=',$sid);
-$query=$this->db->get();
-return $query->result();
-
-=======
->>>>>>> parent of a4efb4f... Merge branch 'master' of https://github.com/vasudevareddyreddem/hrms
-
-}
-public function updates_for_users($sid,$rid){
-
-// $this->db->select('receiver_id,count(*) cnt')->from('chat_tab')->where('recevier_id !=',$rid)
-// ->where('sender_id',$sid)->where('read_status','unread')->group_by('recevier_id');
-//    $subquery=$this->db->get_compiled_select();
-//    $this->db->select('e_id, e_f_name,login_status,cnt')->from($subquery)->
-//    join('empployee',)
-//    return $query->result();
-  $sql='select e_id,e_f_name,cnt,login_status from (select sender_id,recevier_id,count(*) cnt from chat_tab where recevier_id ='.$sid.' and sender_id !='.$rid .' and read_status="unread" and notified_msg=0 group by sender_id,recevier_id) chat right join empployee on (empployee.e_id=chat.sender_id)  where e_id !='.$sid;
- $query = $this->db->query($sql);
-
-// $this->db->select('e_id,e_f_name, cnt,login_status');
-//  $sub= $this->subquery->start_subquery('from');
-// $sub->select('receiver_id,count(*) cnt');
-// $sub->from('chat_tab');
-// $sub->where('recevier_id !=',$rid);
-// $sub->where('sender_id',$sid);
-// $sub->where('read_status','unread');
-// $sub->group_by('recevier_id');
-// $this->subquery->end_subquery('chat');
-// $this->db->join('empployee', 'empployee.e_id=chat.recevier_id');
+// $this->db->select('*')->from('empployee')->where('e_id !=',$sid);
 // $query=$this->db->get();
-return $query->result();
+// return $query->result();
 
-}
+
+
+// }
+// public function updates_for_users($sid,$rid){
+
+// // $this->db->select('receiver_id,count(*) cnt')->from('chat_tab')->where('recevier_id !=',$rid)
+// // ->where('sender_id',$sid)->where('read_status','unread')->group_by('recevier_id');
+// //    $subquery=$this->db->get_compiled_select();
+// //    $this->db->select('e_id, e_f_name,login_status,cnt')->from($subquery)->
+// //    join('empployee',)
+// //    return $query->result();
+//   $sql='select e_id,e_f_name,cnt,login_status from (select sender_id,recevier_id,count(*) cnt from chat_tab where recevier_id ='.$sid.' and sender_id !='.$rid .' and read_status="unread" and notified_msg=0 group by sender_id,recevier_id) chat right join empployee on (empployee.e_id=chat.sender_id)  where e_id !='.$sid;
+//  $query = $this->db->query($sql);
+
+// // $this->db->select('e_id,e_f_name, cnt,login_status');
+// //  $sub= $this->subquery->start_subquery('from');
+// // $sub->select('receiver_id,count(*) cnt');
+// // $sub->from('chat_tab');
+// // $sub->where('recevier_id !=',$rid);
+// // $sub->where('sender_id',$sid);
+// // $sub->where('read_status','unread');
+// // $sub->group_by('recevier_id');
+// // $this->subquery->end_subquery('chat');
+// // $this->db->join('empployee', 'empployee.e_id=chat.recevier_id');
+// // $query=$this->db->get();
+// return $query->result();
+
+// }
 
 //delete the chat
 public function deletechat($sid,$rid){
@@ -336,78 +302,53 @@ if($row->delete_status==$rid){
 
 
 }
-public function updates_for_users($sid,$rid){
-
-// $this->db->select('receiver_id,count(*) cnt')->from('chat_tab')->where('recevier_id !=',$rid)
-// ->where('sender_id',$sid)->where('read_status','unread')->group_by('recevier_id');
-//    $subquery=$this->db->get_compiled_select();
-//    $this->db->select('e_id, e_f_name,login_status,cnt')->from($subquery)->
-//    join('empployee',)
-//    return $query->result();
-  $sql='select e_id,e_f_name,cnt,login_status from (select sender_id,recevier_id,count(*) cnt from chat_tab where recevier_id ='.$sid.' and sender_id !='.$rid .' and read_status="unread" and notified_msg=0 group by sender_id,recevier_id) chat right join empployee on (empployee.e_id=chat.sender_id)  where e_id !='.$sid;
- $query = $this->db->query($sql);
-
-// $this->db->select('e_id,e_f_name, cnt,login_status');
-//  $sub= $this->subquery->start_subquery('from');
-// $sub->select('receiver_id,count(*) cnt');
-// $sub->from('chat_tab');
-// $sub->where('recevier_id !=',$rid);
-// $sub->where('sender_id',$sid);
-// $sub->where('read_status','unread');
-// $sub->group_by('recevier_id');
-// $this->subquery->end_subquery('chat');
-// $this->db->join('empployee', 'empployee.e_id=chat.recevier_id');
-// $query=$this->db->get();
-return $query->result();
-
-}
 else{
 $this->db->group_start()->where('sender_id',$sid)->where('recevier_id',$rid)
   ->group_end()->or_group_start()->where('sender_id',$rid)->where('recevier_id',$sid)->group_end()->update('chat_tab',array('delete_status'=>$sid));
   return  ($this->db->affected_rows() >=1) ? true: false;
 
   }
+  }
 
-}
-public function updates_for_users($sid,$rid){
-
-
-  $sql='select e_id,e_f_name,cnt,login_status from (select sender_id,recevier_id,count(*) cnt from chat_tab where recevier_id ='.$sid.' and sender_id !='.$rid .' and read_status="unread" and notified_msg=0 group by sender_id,recevier_id) chat right join empployee on (empployee.e_id=chat.sender_id)  where e_id !='.$sid;
- $query = $this->db->query($sql);
+// public function updates_for_users($sid,$rid){
 
 
-return $query->result();
-
-}
-
+//   $sql='select e_id,e_f_name,cnt,login_status from (select sender_id,recevier_id,count(*) cnt from chat_tab where recevier_id ='.$sid.' and sender_id !='.$rid .' and read_status="unread" and notified_msg=0 group by sender_id,recevier_id) chat right join empployee on (empployee.e_id=chat.sender_id)  where e_id !='.$sid;
+//  $query = $this->db->query($sql);
 
 
-}
-public function updates_for_users($sid,$rid){
+// return $query->result();
 
-// $this->db->select('receiver_id,count(*) cnt')->from('chat_tab')->where('recevier_id !=',$rid)
-// ->where('sender_id',$sid)->where('read_status','unread')->group_by('recevier_id');
-//    $subquery=$this->db->get_compiled_select();
-//    $this->db->select('e_id, e_f_name,login_status,cnt')->from($subquery)->
-//    join('empployee',)
-//    return $query->result();
-  $sql='select e_id,e_f_name,cnt,login_status from (select sender_id,recevier_id,count(*) cnt from chat_tab where recevier_id ='.$sid.' and sender_id !='.$rid .' and read_status="unread" and notified_msg=0 group by sender_id,recevier_id) chat right join empployee on (empployee.e_id=chat.sender_id)  where e_id !='.$sid;
- $query = $this->db->query($sql);
+// }
 
-// $this->db->select('e_id,e_f_name, cnt,login_status');
-//  $sub= $this->subquery->start_subquery('from');
-// $sub->select('receiver_id,count(*) cnt');
-// $sub->from('chat_tab');
-// $sub->where('recevier_id !=',$rid);
-// $sub->where('sender_id',$sid);
-// $sub->where('read_status','unread');
-// $sub->group_by('recevier_id');
-// $this->subquery->end_subquery('chat');
-// $this->db->join('empployee', 'empployee.e_id=chat.recevier_id');
-// $query=$this->db->get();
-return $query->result();
 
-}
+
+
+// public function updates_for_users($sid,$rid){
+
+// // $this->db->select('receiver_id,count(*) cnt')->from('chat_tab')->where('recevier_id !=',$rid)
+// // ->where('sender_id',$sid)->where('read_status','unread')->group_by('recevier_id');
+// //    $subquery=$this->db->get_compiled_select();
+// //    $this->db->select('e_id, e_f_name,login_status,cnt')->from($subquery)->
+// //    join('empployee',)
+// //    return $query->result();
+//   $sql='select e_id,e_f_name,cnt,login_status from (select sender_id,recevier_id,count(*) cnt from chat_tab where recevier_id ='.$sid.' and sender_id !='.$rid .' and read_status="unread" and notified_msg=0 group by sender_id,recevier_id) chat right join empployee on (empployee.e_id=chat.sender_id)  where e_id !='.$sid;
+//  $query = $this->db->query($sql);
+
+// // $this->db->select('e_id,e_f_name, cnt,login_status');
+// //  $sub= $this->subquery->start_subquery('from');
+// // $sub->select('receiver_id,count(*) cnt');
+// // $sub->from('chat_tab');
+// // $sub->where('recevier_id !=',$rid);
+// // $sub->where('sender_id',$sid);
+// // $sub->where('read_status','unread');
+// // $sub->group_by('recevier_id');
+// // $this->subquery->end_subquery('chat');
+// // $this->db->join('empployee', 'empployee.e_id=chat.recevier_id');
+// // $query=$this->db->get();
+// return $query->result();
+
+// }
 public function update_msg_count($sid,$rid){
 
 
@@ -430,12 +371,12 @@ return 'success';
 
 }
 //gettin the employee count
-public function empcount(){
+// public function empcount(){
 
-$this->db->select('count(*) cnt')->from('empployee')->where('login_status',1);
-$query=$this->db->get();
-return $query->row();
-}
+// $this->db->select('count(*) cnt')->from('empployee')->where('login_status',1);
+// $query=$this->db->get();
+// return $query->row();
+// }
 
 // getting all users
 public function allusers(){

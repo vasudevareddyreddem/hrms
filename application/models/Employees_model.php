@@ -435,21 +435,21 @@ $this->db->select('*')->from('department');
 	return $this->db->delete('leaves_policy');	
 	}
 	
+
 	public function get_update_leave_policy_details($data){
 		$sql1="UPDATE leaves_policy SET status ='0'";
 		return $this->db->query($sql1);	
 	}
 
 
-/* leave  data  for  employee */
 
 public  function get_employee_leaves_list($e_id){
 	$this->db->select('*')->from('leaves');
 	return $this->db->get()->result_array();
 }
+
 	
-/* leave  data  for  employee */	
-	
+
 	
 
 
