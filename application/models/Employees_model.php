@@ -298,8 +298,11 @@ $this->db->select('*')->from('department');
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 	$this->db->where('leaves.status',0);
 =======
+=======
+>>>>>>> parent of a4efb4f... Merge branch 'master' of https://github.com/vasudevareddyreddem/hrms
 =======
 >>>>>>> parent of a4efb4f... Merge branch 'master' of https://github.com/vasudevareddyreddem/hrms
 =======
@@ -333,6 +336,7 @@ $this->db->select('*')->from('department');
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 
 	/* supervisors  purpose*/
@@ -349,6 +353,8 @@ $this->db->select('*')->from('department');
 >>>>>>> parent of a4efb4f... Merge branch 'master' of https://github.com/vasudevareddyreddem/hrms
 =======
 >>>>>>> parent of 2955635... commit
+=======
+>>>>>>> parent of a4efb4f... Merge branch 'master' of https://github.com/vasudevareddyreddem/hrms
 	public function save_area_details($data){
 	$this->db->insert('area',$data);
 	return $this->db->insert_id();		
