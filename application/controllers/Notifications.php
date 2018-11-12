@@ -29,7 +29,7 @@ class Notifications extends In_frontend {
 					$unread_count=$this->Notification_model->get_notitifation_unread_count(''); 
 
 				}else{
-					$unread_count=$this->Notification_model->get_notitifation_unread_count($post['notification_id']); 
+					$unread_count=$this->Notification_model->get_notitifation_unread_count($admindetails['e_id']); 
 				}
 
 				$data['names_list']=$details['leave_type'];

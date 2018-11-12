@@ -25,9 +25,12 @@ class In_frontend extends CI_Controller {
 				$data['leaves_notification']=$this->User_model->get_all_employee_leaves_list_details(); 
 				if($admindetails['role_id']==2){
 					$data['notification_count']=$this->User_model->get_leave_notification_count(''); 
+					$data['unread_count']=$this->User_model->get_notitifation_unread_count('');
 
 				}else{
 					$data['notification_count']=$this->User_model->get_leave_notification_count($admindetails['e_id']); 
+					$data['unread_count']=$this->User_model->get_notitifation_unread_count($admindetails['e_id']); 
+
 
 				}
 				//echo '<pre>';print_r($data);exit;

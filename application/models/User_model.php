@@ -141,6 +141,16 @@ public function save_login_time_status($data){
 		return $this->db->get()->row_array();
 		
 	}
+	
+	public  function get_notitifation_unread_count($e_id){
+		$this->db->select('COUNT(leaves.l_id) as cnt')->from('leaves');
+		if(isset($e_id) && $e_id!=''){
+			$this->db->where('leaves.emp_id',$e_id);
+		}
+		$this->db->where('leaves.read_count',1);
+		return $this->db->get()->row_array();
+		
+	}
 	/*notification data*/
 	
 	

@@ -41,7 +41,7 @@
 				<a id="mobile_btn" class="mobile_btn pull-left" href="#sidebar"><i class="fa fa-bars" aria-hidden="true"></i></a>
 				<ul class="nav navbar-nav navbar-right user-menu pull-right">
 					<li class="dropdown hidden-xs">
-						<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-bell-o"></i> <span class="badge bg-purple pull-right" id="notification_count"><?php if(isset($leaves_notification) && count($leaves_notification)>0){   echo count($leaves_notification); } ?></span></a>
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-bell-o"></i> <span class="badge bg-purple pull-right" id="notification_count"><?php if(isset($unread_count) && $unread_count['cnt']>0){   echo $unread_count['cnt']; } ?></span></a>
 						<?php if(isset($leaves_notification) && count($leaves_notification)>0){ ?>
 						<div class="dropdown-menu notifications">
 							<div class="topnav-dropdown-header">
@@ -179,13 +179,12 @@
    			type: "POST",
    			format:"Json",
    					success:function(data){
-						
+					
 					$('#notification_unread_count').empty();
    					$('#notification_count').empty();
    					$('#notification_msg').empty();
    					$('#notification_time').empty();
    					var parsedData = JSON.parse(data);
-					//alert(parsedData.names_list);
    					$('#notification_unread_count').append(parsedData.unread_counts);
    					$('#notification_msg').append(parsedData.names_list);
    					$('#notification_time').append(parsedData.time);
