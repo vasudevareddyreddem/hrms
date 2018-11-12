@@ -307,7 +307,7 @@ $this->db->select('*')->from('department');
 		$this->db->where('role_id',8);
 		return $this->db->get()->result_array();
 	}
-<<<<<<< HEAD
+
 	public function save_area_details($data){
 	$this->db->insert('area',$data);
 	return $this->db->insert_id();		
