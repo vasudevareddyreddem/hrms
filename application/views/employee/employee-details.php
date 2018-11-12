@@ -3,13 +3,14 @@
                 <div class="content container-fluid">
 					<div class="row">
 					<div class="row">
+					<div class=" col-md-2"> <a href="<?php echo base_url('employee/all');?>" class="btn btn-primary" >Back</a>
+
+						</div>
 						<div class="col-sm-8">
 							<h4 class="page-title">My Profile</h4>
 
 						</div>
-						<div class="m-t-20"> <a href="<?php echo base_url('employee/all');?>" class="btn btn-default" data-dismiss="modal">Back</a>
-
-						</div>
+						
 					</div>
 					<div class="card-box">
 						<div class="row">
