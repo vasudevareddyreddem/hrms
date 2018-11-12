@@ -86,6 +86,9 @@ textarea.form-control {
 	height: 30px;
 	border-radius: 0;
 }
+.action-icons li{
+		text-align:center;
+}
 
 .input-group .form-control {
 	height: 34px;
@@ -1548,9 +1551,9 @@ table.dataTable {
 */
 
 .profile-img-wrap {
-	height: 120px;
+	height: 80px;
 	position: absolute;
-	width: 120px;
+	width: 80px;
 	background: #fff;
 	overflow: hidden;
 }
@@ -1560,8 +1563,8 @@ table.dataTable {
 }
 
 .profile-img-wrap img {
-	width: 120px;
-	height: 120px;
+	width: 80px;
+	height: 80px;
 }
 
 .fileupload.btn {
@@ -2822,13 +2825,13 @@ table.dataTable {
 }
 
 .profile-view .profile-img-wrap {
-	height: 150px;
-	width: 150px;
+	height: 80px;
+	width: 80px;
 }
 
 .profile-view .profile-img {
-	width: 150px;
-	height: 150px;
+	width: 80px;
+	height: 80px;
 }
 
 .profile-view .profile-img .avatar {

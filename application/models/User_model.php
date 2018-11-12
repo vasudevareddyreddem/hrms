@@ -10,7 +10,7 @@ class User_model extends CI_Model
 		$this->load->database("default");
 	}
 	public function get_roles_wise_details($e_id){
-		$this->db->select('empployee.*,role.role')->from('empployee');
+		$this->db->select('empployee.e_id,empployee.role_id,empployee.e_emplouee_id,role.role')->from('empployee');
 		$this->db->join('role', 'role.r_id = empployee.role_id', 'left');
 		$this->db->where('e_id',$e_id);
 		return $this->db->get()->row_array();	
@@ -47,7 +47,7 @@ class User_model extends CI_Model
 	}
 	
 	public function login_details($e_email_work,$e_password){
-		$sql = "SELECT * FROM empployee WHERE (e_email_work ='".$e_email_work."' AND e_password='".$e_password."'  AND status='1') OR (e_email_work ='".$e_email_work."' AND e_password='".$e_password."' AND status='1')";
+		$sql = "SELECT e_id,role_id,e_email_work,e_login_name FROM empployee WHERE (e_email_work ='".$e_email_work."' AND e_password='".$e_password."'  AND status='1') OR (e_email_work ='".$e_email_work."' AND e_password='".$e_password."' AND status='1')";
 		return $this->db->query($sql)->row_array();	
 	}
 	
