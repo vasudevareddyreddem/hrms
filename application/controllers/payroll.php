@@ -17,7 +17,6 @@ $this->load->library('numbertowords');
       if($this->session->userdata('hrmsdetails'))
     { 
         $this->load->model('payroll_model');
-
         //print_r($this->payroll_model->emp_ids($name));exit;
     //     $post=$this->input->post();
     // //echo '<pre>';print_r($post);
@@ -41,8 +40,6 @@ $this->load->library('numbertowords');
 
     // payslip page for all employees
     public function genpayslip(){
-      if($this->session->userdata('hrmsdetails'))
-    { 
         $this->load->model('Employees_model');
          $data['name']=$this->Employees_model->all_emp();
          $this->load->model('payroll_model');
@@ -55,25 +52,26 @@ $data['year']=$this->payroll_model->get_year();
 
         
     }
-  }
 
    
    
 	// payslip page
     public function payslippage(){
+<<<<<<< HEAD
       if($this->session->userdata('hrmsdetails'))
     { 
                   
             $userdet=$this->session->userdata('hrmsdetails');
             $userid=$userdet['e_id'];
+=======
+>>>>>>> a4efb4f39a9374456b42d80b5bca797e72d12390
         $this->load->library('form_validation');
     $this->form_validation->set_rules('eid', 'employee id', 'required');
 
  if ($this->form_validation->run() == FALSE)
                 {
-                  $this->session->set_flashdata('error','employee id is required');
 
-                    redirect('payroll/genpayslip');
+                    redirect('employee/salarylist');
 
                 }
 
@@ -123,9 +121,8 @@ $cnt_sun=count($days);// number of sundays
 //echo $cnt;
 $this->load->model('payroll_model');
 $hdays=$this->payroll_model->get_holidays($year,$month);
-$cnt_hol=count($hdays);// number of holidays
-
 $logdays=$this->payroll_model->get_login_days($year,$month,$eid);
+<<<<<<< HEAD
 $cnt_log=count($logdays);// number of working days
 if($cnt_log==0){
 
@@ -205,12 +202,18 @@ $i++;
 $cnt_med=$mleaves;
 //end of sick leaves
 
+=======
+$pay_lv=$this->payroll_model->pay_leaves($year,$month,$eid);
+$gen_lv=$this->payroll_model->general_leaves($year,$month,$eid);
+$sal=$this->payroll_model->emp_sal($eid);
+>>>>>>> a4efb4f39a9374456b42d80b5bca797e72d12390
 $this->load->library('numbertowords');
 $saldata=$this->payroll_model->emp_sal_det($eid);
 $data['sal_det']=$saldata;
-
-
-
+$cnt_pay=count($pay_lv); // no  pay leaves
+$cnt_gen=count($gen_lv); // no general leaves
+$cnt_hol=count($hdays);// number of holidays
+$cnt_log=count($logdays);// number of working days
 // checking user worked or not in that month
 
 $wdays=$last_day-$cnt_sun-$cnt_hol; //total working days
@@ -227,6 +230,7 @@ if($sal->salary_type==2){
 }
 if($sal->salary_type==3){
 
+<<<<<<< HEAD
   $day_sal=$sal->e_basic;
 }
 
@@ -236,6 +240,9 @@ $leaves_ded=(int)$day_sal*$pleaves;// leave deductions
 $data['total_ded']=$data['sal_det']->e_gross_salary-$data['sal_det']->e_net_salary+((int)$day_sal*$cnt_pay); // total deductions
       
 $file_name =time().'payslip.pdf';  
+=======
+//$this->session->set_userdata($data);
+>>>>>>> a4efb4f39a9374456b42d80b5bca797e72d12390
 $payslip_det=array(
   'e_id'=> $saldata->e_id,
 'e_basic' => $saldata->e_basic,
@@ -269,6 +276,7 @@ $this->load->model('payroll_model');
 $this->payroll_model->save_payslip($payslip_det);
 
 
+<<<<<<< HEAD
 $data['pslip_det']=$this->payroll_model->emp_payslip_det($month,$year);
 //start
 $path = rtrim(FCPATH,"/");
@@ -312,6 +320,10 @@ $pdf->charset_in = 'iso-8859-4';
           $pdf->WriteHTML($html,2); // write the HTML into the PDF
           $pdf->Output($pdfFilePath, 'F');
 //end
+=======
+        
+        }
+>>>>>>> a4efb4f39a9374456b42d80b5bca797e72d12390
 
 
         
@@ -323,14 +335,11 @@ $pdf->charset_in = 'iso-8859-4';
 
 
 
-}
-}
-    
+
+    }
    // retreving the employee salary deatails
-    public function editsal(){
-      if($this->session->userdata('hrmsdetails'))
-    { 
-      $id=base64_decode($this->uri->segment(3));
+    public function editsal($id){
+//$query = $this->db->get_where('salary_tab', array('emp_id' => $id));
         $this->db->select('*');
 $this->db->from('empployee');
 $this->db->join('employee_salary', 'empployee.e_id = employee_salary.e_id');
@@ -338,19 +347,22 @@ $this->db->where('employee_salary.e_id',$id);
 $query = $this->db->get();
 
 $data['row'] = $query->row();
+<<<<<<< HEAD
 $data['salary_type']=$this->payroll_model->salary_type();
 
+=======
+//echo '<pre>';print_r($row); exit;
+ //echo json_encode($row);
+>>>>>>> a4efb4f39a9374456b42d80b5bca797e72d12390
 $this->load->view('employee/edit-salary',$data);
          $this->load->view('html/footer');
 
-}
+
 
     }
 
 //update the employee salaray
     public function updatesal() {
-      if($this->session->userdata('hrmsdetails'))
-    { 
             $this->load->helper(array('form', 'url'));
     $this->load->library('session');
     $this->load->library('form_validation');
@@ -438,19 +450,18 @@ redirect("employee/salarylist");
 }
 else
     { 
-      $this->session->set_flashdata('error', ' you did not updated anything');
-
-        redirect('Payroll/editsal/'.base64_encode($id));
-
-
-
-}
-
-
-
+          $this->session->set_flashdata('success', ' you are updated nothing');
+        redirect("employee/salarylist");
+exit;
 
 
 }
+
+
+
+
+
+
 
 
     }
@@ -482,8 +493,6 @@ else
 // }
 
 public function addsal(){
-  if($this->session->userdata('hrmsdetails'))
-    { 
 	$this->load->helper(array('form', 'url'));
     $this->load->library('session');
 	$this->load->library('form_validation');
@@ -538,8 +547,6 @@ $dothers=empty($_POST['dothers']) ? 0:$_POST['dothers'] ;
 $net_salary=(float)$basicsal+(float)$hra+(float)$da+(float)$allw+(float)$mallw+(float)$conv+(float)$eothers;
 $gross_salary=(float)$net_salary+(float)$tds+(float)$pf+(float)$esi+(float)$ptax+(float)$lwel+(float)$fund+(float)$dothers;
 
-
-
 $data=array(
 'e_id'=> $this->input->post('uid'),
 'e_basic' => $this->input->post('bsal'),
@@ -588,7 +595,6 @@ $data=array(
 $this->load->model('payroll_model');
 $result=$this->payroll_model->save_salary_det($data);
 
-
 if($result==true){
   $this->session->set_flashdata('success','salary  details are successfully added'); 
 
@@ -596,32 +602,27 @@ redirect("employee/salarylist");
 }
 else
 	{ 
-$this->session->set_flashdata('error','salary  details are not added'); 
 
-	redirect("employee/addsalary");
-//exit;
+		echo 'not';
+exit;
+
+
+}
+
 
 
 }
 
-
-
-}
-}
-
-// delete emp salary
-public function sal_delete(){
-  if($this->session->userdata('hrmsdetails'))
-    { 
-      $eid=base64_decode($this->uri->segment(3));
+// delete emp salare
+public function sal_delete($eid){
 
    $this->load->model('payroll_model');
    $this->payroll_model->emp_sal_delete($eid);
-   $this->session->set_flashdata('error','salary deleted'); 
+   $this->session->set_flashdata('success','salary deleted'); 
 
 
-   redirect('employee/salarylist');
-}
+   redirect('');
+
       
     }
 
@@ -636,39 +637,14 @@ public function sal_delete(){
 					$data['page_title'] = 'title'; // pass data to the view
 					$pdfFilePath = $path."/assets/payslips/".$file_name;
 					ini_set('memory_limit','320M'); // boost the memory limit if it's low <img src="https://s.w.org/images/core/emoji/72x72/1f609.png" alt="??" draggable="false" class="emoji">
-          $link1=base_url().'assets/vendor/img/favicon.png';
-          //echo $link1;exit;
-          $link2=base_url().'assets/vendor/css/font-awesome.min.css';
-          $link3=base_url().'assets/vendor/css/font-awesome.min.css';
-          $link4=base_url().'assets/vendor/css/dataTables.bootstrap.min.css';
-          $link5=base_url().'assets/vendor/css/select2.min.css';
-          $link6=base_url().'assets/vendor/css/bootstrap-datetimepicker.min.css';
-          $link7= base_url().'assets/vendor/plugins/morris/morris.css';
-          $link8=base_url().'assets/vendor/css/style.css';
-          $link9=base_url().'assets/vendor/js/jquery-3.2.1.min.js';
-          $stylesheet='';
-          $stylesheet.= file_get_contents($link1); 
-           $stylesheet.= file_get_contents($link2);
-            $stylesheet.= file_get_contents($link3);
-             $stylesheet.= file_get_contents($link4);
-              $stylesheet.= file_get_contents($link5);
-               $stylesheet.= file_get_contents($link6);
-                $stylesheet.= file_get_contents($link7);
-                 $stylesheet.= file_get_contents($link8);
-                  $stylesheet.= file_get_contents($link9);
-                  
-					$html = $this->load->view('employee/testpdf','',true); // render the view into HTML
+					$html = $this->load->view('employee/payslip-view', $data, true); // render the view into HTML
 					//echo '<pre>';print_r($html);exit;
 					$this->load->library('pdf');
 					$pdf = $this->pdf->load();
-          $pdf->allow_charset_conversion = true;
-$pdf->charset_in = 'iso-8859-4';
 					$pdf->SetFooter($_SERVER['HTTP_HOST'].'|{PAGENO}|'.date('M-d-Y')); // Add a footer for good measure <img src="https://s.w.org/images/core/emoji/72x72/1f609.png" alt="??" draggable="false" class="emoji">
 					$pdf->SetDisplayMode('fullpage');
 					$pdf->list_indent_first_level = 0;	// 1 or 0 - whether to indent the first level of a list
-          
-                            $pdf->WriteHTML($stylesheet,1);
-					$pdf->WriteHTML($html,2); // write the HTML into the PDF
+					$pdf->WriteHTML($html); // write the HTML into the PDF
 					$pdf->Output($pdfFilePath, 'F');
 
 

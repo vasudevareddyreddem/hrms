@@ -29,7 +29,7 @@
 									</div>
 									<div class="col-md-6 m-b-20">
 										<div class="invoice-details">
-											<h3 class="text-uppercase">Payslip #<?php echo $pslip_det->e_s_p_id ?></h3>
+											<h3 class="text-uppercase">Payslip #49029</h3>
 											<ul class="list-unstyled">
 												<li>Salary Month: <span><?php echo $pslip_det->e_salary_month.','.$pslip_det->e_salary_year?></h4></span></li>
 											</ul>
@@ -40,7 +40,7 @@
 									<div class="col-lg-12 m-b-20">
 										<ul class="list-unstyled">
 											<li><h5 class="m-b-0"><strong><?php echo $pslip_det->e_f_name ?></strong></h5></li>
-											<li><span><?php echo $pslip_det->role ?></span></li>
+											<li><span><?php echo $pslip_det->e_designation ?></span></li>
 											<li>Employee ID: <?php echo $pslip_det->e_emplouee_id ?></li>
 											<li>Joining Date: <?php $day=explode("-",$pslip_det->e_join_date);
 											echo $day[2]?$day[2]:'';
@@ -134,7 +134,7 @@ echo $date;  ?></li>
 						</div>
 					</div>
                 </div>
-				<!-- <div class="notification-box">
+				<div class="notification-box">
 					<div class="msg-sidebar notifications msg-noti">
 						<div class="topnav-dropdown-header">
 							<span>Messages</span>
@@ -342,7 +342,7 @@ echo $date;  ?></li>
 							<a href="chat.html">See all messages</a>
 						</div>
 					</div>
-				</div> -->
+				</div>
             </div>
             
 

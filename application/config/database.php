@@ -75,10 +75,17 @@ $query_builder = TRUE;
 
 $db['default'] = array(
 	'dsn'	=> '',
+<<<<<<< HEAD
 	'hostname' => 'localhost',
 	'username' => 'root',
 	'password' => '',
 	'database' => 'newhrms',
+=======
+	'hostname' => '166.62.26.2',
+	'username' => 'hrms_staging_db',
+	'password' => 'hrms_staging_db@123',
+	'database' => 'hrms_staging_db',
+>>>>>>> a4efb4f39a9374456b42d80b5bca797e72d12390
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',
 	'pconnect' => FALSE,
