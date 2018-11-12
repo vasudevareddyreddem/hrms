@@ -12,6 +12,7 @@
 					<div class="row">
 						<div class="col-md-12 bg-white">
 						<div class="clearfix">&nbsp;</div>
+						<?php if(isset($sales_emp_list) && count($sales_emp_list)>0){ ?>
 							<div class="table-responsive">
 									<table id="example1" class="table table-bordered table-striped">
 									<thead>
@@ -28,7 +29,7 @@
 									</thead>
 									<tbody>
 										
-									
+									<?php foreach($sales_emp_list as $list){ ?>
 										<tr>
 											<td>
 												<a href="#" class="avatar">J</a>
@@ -41,13 +42,15 @@
 											<td>Salesman</td>
 											<td>Kondareddy Circle</td>
 											<td class="text-right">
-												<a href="<?php echo base_url('employee/trackdetails'); ?>" class="btn btn-warning btn-sm" ><i class="fa fa-thumb-tack m-r-5"></i> Track</a>
+												<a href="<?php echo base_url('sales/trackdetails'); ?>" class="btn btn-warning btn-sm" ><i class="fa fa-thumb-tack m-r-5"></i> Track</a>
 											</td>
 										</tr>
+									<?php } ?>
 										
 									</tbody>
 								</table>
 							</div>
+						<?php } ?>
 						</div>
 					</div>
                 </div>
