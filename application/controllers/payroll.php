@@ -239,7 +239,7 @@ $wdays=$last_day-$cnt_sun-$cnt_hol; //total working days
 //$pay_leave_days=$wdays-$cnt_log-$cnt_gen-$cnt_med;
 //$data['payleaves']=$pay_leave_days;
 $sal=$this->payroll_model->emp_sal($eid);
-
+$day_sal=$sal->e_basic;
 //$day_sal=$sal/$last_day;
 $leaves_ded=(int)$day_sal*$pleaves;// leave deductions
 //$mon_sal=$sal-((int)$day_sal*$cnt_pay);
@@ -282,14 +282,16 @@ $this->load->model('payroll_model');
 $this->payroll_model->save_payslip($payslip_det);
 
 
-$data['pslip_det']=$this->payroll_model->emp_payslip_det($month,$year);
+$data['pslip_det']=$this->payroll_model->emp_payslip_det($month,$year,$eid);
 
+  //start
 $path = rtrim(FCPATH,"/");
     $file_name=$data['pslip_det']->payslip_pdf;
                         
           $data['page_title'] = 'title'; // pass data to the view
           $pdfFilePath = $path."/assets/payslips/".$file_name;
           ini_set('memory_limit','320M'); // boost the memory limit if it's low <img 
+          
                   
           $html = $this->load->view('employee/payslip-emppdf',$data,true); // render the view into HTML
           //echo '<pre>';print_r($html);exit;
@@ -301,10 +303,11 @@ $path = rtrim(FCPATH,"/");
           $pdf->SetDisplayMode('fullpage');
           $pdf->list_indent_first_level = 0;  // 1 or 0 - whether to indent the first level of a list
          
-          $pdf->WriteHTML($stylesheet,1);
-          $pdf->WriteHTML($html,2); // write the HTML into the PDF
+          
+          $pdf->WriteHTML($html); // write the HTML into the PDF
           $pdf->Output($pdfFilePath, 'F');
-//end
+
+// end of pdf generation
 
         }
 

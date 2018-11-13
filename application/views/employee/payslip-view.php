@@ -116,17 +116,17 @@
                                         <tr>
 
                                             <td><strong>Monthly Salary</strong> <span class="pull-right">
-                                                    <?php echo $pslip_det->e_d_tds ?></span></td>
+                                                    <?php echo $pslip_det->e_net_salary ?></span></td>
                                         </tr>
                                         <tr>
-                                            <td><strong>Deducted Monthly Salary</strong> <span class="pull-right">
+                                            <td><strong>Take Home Monthly Salary</strong> <span class="pull-right">
                                                     <?php echo $pslip_det->e_d_pf ?></span></td>
                                         </tr>
                                     <?php }?>
                                     <?php if($sal_type==2){?>
                                         <tr>
                                             <td><strong>Weekly Salary</strong> <span class="pull-right">
-                                                    <?php $sal= $pslip_det->e_basic/(float)30;
+                                                    <?php $sal= $pslip_det->e_net_salary/(float)30;
                                                     echo (int)$sal*7 ?></span></td>
                                         </tr>
                                         <tr>
