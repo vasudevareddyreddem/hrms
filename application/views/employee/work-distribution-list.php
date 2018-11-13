@@ -40,6 +40,7 @@
                                     <a href="<?php echo base_url('employee/editwork/'.base64_encode($list['w_d_id'])); ?>"  data-toggle="tooltip" title="Edit"><i class="fa fa-pencil btn btn-success"></i></a>
 									<a href="<?php echo base_url('employee/statuswork/'.base64_encode($list['w_d_id']).'/'.base64_encode($list['status'])); ?>" data-toggle="tooltip" title="status"><i class="fa fa-info-circle btn btn-warning"></i></a>
                                      <a href="<?php echo base_url('employee/deletework/'.base64_encode($list['w_d_id']));?>" data-toggle="tooltip"  title="Delete"><i class="fa fa-trash btn btn-danger"></i></a>
+									 <a href="<?php echo base_url('work/ticketrise/'.base64_encode($list['w_d_id'])); ?>" data-toggle="tooltip"  title="Delete"><i class="btn btn-primary fa fa-eye m-r-5"></i></a>
                                             
                                       
                                     </td>

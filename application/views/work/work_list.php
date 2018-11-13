@@ -38,7 +38,7 @@
 									<td><?php if($list['status']==1){ echo "Active";}else{ echo "Deactive"; } ?></td>
 									<td><?php if($list['work_status']==0){ echo "rejected";}else if($list['work_status']==1){ echo "Inprgoress"; }else if($list['work_status']==2){ echo "completed"; }else if($list['work_status']==3){ echo "Pending"; }else{ echo "Initiate";} ?></td>
 									<td><?php echo $list['created_at']; ?></td>
-									 <td><a target="_blank" href="<?php echo base_url('work/ticketrise/'.base64_encode($list['w_d_id'])); ?>">Rise</a></td>
+									 <td><a target="_blank" href="<?php echo base_url('work/ticketrise/'.base64_encode($list['w_d_id'])); ?>">View</a></td>
 
                                     <td>
                                     <a href="javascript;void(0);" onclick="admindeactive('<?php echo base64_encode(htmlentities($list['w_d_id'])).'/'.base64_encode(htmlentities(0));?>');adminstatus(0)" data-toggle="modal" data-target="#myModal" title="reject" class="btn btn-primary">Reject</a>
