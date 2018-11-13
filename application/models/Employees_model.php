@@ -526,9 +526,20 @@ public  function update_employee_resignation($emp_id,$e_r_id,$data){
      $this->db->where('e_r_id',$e_r_id);
     return $this->db->update("employee_resignation_list",$data);	
 }
+public  function employee_resignation_status($e_r_id,$data){
+     $this->db->where('e_r_id',$e_r_id);
+    return $this->db->update("employee_resignation_list",$data);	
+}
 public  function save_employee_resignation($data){
 	$this->db->insert('employee_resignation_list',$data);
 	return $this->db->insert_id();
+}
+
+public  function get_all_employee_resignation_list(){
+	$this->db->select('employee_resignation_list.*,empployee.e_login_name')->from('employee_resignation_list');
+	$this->db->join('empployee', 'empployee.e_id = employee_resignation_list.emp_id', 'left');
+	$this->db->order_by('e_r_id',"desc");
+	return $this->db->get()->result_array();
 }
 	
 

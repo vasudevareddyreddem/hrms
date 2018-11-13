@@ -2423,8 +2423,23 @@ if($this->session->userdata('hrmsdetails'))
 		{	
 	      $login_details=$this->session->userdata('hrmsdetails');	
 		  $data['resignation_details']=$this->Employees_model->check_employee_resignation_exist($login_details['e_id']);
+		 
+		  //echo '<pre>';print_r($login_details);exit;
 		  $this->load->view('employee/resignation',$data);
 	      $this->load->view('html/footer');   
+       }else{
+		 $this->session->set_flashdata('error',"Please login and continue");
+		 redirect('');  
+	   }
+	}
+	public  function resignationlist(){
+		if($this->session->userdata('hrmsdetails'))
+		{	
+	       $login_details=$this->session->userdata('hrmsdetails');	
+		   $data['resignations_list']=$this->Employees_model->get_all_employee_resignation_list();
+		   //echo '<pre>';print_r($data);exit;
+		   $this->load->view('employee/resignation_list',$data);
+	       $this->load->view('html/footer');   
        }else{
 		 $this->session->set_flashdata('error',"Please login and continue");
 		 redirect('');  
@@ -2462,6 +2477,42 @@ if($this->session->userdata('hrmsdetails'))
 		 $this->session->set_flashdata('error',"Please login and continue");
 		 redirect('');  
 	   }
+	}
+	
+	public  function resignationaccept(){
+		if($this->session->userdata('hrmsdetails'))
+		{	
+				$admindetails=$this->session->userdata('hrmsdetails');	
+	             $e_r_id=base64_decode($this->uri->segment(3));
+	             $status=base64_decode($this->uri->segment(4));
+					
+					if($e_r_id!=''){
+							$stusdetails=array(
+							 'accept_status'=>$status,
+							 'updated_at'=>date('Y-m-d H:i:s'),
+							 'approved_id'=>$admindetails['a_id'],
+							);
+							$statusdata=$this->Employees_model->employee_resignation_status($e_r_id,$stusdetails);
+							if(count($statusdata)>0){
+								if($status==1){
+									$this->session->set_flashdata('success',"Resignation successfully Accepoted.");
+								}else{
+									$this->session->set_flashdata('success',"Resignation successfully Rejeted.");
+								}
+								redirect('employee/resignationlist');
+							}else{
+									$this->session->set_flashdata('error',"technical problem will occurred. Please try again.");
+									redirect('employee/resignationlist');
+							}
+						}else{
+						$this->session->set_flashdata('error',"technical problem will occurred. Please try again.");
+						redirect('dashboard');
+					}	
+	
+           }else{
+			$this->session->set_flashdata('error',"Please login and continue");
+			redirect('');  
+		}
 	}
 	/*employee resignation*/
 

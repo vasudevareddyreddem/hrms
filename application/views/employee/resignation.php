@@ -11,8 +11,9 @@
 		
 							<h4 class="modal-title">Employee resignation </h4> 
 						             <br>
+									 <?php if(isset($resignation_details['content']) && $resignation_details['content']!=''){ ?> 
 									 <div><b>Accepted Status: <?php if($resignation_details['accept_status']==1){ echo "Accepted"; }else if($resignation_details['accept_status']==2){ echo "Rejected"; }else{ echo "Initiated";} ?></b></div>
-								
+									 <?php } ?>
 								
 								<div class="form-group">
 									<label>Employee resignation <span class="text-danger">*</span></label>
