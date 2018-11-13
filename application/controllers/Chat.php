@@ -47,6 +47,11 @@ public function __construct()
   $status=$this->Chat_model->senddata($data);
   date_default_timezone_set('Asia/Kolkata'); 
   $data['datenow'] = date('Y-m-d h:i:s ' );
+  $data['sendstatus']=1;
+
+}
+else{
+  $data['sendstatus']=0;
 
 }
  

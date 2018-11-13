@@ -147,13 +147,14 @@ return 'yes';
 return  ($this->db->affected_rows() == 1) ? true: false;
   
   }
-  public function emp_payslip_det($month,$year){
+  public function emp_payslip_det($month,$year,$eid){
     
    $this->db->select('*');
    $this->db->from('empployee');
    $this->db->join('employee_salary_payslips', 'employee_salary_payslips.e_id=empployee.e_id');
    $this->db->where('e_salary_month',$month);
    $this->db->where('e_salary_year',$year);
+     $this->db->where('empployee.e_id',$eid);
  $query=$this->db->get();
 
  return $query->row();
@@ -173,11 +174,12 @@ return  ($this->db->affected_rows() == 1) ? true: false;
 
   }
   // check the date for daily wage in  payslips tab
-  public function checkdate($date)
+  public function checkdate($date,$eid)
   {
 
-    $this->db->select('*')->from('employee_salary_payslips');
-    return $this->db->get();
+    $this->db->select('l_date')->from('login_details')->where('e_id',$eid)->where('l_date', $date)->group_by('l_date');
+$query=$this->db->get();
+    return $query->row();
   }
   // get empployee  salary type
 
@@ -187,6 +189,38 @@ return  ($this->db->affected_rows() == 1) ? true: false;
 $query=$this->db->get();
 return $query->row();
 }
+// 
+public function emp_payslip_daily($eid,$present)
+{
+
+  $this->db->select('*');
+   $this->db->from('empployee');
+   $this->db->join('employee_salary_payslips', 'employee_salary_payslips.e_id=empployee.e_id');
+   $this->db->join('role', 'role.r_id=empployee.role_id');
+   $this->db->where('daily_date',$present);
+     $this->db->where('empployee.e_id',$eid);
+ $query=$this->db->get();
+
+ return $query->row();
+
+
+}
+// checking loging in a week
+public function checkweeklogin($eid,$str_date,$end_date){
+  $this->db->select('l_date');
+  $this->db->from('login_details');
+   $this->db->where('e_id',$eid);
+   $this->db->where('l_date >=', $str_date);
+   $this->db->where('l_date <=', $end_date);
+    $this->db->group_by('l_date');
+$query=$this->db->get();
+    return $query->row();
+
+
+
+
+}
+
 
 
 }

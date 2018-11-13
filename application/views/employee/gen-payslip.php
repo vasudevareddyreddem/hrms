@@ -31,7 +31,7 @@
 							<div class="form-group form-focus">
 								<label class="control-label"></label>
 								<!-- <div class="cal-icon"> -->
-									<select id='eid' class="select" name='eid' placeholder='employee ids' > 
+									<select id='eid' class="select" name='eid' > 
 												
 											
 											</select>
@@ -42,8 +42,8 @@
 							<div class="form-group form-focus">
 								<label class="control-label"></label>
 								<!-- <div class="cal-icon"> -->
-										<Select id="colorselector" class="form-control">
-							   <option >Select Salary Type</option>
+										<Select id="colorselector" class="form-control" name='sal-type'>
+							   <option value=''>Select Salary Type</option>
 							   <option value="monthly">Monthly</option>
 							   <option value="weekly">Weekly</option>
 							   <option value="daily">Daily</option>
@@ -86,10 +86,10 @@
 							<div class="form-group form-focus">
 								<label class="control-label"></label>
 								<!-- <div class="cal-icon"> -->
-									<select class="select" name='month'> 
+									<select class="select" name='week'> 
 											<option>Select Week</option>
-											<option>Present Week</option>
-											<option>Last Week</option>
+											<option value='1'>Present Week</option>
+											<option value='0'>Last Week</option>
 											</select>
 						<!-- 	</div> -->
 						</div>
@@ -101,10 +101,10 @@
 							<div class="form-group form-focus">
 								<label class="control-label"></label>
 								<!-- <div class="cal-icon"> -->
-									<select class="select" name='month'> 
+									<select class="select" name='day'> 
 											<option>Select Day</option>
-											<option>Present Day</option>
-											<option>Last Day</option>
+											<option value='1'>Present Day</option>
+											<option value='0'>Last Day</option>
 											</select>
 						<!-- 	</div> -->
 						</div>
@@ -179,6 +179,7 @@
                     error: function() { 
                     	//console.log('error from server side');
                     	//console.log(result)
+                    	$("#eid option").remove();
 
                     } 
                 });
