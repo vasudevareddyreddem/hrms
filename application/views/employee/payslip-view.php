@@ -85,30 +85,34 @@
                     <div class="row m-b-20">
                         <div class="col-sm-6">
                             <div>
+                                 <?php if($sal_type==1 or $sal_type==2){?>
                                 <h4 class="m-b-10"><strong>Leaves</strong></h4>
                                 <table class="table table-bordered">
                                     <tbody>
+
                                         <tr>
                                             <td><strong>Pay Leave Days</strong> <span class="pull-right">
-                                                    <?php echo $pslip_det->e_basic ?></span></td>
+                                                    <?php echo $pslip_det->payleave_days ?></span></td>
                                         </tr>
                                         <tr>
                                             <td><strong>General Leaave Days</strong> <span class="pull-right">
-                                                    <?php echo $pslip_det->e_da ?></span></td>
+                                                    <?php echo $pslip_det->genleave_days  ?></span></td>
                                         </tr>
                                         <tr>
                                             <td><strong>Medical Leave Days</strong> <span class="pull-right">
-                                                    <?php echo $pslip_det->e_hra ?></span></td>
+                                                    <?php echo $pslip_det->medleave_days ?></span></td>
                                         </tr>
                                     </tbody>
                                 </table>
+                                 <?php }?>
                             </div>
                         </div>
                         <div class="col-sm-6">
                             <div>
-                                <h4 class="m-b-10"><strong>Deductions</strong></h4>
+                                <h4 class="m-b-10"><strong>SALARY</strong></h4>
                                 <table class="table table-bordered">
                                     <tbody>
+                                        <?php if($sal_type==1){?>
                                         <tr>
                                             <td><strong>Monthly Salary</strong> <span class="pull-right">
                                                     <?php echo $pslip_det->e_d_tds ?></span></td>
@@ -117,6 +121,24 @@
                                             <td><strong>Deducted Monthly Salary</strong> <span class="pull-right">
                                                     <?php echo $pslip_det->e_d_pf ?></span></td>
                                         </tr>
+                                    <?php }?>
+                                    <?php if($sal_type==2){?>
+                                        <tr>
+                                            <td><strong>Monthly Salary</strong> <span class="pull-right">
+                                                    <?php echo $pslip_det->e_d_tds ?></span></td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>Deducted Monthly Salary</strong> <span class="pull-right">
+                                                    <?php echo $pslip_det->e_d_pf ?></span></td>
+                                        </tr>
+                                    <?php }?>
+                                    <?php if($sal_type==3){?>
+                                        <tr>
+                                            <td><strong>Daily Salary</strong> <span class="pull-right">
+                                                    <?php echo $pslip_det->day_sal ?></span></td>
+                                        </tr>
+                                        
+                                    <?php }?>
                                     </tbody>
                                 </table>
                             </div>

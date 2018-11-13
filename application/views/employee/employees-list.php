@@ -5,31 +5,10 @@
                 <h4 class="page-title">Employee</h4>
             </div>
             <div class="col-md-8">
-                <form>
-                    <div class="col-md-4">
-                        <div class="form-group">
-                            <select class="form-control">
-                                <option disabled selected>Select</option>
-                                <option value="1">Option 1</option>
-                                <option value="2">Option 2</option>
-                                <option value="3">Option 3</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="form-group">
-                            <select class="form-control">
-                                <option disabled selected>Select</option>
-                                <option value="1">Option 1</option>
-                                <option value="2">Option 2</option>
-                                <option value="3">Option 3</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <button type="submit" class="btn btn-primary">Submit</button>
-                    </div>
-                </form>
+              <div class="col-md-4">
+                        <a target="_blank" href="<?php echo base_url('export/allemployee'); ?>" class="btn btn-primary">Export</a>
+                 </div>
+                
             </div>
             <div class="col-xs-2 text-right m-b-30">
                 <a href="<?php echo base_url('employee/add');?>" class="btn btn-primary pull-right rounded"><i class="fa fa-plus"></i> Add Employee</a>

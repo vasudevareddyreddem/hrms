@@ -86,6 +86,7 @@ class Work extends In_frontend {
 	  if($this->session->userdata('hrmsdetails'))
 		{	
 			$admindetails=$this->session->userdata('hrmsdetails');
+			//echo '<pre>';print_r($admindetails);exit;
 			$post=$this->input->post();
 			$add=array(
 			'w_d_id'=>isset($post['w_d_id'])?$post['w_d_id']:'',
@@ -98,12 +99,21 @@ class Work extends In_frontend {
 			if(count($save)>0){
 				$ticket_details=$this->Work_model->get_ticket_details($post['w_d_id']);
 				/*notification*/
+					if($admindetails['role_id']==2){ 
 					$notify=array(
 						'sender_id'=>isset($admindetails['e_id'])?$admindetails['e_id']:'',
 						'reciver_id'=>isset($ticket_details['created_by'])?$ticket_details['created_by']:'',
 						'message'=>isset($post['message'])?$post['message']:'',
 						'created_by'=>$admindetails['e_id']
 						);
+					}else{
+						$notify=array(
+						'sender_id'=>isset($admindetails['e_id'])?$admindetails['e_id']:'',
+						'reciver_id'=>isset($ticket_details['work_employee_id'])?$ticket_details['work_employee_id']:'',
+						'message'=>isset($post['message'])?$post['message']:'',
+						'created_by'=>$admindetails['e_id']
+						);
+					}
 					$this->Notification_model->save_notification($notify);
 				/*notification*/
 				$this->session->set_flashdata('success',"Work ticket successfully updated");
