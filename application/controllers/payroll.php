@@ -737,6 +737,7 @@ public function sal_delete($eid){
             $userdet=$this->session->userdata('hrmsdetails');
             $userid=$userdet['e_id'];
 
+
         $this->load->library('form_validation');
       $this->form_validation->set_rules('eid', 'employee id', 'required');
     $this->form_validation->set_rules('sal-type', 'salary type', 'required');
@@ -753,24 +754,17 @@ $this->session->set_flashdata('error',validation_errors());
      $day=$this->input->post('day');
      $sal_type=$this->input->post('sal-type');
     
-   
-   $day=$this->input->post('day');
    $date=date('Y-m-d');
    //echo $date;exit;
-
-
    $prev_date = date('Y-m-d', strtotime($date .' -1 day'));
   // echo $prev_date;exit;
-   
     if($day==0){
       $present=$prev_date;
  
       }
     else{
      $present=$date;
-       
-
-    }
+        }
     // check login in that date
     $checkdate=$this->payroll_model->checkdate($eid,$present);
      //echo $this->db->last_query();exit;
@@ -823,13 +817,43 @@ $this->session->set_flashdata('error',validation_errors());
      $this->payroll_model->save_payslip($payslip_det);
 $data['pslip_det']=$this->payroll_model->emp_payslip_daily($eid,$present);
 $data['sal_type']=3;
+//start of  pdf generation
+//start
+$path = rtrim(FCPATH,"/");
+    $file_name=$data['pslip_det']->payslip_pdf;
+                        
+          $data['page_title'] = 'title'; // pass data to the view
+          $pdfFilePath = $path."/assets/payslips/".$file_name;
+          ini_set('memory_limit','320M'); // boost the memory limit if it's low <img 
+          
+                  
+          $html = $this->load->view('employee/payslip-emppdf',$data,true); // render the view into HTML
+          //echo '<pre>';print_r($html);exit;
+          $this->load->library('pdf');
+          $pdf = $this->pdf->load();
+          $pdf->allow_charset_conversion = true;
+        $pdf->charset_in = 'iso-8859-4';
+          $pdf->SetFooter($_SERVER['HTTP_HOST'].'|{PAGENO}|'.date('M-d-Y')); // Add a footer for good measure <img src="https://s.w.org/images/core/emoji/72x72/1f609.png" alt="??" draggable="false" class="emoji">
+          $pdf->SetDisplayMode('fullpage');
+          $pdf->list_indent_first_level = 0;  // 1 or 0 - whether to indent the first level of a list
+         
+          
+          $pdf->WriteHTML($html); // write the HTML into the PDF
+          $pdf->Output($pdfFilePath, 'F');
+
+// end of pdf generation
+
+
 
  //echo' <pre> ' ;print_r($data); exit;
 }// end of else
 // end of saltype daily
 
+         $this->load->view('employee/payslip-view',$data);
+         $this->load->view('html/footer');
+
     
-       }
+       }// end of top if
 
     
 else{
