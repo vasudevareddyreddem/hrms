@@ -90,6 +90,7 @@ $this->session->set_flashdata('error',validation_errors());
                 }
 
      $eid=$this->input->post('eid');
+     //echo $eid; exit;
      $day=$this->input->post('day');
      $sal_type=$this->input->post('sal-type');
 
@@ -109,19 +110,21 @@ if($sal_type=='daily')
   // echo $prev_date;exit;
    
     if($day==0){
-      $present=$prev_date ;
-        echo'dkd' .$present;exit; 
-      
-    }
+      $present=$prev_date;
+ 
+      }
     else{
-      $present=$date;
-       echo $present;exit; 
+     $present=$date;
+       
 
     }
     // check login in that date
     $checkdate=$this->payroll_model->checkdate($eid,$present);
+     //echo $this->db->last_query();exit;
     if(!(count($checkdate)>0)){
-      $this->session->set_flashdata('error',"you have no logings  this day ");
+
+
+      $this->session->set_flashdata('error',"you have no logins  this day ");
       redirect('employee/salarylist');
 
 
@@ -176,11 +179,11 @@ $data['sal_type']=3;
 
 elseif ($sal_type='weekly') {
  // echo 'weekly';exit;
-  $date=date('Y-m-d');
+  $date=date('Y-m-d',strtotime($date .' -1 day'));
   if($this->input->post('0')){
 $prev_date = date('Y-m-d', strtotime($date .' -7 day'));
-$str_date=date('Y-m-d', strtotime($date .' -14 day'));
-$end_date = date('Y-m-d', strtotime($date .' -7 day'));
+$str_date=date('Y-m-d', strtotime($date .' -13 day'));
+$end_date = date('Y-m-d', strtotime($date .' -6 day'));
 
 }
 else{
@@ -200,6 +203,8 @@ if(!(count($checkdate)>0)){
 
 }
 
+
+
 $payslipdata=$this->payroll_model->emp_payslip_daily($eid,$prev_date);
     //print_r($data); exit;
     $file_name =time().'payslip.pdf';  
@@ -208,6 +213,8 @@ $payslipdata=$this->payroll_model->emp_payslip_daily($eid,$prev_date);
      $data['pslip_det']=$payslipdata;
    //echo' lddl ' ; exit;
     $data['sal_type']=2;
+    $data['startdate']=$str_date;
+    $data['enddate']=$end_date;
 
 } 
      else{
@@ -215,6 +222,41 @@ $payslipdata=$this->payroll_model->emp_payslip_daily($eid,$prev_date);
       $saldata=$this->payroll_model->emp_sal_det($eid);
           $file_name =time().'payslip.pdf';  
           //leaves calculation in week
+
+          //generlaleveg
+$gen_lv=$this->payroll_model->genreral_leaves_week($eid,$str_date,$end_date);
+//cal genleave start
+echo $this->db->last_query();exit;
+
+$gleaves=0;
+foreach($gen_lv as $row){
+
+$getdate=$row->from_date;
+$to_date=$row->to_date;
+$ldays=$row->number_of_days;
+$i=2;
+$y=1;
+$count=0;
+while($i<=$ldays){
+
+$count++;
+  $tempdate=date('Y-m-d', strtotime($getdate .' +'.$y.' day'));
+  //echo $tempdate;exit;
+  if($tempdate<$to_date){
+
+    $gleaves=$gleaves+1;
+  }
+
+  $y++;// increment of number of days
+  $i++;
+
+}
+
+}
+$cnt_gen=$gleaves; // no general leaves
+echo $cnt_gen. 'count'.$count++;exit;
+
+//end genleaves
 
      $payslip_det=array(
   'e_id'=> $saldata->e_id,
@@ -242,11 +284,13 @@ $payslipdata=$this->payroll_model->emp_payslip_daily($eid,$prev_date);
      $this->payroll_model->save_payslip($payslip_det);
 $data['pslip_det']=$this->payroll_model->emp_payslip_daily($eid,$str_date);
 $data['sal_type']=2;
+$data['startdate']=$str_date;
+    $data['enddate']=$end_date;
 
  //echo' <pre> ' ;print_r($data); exit;
 }// end of else
 
-echo' <pre> ' ;print_r($data); exit;
+//echo' <pre> ' ;print_r($data); exit;
 
   # code...
 }

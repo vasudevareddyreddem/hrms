@@ -174,10 +174,10 @@ return  ($this->db->affected_rows() == 1) ? true: false;
 
   }
   // check the date for daily wage in  payslips tab
-  public function checkdate($date,$eid)
+  public function checkdate($eid,$date)
   {
 
-    $this->db->select('l_date')->from('login_details')->where('e_id',$eid)->where('l_date', $date)->group_by('l_date');
+    $this->db->select('l_date')->from('login_details')->where('e_id',$eid)->where('l_date=',$date)->group_by('l_date');
 $query=$this->db->get();
     return $query->row();
   }
@@ -214,13 +214,27 @@ public function checkweeklogin($eid,$str_date,$end_date){
    $this->db->where('l_date <=', $end_date);
     $this->db->group_by('l_date');
 $query=$this->db->get();
-    return $query->row();
+    return $query->result();
 
 
 
 
 }
 
+//
+ public function genreral_leaves_week($eid,$str_date,$end_date){
+
+$this->db->select('*');
+  $this->db->from('leaves');
+   $this->db->where('leave_type',1);
+   $this->db->where('from_date>=', $str_date);
+   $this->db->where('from_date<=', $end_date);
+   $this->db->where('emp_id',$eid);
+
+   
+$query=$this->db->get();
+    return $query->result();
+}
 
 
 }
