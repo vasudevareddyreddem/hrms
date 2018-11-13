@@ -34,7 +34,7 @@
                                     <td><?php echo $list['area']; ?></td>
                                     <td><?php echo $list['date']; ?></td>
 									<td><?php if($list['status']==1){ echo "Active";}else{ echo "Deactive"; } ?></td>
-									<td><?php if($list['work_status']==0){ echo "Initiate";}else if($list['work_status']==1){ echo "Inprgoress"; }else if($list['work_status']==2){ echo "completed"; }else if($list['work_status']==3){ echo "Pending"; } ?></td>
+											<td><?php if($list['work_status']==0){ echo "rejected";}else if($list['work_status']==1){ echo "Inprgoress"; }else if($list['work_status']==2){ echo "completed"; }else if($list['work_status']==3){ echo "Pending"; }else{ echo "Initiate";} ?></td>
                                     <td>
                                      
                                     <a href="<?php echo base_url('employee/editwork/'.base64_encode($list['w_d_id'])); ?>"  data-toggle="tooltip" title="Edit"><i class="fa fa-pencil btn btn-success"></i></a>

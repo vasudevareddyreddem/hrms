@@ -2,7 +2,7 @@
     <div class="content container-fluid">
         <div class="row">
             <div class="col-xs-4">
-                <h4 class="page-title">Work Distribution List</h4>
+                <h4 class="page-title">Work Details</h4>
             </div>
 
         </div>
