@@ -9,6 +9,7 @@
     <div class="content container-fluid">
         <div class="row">
             <div class="col-xs-4">
+                <a href="work_list.php" class="btn btn-success pull-left m-r-10">Back</a>
                 <h4 class="page-title">Work Details</h4>
             </div>
         </div>
