@@ -4,12 +4,16 @@
         width: 50%;
     }
 </style>
-
+<?php $login_details=$this->session->userdata('hrmsdetails'); ?>
 <div class="page-wrapper">
     <div class="content container-fluid">
         <div class="row">
             <div class="col-xs-4">
-                <a href="work_list.php" class="btn btn-success pull-left m-r-10">Back</a>
+			<?php if($login_details['role_id']==2){ ?>
+                <a href="<?php echo base_url('employee/workdistributionlist'); ?>" class="btn btn-success pull-left m-r-10">Back</a>
+			<?php }else{ ?>
+			     <a href="<?php echo base_url('work/lists'); ?>" class="btn btn-success pull-left m-r-10">Back</a>
+			<?php } ?>
                 <h4 class="page-title">Work Details</h4>
             </div>
         </div>
@@ -67,7 +71,7 @@
             <div class="col-md-12">
 			<?php if(isset($ticket_rise_details) && count($ticket_rise_details)>0){ ?>
 				<?php foreach($ticket_rise_details as $list){ ?>
-				<p><?php echo isset($list['message'])?$list['message']:''; ?>.</p>
+				<p>Raised by : (<?php echo isset($list['e_login_name'])?$list['e_login_name']:''; ?>)-<?php echo isset($list['message'])?$list['message']:''; ?>. </p>
 				<?php } ?>
 			<?php } ?>
             </div>
