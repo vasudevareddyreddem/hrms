@@ -64,7 +64,13 @@
                 <li class="">
                     <a href="<?php echo base_url('sales'); ?>"><span>Salesman Man Track </span> </a>
                 </li>
-				
+				<li class="submenu">
+                    <a href="#"><span>Employee resignation</span> <span class="menu-arrow"></span></a>
+                    <ul class="list-unstyled" style="display: none;">
+                        <li><a href="<?php echo base_url('employee/resignation');?>"> Resignation</a></li>
+                        <li><a href="<?php echo base_url('employee/resignationlist');?>"> List</a></li>
+                    </ul>
+                </li>
 				 <li class="submenu">
                     <a href="#"><span>Area</span> <span class="menu-arrow"></span></a>
                     <ul class="list-unstyled" style="display: none;">
@@ -157,8 +163,8 @@
 
                     </ul>
                 </li>
-				<li class="submenu">
-                    <a href="#"><span>Employee Resignation </span> <span class="menu-arrow"></span></a>
+				<li class="">
+                    <a href="<?php echo base_url('employee/resignation '); ?>"><span>Employee Resignation </span> <span class=""></span></a>
                 </li>
                 <li class="nav-item  ">
                     <a href="<?php echo base_url('dashboard/logout'); ?>" class="nav-link "> <i class="material-icons"></i>
