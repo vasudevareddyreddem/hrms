@@ -23,6 +23,7 @@
 											<th>No of Days</th>
 											 <th>Remaining Leaves</th>  
 											<th>Reason</th>
+											<th>Created Date & Time</th>
 											<th class="text-center">Status</th>
 											
 										</tr>
@@ -38,6 +39,7 @@
 											<td><?php echo $list['number_of_days'];?></td>
 											<td><?php echo $list['remaining_leaves'];?></td>
 											<td><?php echo $list['leaves_reason'];?></td>
+											<td><?php echo $list['created_at'];?></td>
 											<td class="text-center">
 											<?php if($list['status']==1){  ?>
 												<div class="dropdown action-label">

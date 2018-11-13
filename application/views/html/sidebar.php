@@ -126,8 +126,19 @@
 			  <li class="active">
                     <a href="<?php echo base_url('dashboard');?>">Dashboard</a>
                 </li>
+				<li class="submenu">
+                    <a href="#"><span>Leave List</span> <span class="menu-arrow"></span></a>
+                    <ul class="list-unstyled" style="display: none;">
+                        <li>
+                            <a href="<?php echo base_url('leaves/all'); ?>"><span>All Leave List</span> </a>
+                        </li>
+                        <li>
+                            <a href="<?php echo base_url('leaves/inmonth'); ?>"><span>Current Month Leave List</span> </a>
+                        </li>
+                    </ul>
+                </li>
 
-			 <li class="submenu">
+				<li class="submenu">
                     <a href="#"><span>Employee communication </span> <span class="menu-arrow"></span></a>
 					
 					
@@ -139,7 +150,7 @@
                     <a href="<?php echo base_url('dashboard/logout'); ?>" class="nav-link "> <i class="material-icons"></i>
                         <span class="title">Logout</span> <span class="arrow"></span>
                     </a>
-                </li>
+					</li>
 					
 					
                 </li>

@@ -1100,7 +1100,8 @@ public function leavesstatus()
 					if($l_id!=''){
 						$stusdetails=array(
 							'status'=>$statu,
-							'updated_at'=>date('Y-m-d H:i:s')
+							'updated_at'=>date('Y-m-d H:i:s'),
+							'accepted_by'=>$admindetails['e_id']
 							);
 							//echo'<pre>';print_r($stusdetails);exit;
 							$statusdata=$this->Employees_model->update_leave_list_details_status($l_id,$stusdetails);
@@ -1133,7 +1134,8 @@ public function lstatus()
 					if($l_id!=''){
 						$stusdetails=array(
 							'status'=>$statu,
-							'updated_at'=>date('Y-m-d H:i:s')
+							'updated_at'=>date('Y-m-d H:i:s'),
+							'accepted_by'=>$admindetails['e_id']
 							);
 							//echo'<pre>';print_r($stusdetails);exit;
 							$statusdata=$this->Employees_model->update_leave_list_details_status($l_id,$stusdetails);
