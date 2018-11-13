@@ -13,9 +13,11 @@
 				<div class="">
 				<select id="work_emplouee_id" name="work_emplouee_id"  class="form-control" >
 				<option value="">Select</option>
-				<?php foreach ($employee_id as $list){ ?>
-				<option value="<?php echo $list['e_id']; ?>"><?php echo $list['e_emplouee_id']; ?></option>
-				<?php }?>
+					<?php if(isset($employee_list) && count($employee_list)>0){ ?>
+						<?php foreach ($employee_list as $list){ ?>
+						<option value="<?php echo $list['e_id']; ?>"><?php echo $list['e_emplouee_id']; ?></option>
+						<?php } ?>
+					<?php } ?>
 				</select>
 				</div>
 			  </div>

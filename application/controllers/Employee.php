@@ -2000,7 +2000,7 @@ public function assignwork(){
 	  if($this->session->userdata('hrmsdetails'))
 		{	
 	    $admindetails=$this->session->userdata('hrmsdetails');
-	    $data['employee_id']=$this->Employees_model->get_employees_ids_details();
+	    $data['employee_list']=$this->Employees_model->get_employees_ids_details();
 	     $data['area_list']=$this->Employees_model->get_area_list_data();
 		 //echo'<pre>';print_r($data);exit;
 	     $this->load->view('employee/assign-work',$data);
