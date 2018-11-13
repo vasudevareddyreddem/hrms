@@ -791,6 +791,8 @@ $this->session->set_flashdata('error',validation_errors());
       //echo 'kdkd';exit;
       $saldata=$this->payroll_model->emp_sal_det($eid);
           $file_name =time().'payslip.pdf';  
+           $last_day =  date('t',strtotime($present));// number of days in month
+ $daysalary=$saldata->e_basic/$last_day;
      $payslip_det=array(
   'e_id'=> $saldata->e_id,
 'e_basic' => $saldata->e_basic,
@@ -811,7 +813,8 @@ $this->session->set_flashdata('error',validation_errors());
 'e_gross_salary'=>$saldata->e_gross_salary,
 'daily_date'=>$present,
 'payslip_pdf'=>$file_name,
-'created_by'=>$userid
+'created_by'=>$userid,
+'day_sal'=>$daysalary
 
 );
      $this->payroll_model->save_payslip($payslip_det);
