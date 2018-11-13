@@ -164,6 +164,13 @@
 
                     </ul>
                 </li>
+				<li class="submenu">
+                    <a href="#"><span>Work </span> <span class="menu-arrow"></span></a>
+                    <ul class="list-unstyled" style="display: none;">
+                        <li><a href="<?php echo base_url('work/lists');?>">List </a></li>
+
+                    </ul>
+                </li>
 				<li class="">
                     <a href="<?php echo base_url('employee/resignation '); ?>"><span>Employee Resignation </span> <span class=""></span></a>
                 </li>
