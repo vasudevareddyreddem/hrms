@@ -23,17 +23,21 @@
         <table width="100%" border="0" cellspacing="0" cellpadding="5" style="font-size: 19px; margin-top: 50px;">
             <tr>
                 <td>
-                    <strong>Main Admin</strong>
+                    <strong> <?php echo $pslip_det->e_f_name ?></strong>
                     <br>
-                    <span>1</span>
+                    <span><?php echo $pslip_det->role ?></span>
                     <br>
-                    <span>Employee Id : Main Admin</span>
+                    <span>Employee Id :  <?php echo $pslip_det->e_emplouee_id ?>
+                                </li></span>
                     <br>
-                    <span>Joining Date : October,2018</span>
+                    <span>Joining Date : <?php $day=explode("-",$pslip_det->e_join_date);
+                                            echo $day[2]?$day[2]:'';
+                                         $date = date('F, Y', strtotime($pslip_det->e_join_date));
+                                        echo $date;  ?></span>
                 </td>
             </tr>
         </table>
-        
+         <?php if($sal_type==1 or $sal_type==2){?>
         <table width="100%" cellspacing="0" cellpadding="5" style="margin: 30px 0px;">
             <tr>
                 <td style="border: none;">
@@ -55,6 +59,7 @@
                 </tr>
             </tbody>
         </table>
+         <?php }?>
 
         <table width="45%" align="left" cellspacing="0" cellpadding="5">
             <tr>
