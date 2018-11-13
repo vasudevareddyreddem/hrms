@@ -62,5 +62,11 @@ class Notification_model extends CI_Model
 	return $this->db->delete('leaves');
 	}
 	
+	/* notoifcation purpose*/
+	public  function save_notification($data){
+		$this->db->insert('notification',$data);
+		return $this->db->insert_id();
+	}
+	
 	
   }
