@@ -1036,6 +1036,21 @@ public function addleave(){
 				}
 	
 }	
+public function leaveslists(){
+	if($this->session->userdata('hrmsdetails'))
+		{	
+         $admindetails=$this->session->userdata('hrmsdetails');	
+		 	
+		 $data['leaves']=$this->Employees_model->get_all_employees_list();
+
+			//echo'<pre>';print_r($data);exit;
+	     $this->load->view('leaves/all_leaves_list',$data);
+	     $this->load->view('html/footer');  
+        }else{
+		 $this->session->set_flashdata('error',"Please login and continue");
+		 redirect('');  
+	   }
+}
 public function leaveslist(){
     if($this->session->userdata('hrmsdetails'))
 		{	
@@ -1100,7 +1115,8 @@ public function leavesstatus()
 					if($l_id!=''){
 						$stusdetails=array(
 							'status'=>$statu,
-							'updated_at'=>date('Y-m-d H:i:s')
+							'updated_at'=>date('Y-m-d H:i:s'),
+							'accepted_by'=>$admindetails['e_id']
 							);
 							//echo'<pre>';print_r($stusdetails);exit;
 							$statusdata=$this->Employees_model->update_leave_list_details_status($l_id,$stusdetails);
@@ -1133,7 +1149,8 @@ public function lstatus()
 					if($l_id!=''){
 						$stusdetails=array(
 							'status'=>$statu,
-							'updated_at'=>date('Y-m-d H:i:s')
+							'updated_at'=>date('Y-m-d H:i:s'),
+							'accepted_by'=>$admindetails['e_id']
 							);
 							//echo'<pre>';print_r($stusdetails);exit;
 							$statusdata=$this->Employees_model->update_leave_list_details_status($l_id,$stusdetails);

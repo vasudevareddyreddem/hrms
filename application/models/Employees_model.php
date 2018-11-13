@@ -461,6 +461,14 @@ public  function get_emp_leaves_list_details_data($e_id){
 	$this->db->where('leaves.emp_id',$e_id);
 	return $this->db->get()->result_array();
 }
+public  function get_all_employees_list(){
+	$this->db->select('leaves.*,empployee.e_login_name,role.role,leave_type.leave_type_name as l_type')->from('leaves');
+	$this->db->join('empployee', 'empployee.e_id = leaves.emp_id', 'left');
+	$this->db->join('leave_type', 'leave_type.l_t_id = leaves.leave_type', 'left');
+	$this->db->join('role', 'role.r_id = empployee.role_id', 'left');
+	$this->db->where('leaves.status !=',0);
+	return $this->db->get()->result_array();
+}
 public  function check_leave_policy_active_ornot(){
 	$this->db->select('*')->from('leaves_policy');
 	$this->db->where('leaves_policy.status',1);

@@ -9,7 +9,7 @@
 					</div>
 					
 					
-                </div>
+            
 						<table id="" class="table table-bordered table-striped">
 									<thead>
 										<tr>
@@ -46,9 +46,9 @@
 									
 									</tbody>
 								</table>
-				<div class="modal-dialog bg-white">
-					<button type="button" class="close" data-dismiss="modal">&times;</button>
-					<div class="modal-content modal-md">
+				<div class=" bg-white">
+					
+					<div class=" col-md-6 col-md-offset-2 modal-md" style="border:1px solid #ddd;">
 						<div class="modal-header">
 							<h4 class="modal-title">Add Leave Request</h4>
 						</div>
@@ -101,9 +101,11 @@
 			
 			
             </div>
-
-	  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>		
+            </div>
+			        <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/vendor/css/jquery-ui.css">
+		<script type="text/javascript" src="<?php echo base_url(); ?>assets/vendor/js/jquery-ui.js"></script>
+	
+	
 
 <script>
 
