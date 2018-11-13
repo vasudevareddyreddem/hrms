@@ -29,13 +29,6 @@ class Sales_model extends CI_Model
 	
    }
 
-	 public function get_sales_detais_date_wise($emp_id){
-	   $this->db->select('sales_track_details.*')->from('sales_track_details');
-	    $this->db->group_by('sales_track_details.work_date');
-		$this->db->where('sales_track_details.sales_emp_id',$emp_id);
-		 return $this->db->get()->result_array();
-	}
-	
 	public function get_employee_previous_date_location_details($emp_id,$date){
 		 $this->db->select('sales_track_details.*')->from('sales_track_details');
 		$this->db->where('sales_track_details.sales_emp_id',$emp_id);
@@ -48,7 +41,6 @@ class Sales_model extends CI_Model
 		$this->db->where('sales_track_details.work_date',$date);
 		 return $this->db->get()->result_array();
 	}
-	   
 	 
     
 	

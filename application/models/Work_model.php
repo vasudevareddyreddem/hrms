@@ -37,8 +37,10 @@ class Work_model extends CI_Model
 		return $this->db->insert_id();
 	}
 	public  function get_ticket_rise_details_list($w_d_id){
-		$this->db->select('*')->from('work_tickest_list');
+		$this->db->select('work_tickest_list.*,empployee.e_login_name')->from('work_tickest_list');
+		$this->db->join('empployee', 'empployee.e_id = work_tickest_list.created_by', 'left');
 		$this->db->where('work_tickest_list.w_d_id',$w_d_id);
+		$this->db->order_by('work_tickest_list.t_id',"asc");
 	    return $this->db->get()->result_array();	
 	}
 	
