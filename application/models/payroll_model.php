@@ -235,6 +235,34 @@ $this->db->select('*');
 $query=$this->db->get();
     return $query->result();
 }
+public function medical_leaves_week($eid,$str_date,$end_date){
+
+$this->db->select('*');
+  $this->db->from('leaves');
+   $this->db->where('leave_type',3);
+   $this->db->where('from_date>=', $str_date);
+   $this->db->where('from_date<=', $end_date);
+   $this->db->where('emp_id',$eid);
+
+   
+$query=$this->db->get();
+    return $query->result();
+
+}
+
+public function casual_leaves_week($eid,$str_date,$end_date){
+
+  $this->db->select('*');
+  $this->db->from('leaves');
+   $this->db->where('leave_type',2);
+   $this->db->where('from_date>=', $str_date);
+   $this->db->where('from_date<=', $end_date);
+   $this->db->where('emp_id',$eid);
+
+   
+$query=$this->db->get();
+    return $query->result();
+}
 
 
 }

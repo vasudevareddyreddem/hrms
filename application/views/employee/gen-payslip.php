@@ -12,7 +12,7 @@
 					</div>
 					<hr>
 					<div class="row filter-row">
-						<form action='<?php echo base_url('payroll/payslippage')?>' method='post' >
+						<form  id='formid' action='<?php echo base_url('payroll/')?>' method='post' >
 					   <div class="col-sm-4 col-md-4 col-xs-6">  
 							<div class="form-group form-focus">
 								<label class="control-label"></label>
@@ -42,7 +42,7 @@
 							<div class="form-group form-focus">
 								<label class="control-label"></label>
 								<!-- <div class="cal-icon"> -->
-										<Select id="colorselector" class="form-control" name='sal-type'>
+										<Select id="colorselector" class="form-control salarytype" name='sal-type'>
 							   <option value=''>Select Salary Type</option>
 							   <option value="monthly">Monthly</option>
 							   <option value="weekly">Weekly</option>
@@ -117,7 +117,7 @@
 				
 						<div class="row">
 						<div class="col-sm-3 pull-right">  
-							<button type='submit' class="btn btn-success "> Genarate Payslip </button>  
+							<button type='submit' id='payslipid'  class="btn btn-success "> Genarate Payslip </button>  
 						</div>     
 						</div> 
 </form>						
@@ -188,9 +188,54 @@
 });
 
                     </script>
-	
-           
-			
+
+	<script type="text/javascript">
+		
+		
+    $(function () {
+
+
+$('#payslipid').on('click',function(e){
+
+saltype=$('.salarytype').val();
+//alert(saltype); 
+//return false;
+alert('kdkd');
+if(saltype==''){
+    
+	return false;
+
+    	}
+    	if(saltype=='monthly'){
+    		 val=$('#formid').attr('action');
+        val2='payslippage';
+        newval=val+val2;
+       
+        $('#formid').attr('action',newval);
+
+    	}
+    	if(saltype=='weekly'){
+    		 val=$('#formid').attr('action');
+        val2='weeklypayslip';
+        newval=val+val2;
+        
+        $('#formid').attr('action',newval);
+
+    	}
+    	if(saltype=='daily'){
+    		 val=$('#formid').attr('action');
+        val2='daypayslip';
+        newval=val+val2;
+        
+        $('#formid').attr('action',newval);
+
+    	}
+});
+
+
+    });
+	</script>
+
 			
 
 <script>

@@ -1906,6 +1906,7 @@ public function chat(){
          $eid=$empdet['e_id'];
          $data['sender']=$eid;
          //echo $eid;exit;
+         $this->session->unset_userdata('recv');
          $this->load->model('Chat_model');
         
           //echo'<pre>';print_r($data);exit;
