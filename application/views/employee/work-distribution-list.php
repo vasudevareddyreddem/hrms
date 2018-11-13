@@ -4,6 +4,12 @@
             <div class="col-xs-4">
                 <h4 class="page-title">Work Distribution List</h4>
             </div>
+			<div class="col-md-8">
+              <div class="col-md-4">
+                        <a target="_blank" href="<?php echo base_url('export/employeeschedule'); ?>" class="btn btn-primary">Export</a>
+                 </div>
+                
+            </div>
 
         </div>
         <form>
