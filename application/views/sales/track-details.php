@@ -74,12 +74,12 @@
 								
 							
 								<div class="col-md-6">
-								<?php foreach($current_date as $list){?>
-									<div class="card-title"><?php echo $list['work_date'];?></div>
+							
+									<div class="card-title">Today (<?php echo $current['work_date'] ;?>)</div>
 									
 									<div class="experience-box">
 										<ul class="experience-list">
-											
+												<?php foreach($current_date as $list){?>
 											<li>
 											
 												<div class="experience-user">
@@ -92,25 +92,25 @@
 													</div>
 												</div>
 											</li>	
-											
+												<?php }?>
 											
 											
 											
 											
 										</ul>
 									</div>
-									<?php }?>
+								
 											
 								</div>
 								
 							
 								<div class="col-md-6">
-								<?php foreach($prevoius_date as $list){?>
-									<h3 class="card-title"><?php echo $list['work_date'];?></h3>
+								
+									<h3 class="card-title">Yesterday (<?php echo $prevoius['work_date'] ;?>)</h3>
 									<div class="experience-box">
 										<ul class="experience-list">
 										
-											
+											<?php foreach($prevoius_date as $list){?>
 											<li>
 												<div class="experience-user">
 													<div class="before-circle"></div>
@@ -122,13 +122,13 @@
 													</div>
 												</div>
 											</li>	
-											
+											<?php }?>
 										
 											
 										</ul>
 									</div>
 									
-									<?php }?>
+									
 									
 								</div>
 								
