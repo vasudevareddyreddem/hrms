@@ -104,7 +104,8 @@
             </div>
 			        <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/vendor/css/jquery-ui.css">
 		<script type="text/javascript" src="<?php echo base_url(); ?>assets/vendor/js/jquery-ui.js"></script>
-			
+	
+	
 
 <script>
 

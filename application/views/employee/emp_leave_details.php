@@ -6,8 +6,6 @@
 						<div class="col-xs-8">
 							<h4 class="page-title"> <?php echo isset($emp_details['e_login_name'])?$emp_details['e_login_name']:''; ?> Leaves Details</h4>
 						</div>
-					
-						
 					</div>
 					
 					
