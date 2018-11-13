@@ -461,6 +461,14 @@ public  function get_emp_leaves_list_details_data($e_id){
 	$this->db->where('leaves.emp_id',$e_id);
 	return $this->db->get()->result_array();
 }
+public  function get_all_employees_list(){
+	$this->db->select('leaves.*,empployee.e_login_name,role.role,leave_type.leave_type_name as l_type')->from('leaves');
+	$this->db->join('empployee', 'empployee.e_id = leaves.emp_id', 'left');
+	$this->db->join('leave_type', 'leave_type.l_t_id = leaves.leave_type', 'left');
+	$this->db->join('role', 'role.r_id = empployee.role_id', 'left');
+	$this->db->where('leaves.status !=',0);
+	return $this->db->get()->result_array();
+}
 public  function check_leave_policy_active_ornot(){
 	$this->db->select('*')->from('leaves_policy');
 	$this->db->where('leaves_policy.status',1);
@@ -512,6 +520,34 @@ public  function get_employee_details($e_id){
 	$this->db->select('e_login_name,e_id,e_f_name,e_l_name')->from('empployee');
 	$this->db->where('empployee.e_id',$e_id);
 	return $this->db->get()->row_array();
+}
+
+/*employee_resignation*/
+public  function check_employee_resignation_exist($e_id){
+	$this->db->select('*')->from('employee_resignation_list');
+	$this->db->where('employee_resignation_list.emp_id',$e_id);
+	return $this->db->get()->row_array();
+}
+
+public  function update_employee_resignation($emp_id,$e_r_id,$data){
+     $this->db->where('emp_id',$emp_id);
+     $this->db->where('e_r_id',$e_r_id);
+    return $this->db->update("employee_resignation_list",$data);	
+}
+public  function employee_resignation_status($e_r_id,$data){
+     $this->db->where('e_r_id',$e_r_id);
+    return $this->db->update("employee_resignation_list",$data);	
+}
+public  function save_employee_resignation($data){
+	$this->db->insert('employee_resignation_list',$data);
+	return $this->db->insert_id();
+}
+
+public  function get_all_employee_resignation_list(){
+	$this->db->select('employee_resignation_list.*,empployee.e_login_name')->from('employee_resignation_list');
+	$this->db->join('empployee', 'empployee.e_id = employee_resignation_list.emp_id', 'left');
+	$this->db->order_by('e_r_id',"desc");
+	return $this->db->get()->result_array();
 }
 	
 

@@ -21,7 +21,6 @@
 											<th>From</th>
 											<th>To</th>
 											<th>No of Days</th>
-											 <th>Remaining Leaves</th>  
 											<th>Reason</th>
 											<th>Created Date & Time</th>
 											<th class="text-center">Status</th>
@@ -37,7 +36,6 @@
 											<td><?php echo $list['from_date'];?></td>
 											<td><?php echo $list['to_date'];?></td>
 											<td><?php echo $list['number_of_days'];?></td>
-											<td><?php echo $list['remaining_leaves'];?></td>
 											<td><?php echo $list['leaves_reason'];?></td>
 											<td><?php echo $list['created_at'];?></td>
 											<td class="text-center">
@@ -88,14 +86,9 @@
 
 <script>
   $(function () {
-    $("#example1").DataTable();
-    $('#example2').DataTable({
-      "paging": true,
-      "lengthChange": false,
-      "searching": false,
-      "ordering": true,
-      "info": true,
-      "autoWidth": false
-    });
+      $('#example1').DataTable( {
+        "order": [[6, "desc" ]]
+    } );
+    
   });
 </script>

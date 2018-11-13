@@ -411,9 +411,11 @@
                     dataType: "json",   //Expected data format from server
                     
                     success: function (result) {
+                    	if(result.sendstatus==1){
                     $('#msg').val('');
                     //alert(result.datenow);
                     $(".chat-time:last").append(result.datenow);
+                      }
                          
                                            }
                     ,
