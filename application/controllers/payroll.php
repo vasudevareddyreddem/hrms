@@ -737,6 +737,7 @@ public function sal_delete($eid){
             $userdet=$this->session->userdata('hrmsdetails');
             $userid=$userdet['e_id'];
 
+
         $this->load->library('form_validation');
       $this->form_validation->set_rules('eid', 'employee id', 'required');
     $this->form_validation->set_rules('sal-type', 'salary type', 'required');
@@ -753,24 +754,17 @@ $this->session->set_flashdata('error',validation_errors());
      $day=$this->input->post('day');
      $sal_type=$this->input->post('sal-type');
     
-   
-   $day=$this->input->post('day');
    $date=date('Y-m-d');
    //echo $date;exit;
-
-
    $prev_date = date('Y-m-d', strtotime($date .' -1 day'));
   // echo $prev_date;exit;
-   
     if($day==0){
       $present=$prev_date;
  
       }
     else{
      $present=$date;
-       
-
-    }
+        }
     // check login in that date
     $checkdate=$this->payroll_model->checkdate($eid,$present);
      //echo $this->db->last_query();exit;
@@ -797,6 +791,8 @@ $this->session->set_flashdata('error',validation_errors());
       //echo 'kdkd';exit;
       $saldata=$this->payroll_model->emp_sal_det($eid);
           $file_name =time().'payslip.pdf';  
+           $last_day =  date('t',strtotime($present));// number of days in month
+ $daysalary=$saldata->e_basic/$last_day;
      $payslip_det=array(
   'e_id'=> $saldata->e_id,
 'e_basic' => $saldata->e_basic,
@@ -817,19 +813,50 @@ $this->session->set_flashdata('error',validation_errors());
 'e_gross_salary'=>$saldata->e_gross_salary,
 'daily_date'=>$present,
 'payslip_pdf'=>$file_name,
-'created_by'=>$userid
+'created_by'=>$userid,
+'day_sal'=>$daysalary
 
 );
      $this->payroll_model->save_payslip($payslip_det);
 $data['pslip_det']=$this->payroll_model->emp_payslip_daily($eid,$present);
 $data['sal_type']=3;
+//start of  pdf generation
+//start
+$path = rtrim(FCPATH,"/");
+    $file_name=$data['pslip_det']->payslip_pdf;
+                        
+          $data['page_title'] = 'title'; // pass data to the view
+          $pdfFilePath = $path."/assets/payslips/".$file_name;
+          ini_set('memory_limit','320M'); // boost the memory limit if it's low <img 
+          
+                  
+          $html = $this->load->view('employee/payslip-emppdf',$data,true); // render the view into HTML
+          //echo '<pre>';print_r($html);exit;
+          $this->load->library('pdf');
+          $pdf = $this->pdf->load();
+          $pdf->allow_charset_conversion = true;
+        $pdf->charset_in = 'iso-8859-4';
+          $pdf->SetFooter($_SERVER['HTTP_HOST'].'|{PAGENO}|'.date('M-d-Y')); // Add a footer for good measure <img src="https://s.w.org/images/core/emoji/72x72/1f609.png" alt="??" draggable="false" class="emoji">
+          $pdf->SetDisplayMode('fullpage');
+          $pdf->list_indent_first_level = 0;  // 1 or 0 - whether to indent the first level of a list
+         
+          
+          $pdf->WriteHTML($html); // write the HTML into the PDF
+          $pdf->Output($pdfFilePath, 'F');
+
+// end of pdf generation
+
+
 
  //echo' <pre> ' ;print_r($data); exit;
 }// end of else
 // end of saltype daily
 
+         $this->load->view('employee/payslip-view',$data);
+         $this->load->view('html/footer');
+
     
-       }
+       }// end of top if
 
     
 else{
@@ -839,6 +866,231 @@ else{
     
 
  
+
+
+  }
+  public function weeklypayslip(){
+    if($this->session->userdata('hrmsdetails'))
+    { 
+      // start of saltype weekly
+
+ // echo 'weekly';exit;
+       $userdet=$this->session->userdata('hrmsdetails');
+            $userid=$userdet['e_id'];
+
+
+        $this->load->library('form_validation');
+      $this->form_validation->set_rules('eid', 'employee id', 'required');
+    $this->form_validation->set_rules('sal-type', 'salary type', 'required');
+   
+     //echo $eid; exit;
+ if ($this->form_validation->run() == FALSE)
+                {
+$this->session->set_flashdata('error',validation_errors());
+                    redirect('employee/salarylist');
+
+                }
+
+  $date=date('Y-m-d');
+  $date=date('Y-m-d',strtotime($date .' -1 day'));
+  if($this->input->post('week')==0){
+$prev_date = date('Y-m-d', strtotime($date .' -7 day'));
+$str_date=date('Y-m-d', strtotime($date .' -13 day'));
+$end_date = date('Y-m-d', strtotime($date .' -6 day'));
+
+}
+else{
+$prev_date = $date;
+$str_date=date('Y-m-d', strtotime($date .' -6 day'));
+$end_date=$date;
+
+}
+// checking this week login or not
+$checkdate=$this->payroll_model->checkweeklogin($eid,$str_date,$end_date);
+//echo $this->db->last_query();exit;
+
+
+if(!(count($checkdate)>0)){
+  //echo count($checkdate); exit;
+  $this->session->set_flashdata('error',"you have no logings  this week ");
+      redirect('employee/salarylist');
+
+}
+
+
+
+$payslipdata=$this->payroll_model->emp_payslip_daily($eid,$prev_date);
+    //print_r($data); exit;
+    $file_name =time().'payslip.pdf';  
+
+   if(count($payslipdata)>0){
+     $data['pslip_det']=$payslipdata;
+   //echo' lddl ' ; exit;
+    $data['sal_type']=2;
+    $data['startdate']=$str_date;
+    $data['enddate']=$end_date;
+
+} 
+     else{
+      //echo 'kdkd';exit;
+      $saldata=$this->payroll_model->emp_sal_det($eid);
+          $file_name =time().'payslip.pdf';  
+          //leaves calculation in week
+
+          //generlaleveg
+$gen_lv=$this->payroll_model->genreral_leaves_week($eid,$str_date,$end_date);
+//cal genleave start
+//echo $this->db->last_query();exit;
+
+$gleaves=0;
+foreach($gen_lv as $row){
+
+$getdate=$row->from_date;
+$to_date=$row->to_date;
+$ldays=$row->number_of_days;
+$i=1;
+$y=0;
+$count=0;
+while($i<=$ldays){
+
+$count++;
+  $tempdate=date('Y-m-d', strtotime($getdate .' +'.$y.' day'));
+ //echo $tempdate;exit;
+  if($tempdate<=$end_date){
+
+    $gleaves=$gleaves+1;
+  }
+
+
+  $y++;// increment of number of days
+  $i++;
+
+}
+
+}
+$cnt_gen=$gleaves; // no general leaves
+//echo $cnt_gen. 'count'.$count++;exit;
+
+//end genleaves
+//cal medleave start
+//echo $this->db->last_query();exit;
+$med_lv=$this->payroll_model->medical_leaves_week($eid,$str_date,$end_date);
+$mleaves=0;
+foreach($med_lv as $row){
+
+$getdate=$row->from_date;
+$to_date=$row->to_date;
+$ldays=$row->number_of_days;
+$i=1;
+$y=0;
+$count=0;
+while($i<=$ldays){
+
+$count++;
+  $tempdate=date('Y-m-d', strtotime($getdate .' +'.$y.' day'));
+ //echo $tempdate;exit;
+  if($tempdate<=$end_date){
+
+    $mleaves=$mleaves+1;
+  }
+
+
+  $y++;// increment of number of days
+  $i++;
+
+}
+
+}
+$cnt_med=$mleaves; // no medical leaves
+//echo $cnt_gen. 'count'.$count++;exit;
+
+//end medicalleaves
+//start of casual leaves
+$pay_lv=$this->payroll_model->casual_leaves_week($eid,$str_date,$end_date);
+$payleaves=0;
+foreach($pay_lv as $row){
+
+$getdate=$row->from_date;
+$to_date=$row->to_date;
+$ldays=$row->number_of_days;
+$i=1;
+$y=0;
+$count=0;
+while($i<=$ldays){
+
+$count++;
+  $tempdate=date('Y-m-d', strtotime($getdate .' +'.$y.' day'));
+ //echo $tempdate;exit;
+  if($tempdate<=$end_date){
+
+    $payleaves=$payleaves+1;
+  }
+
+
+  $y++;// increment of number of days
+  $i++;
+
+}
+
+}
+$cnt_pay=$payleaves; 
+//edn of casula leaves
+//echo 'pay'.$cnt_pay.'gen'.$cnt_gen.'med'.$cnt_med; exit;
+
+$sal=($saldata->e_basic/30)*7;
+$sal_ded=$sal*$cnt_pay;
+
+
+     $payslip_det=array(
+  'e_id'=> $saldata->e_id,
+'e_basic' => $saldata->e_basic,
+'e_hra'=>$saldata->e_hra,
+'e_da' => $saldata->e_da,
+'e_allowance'=> $saldata->e_allowance,
+'e_medical_allowance' => $saldata->e_medical_allowance,
+'e_conveyance'=> $saldata->e_conveyance,
+'e_others' => $saldata->e_others,
+'e_d_tds'=> $saldata->e_d_tds,
+'e_d_pf'=>$saldata->e_d_pf,
+'e_d_esi' => $saldata->e_d_esi,
+'e_d_Prof_tax' => $saldata->e_d_Prof_tax,
+'e_d_labour_welfare'=> $saldata->e_d_labour_welfare,
+'e_d_fund' => $saldata->e_d_fund,
+'e_d_others'=> $saldata->e_d_others,
+'e_net_salary' => $saldata->e_net_salary,
+'e_gross_salary'=>$saldata->e_gross_salary,
+'daily_date'=>$str_date,
+'payslip_pdf'=>$file_name,
+'created_by'=>$userid,
+'e_leaves_deduction'=>$sal_ded,
+ 'daily_date'=>$str_date
+
+);
+     $this->payroll_model->save_payslip($payslip_det);
+$data['pslip_det']=$this->payroll_model->emp_payslip_daily($eid,$str_date);
+$data['sal_type']=2;
+$data['startdate']=$str_date;
+    $data['enddate']=$end_date;
+
+ //echo' <pre> ' ;print_r($data); exit;
+}// end of else
+
+//echo' <pre> ' ;print_r($data); exit;
+
+  # code...
+
+//end of saly type weekly
+
+
+
+    }
+  else{
+     $this->session->set_flashdata('error',"Please login and continue");
+     redirect('');  
+     }
+    
+
+
 
 
   }

@@ -200,7 +200,7 @@ $('#payslipid').on('click',function(e){
 saltype=$('.salarytype').val();
 //alert(saltype); 
 //return false;
-alert('kdkd');
+//alert('kdkd');
 if(saltype==''){
     
 	return false;
