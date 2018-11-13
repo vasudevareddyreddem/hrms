@@ -890,6 +890,8 @@ $this->session->set_flashdata('error',validation_errors());
                     redirect('employee/salarylist');
 
                 }
+                 $eid=$this->input->post('eid');
+     
 
   $date=date('Y-m-d');
   $date=date('Y-m-d',strtotime($date .' -1 day'));
@@ -907,6 +909,8 @@ $end_date=$date;
 }
 // checking this week login or not
 $checkdate=$this->payroll_model->checkweeklogin($eid,$str_date,$end_date);
+//echo $this->db->last_query();exit;
+$count_logins=count($checkdate);
 //echo $this->db->last_query();exit;
 
 
@@ -1002,6 +1006,7 @@ $count++;
 
 }
 $cnt_med=$mleaves; // no medical leaves
+//echo $cnt_med; exit;
 //echo $cnt_gen. 'count'.$count++;exit;
 
 //end medicalleaves
@@ -1015,7 +1020,7 @@ $to_date=$row->to_date;
 $ldays=$row->number_of_days;
 $i=1;
 $y=0;
-$count=0;
+
 while($i<=$ldays){
 
 $count++;
@@ -1037,8 +1042,10 @@ $cnt_pay=$payleaves;
 //edn of casula leaves
 //echo 'pay'.$cnt_pay.'gen'.$cnt_gen.'med'.$cnt_med; exit;
 
-$sal=($saldata->e_basic/30)*7;
+
+$sal=$saldata->e_basic/(float)30;
 $sal_ded=$sal*$cnt_pay;
+$weeklysalary=$count_logins*$sal;
 
 
      $payslip_det=array(
@@ -1063,7 +1070,11 @@ $sal_ded=$sal*$cnt_pay;
 'payslip_pdf'=>$file_name,
 'created_by'=>$userid,
 'e_leaves_deduction'=>$sal_ded,
- 'daily_date'=>$str_date
+'medleave_days'=>$cnt_med , 
+'genleave_days'=>$cnt_gen ,
+'payleave_days'=>$cnt_pay ,
+ 'daily_date'=>$str_date,
+ 'weekly_sal'=>$weeklysalary
 
 );
      $this->payroll_model->save_payslip($payslip_det);
@@ -1080,7 +1091,8 @@ $data['startdate']=$str_date;
   # code...
 
 //end of saly type weekly
-
+$this->load->view('employee/payslip-view',$data);
+         $this->load->view('html/footer');
 
 
     }
