@@ -114,6 +114,7 @@
                                     <tbody>
                                         <?php if($sal_type==1){?>
                                         <tr>
+
                                             <td><strong>Monthly Salary</strong> <span class="pull-right">
                                                     <?php echo $pslip_det->e_d_tds ?></span></td>
                                         </tr>
@@ -124,12 +125,13 @@
                                     <?php }?>
                                     <?php if($sal_type==2){?>
                                         <tr>
-                                            <td><strong>Monthly Salary</strong> <span class="pull-right">
-                                                    <?php echo $pslip_det->e_d_tds ?></span></td>
+                                            <td><strong>Weekly Salary</strong> <span class="pull-right">
+                                                    <?php $sal= $pslip_det->e_basic/(float)30;
+                                                    echo (int)$sal*7 ?></span></td>
                                         </tr>
                                         <tr>
-                                            <td><strong>Deducted Monthly Salary</strong> <span class="pull-right">
-                                                    <?php echo $pslip_det->e_d_pf ?></span></td>
+                                            <td><strong>Weekly Take Home Salary</strong> <span class="pull-right">
+                                                    <?php echo $pslip_det->weekly_sal ?></span></td>
                                         </tr>
                                     <?php }?>
                                     <?php if($sal_type==3){?>
