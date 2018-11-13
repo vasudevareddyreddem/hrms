@@ -71,7 +71,7 @@ class Work extends In_frontend {
 	  
 			$work_id=base64_decode($this->uri->segment(3));
 			$data['ticket_details']=$this->Work_model->get_ticket_details($work_id);
-			echo '<pre>';print_r($data);exit;
+			//echo '<pre>';print_r($data);exit;
 			$this->load->view('work/ticket_rise',$data);
 			$this->load->view('html/footer');  
         }else{
