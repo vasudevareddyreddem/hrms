@@ -69,11 +69,49 @@ class Work extends In_frontend {
 	  if($this->session->userdata('hrmsdetails'))
 		{	
 	  
+			$admindetails=$this->session->userdata('hrmsdetails');
 			$work_id=base64_decode($this->uri->segment(3));
 			$data['ticket_details']=$this->Work_model->get_ticket_details($work_id);
+			$data['ticket_rise_details']=$this->Work_model->get_ticket_rise_details_list($work_id);
 			//echo '<pre>';print_r($data);exit;
 			$this->load->view('work/ticket_rise',$data);
 			$this->load->view('html/footer');  
+        }else{
+			$this->session->set_flashdata('error',"Please login and continue");
+			redirect('');  
+	   }
+	}
+	public function ticketpost(){
+	   
+	  if($this->session->userdata('hrmsdetails'))
+		{	
+			$admindetails=$this->session->userdata('hrmsdetails');
+			$post=$this->input->post();
+			$add=array(
+			'w_d_id'=>isset($post['w_d_id'])?$post['w_d_id']:'',
+			'message'=>isset($post['message'])?$post['message']:'',
+			'created_at'=>date('Y-m-d H:i:s'),
+			'updated_at'=>date('Y-m-d H:i:s'),
+			'created_by'=>$admindetails['e_id']
+			);
+			$save=$this->Work_model->save_work_ticket_rise($add);
+			if(count($save)>0){
+				$ticket_details=$this->Work_model->get_ticket_details($post['w_d_id']);
+				/*notification*/
+					$notify=array(
+						'sender_id'=>isset($admindetails['e_id'])?$admindetails['e_id']:'',
+						'reciver_id'=>isset($ticket_details['created_by'])?$ticket_details['created_by']:'',
+						'message'=>isset($post['message'])?$post['message']:'',
+						'created_by'=>$admindetails['e_id']
+						);
+					$this->Notification_model->save_notification($notify);
+				/*notification*/
+				$this->session->set_flashdata('success',"Work ticket successfully updated");
+				redirect('work/ticketrise/'.base64_encode($post['w_d_id']));
+			}else{
+				$this->session->set_flashdata('error',"technical problem will occurred. Please try again.");
+				redirect('work/ticketrise/'.base64_encode($post['w_d_id']));
+			}
         }else{
 			$this->session->set_flashdata('error',"Please login and continue");
 			redirect('');  

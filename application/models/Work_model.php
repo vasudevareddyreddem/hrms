@@ -32,7 +32,16 @@ class Work_model extends CI_Model
 		$this->db->where('assign_work.w_d_id',$w_d_id);
 	    return $this->db->get()->row_array();
 	}
-
+	public  function save_work_ticket_rise($data){
+		$this->db->insert('work_tickest_list',$data);
+		return $this->db->insert_id();
+	}
+	public  function get_ticket_rise_details_list($w_d_id){
+		$this->db->select('*')->from('work_tickest_list');
+		$this->db->where('work_tickest_list.w_d_id',$w_d_id);
+	    return $this->db->get()->result_array();	
+	}
+	
 
 	
  		

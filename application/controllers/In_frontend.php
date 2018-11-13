@@ -16,6 +16,7 @@ class In_frontend extends CI_Controller {
 		$this->load->helper('security');
 		$this->load->model('User_model');
 		$this->load->model('Employees_model');
+		$this->load->model('Notification_model');
 		
 	
 			if($this->session->userdata('hrmsdetails'))

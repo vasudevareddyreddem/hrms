@@ -9,6 +9,7 @@
     <div class="content container-fluid">
         <div class="row">
             <div class="col-xs-4">
+                <a href="work_list.php" class="btn btn-success pull-left m-r-10">Back</a>
                 <h4 class="page-title">Work Details</h4>
             </div>
         </div>
@@ -18,37 +19,40 @@
                     <tbody>
                         <tr>
                             <td class="text-right"><strong>Employee Id :</strong></td>
-                            <td class="text-left">Bayapu</td>
+                            <td class="text-left"><?php echo isset($ticket_details['e_emplouee_id'])?$ticket_details['e_emplouee_id']:''; ?></td>
+                        </tr>
+						<tr>
+                            <td class="text-right"><strong>Employee Name :</strong></td>
+                            <td class="text-left"><?php echo isset($ticket_details['e_login_name'])?$ticket_details['e_login_name']:''; ?></td>
                         </tr>
                         <tr>
                             <td class="text-right"><strong>Mobile Number :</strong></td>
-                            <td class="text-left">8500050944</td>
+                            <td class="text-left"><?php echo isset($ticket_details['mobile_number'])?$ticket_details['mobile_number']:''; ?></td>
                         </tr>
                         <tr>
                             <td class="text-right"><strong>Allocated Area :</strong></td>
-                            <td class="text-left">kurnool</td>
+                            <td class="text-left"><?php echo isset($ticket_details['area'])?$ticket_details['area']:''; ?></td>
                         </tr>
                         <tr>
                             <td class="text-right"><strong>Date :</strong></td>
-                            <td class="text-left">2018-11-13</td>
+                            <td class="text-left"><?php echo isset($ticket_details['date'])?$ticket_details['date']:''; ?></td>
                         </tr>
                         <tr>
                             <td class="text-right"><strong>Status :</strong></td>
-                            <td class="text-left">Active</td>
+                            <td class="text-left"><?php if($ticket_details['work_status']==0){ echo "rejected";}else if($ticket_details['work_status']==1){ echo "Inprgoress"; }else if($ticket_details['work_status']==2){ echo "completed"; }else if($ticket_details['work_status']==3){ echo "Pending"; }else{ echo "Initiate";} ?></td>
+								
                         </tr>
-                        <tr>
-                            <td class="text-right"><strong>Work Status :</strong></td>
-                            <td class="text-left">Initiate</td>
-                        </tr>
+                        
                     </tbody>
                 </table>
             </div>
             
             <div class="col-md-6">
-                <form id="defaultForm" method="" action="">
-                    <div class="form-group m-t-10">
-                        <label>Text Area<span class="text-danger">*</span></label>
-                        <textarea class="form-control" id="" name="" placeholder="Enter here.."></textarea>
+                <form id="defaultForm" method="post" action="<?php echo base_url('work/ticketpost'); ?>">
+                    <input  type="hidden" name="w_d_id" id="w_d_id" value="<?php echo isset($ticket_details['w_d_id'])?$ticket_details['w_d_id']:''; ?>">
+					<div class="form-group m-t-10">
+                        <label>Ticket details<span class="text-danger">*</span></label>
+                        <textarea class="form-control" id="message" name="message" placeholder="Enter here.." required></textarea>
                     </div>
                     <div class="m-t-20 text-center">
                         <button type="submit" class="btn btn-primary" name="signup" value="Sign up">Submit</button>
@@ -59,8 +63,13 @@
         </div>
         
         <div class="row bg-white">
+		<h4>Raised Ticket details</h4>
             <div class="col-md-12">
-            <p>The evolution of technology has made the communication process much easier for humans. In the past decade one has to go physically to the hospital to book a doctor appointment, but now through the expeditious expansion in software one can book the doctor’s appointment through mobile app, all you need is a smart phone with an internet connection.</p>
+			<?php if(isset($ticket_rise_details) && count($ticket_rise_details)>0){ ?>
+				<?php foreach($ticket_rise_details as $list){ ?>
+				<p><?php echo isset($list['message'])?$list['message']:''; ?>.</p>
+				<?php } ?>
+			<?php } ?>
             </div>
         </div>
         
@@ -71,26 +80,15 @@
     $(document).ready(function() {
         $('#defaultForm').bootstrapValidator({
             fields: {
-                emp_id: {
+                message: {
                     validators: {
                         notEmpty: {
-                            message: 'This field cannot be empty'
-                        }
-                    }
-                },
-                mobile: {
-                    validators: {
-                        notEmpty: {
-                            message: 'This field cannot be empty'
+                            message: 'Ticket details is required'
                         }
                     }
                 }
             }
         });
 
-        // Validate the form manually
-        $('#validateBtn').click(function() {
-            $('#defaultForm').bootstrapValidator('validate');
-        });
     });
 </script>
