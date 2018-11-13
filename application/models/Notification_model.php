@@ -11,7 +11,9 @@ class Notification_model extends CI_Model
 	}
 	
 	public function get_notifications_leaves($l_id){
-	$this->db->select('leaves.*')->from('leaves');
+	$this->db->select('leaves.*,leave_type.leave_type_name')->from('leaves');
+	$this->db->join('leave_type', 'leave_type.l_t_id = leaves.leave_type', 'left');
+
 	$this->db->where('l_id',$l_id);
 	return $this->db->get()->row_array();
 	}

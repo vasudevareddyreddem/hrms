@@ -28,7 +28,7 @@ class Notifications extends In_frontend {
 					$unread_count=$this->Notification_model->get_notitifation_unread_count($admindetails['e_id']); 
 				}
 
-				$data['names_list']=$details['leave_type'];
+				$data['names_list']=$details['leave_type_name'];
 				$data['time']=$details['created_at'];
 				$data['unread_counts']=$unread_count['cnt'];
 				
