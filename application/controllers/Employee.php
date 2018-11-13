@@ -2415,6 +2415,55 @@ if($this->session->userdata('hrmsdetails'))
    
     	
     }
+	
+	/*employee resignation*/
+	
+	public  function resignation(){
+		if($this->session->userdata('hrmsdetails'))
+		{	
+	      $login_details=$this->session->userdata('hrmsdetails');	
+		  $data['resignation_details']=$this->Employees_model->check_employee_resignation_exist($login_details['e_id']);
+		  $this->load->view('employee/resignation',$data);
+	      $this->load->view('html/footer');   
+       }else{
+		 $this->session->set_flashdata('error',"Please login and continue");
+		 redirect('');  
+	   }
+	}
+	public  function applyresignation(){
+		if($this->session->userdata('hrmsdetails'))
+		{
+		 $login_details=$this->session->userdata('hrmsdetails');			
+	     $post=$this->input->post();
+		 $add=array(
+		  'emp_id'=>$login_details['e_id'],
+		  'content'=>isset($post['content'])?$post['content']:'',
+		  'status'=>1,
+		  'accept_status'=>0,
+		  'created_by'=>$login_details['e_id'],
+		 );
+		 $check=$this->Employees_model->check_employee_resignation_exist($login_details['e_id']);
+		 
+		 
+		 if(count($check)>0){
+			 $save=$this->Employees_model->update_employee_resignation($login_details['e_id'],$check['e_r_id'],$add);
+		 }else{
+			$save=$this->Employees_model->save_employee_resignation($add);
+		 }
+		 if(count($save)>0){
+			 $this->session->set_flashdata('success'," Your resignation sent successfully.");
+			 redirect('employee/resignation');
+		 }else{
+			$this->session->set_flashdata('error',"technical problem will occurred. Please try again.");
+			redirect('employee/resignation'); 
+		 }
+			//echo '<pre>';print_r($post);exit;		 
+       }else{
+		 $this->session->set_flashdata('error',"Please login and continue");
+		 redirect('');  
+	   }
+	}
+	/*employee resignation*/
 
 
 	

@@ -513,6 +513,23 @@ public  function get_employee_details($e_id){
 	$this->db->where('empployee.e_id',$e_id);
 	return $this->db->get()->row_array();
 }
+
+/*employee_resignation*/
+public  function check_employee_resignation_exist($e_id){
+	$this->db->select('*')->from('employee_resignation_list');
+	$this->db->where('employee_resignation_list.emp_id',$e_id);
+	return $this->db->get()->row_array();
+}
+
+public  function update_employee_resignation($emp_id,$e_r_id,$data){
+     $this->db->where('emp_id',$emp_id);
+     $this->db->where('e_r_id',$e_r_id);
+    return $this->db->update("employee_resignation_list",$data);	
+}
+public  function save_employee_resignation($data){
+	$this->db->insert('employee_resignation_list',$data);
+	return $this->db->insert_id();
+}
 	
 
 

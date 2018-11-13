@@ -157,8 +157,8 @@
 
                     </ul>
                 </li>
-				<li class="submenu">
-                    <a href="#"><span>Employee Resignation </span> <span class="menu-arrow"></span></a>
+				<li class="">
+                    <a href="<?php echo base_url('employee/resignation '); ?>"><span>Employee Resignation </span> <span class=""></span></a>
                 </li>
                 <li class="nav-item  ">
                     <a href="<?php echo base_url('dashboard/logout'); ?>" class="nav-link "> <i class="material-icons"></i>
