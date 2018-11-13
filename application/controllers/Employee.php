@@ -1036,6 +1036,21 @@ public function addleave(){
 				}
 	
 }	
+public function leaveslists(){
+	if($this->session->userdata('hrmsdetails'))
+		{	
+         $admindetails=$this->session->userdata('hrmsdetails');	
+		 	
+		 $data['leaves']=$this->Employees_model->get_all_employees_list();
+
+			//echo'<pre>';print_r($data);exit;
+	     $this->load->view('leaves/all_leaves_list',$data);
+	     $this->load->view('html/footer');  
+        }else{
+		 $this->session->set_flashdata('error',"Please login and continue");
+		 redirect('');  
+	   }
+}
 public function leaveslist(){
     if($this->session->userdata('hrmsdetails'))
 		{	
