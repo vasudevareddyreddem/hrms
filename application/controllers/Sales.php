@@ -40,8 +40,6 @@ class Sales extends In_frontend {
 		 //echo'<pre>';print_r($data);exit;
 		 $data['prevoius_date']=$this->Sales_model->get_employee_previous_date_location_details($emp_id,date('Y-m-d', strtotime(' -1 day')));
 		 $data['current_date']=$this->Sales_model->get_employee_current_date_location_details($emp_id,date('Y-m-d'));
-		  //echo'<pre>';print_r($data);exit;
-		 
 	     $this->load->view('sales/track-details',$data);
 	     $this->load->view('html/footer');   
 		}else{
