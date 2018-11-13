@@ -4,7 +4,7 @@
                 <div class="content container-fluid bg-white">
 					<div class="row">
 						<div class="col-xs-8">
-							<h4 class="page-title">All Employees Leave List</h4>
+							<h4 class="page-title"><?php echo isset($title)?$title:''; ?></h4>
 						</div>
 					
 					</div>

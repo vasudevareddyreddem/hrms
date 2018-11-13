@@ -25,7 +25,7 @@ class Leaves_model extends CI_Model
 		$this->db->join('leave_type', 'leave_type.l_t_id = leaves.leave_type', 'left');
 		$this->db->join('role', 'role.r_id = empployee.role_id', 'left');
 		$this->db->order_by('leaves.l_id','desc');
-		$this->db->where('month("created_at")',$month);
+		$this->db->where('month(leaves.created_at)',$month);
 		return $this->db->get()->result_array();
 	}
 	
