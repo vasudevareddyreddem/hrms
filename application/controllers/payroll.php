@@ -112,7 +112,7 @@ $data['year']=$this->payroll_model->get_year();
 
 // daily-- end
 
-        $res=$this->payroll_model->emp_payslip_det($month,$year);
+        $res=$this->payroll_model->emp_payslip_det($month,$year,$eid);
         if(count($res)>0){
 
           $data['pslip_det']=$res;

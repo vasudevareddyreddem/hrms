@@ -240,7 +240,7 @@
                                 <?php echo $this->numbertowords->convert_number($pslip_det->e_net_salary).'Rupees'; ?>
                             </p>
                         </div>
-                        <div class="col-md-12">
+                        <!-- <div class="col-md-12">
                             <?php if($sal_type==1){?>
                             <p>
                                 <?php echo'payleavedays'.$pslip_det->payleave_days  ?>
@@ -252,7 +252,7 @@
                                 <?php echo'medicalleavedays'.$pslip_det->medleave_days  ?>
                             </p>
                             <?php }?>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
             </div>
