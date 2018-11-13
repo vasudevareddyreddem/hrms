@@ -33,7 +33,7 @@
 							
 								
 								<div class="m-t-20 text-center">
-								<button type="submit" class="btn btn-primary" name="signup" value="Sign up">Edit Area</button>
+								<button type="submit" class="btn btn-primary" name="signup" value="Sign up">Update Area</button>
 									
 								</div>
 							</form>

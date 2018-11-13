@@ -1565,7 +1565,7 @@ public function addarea(){
 					$this->session->set_flashdata('success',"Area details successfully added");	
 					redirect('employee/arealist');	
 					}else{
-						$this->session->set_flashdata('error',"techechal probelem occur ");
+						$this->session->set_flashdata('error',"technical problem occurred. please try again once");
 						redirect('employee/arealist');
 					}
 				   }else{
@@ -1606,14 +1606,12 @@ public function editareapost(){
 		{	
          $admindetails=$this->session->userdata('hrmsdetails');
 		 $post=$this->input->post();
-		 //echo'<pre>';print_r($post);exit;
 		
 		 $area_details=$this->Employees_model->get_area_details_list($post['a_id']);
-					//echo '<pre>';print_r($data['allocaterrom_details']);exit;	
 		 if($area_details['area']!=$post['area']){
 						$check=$this->Employees_model->check_area_data_exsists($post['area']);
 						if(count($check)>0){
-						$this->session->set_flashdata('error'," Area alreay exit");
+						$this->session->set_flashdata('error',"Area Name already exist. Please use another area name");
 						redirect('employee/arealist');
 						}	
 					}	
@@ -1632,7 +1630,7 @@ public function editareapost(){
 					$this->session->set_flashdata('success',"Area details successfully updated");	
 					redirect('employee/arealist');	
 					  }else{
-						$this->session->set_flashdata('error',"techechal probelem occur ");
+						$this->session->set_flashdata('error',"technical problem occurred. please try again once");
 						redirect('employee/arealist');
 					  }
 				   }else{
@@ -1740,7 +1738,7 @@ public function addsubdepartment(){
 		$check=$this->Employees_model->check_subdepartment_data_exsists($post['department'],$post['sub_department']);
 						//echo '<pre>';print_r($check);exit;
 						if(count($check)>0){
-							$this->session->set_flashdata('error'," subdepartment  alreay exit");
+							$this->session->set_flashdata('error',"Sub department already exist. Please use another sub department");
 							redirect('employee/subdepartmentlist');
 						}
 		 $save_data=array(
@@ -2016,9 +2014,10 @@ public function assignwork(){
 		 $post=$this->input->post();	
 		 //echo'<pre>';print_r($post);exit;
 		 $save_data=array(
-				'work_emplouee_id'=>isset($post['work_emplouee_id'])?$post['work_emplouee_id']:'',
+				'work_employee_id'=>isset($post['work_emplouee_id'])?$post['work_emplouee_id']:'',
 				'allocated_area'=>isset($post['allocated_area'])?$post['allocated_area']:'',
 				'mobile_number'=>isset($post['mobile_number'])?$post['mobile_number']:'',
+				'date'=>isset($post['date'])?$post['date']:'',
 				'work'=>isset($post['work'])?$post['work']:'',
 				'status'=>1,
 				'created_at'=>date('Y-m-d H:i:s'),
@@ -2079,9 +2078,10 @@ public function editassignwork(){
 		 $post=$this->input->post();
 		 //echo'<pre>';print_r($post);exit;	
 		       $update_data=array(
-				'work_emplouee_id'=>isset($post['work_emplouee_id'])?$post['work_emplouee_id']:'',
+				'work_employee_id'=>isset($post['work_emplouee_id'])?$post['work_emplouee_id']:'',
 				'allocated_area'=>isset($post['allocated_area'])?$post['allocated_area']:'',
 				'mobile_number'=>isset($post['mobile_number'])?$post['mobile_number']:'',
+				'date'=>isset($post['date'])?$post['date']:'',
 				'work'=>isset($post['work'])?$post['work']:'',
 				'status'=>1,
 				'created_at'=>date('Y-m-d H:i:s'),

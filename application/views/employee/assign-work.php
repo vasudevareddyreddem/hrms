@@ -21,7 +21,7 @@
 				</select>
 				</div>
 			  </div>
-          </div>
+         	</div>
                 <div class="col-md-6">
                     <div class="form-group">
 				      <label>Allocated Area</label>
@@ -35,13 +35,22 @@
 				  </div>
 			      </div>
                  </div>
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <label>Mobile Number</label>
-                        <input class="form-control" type="text" name="mobile_number" id="mobile_number">
-                    </div>
+				 </div>
+				  <div class="row">
+					<div class="col-md-6">
+						<div class="form-group">
+							<label>Mobile Number</label>
+							<input class="form-control" type="text" name="mobile_number" id="mobile_number">
+						</div>
+					</div>
+					<div class="col-md-6">
+						<div class="form-group">
+							<label>Date</label>
+							<input class="form-control" type="text" name="date" id="date" placeholder="YYYY-MM-DD">
+						</div>
+					</div>
                 </div>
-              
+               <div class="row">
                 <div class="col-md-12">
                     <div class="form-group">
                         <label>Work</label>
@@ -84,6 +93,18 @@ $(document).ready(function() {
                         }
                     }
                 },
+			date: {
+                    validators: {
+					notEmpty: {
+						message: 'Date is required'
+					},
+					date: {
+                        format: 'YYYY-MM-DD',
+                        message: 'The value is not a valid date'
+                    }
+				
+					}
+               },
 			
 			mobile_number: {
                    validators: {
@@ -113,14 +134,6 @@ $(document).ready(function() {
 			
 			
         }
-    });
-    // Validate the form manually
-    $('#validateBtn').click(function() {
-        $('#defaultForm').bootstrapValidator('validate');
-    });
-
-    $('#resetBtn').click(function() {
-        $('#defaultForm').data('bootstrapValidator').resetForm(true);
     });
 	
 });

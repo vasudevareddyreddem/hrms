@@ -19,7 +19,9 @@
                                     <th>Mobile</th>
                                     <th>Work</th>
                                     <th>Alloted Area</th>
+                                    <th>Date</th>
 									<th>Status</th>
+									<th>Work Status</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
@@ -30,7 +32,9 @@
                                     <td><?php echo $list['mobile_number']; ?></td>
                                     <td><?php echo $list['work']; ?></td>
                                     <td><?php echo $list['area']; ?></td>
+                                    <td><?php echo $list['date']; ?></td>
 									<td><?php if($list['status']==1){ echo "Active";}else{ echo "Deactive"; } ?></td>
+									<td><?php if($list['work_status']==0){ echo "Initiate";}else if($list['work_status']==1){ echo "Inprgoress"; }else if($list['work_status']==2){ echo "completed"; }else if($list['work_status']==3){ echo "Pending"; } ?></td>
                                     <td>
                                      
                                     <a href="<?php echo base_url('employee/editwork/'.base64_encode($list['w_d_id'])); ?>"  data-toggle="tooltip" title="Edit"><i class="fa fa-pencil btn btn-success"></i></a>

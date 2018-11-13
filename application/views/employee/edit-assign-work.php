@@ -18,7 +18,7 @@
 										<?php if(isset($employee_id) && count($employee_id)>0){ ?>
 											<?php foreach($employee_id as $list){ ?>
 											
-													<?php if($edit_work['work_emplouee_id']==$list['e_id']){ ?>
+													<?php if($edit_work['work_employee_id']==$list['e_id']){ ?>
 															<option selected value="<?php echo $list['e_id']; ?>"><?php echo $list['e_emplouee_id']; ?></option>
 													<?php }else{ ?>
 															<option value="<?php echo $list['e_id']; ?>"><?php echo $list['e_emplouee_id']; ?></option>
@@ -51,26 +51,26 @@
 					<?php } ?>
 					</select>
 
-											<?php foreach($area_list as $list){ ?>
-											
-													<?php if($edit_work['allocated_area']==$list['a_id']){ ?>
-															<option selected value="<?php echo $list['a_id']; ?>"><?php echo $list['area']; ?></option>
-													<?php }else{ ?>
-															<option value="<?php echo $list['a_id']; ?>"><?php echo $list['area']; ?></option>
-													<?php } ?>
-											<?php } ?>
-										<?php } ?>
 
 				  </div>
 			      </div>
                  </div>
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <label>Mobile Number</label>
-                        <input class="form-control" type="text" name="mobile_number" id="mobile_number" value="<?php echo isset($edit_work['mobile_number'])?$edit_work['mobile_number']:''; ?>">
-                    </div>
+				 </div>
+				 <div class="row">
+						<div class="col-md-6">
+							<div class="form-group">
+								<label>Mobile Number</label>
+								<input class="form-control" type="text" name="mobile_number" id="mobile_number" value="<?php echo isset($edit_work['mobile_number'])?$edit_work['mobile_number']:''; ?>">
+							</div>
+						</div>
+						<div class="col-md-6">
+							<div class="form-group">
+								<label>Date</label>
+								<input class="form-control" type="text" name="date" id="date" placeholder="YYYY-MM-DD" value="<?php echo isset($edit_work['date'])?$edit_work['date']:''; ?>">
+							</div>
+						</div>
                 </div>
-              
+                <div class="row">
                 <div class="col-md-12">
                     <div class="form-group">
                         <label>Work</label>

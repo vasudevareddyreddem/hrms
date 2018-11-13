@@ -358,6 +358,7 @@ $this->db->select('*')->from('department');
 	public function check_area_data_exsists($area){
 	$this->db->select('*')->from('area');
 	$this->db->where('area',$area);
+	$this->db->where('status !=',2);
 	return $this->db->get()->row_array();
 	}
 	public function update_area_details($a_id,$data){
@@ -373,6 +374,8 @@ $this->db->select('*')->from('department');
 	public function get_employees_ids_details(){
 	$this->db->select('empployee.e_id,empployee.e_emplouee_id')->from('empployee');
 	$this->db->where('empployee.status',1);
+	$this->db->where('empployee.role_id !=',1);
+	$this->db->where('empployee.role_id !=',2);
 	return $this->db->get()->result_array();
 	}
 	public function get_area_list_data(){
@@ -386,7 +389,7 @@ $this->db->select('*')->from('department');
 	}
 	public function assign_work_list(){
 	$this->db->select('assign_work.*,empployee.e_emplouee_id,area.area')->from('assign_work');
-	$this->db->join('empployee', 'empployee.e_id = assign_work.work_emplouee_id', 'left');
+	$this->db->join('empployee', 'empployee.e_id = assign_work.work_employee_id', 'left');
 	$this->db->join('area', 'area.a_id = assign_work.allocated_area', 'left');
 	$this->db->where('assign_work.status !=', 2);
 	return $this->db->get()->result_array();	
