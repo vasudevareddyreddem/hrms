@@ -23,7 +23,7 @@ class Export_model extends CI_Model
 		 $this->db->join('area', 'area.a_id = assign_work.allocated_area ', 'left');
 		 $this->db->join('role', 'role.r_id = empployee.role_id ', 'left');
 		 $this->db->join('work_status', 'work_status.s_id = assign_work.work_status ', 'left');
-		 $this->db->order_by('empployee.role_id','asc');
+		 $this->db->order_by('assign_work.date','desc');
 
 		 return $this->db->get()->result_array();
 	}
