@@ -65,7 +65,7 @@ class Sales extends In_frontend {
 			
 			
 		    redirect('sales/trackdetails');
-		
+			
 			
 	     }else{
 			$this->session->set_flashdata('error',"Please login and continue");
