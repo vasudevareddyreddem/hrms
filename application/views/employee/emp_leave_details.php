@@ -2,15 +2,19 @@
 <div class="page-wrapper">
                 <div class="content container-fluid bg-white">
 					<div class="row">
+						<div class="col-xs-2"><a href="<?php echo base_url('employee/leaverequests'); ?>" class="btn btn-success btn-block">Back</a></div>
 						<div class="col-xs-8">
 							<h4 class="page-title"> <?php echo isset($emp_details['e_login_name'])?$emp_details['e_login_name']:''; ?> Leaves Details</h4>
 						</div>
-						<div class="col-xs-2"><a href="<?php echo base_url('employee/leaverequests'); ?>" class="btn btn-success btn-block">Back</a></div>
+					
 						
 					</div>
 					
 					
-                </div>
+        
+				<div class="row" style="margin-top:50px;">
+						<div class="col-xs-12">
+						<div class="table-responsive">
 						<table id="" class="table table-bordered table-striped">
 									<thead>
 										<tr>
@@ -52,6 +56,10 @@
 			
 			
 			
+            </div>
+            </div>
+            </div>
+            </div>
             </div>
 
 
