@@ -30,7 +30,7 @@
                         <li><a href="<?php echo base_url('employee/attendance'); ?>">Employee attendance </a></li>
                         <li><a href="<?php echo base_url('employee/shiftmangement');?>">Shift Mangement </a></li>
                         <li><a href="<?php echo base_url('employee/leaverequests');?>"><span>Leave Requests</span> <span class="badge bg-primary pull-right" id="notification_unread_count"><?php if(isset($notification_count['cnt']) && $notification_count['cnt']>0){  echo $notification_count['cnt']; } ?></span></a></li>
-                        <li><a href="<?php echo base_url('employee/leaveslist');?>">Leaves List </a></li>
+                        <li><a href="<?php echo base_url('employee/leaveslists');?>">Leaves List </a></li>
                     </ul>
                 </li>
                 <li class="submenu">
@@ -78,16 +78,6 @@
                         <li><a href="<?php echo base_url('employee/arealist');?>">Area List</a></li>
                     </ul>
                 </li>
-				
-				<!--<li class="submenu">
-                    <a href="#"><span>Leave Type</span> <span class="menu-arrow"></span></a>
-                    <ul class="list-unstyled" style="display: none;">
-                        <li><a href="<?php echo base_url('employee/leavetype');?>">Add Leave Type</a></li>
-                        <li><a href="<?php echo base_url('employee/leavetypelist');?>">Leave Type List</a></li>
-                    </ul>
-                </li>-->
-				
-				
 				
                 <li class="submenu">
                     <a href="#"><span>Work Distribution</span> <span class="menu-arrow"></span></a>
