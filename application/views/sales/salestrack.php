@@ -27,24 +27,24 @@
 										</tr>
 									</thead>
 									<tbody>
-										
+									<?php  foreach($sales_list as $list) {?>
 									
 										<tr>
 											<td>
-												<a href="#" class="avatar">J</a>
-												<h2><a href="#">Jeffrey Warden </a></h2>
+												<a href="#" class="avatar"><?php echo substr($list['e_login_name'],0,1);?></a>
+												<h2><a href="#"><?php echo $list['e_login_name']; ?></a></h2>
 											</td>
-											<td>FT-0006</td>
+											<td><?php echo $list['e_emplouee_id']; ?></td>
 											
-											<td>9876543xxx</td>
-											<td>16 Jun 2013</td>
-											<td>Salesman</td>
-											<td>Kondareddy Circle</td>
+											<td><?php echo $list['mobile_number']; ?></td>
+											<td><?php echo $list['work_date']; ?></td>
+											<td><?php echo $list['role']; ?></td>
+											<td><?php echo $list['area']; ?></td>
 											<td class="text-right">
 												<a href="<?php echo base_url('sales/trackdetails'); ?>" class="btn btn-warning btn-sm" ><i class="fa fa-thumb-tack m-r-5"></i> Track</a>
 											</td>
 										</tr>
-										
+									<?php }?>
 									</tbody>
 								</table>
 							</div>
