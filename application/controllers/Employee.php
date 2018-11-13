@@ -1972,26 +1972,7 @@ $data['ustatus']=1;
    }
 }	
 
-public function salemantrack(){
-	   
-	  if($this->session->userdata('hrmsdetails'))
-		{	
-         $admindetails=$this->session->userdata('hrmsdetails');	
-	     $this->load->view('employee/salestrack');
-	     $this->load->view('html/footer');   
-   }
 
-  }
-public function trackdetails(){
-	   
-	  if($this->session->userdata('hrmsdetails'))
-		{	
-         $admindetails=$this->session->userdata('hrmsdetails');	
-	     $this->load->view('employee/track-details');
-	     $this->load->view('html/footer');   
-   }
-
-  }
   
 public function assignwork(){
 	   
