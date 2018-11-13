@@ -52,28 +52,26 @@ class Sales extends In_frontend {
 
   }
 		
-	public function date_wise_area(){
-if($this->session->userdata('hrmsdetails'))
-		{
+    public function form(){
+	 if($this->session->userdata('hrmsdetails'))
+		{	
          $admindetails=$this->session->userdata('hrmsdetails');	
-					$post=$this->input->post();
-					$area_location_list=$this->Sales_model->area_location_wise_list($post['work_date']);
-					//echo'<pre>';print_r($area_location_list);exit;
-					if(count($area_location_list)>0){
-						$data['msg']=1;
-						$data['list']=$area_location_list;
-						echo json_encode($data);exit;	
-					}else{
-						$data['msg']=0;
-						echo json_encode($data);exit;
-					}
-				
-		}else{
-			$this->session->set_flashdata('error',"you don't have permission to access");
-			redirect('');
-		}
-	}
+	    $post=$this->input->post();
+		 
+	      $save_data=array(
+		  'date'=>isset($post['date'])?$post['date']:''
+	       );
+	        //echo'<pre>';print_r($save_data);exit;
+			
+			
+		    redirect('sales/trackdetails');
 		
+			
+	     }else{
+			$this->session->set_flashdata('error',"Please login and continue");
+			redirect('');  
+	   }
+     }
 
 	
 	
