@@ -102,6 +102,7 @@ if($sal_type=='daily')
    
    $day=$this->input->post('day');
    $date=date('Y-m-d');
+   //echo $date;exit;
 
 
    $prev_date = date('Y-m-d', strtotime($date .' -1 day'));
@@ -109,11 +110,21 @@ if($sal_type=='daily')
    
     if($day==0){
       $present=$prev_date ;
-
+        echo'dkd' .$present;exit; 
       
     }
     else{
       $present=$date;
+       echo $present;exit; 
+
+    }
+    // check login in that date
+    $checkdate=$this->payroll_model->checkdate($eid,$present);
+    if(!(count($checkdate)>0)){
+      $this->session->set_flashdata('error',"you have no logings  this day ");
+      redirect('employee/salarylist');
+
+
 
     }
     $payslipdata=$this->payroll_model->emp_payslip_daily($eid,$present);
@@ -164,6 +175,7 @@ $data['sal_type']=3;
 // start of saltype weekly
 
 elseif ($sal_type='weekly') {
+ // echo 'weekly';exit;
   $date=date('Y-m-d');
   if($this->input->post('0')){
 $prev_date = date('Y-m-d', strtotime($date .' -7 day'));
@@ -177,6 +189,17 @@ $str_date=date('Y-m-d', strtotime($date .' -7 day'));
 $end_date=$date;
 
 }
+// checking this week login or not
+$checkdate=$this->payroll_model->checkweeklogin($eid,$str_date,$end_date);
+
+
+if(!(count($checkdate)>0)){
+  //echo count($checkdate); exit;
+  $this->session->set_flashdata('error',"you have no logings  this week ");
+      redirect('employee/salarylist');
+
+}
+
 $payslipdata=$this->payroll_model->emp_payslip_daily($eid,$prev_date);
     //print_r($data); exit;
     $file_name =time().'payslip.pdf';  
@@ -192,7 +215,7 @@ $payslipdata=$this->payroll_model->emp_payslip_daily($eid,$prev_date);
       $saldata=$this->payroll_model->emp_sal_det($eid);
           $file_name =time().'payslip.pdf';  
           //leaves calculation in week
-          
+
      $payslip_det=array(
   'e_id'=> $saldata->e_id,
 'e_basic' => $saldata->e_basic,
@@ -211,19 +234,19 @@ $payslipdata=$this->payroll_model->emp_payslip_daily($eid,$prev_date);
 'e_d_others'=> $saldata->e_d_others,
 'e_net_salary' => $saldata->e_net_salary,
 'e_gross_salary'=>$saldata->e_gross_salary,
-'daily_date'=>$present,
+'daily_date'=>$str_date,
 'payslip_pdf'=>$file_name,
 'created_by'=>$userid
 
 );
      $this->payroll_model->save_payslip($payslip_det);
-$data['pslip_det']=$this->payroll_model->emp_payslip_daily($eid,$present);
-$data['sal_type']=3;
+$data['pslip_det']=$this->payroll_model->emp_payslip_daily($eid,$str_date);
+$data['sal_type']=2;
 
  //echo' <pre> ' ;print_r($data); exit;
 }// end of else
 
-
+echo' <pre> ' ;print_r($data); exit;
 
   # code...
 }
@@ -265,7 +288,7 @@ $data['row'] = $query->row();
 $data['salary_type']=$this->payroll_model->salary_type();
 
 
-//echo '<pre>';print_r($row); exit;
+//
  //echo json_encode($row);
 
 $this->load->view('employee/edit-salary',$data);

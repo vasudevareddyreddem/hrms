@@ -86,10 +86,10 @@
 							<div class="form-group form-focus">
 								<label class="control-label"></label>
 								<!-- <div class="cal-icon"> -->
-									<select class="select" name='month'> 
+									<select class="select" name='week'> 
 											<option>Select Week</option>
-											<option value='0'>Present Week</option>
-											<option value='1'>Last Week</option>
+											<option value='1'>Present Week</option>
+											<option value='0'>Last Week</option>
 											</select>
 						<!-- 	</div> -->
 						</div>

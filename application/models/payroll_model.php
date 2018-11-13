@@ -177,7 +177,7 @@ return  ($this->db->affected_rows() == 1) ? true: false;
   public function checkdate($date,$eid)
   {
 
-    $this->db->select('*')->from('employee_salary_payslips')->where('e_id',$eid)->where('daily_date', $date);
+    $this->db->select('l_date')->from('login_details')->where('e_id',$eid)->where('l_date', $date)->group_by('l_date');
 $query=$this->db->get();
     return $query->row();
   }
@@ -189,7 +189,7 @@ $query=$this->db->get();
 $query=$this->db->get();
 return $query->row();
 }
-// get 
+// 
 public function emp_payslip_daily($eid,$present)
 {
 
@@ -202,6 +202,21 @@ public function emp_payslip_daily($eid,$present)
  $query=$this->db->get();
 
  return $query->row();
+
+
+}
+// checking loging in a week
+public function checkweeklogin($eid,$str_date,$end_date){
+  $this->db->select('l_date');
+  $this->db->from('login_details');
+   $this->db->where('e_id',$eid);
+   $this->db->where('l_date >=', $str_date);
+   $this->db->where('l_date <=', $end_date);
+    $this->db->group_by('l_date');
+$query=$this->db->get();
+    return $query->row();
+
+
 
 
 }
