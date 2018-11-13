@@ -18,8 +18,8 @@ class Sales extends In_frontend {
 	   
 	  if($this->session->userdata('hrmsdetails'))
 		{	
-	  $data['sales_list']=$this->Sales_model->get_sales_details_list();
-	 //echo'<pre>';print_r($data);exit;
+		$data['sales_list']=$this->Sales_model->get_sales_details_list();
+			//echo'<pre>';print_r($data);exit;
 	  
 			$this->load->view('sales/salestrack',$data);
 			$this->load->view('html/footer');  
@@ -35,10 +35,12 @@ class Sales extends In_frontend {
 		{	
          $admindetails=$this->session->userdata('hrmsdetails');	
 		 
-		 $data['sale_man_details']=$this->Sales_model->get_sales_man_details();
+		 $emp_id=base64_decode($this->uri->segment(3));
+		 $data['sale_man_details']=$this->Sales_model->get_sales_man_details($emp_id);
 		 //echo'<pre>';print_r($data);exit;
-		 $data['area_location_list']=$this->Sales_model->get_sales_detais_date_wise();
-		// echo'<pre>';print_r($data);exit;
+		 $data['prevoius_date']=$this->Sales_model->get_employee_previous_date_location_details($emp_id,date('Y-m-d', strtotime(' -1 day')));
+		 $data['current_date']=$this->Sales_model->get_employee_current_date_location_details($emp_id,date('Y-m-d'));
+		  //echo'<pre>';print_r($data);exit;
 		 
 	     $this->load->view('sales/track-details',$data);
 	     $this->load->view('html/footer');   
