@@ -147,13 +147,14 @@ return 'yes';
 return  ($this->db->affected_rows() == 1) ? true: false;
   
   }
-  public function emp_payslip_det($month,$year){
+  public function emp_payslip_det($month,$year,$eid){
     
    $this->db->select('*');
    $this->db->from('empployee');
    $this->db->join('employee_salary_payslips', 'employee_salary_payslips.e_id=empployee.e_id');
    $this->db->where('e_salary_month',$month);
    $this->db->where('e_salary_year',$year);
+     $this->db->where('empployee.e_id',$eid);
  $query=$this->db->get();
 
  return $query->row();
@@ -173,11 +174,12 @@ return  ($this->db->affected_rows() == 1) ? true: false;
 
   }
   // check the date for daily wage in  payslips tab
-  public function checkdate($date)
+  public function checkdate($date,$eid)
   {
 
-    $this->db->select('*')->from('employee_salary_payslips');
-    return $this->db->get();
+    $this->db->select('*')->from('employee_salary_payslips')->where('e_id',$eid)->where('daily_date', $date);
+$query=$this->db->get();
+    return $query->row();
   }
   // get empployee  salary type
 
@@ -187,6 +189,23 @@ return  ($this->db->affected_rows() == 1) ? true: false;
 $query=$this->db->get();
 return $query->row();
 }
+// get 
+public function emp_payslip_daily($eid,$present)
+{
+
+  $this->db->select('*');
+   $this->db->from('empployee');
+   $this->db->join('employee_salary_payslips', 'employee_salary_payslips.e_id=empployee.e_id');
+   $this->db->join('role', 'role.r_id=empployee.role_id');
+   $this->db->where('daily_date',$present);
+     $this->db->where('empployee.e_id',$eid);
+ $query=$this->db->get();
+
+ return $query->row();
+
+
+}
+
 
 
 }

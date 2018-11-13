@@ -16,8 +16,14 @@
 					<div class="row">
 						<div class="col-md-12">
 							<div class="card-box">
-								<h4 class="payslip-title">Payslip for the month of 
-									<?php echo $pslip_det->e_salary_month.' '.$pslip_det->e_salary_year?></h4>
+								<h4 class="payslip-title">
+									<?php if($sal_type==1){?>
+                                      Payslip for the month of 
+
+							<?php echo $pslip_det->e_salary_month.' '.$pslip_det->e_salary_year;}?><?php if($sal_type==2){?>payslip for the week from <?php echo $startdate;?> to <?php echo $enddate;}?>
+								<?php if($sal_type==3){?> payslip for the day of <?php echo $pslip_det->daily_date;}?>
+
+							</h4>
 								<div class="row">
 									<div class="col-md-6 m-b-20">
 										<img src="assets/img/logo2.png" class="m-b-20" alt="" style="width: 100px;">
@@ -29,9 +35,17 @@
 									</div>
 									<div class="col-md-6 m-b-20">
 										<div class="invoice-details">
-											<h3 class="text-uppercase">Payslip #49029</h3>
+											<h3 class="text-uppercase">Payslip <?php echo $pslip_det->e_s_p_id;?></h3>
 											<ul class="list-unstyled">
+											<?php if($sal_type==1){?>
 												<li>Salary Month: <span><?php echo $pslip_det->e_salary_month.','.$pslip_det->e_salary_year?></h4></span></li>
+											<?php }?>
+											<?php if($sal_type==2){?>
+												<li>Salary Week: <span><?php echo 'From:'.$startdate.'To'.$enddate?></h4></span></li>
+											<?php }?>
+											<?php if($sal_type==3){?>
+												<li>Salary Day: <span><?php echo $pslip_det->daily_date ;?></h4></span></li>
+											<?php }?>
 											</ul>
 										</div>
 									</div>
@@ -40,7 +54,7 @@
 									<div class="col-lg-12 m-b-20">
 										<ul class="list-unstyled">
 											<li><h5 class="m-b-0"><strong><?php echo $pslip_det->e_f_name ?></strong></h5></li>
-											<li><span><?php echo $pslip_det->e_designation ?></span></li>
+											<li><span><?php echo $pslip_det->role ?></span></li>
 											<li>Employee ID: <?php echo $pslip_det->e_emplouee_id ?></li>
 											<li>Joining Date: <?php $day=explode("-",$pslip_det->e_join_date);
 											echo $day[2]?$day[2]:'';
@@ -125,9 +139,11 @@ echo $date;  ?></li>
 										<p><strong>Net Salary: <?php echo $pslip_det->e_net_salary ?></strong> <?php echo $this->numbertowords->convert_number($pslip_det->e_net_salary).'Rupees'; ?></p>
 									</div>
 									<div class="col-md-12">
+										<?php if($sal_type==1){?>
 										<p><?php echo'payleavedays'.$pslip_det->payleave_days  ?></p>
 										<p><?php echo'generalleavedays'.$pslip_det->genleave_days  ?></p>
 										<p><?php echo'medicalleavedays'.$pslip_det->medleave_days  ?></p>
+									<?php }?>
 									</div>
 								</div>
 							</div>
