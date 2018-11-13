@@ -72,64 +72,64 @@
 						<div class="col-md-12">
 							<div class="card-box">
 								
-								
+							
 								<div class="col-md-6">
-							<?php foreach($area_location_list as $list){?>
+								<?php foreach($current_date as $list){?>
+									<div class="card-title"><?php echo $list['work_date'];?></div>
+									
+									<div class="experience-box">
+										<ul class="experience-list">
+											
+											<li>
+											
+												<div class="experience-user">
+													<div class="before-circle"></div>
+												</div>
+												<div class="experience-content">
+													<div class="timeline-content">
+														<a href="#/" class="name"><?php  echo $list['time'];?></a>
+														<div><?php  echo $list['area_location'];?></div>
+													</div>
+												</div>
+											</li>	
+											
+											
+											
+											
+											
+										</ul>
+									</div>
+									<?php }?>
+											
+								</div>
+								
+							
+								<div class="col-md-6">
+								<?php foreach($prevoius_date as $list){?>
 									<h3 class="card-title"><?php echo $list['work_date'];?></h3>
 									<div class="experience-box">
 										<ul class="experience-list">
 										
+											
 											<li>
-												
 												<div class="experience-user">
 													<div class="before-circle"></div>
 												</div>
 												<div class="experience-content">
 													<div class="timeline-content">
-														<a href="#/" class="name"><?php echo $list['time'];?></a>
-														<div><?php echo $list['area_location'];?></div>
+														<a href="#/" class="name"><?php echo $list['time']; ?></a>
+														<div><?php echo $list['area_location']; ?></div>
 													</div>
 												</div>
-												</li>
+											</li>	
 											
-											
-											
-											
-										</ul>
 										
-									</div>
-									<?php }?>
-								</div>
-								
-									
-								
-								
-								<div class="col-md-6">
-								
-									<?php foreach($area_location_list as $list){?>
-									<h3 class="card-title"><?php echo  ($list['work_date']);?></h3>
-									<div class="experience-box">
-										<ul class="experience-list">
-											
-											
-											<li>
-											
-												<div class="experience-user">
-													<div class="before-circle"></div>
-												</div>
-												<div class="experience-content">
-													<div class="timeline-content">
-														<a href="#/" class="name"><?php echo $list['time'];?></a>
-														<div><?php echo $list['area_location'];?></div>
-													</div>
-												</div>
-											
-											</li>
 											
 										</ul>
 									</div>
 									
 									<?php }?>
+									
 								</div>
 								
 								<div class="clearfix">&nbsp;</div>
@@ -137,6 +137,12 @@
 							
 						</div>
 					</div>
+					
+					
+					
+					
+					
+					
                 </div>
 				
             </div>
