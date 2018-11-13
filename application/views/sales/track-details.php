@@ -68,14 +68,16 @@
                     <div class="col-md-6 h3">
                         <?php echo $sale_man_details['area'];?>
                     </div>
+					<form id="defaultForm" method="post" class="m-b-20" action="<?php echo base_url('sales/form');?>" enctype="multipart/form-data">
                     <div class="col-md-3">
                         <div class="cal-icon">
-                            <input class="form-control datetimepicker" type="text" onchange="get_date(this.value)" name="work_date" id="work_date">
+                            <input class="form-control datetimepicker" type="text"  name="date" id="date">
                         </div>
                     </div>
                     <div class="col-md-3">
-                        <button type="submit" class="btn btn-primary">Search</button>
+					<button type="submit" class="btn btn-primary" name="signup" value="Sign up">Search</button>
                     </div>
+					</form>
                 </div>
             </div>
         </div>
@@ -167,33 +169,40 @@
 
 </div>
 <script>
-    function get_date(work_date) {
-        if (work_date != '') {
-            jQuery.ajax({
-                url: "<?php echo base_url('sales/date_wise_area');?>",
-                data: {
-                    work_date: work_date,
-                },
-                type: "POST",
-                format: "Json",
-                success: function(data) {
 
-                    if (data.msg = 1) {
-                        var parsedData = JSON.parse(data);
-                        //alert(parsedData.list.length);
-                        $('#area_location').empty();
-                        $('#area_location').append("<option>select</option>");
-                        for (i = 0; i < parsedData.list.length; i++) {
-                            //console.log(parsedData.list);
-                            $('#area_location').append("<option value=" + parsedData.list[i].s_t_id + ">" + parsedData.list[i].area_location + "</option>");
-
-
-
-                        }
+$(document).ready(function() {
+ 
+   $('#defaultForm').bootstrapValidator({
+//       
+        fields: {
+			
+            holiday_date: {
+                validators: {
+					notEmpty: {
+						message: ' Date is required'
+					},
+					holiday_date: {
+                        format: 'DD/MM/YYYY',
+                        message: 'The value is not a valid date'
                     }
-
-                }
-            });
+				
+				}
+            },
+			
+			
         }
-    }
+    });
+    // Validate the form manually
+    $('#validateBtn').click(function() {
+        $('#defaultForm').bootstrapValidator('validate');
+    });
+
+    $('#resetBtn').click(function() {
+        $('#defaultForm').data('bootstrapValidator').resetForm(true);
+    });
+	
+});
+
+
 </script>
+
