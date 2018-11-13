@@ -42,7 +42,20 @@ class Sales_model extends CI_Model
 		 return $this->db->get()->result_array();
 	}
 	 
-    
+    public function get_employee_current_date($emp_id,$date){
+	$this->db->select('sales_track_details.work_date')->from('sales_track_details');
+		$this->db->where('sales_track_details.sales_emp_id',$emp_id);
+		$this->db->where('sales_track_details.work_date',$date);
+		 return $this->db->get()->row_array();
+	}
+	 public function get_employee_previous_date($emp_id,$date){
+	$this->db->select('sales_track_details.work_date')->from('sales_track_details');
+		$this->db->where('sales_track_details.sales_emp_id',$emp_id);
+		$this->db->where('sales_track_details.work_date',$date);
+		 return $this->db->get()->row_array();
+	}
+	
+	
 	
   }
 	

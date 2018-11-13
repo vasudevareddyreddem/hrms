@@ -152,6 +152,7 @@ return  ($this->db->affected_rows() == 1) ? true: false;
    $this->db->select('*');
    $this->db->from('empployee');
    $this->db->join('employee_salary_payslips', 'employee_salary_payslips.e_id=empployee.e_id');
+   $this->db->join('role', 'role.r_id=empployee.role_id');
    $this->db->where('e_salary_month',$month);
    $this->db->where('e_salary_year',$year);
      $this->db->where('empployee.e_id',$eid);
