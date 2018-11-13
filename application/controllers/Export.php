@@ -42,6 +42,32 @@ class Export extends In_frontend {
 			redirect('');  
 	   }
 	}
+	public function employeeschedule(){
+	    if($this->session->userdata('hrmsdetails'))
+		{
+			  
+			  //echo '<pre>';print_r( $usersData);exit;
+			  $filename = 'employee_work_status'.date('d').'.csv'; 
+			   header("Content-Description: File Transfer"); 
+			   header("Content-Disposition: attachment; filename=$filename"); 
+			   header("Content-Type: application/csv; ");
+			   // get data 
+				$usersData=$this->Export_model->get_all_employeeschedule_details();
+			   // file creation 
+			   $file = fopen('php://output', 'w');
+				$header = array("Role","Date","Employee Id","Employee Name","Mobile Number","Area","Work","Work Status"); 
+			   fputcsv($file, $header);
+			   foreach ($usersData as $key=>$line){ 
+				 fputcsv($file,$line); 
+			   }
+			   fclose($file); 
+			   exit; 
+  		
+        }else{
+			$this->session->set_flashdata('error',"Please login and continue");
+			redirect('');  
+	   }
+	}
 	
 	
 		
