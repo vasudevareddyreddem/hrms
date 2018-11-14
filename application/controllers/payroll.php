@@ -139,8 +139,8 @@ $cnt_sun=count($days);// number of sundays
 //echo $cnt;
 $this->load->model('payroll_model');
 $hdays=$this->payroll_model->get_holidays($year,$month);
+$cnt_hol=count($hdays);// number of holidays
 $logdays=$this->payroll_model->get_login_days($year,$month,$eid);
-
 $cnt_log=count($logdays);// number of working days
 if($cnt_log==0){
 
@@ -224,30 +224,64 @@ $cnt_med=$mleaves;
 
 
 
-$sal=$this->payroll_model->emp_sal($eid);
+
 
 $this->load->library('numbertowords');
 $saldata=$this->payroll_model->emp_sal_det($eid);
-$data['sal_det']=$saldata;
-$cnt_pay=count($pay_lv); // no  pay leaves
-$cnt_gen=count($gen_lv); // no general leaves
-$cnt_hol=count($hdays);// number of holidays
-$cnt_log=count($logdays);// number of working days
-// checking user worked or not in that month
 
 $wdays=$last_day-$cnt_sun-$cnt_hol; //total working days
-//$pay_leave_days=$wdays-$cnt_log-$cnt_gen-$cnt_med;
-//$data['payleaves']=$pay_leave_days;
-$sal=$this->payroll_model->emp_sal($eid);
-$day_sal=$sal->e_basic;
+
+//$sal=$this->payroll_model->emp_sal($eid);
+$day_sal=$saldata->e_net_salary/$wdays;
 //$day_sal=$sal/$last_day;
 $leaves_ded=(int)$day_sal*$pleaves;// leave deductions
 //$mon_sal=$sal-((int)$day_sal*$cnt_pay);
-$data['total_ded']=$data['sal_det']->e_gross_salary-$data['sal_det']->e_net_salary+((int)$day_sal*$cnt_pay); // total deductions
-$tot_month_sal=$data['sal_det']->e_net_salary-$leaves_ded;//Take home salary
-$file_name =time().'payslip.pdf';  
+$total_ded=$saldata->e_gross_salary-$saldata->e_net_salary+((int)$day_sal*$cnt_pay); // total deductions
+$tot_month_sal=$saldata->e_net_salary-$leaves_ded;//Take home salary
+$file_name =time().'payslip.pdf'; 
+//salseman salary start
+if($saldata->role_id==3){
+$comm=$this->payroll_model->getbagscommission($eid,$month,$year);
+echo $this->db->last_query();exit;
+$mon_com_amt=0;// commis for orders
+foreach($comm as $row){
+  $numbags=$comm->tbag_cnt;
+  $commbags=$comm->comm_cnt;
+  $commision_amt=$comm->sales_commission;
+  $comm_tot_amt=($commision_amt/$commbags)*$numbags;
+$mon_com_amt=$mon_com_amt+$comm_tot_amt;//total bags commission
+}
+$scomm=$this->payroll_model->getshopscommission($eid,$month,$year);
+//echo $this->db->last_query();exit;
+$shopcomm=0;
+if(count($scomm)>0){
+$shopcomm=$scomm->scomm;//new shops commison
+}
+//echo $shopcomm; exit;
+$paycomm=$this->payroll_model->paymentscommission($eid,$month,$year);
+$advcomm=0;
+$normalcomm=0;
+if(count($paycomm)>0){
+$advcomm=$paycomm->advcomm;//adavnce payment commission
+$normalcomm=$paycomm->comm;//payments commission
+}
+//$other_allow=$saldata->e_others;//other allowances
+$total_sal=$mon_com_amt+$shopcomm+$advcomm+$normalcomm;
+$tot_month_sal=$total_sal+$saldata->e_net_salary-$leaves_ded;
+}
+//echo $tot_month_sal;exit;
+//echo 'jj'.$total_sal.'dd'.$leaves_ded; exit;
+//salseman salary end
+//s//ales executive salary start
+if($saldata->role_id==8){
+ $sal=$this->payroll_model->salessuper_salary($eid,$month,$year);
+  $tot_month_sal=$sal+$saldata->e_net_salary-$leaves_ded;
+}
 
-//$this->session->set_userdata($data);
+
+//sales executive salary end
+
+
 
 $payslip_det=array(
   'e_id'=> $saldata->e_id,
@@ -268,7 +302,7 @@ $payslip_det=array(
 'e_net_salary' => $saldata->e_net_salary,
 'e_gross_salary'=>$saldata->e_gross_salary,
 'e_salary_month'=>$month,
-'e_salary_deduction'=>$data['total_ded'],
+'e_salary_deduction'=>$total_ded,
 'e_salary_year'=>$year,
 'e_leaves_deduction'=>$leaves_ded,
 'payslip_pdf'=>$file_name,

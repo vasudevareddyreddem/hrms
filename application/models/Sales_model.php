@@ -55,6 +55,25 @@ class Sales_model extends CI_Model
 		 return $this->db->get()->row_array();
 	}
 	
+	public function get_sales_man_details_with_date($emp_id,$data){
+	$this->db->select('area.area,sales_track_details.*,empployee.e_id,empployee.e_profile_pic,empployee.e_mobile_personal,empployee.e_email_work,empployee.role_id,empployee.e_emplouee_id,empployee.e_c_adress,empployee.e_c_city,empployee.e_c_district,empployee.e_c_state,empployee.e_c_country,empployee.e_login_name,assign_work.allocated_area')->from('sales_track_details');	
+	$this->db->join('empployee', 'empployee.role_id = sales_track_details.sales_emp_id', 'left');
+	$this->db->join('assign_work', 'assign_work.work_employee_id = sales_track_details.sales_emp_id', 'left');
+	 $this->db->join('area', 'area.a_id = assign_work.allocated_area ', 'left');
+	 $this->db->where('sales_track_details.sales_emp_id',$emp_id);
+	 $this->db->where('sales_track_details.work_date',$data);
+	return $this->db->get()->row_array();	
+	
+   }
+   
+   public  function get_work_location_name($emp_id,$date){
+	  $this->db->select('area.area')->from('sales_track_details');
+	 $this->db->join('assign_work', 'assign_work.w_d_id = sales_track_details.assign_work_id', 'left');
+	$this->db->join('area', 'area.a_id = assign_work.allocated_area ', 'left');
+	$this->db->where('sales_track_details.work_date',$date);
+	$this->db->where('sales_track_details.sales_emp_id',$emp_id);
+	return $this->db->get()->result_array(); 
+   }
 	
 	
   }

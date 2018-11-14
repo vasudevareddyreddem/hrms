@@ -64,21 +64,30 @@
         </div>
         <div class="row">
             <div class="col-md-12">
-                <div>
-                    <div class="col-md-6 h3">
-                        <?php echo $sale_man_details['area'];?>
+			<form action "<?php echo base_url('sales/trackdetails'); ?>" method="post">
+
+                <div class="row">
+                    <div class="col-md-7">
+                        <input  type="hidden" name="sales_emp_id" id="sales_emp_id" value="<?php echo isset($sale_man_details['sales_emp_id'])?$sale_man_details['sales_emp_id']:''; ?>">
                     </div>
-					<form id="defaultForm" method="post" class="m-b-20" action="<?php echo base_url('sales/form');?>" enctype="multipart/form-data">
                     <div class="col-md-3">
                         <div class="cal-icon">
-                            <input class="form-control datetimepicker" type="text"  name="date" id="date">
+                            <input class="form-control datetimepicker" type="text"  name="work_date" id="work_date" required>
                         </div>
                     </div>
-                    <div class="col-md-3">
-					<button type="submit" class="btn btn-primary" name="signup" value="Sign up">Search</button>
+                    <div class="col-md-2">
+                        <button type="submit" class="btn btn-primary">Search</button>
                     </div>
-					</form>
                 </div>
+                <div>
+                    <div class="col-md-6 h3">
+                        <?php echo isset($current_work_location)?$current_work_location:'';?>
+                    </div>
+                    <div class="col-md-6 h3">
+                        <?php echo isset($previous_work_location)?$previous_work_location:'';?>
+                    </div>
+                </div>
+			</form>
             </div>
         </div>
         <div class="row">
@@ -90,7 +99,7 @@
                     <div class="col-md-6">
 
                         <div class="card-title">Today (
-                            <?php echo $current['work_date'] ;?>)</div>
+                            <?php echo isset($today_date)?$today_date:''; ?>)</div>
 
                         <div class="experience-box">
                             <ul class="experience-list">
@@ -125,7 +134,7 @@
                     <div class="col-md-6">
 
                         <h3 class="card-title">Yesterday (
-                            <?php echo $prevoius['work_date'] ;?>)</h3>
+                            <?php echo isset($prevoiu_date)?$prevoiu_date:''; ?>)</h3>
                         <div class="experience-box">
                             <ul class="experience-list">
 
@@ -169,40 +178,33 @@
 
 </div>
 <script>
+    function get_date(work_date) {
+        if (work_date != '') {
+            jQuery.ajax({
+                url: "<?php echo base_url('sales/date_wise_area');?>",
+                data: {
+                    work_date: work_date,
+                },
+                type: "POST",
+                format: "Json",
+                success: function(data) {
 
-$(document).ready(function() {
- 
-   $('#defaultForm').bootstrapValidator({
-//       
-        fields: {
-			
-            date: {
-                validators: {
-					notEmpty: {
-						message: ' Date is required'
-					},
-					date: {
-                        format: 'DD/MM/YYYY',
-                        message: 'The value is not a valid date'
+                    if (data.msg = 1) {
+                        var parsedData = JSON.parse(data);
+                        //alert(parsedData.list.length);
+                        $('#area_location').empty();
+                        $('#area_location').append("<option>select</option>");
+                        for (i = 0; i < parsedData.list.length; i++) {
+                            //console.log(parsedData.list);
+                            $('#area_location').append("<option value=" + parsedData.list[i].s_t_id + ">" + parsedData.list[i].area_location + "</option>");
+
+
+
+                        }
                     }
-				
-				}
-            }
-			
-			
+
+                }
+            });
         }
-    });
-    // Validate the form manually
-    $('#validateBtn').click(function() {
-        $('#defaultForm').bootstrapValidator('validate');
-    });
-
-    $('#resetBtn').click(function() {
-        $('#defaultForm').data('bootstrapValidator').resetForm(true);
-    });
-	
-});
-
-
+    }
 </script>
-

@@ -265,5 +265,92 @@ $query=$this->db->get();
     return $query->result();
 }
 
+public function getbagscommission($eid,$month,$year){
+  $this->db->select('orders.bags_type,bags_type.sales_commision,orders.bags_count tbag_cnt,bags_type.bages_cnt comm_cnt');
+  $this->db->from('orders');
+   $this->db->join('bags_type', 'bags_type.b_id=orders.bags_type');
+   $this->db->where('sales_emp_id',$eid);
+    $this->db->where('year(orders.created_at)',$year);
+     $this->db->where('month(orders.created_at)',$month);
+   $query=$this->db->get();
+    return $query->result();
+
+
+
+
+}
+public function getshopscommission($eid,$month,$year){
+  $this->db->select('sum(comm) scomm');
+  $this->db->from('shops_tab');
+  $this->db->where('year(shop_assign_date)',$year);
+     $this->db->where('month(shop_assign_date)',$month);
+   $this->db->where('salesman_id',$eid);
+   $query=$this->db->get();
+    return $query->row();
+
+}
+public function paymentscommission($eid,$month,$year){
+  $this->db->select('sum(collect_money*1.5/100) comm,sum(adv_money*3/100) advcomm');
+  $this->db->from('salesman_collection_tab');
+  $this->db->where('year(payment_date)',$year);
+     $this->db->where('month(payment_date)',$month);
+   $this->db->where('salesman_id',$eid);
+   $query=$this->db->get();
+    return $query->row();
+
+}
+public function salessuper_salary($eid,$month,$year){
+  $this->db->select('e_id');
+  $this->db->from('empployee');
+   $this->db->where('role_id',$eid);
+   $subquery = $this->db->get_compiled_select();
+
+
+   $this->db->select('orders.bags_type,bags_type.sales_commision,orders.bags_count  tbag_cnt,bags_type.bages_cnt comm_cnt');
+  $this->db->from('orders');
+   $this->db->join('bags_type', 'bags_type.b_id=orders.bags_type');
+   $this->db->where("`sales_emp_id` IN ($subquery)");
+    $this->db->where('year(orders.created_at)',$year);
+     $this->db->where('month(orders.created_at)',$month);
+   $query=$this->db->get();
+   $query=$query->result();
+ $mon_com_amt=0;// commis for orders
+foreach($query as $bag){
+  $numbags=$bag->tbag_cnt;
+  $commbags=$bag->comm_cnt;
+  $commision_amt=$bag->sales_commission;
+  $comm_tot_amt=($commision_amt/$commbags)*$numbags;
+$mon_com_amt=$mon_com_amt+$comm_tot_amt;//total bags commission
+
+}
+ $this->db->select('sum(comm) scomm');
+  $this->db->from('shops_tab');
+  $this->db->where('year(shop_assign_date)',$year);
+     $this->db->where('month(shop_assign_date)',$month);
+   $this->db->where("`salesman_id` IN ($subquery)");
+   $query=$this->db->get();
+  $query=$query->row();
+   $shopcomm=0;
+  if(count($query)>0){
+  $shopcomm=$query->scomm;
+}
+$this->db->select('sum(collect_money*1.5/100) comm,sum(adv_money*3/100) advcomm');
+  $this->db->from('salesman_collection_tab');
+  $this->db->where('year(payment_date)',$year);
+     $this->db->where('month(payment_date)',$month);
+   $this->db->where("`salesman_id` IN ($subquery)");
+   $query=$this->db->get();
+  $query=$query->row();
+   $paycomm=0;
+  if(count($query)>0){
+  $paycomm=$query->comm+$query->advcomm;
+}
+$sup_sal=$mon_com_amt+$paycomm+$shopcomm;
+return $sup_sal;
+
+
+ 
+}
+
 
 }
