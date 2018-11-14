@@ -10,7 +10,7 @@ class User_model extends CI_Model
 		$this->load->database("default");
 	}
 	public function get_roles_wise_details($e_id){
-		$this->db->select('empployee.e_id,empployee.role_id,empployee.e_emplouee_id,role.role')->from('empployee');
+		$this->db->select('empployee.e_id,empployee.role_id,empployee.e_emplouee_id,empployee.e_profile_pic,role.role')->from('empployee');
 		$this->db->join('role', 'role.r_id = empployee.role_id', 'left');
 		$this->db->where('e_id',$e_id);
 		return $this->db->get()->row_array();	

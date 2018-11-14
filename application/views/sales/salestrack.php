@@ -5,6 +5,22 @@
 						<div class="col-xs-4">
 							<h4 class="page-title">Salesmans</h4>
 						</div>
+						<form action="<?php echo base_url('export/salesreport'); ?>" method="post">
+							<div class="col-md-8">
+							  <div class="col-md-4">
+									<select class="form-control" name="type" id="type" required>
+									<option value="">Select</option>
+									<option value="Daily">Daily</option>
+									<option value="Weekly">Weekly</option>
+									<option value="Monthly">Monthly</option>
+									</select>
+								 </div>
+								 <div class="col-md-4">
+										<button type="submit" class="btn btn-primary">Export</button>
+								 </div>
+					
+							</div>
+						</form>
 					
 					</div>
 					<form>
