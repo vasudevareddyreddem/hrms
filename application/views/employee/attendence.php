@@ -95,7 +95,7 @@
                                                 <i class="fa fa-eye m-r-5"></i> View
                                             </span></a>
 											<a class='urlchange_aatnece' href="<?php echo base_url('export/attendance/'.$row->e_id); ?>"><span class="btn btn-sm btn-primary">
-                                                <i class="fa fa-eye m-r-5"></i> export
+                                               <i class="fas fa-file-export"></i> export
                                             </span></a>
                                     </td>
                                 </tr>
@@ -141,7 +141,7 @@
             month = previousObject.val();
             //return false;
             if (month == 'select') {
-
+				alert('Please select month then click on view');
                 return false;
             }
             val = $(this).attr("href");
@@ -158,7 +158,7 @@
             month = previousObject.val();
             if (month == 'select') {
 
-                return false;
+                alert('Please select month then click on export');return false;
             }
             val = $(this).attr("href");
             newurl = val + '/' + month;

@@ -200,14 +200,32 @@ $data['attendance']=$attendance;
 }
  //echo '<pre>';print_r($attendance);exit;
   }
-  //echo '<pre>';print_r($attendance);exit;
-//$attendance=array();
-  $data['attendance']=$attendance;
-
-echo '<pre>';print_r($attendance);exit;
-  
-			  
-			  
+ $d=cal_days_in_month(CAL_GREGORIAN,$month,date('Y'));
+  for($i=1;$i<=$d;$i++){
+	 $no_days[0]=$dateObj->format('F');
+	 $no_days[]=$i;
+	  
+  }
+   unset($attendance[0]);
+  foreach($attendance as $li){
+	 
+	$days_values[0]='Attendance';  
+	$days_values[]=$li;  
+  }
+  //echo '<pre>';print_r($no_days);exit;
+  $filename = "Employee_Attendance".$eid.'_'.$dateObj->format('F') .".csv";
+   $f = fopen('php://output', 'w');
+  $fields = $no_days;
+  fputcsv($f, $fields);
+		 fputcsv($f, $days_values);	  
+    
+    //set headers to download file rather than displayed
+    header('Content-Type: text/csv');
+    header('Content-Disposition: attachment; filename="' . $filename . '";');
+    
+    //output all remaining data on a file pointer
+    fpassthru($f);	
+exit;	
 			  
 		 }else{
 			$this->session->set_flashdata('error',"Please login and continue");
