@@ -62,10 +62,11 @@ class Sales extends In_frontend {
 		  'date'=>isset($post['date'])?$post['date']:''
 	       );
 	        //echo'<pre>';print_r($save_data);exit;
+		
+			
 			
 			
 		    redirect('sales/trackdetails');
-			
 			
 	     }else{
 			$this->session->set_flashdata('error',"Please login and continue");

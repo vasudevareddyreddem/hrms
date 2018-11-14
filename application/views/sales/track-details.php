@@ -176,18 +176,18 @@ $(document).ready(function() {
 //       
         fields: {
 			
-            holiday_date: {
+            date: {
                 validators: {
 					notEmpty: {
 						message: ' Date is required'
 					},
-					holiday_date: {
+					date: {
                         format: 'DD/MM/YYYY',
                         message: 'The value is not a valid date'
                     }
 				
 				}
-            },
+            }
 			
 			
         }
