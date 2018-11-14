@@ -13,11 +13,11 @@ $this->load->library('numbertowords');
     }
 
 
-    public function empids(){
+    public function empids($name){
       if($this->session->userdata('hrmsdetails'))
     { 
 
-      $name=base64_decode($this->uri->segment(3));
+      //$name=base64_decode($this->uri->segment(3));
         $this->load->model('payroll_model');
         //print_r($this->payroll_model->emp_ids($name));exit;
     //     $post=$this->input->post();
@@ -1026,8 +1026,16 @@ $count++;
 $cnt_pay=$payleaves; 
 //edn of casula leaves
 //echo 'pay'.$cnt_pay.'gen'.$cnt_gen.'med'.$cnt_med; exit;
+// daily logins calcultion for payment
+   // foreach($checkdate as $row){// this variable created above employ checkings
+   //      $time=$row->wkhours;
+   //       $timearray=explode(':',$time);
+   //       if($timearray[0]>9){
 
 
+   //       }
+
+   // }   
 $sal=$saldata->e_net_salary/(float)30;
 $sal_ded=$sal*$cnt_pay;// salary deduction
 $weeklysalary=$count_logins*$sal;
