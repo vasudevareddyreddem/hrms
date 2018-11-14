@@ -711,10 +711,10 @@ else {
    }
 }	
 
-   public function payslip($id){
+   public function payslip(){
     if($this->session->userdata('hrmsdetails'))
 		{	
-
+              $id=base64_decode($this->uri->segment(3));
 			$query = $this->db->get_where('empployee', array('e_id' => $id));
 			$data['data']=$query->row();
 			//echo '<pre>'; print_r($data);exit;

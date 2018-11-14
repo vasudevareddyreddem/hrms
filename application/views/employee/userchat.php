@@ -25,10 +25,10 @@
 											</li>
 										</ul> -->
 										<a href="#task_window" class="task-chat profile-rightbar pull-right"><i class="fa fa-user" aria-hidden="true"></i></a>
-										<div class=" pull-right">
+										<!-- <div class=" pull-right">
 											<button class="btn btn-warning" id='deletechat' type="button"><i class="fa fa-send"></i>clear chat</button>
 											
-										</div>
+										</div> -->
 									</div>
 								</div>
 								<div class="chat-contents">
@@ -52,13 +52,13 @@
 																	<p ><?php echo $chat->message?></p>
 																	<span class="chat-time"><?php echo $chat->sent_time?></span>
 																</div>
-																<div class="chat-action-btns">
+																<!-- <div class="chat-action-btns">
 																	<ul>
-																		<!-- <li><a href="#" class="share-msg" title="Share"><i class="fa fa-share-alt"></i></a></li>
-																		<li><a href="#" class="edit-msg" title="Edit"><i class="fa fa-pencil"></i></a></li> -->
+																		<li><a href="#" class="share-msg" title="Share"><i class="fa fa-share-alt"></i></a></li>
+																		<li><a href="#" class="edit-msg" title="Edit"><i class="fa fa-pencil"></i></a></li>
 																		<li><a href="#" class="del-msg" title="Delete"><i class="fa fa-trash-o"></i></a></li>
 																	</ul>
-																</div>
+																</div> -->
 															</div>
 														</div>
 													</div>

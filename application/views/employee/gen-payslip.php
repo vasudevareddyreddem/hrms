@@ -155,7 +155,7 @@
                     	if (parseInt(result.msg)==1){
                     		
                     	$.each(result.list, function () {
-                    		str='<option value="'+this.e_id+'">'+this.e_id+'</option>';
+                    		str='<option value="'+this.e_id+'">'+this.e_emplouee_id+'</option>';
 
                     		$("#eid").append(str);
         // console.log("ID: " + this.e_id);
