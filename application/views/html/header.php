@@ -89,9 +89,14 @@
 						
 					<li class="dropdown">
 						<a href="profile.html" class="dropdown-toggle user-link" data-toggle="dropdown" title="Admin">
-							<span class="user-img"><img class="img-circle" src="<?php echo base_url();?>assets/vendor/img/user.jpg" width="40" alt="Admin">
+							<span class="user-img">
+							<?php if($userdetails['e_profile_pic']==''){ ?>
+							<img class="img-circle" src="<?php echo base_url();?>assets/vendor/img/user.jpg" width="40" alt="User Pic">
+							<?php }else{ ?>
+							<img class="img-circle" src="<?php echo base_url('assets/adminprofilepic/'.$userdetails['e_profile_pic']);?>" width="40" alt="<?php echo isset($userdetails['e_profile_pic'])?$userdetails['e_profile_pic']:''; ?>">
+							<?php } ?>
 							<span class="status online"></span></span>
-							<span>Admin</span>
+							<span><?php echo isset($userdetails['e_emplouee_id'])?$userdetails['e_emplouee_id']:''; ?></span>
 							<i class="caret"></i>
 						</a>
 						<ul class="dropdown-menu">

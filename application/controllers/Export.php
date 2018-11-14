@@ -68,6 +68,18 @@ class Export extends In_frontend {
 			redirect('');  
 	   }
 	}
+	public function salesreport(){
+	    if($this->session->userdata('hrmsdetails'))
+		{
+			 $post=$this->input->post();
+			 $usersData=$this->Export_model->get_sales_man_daily_work_report();
+			 echo '<pre>';print_r($usersData);exit;
+  		
+        }else{
+			$this->session->set_flashdata('error',"Please login and continue");
+			redirect('');  
+	   }
+	}
 	
 	
 		
