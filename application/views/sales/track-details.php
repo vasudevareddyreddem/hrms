@@ -65,18 +65,26 @@
         <div class="row">
             <div class="col-md-12">
 			<form action "<?php echo base_url('sales/trackdetails'); ?>" method="post">
-                <div>
-                    <div class="col-md-6 h3">
-                        <?php echo $sale_man_details['area'];?>
+
+                <div class="row">
+                    <div class="col-md-7">
+                        <input  type="hidden" name="sales_emp_id" id="sales_emp_id" value="<?php echo isset($sale_man_details['sales_emp_id'])?$sale_man_details['sales_emp_id']:''; ?>">
                     </div>
-					<input  type="hidden" name="sales_emp_id" id="sales_emp_id" value="<?php echo isset($sale_man_details['sales_emp_id'])?$sale_man_details['sales_emp_id']:''; ?>">
                     <div class="col-md-3">
                         <div class="cal-icon">
                             <input class="form-control datetimepicker" type="text"  name="work_date" id="work_date">
                         </div>
                     </div>
-                    <div class="col-md-3">
+                    <div class="col-md-2">
                         <button type="submit" class="btn btn-primary">Search</button>
+                    </div>
+                </div>
+                <div>
+                    <div class="col-md-6 h3">
+                        <?php echo $sale_man_details['area'];?>
+                    </div>
+                    <div class="col-md-6 h3">
+                        <?php echo $sale_man_details['area'];?>
                     </div>
                 </div>
 			</form>
