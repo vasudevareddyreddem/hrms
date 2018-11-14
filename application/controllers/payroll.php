@@ -232,8 +232,8 @@ $saldata=$this->payroll_model->emp_sal_det($eid);
 $wdays=$last_day-$cnt_sun-$cnt_hol; //total working days
 
 //$sal=$this->payroll_model->emp_sal($eid);
-$day_sal=$saldata->e_net_salary/$wdays;
-//$day_sal=$sal/$last_day;
+//$day_sal=$saldata->e_net_salary/$wdays;
+$day_sal=$saldata->e_net_salary/$last_day;
 $leaves_ded=(int)$day_sal*$pleaves;// leave deductions
 //$mon_sal=$sal-((int)$day_sal*$cnt_pay);
 $total_ded=$saldata->e_gross_salary-$saldata->e_net_salary+((int)$day_sal*$cnt_pay); // total deductions
@@ -277,10 +277,11 @@ if($saldata->role_id==8){
  $sal=$this->payroll_model->salessuper_salary($eid,$month,$year);
   $tot_month_sal=$sal+$saldata->e_net_salary-$leaves_ded;
 }
-
-
 //sales executive salary end
-
+if($saldata->role_id==9){
+ $sal=$this->payroll_model->tylor_salary($eid,$month,$year);
+  $tot_month_sal=$sal+$saldata->e_net_salary-$leaves_ded;
+}
 
 
 $payslip_det=array(
@@ -776,7 +777,7 @@ $this->session->set_flashdata('error',validation_errors());
       $saldata=$this->payroll_model->emp_sal_det($eid);
           $file_name =time().'payslip.pdf';  
            $last_day =  date('t',strtotime($present));// number of days in month
- $daysalary=$saldata->e_basic/$last_day;
+ $daysalary=$saldata->e_net_salary/$last_day;
      $payslip_det=array(
   'e_id'=> $saldata->e_id,
 'e_basic' => $saldata->e_basic,

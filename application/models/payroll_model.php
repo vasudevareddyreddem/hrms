@@ -353,6 +353,26 @@ return $sup_sal;
 
  
 }
+public function tylor_salary($eid,$month,$year){
+
+$this->db->select('no_bags_stiched,comm_per_bag');
+  $this->db->from('tylor_bags');
+   $this->db->join('stiching_type', 'tylor_bags.stiching_type=stiching_type.stiching_id');
+   $this->db->where('year(stiched_date)',$year);
+     $this->db->where('month(stiched_date)',$month);
+   $this->db->where('tylor_id',$eid);
+$query=$this->db->get();
+  $query=$query->result();
+  $tylor_sal=0;
+  foreach($query as $row){
+  $bags_cnt=$row->no_bags_stiched;
+  $price=$row->comm_per_bag;
+  $tylor_sal=$tylor_sal+$bags*(float)$price;
+
+  }
+  return $tylor_sal;
+
+}
 
 
 }
