@@ -219,7 +219,7 @@
 {
 	$.ajax({
                     type: "GET",    //GET or POST or PUT or DELETE verb
-                    url: 'http://localhost/hrms/Chat/getmessages',     // Location of the service
+                    url: "<?php echo base_url('Chat/getmessages'); ?>",     // Location of the service
                     data: '',     //Data sent to server
                     dataType: "json",   //Expected data format from server
                     
@@ -400,7 +400,7 @@
 
       $.ajax({
                     type: "POST",    //GET or POST or PUT or DELETE verb
-                    url: 'http://localhost/hrms/Chat/sendmessage',     // Location of the service
+                    url: "<?php echo base_url('Chat/sendmessage'); ?>",     // Location of the service
                     data: {message: message_val,rid: rec_val},     //Data sent to server
                     dataType: "json",   //Expected data format from server
                     
@@ -460,7 +460,7 @@ $(document).on('click','.users',function(e){
      //    alert('kdkd');
         $.ajax({
                     type: "GET",    //GET or POST or PUT or DELETE verb
-                    url: 'http://localhost/hrms/Chat/userchat/'+val,     // Location of the service
+                    url: '<?php echo base_url(); ?>/Chat/userchat/'+val,     // Location of the service
                     data:'' ,     //Data sent to server
                     dataType: "html",   //Expected data format from server
                     
@@ -494,7 +494,7 @@ $(document).on('click','#deletechat',function(e){
      //    alert('kdkd');
         $.ajax({
                     type: "GET",    //GET or POST or PUT or DELETE verb
-                    url: 'http://localhost/hrms/Chat/deletechat',
+                    url: "<?php echo base_url('Chat/deletechat'); ?>",
                          // Location of the service
                     data:'' ,     //Data sent to server
                     dataType: "html",   //Expected data format from server

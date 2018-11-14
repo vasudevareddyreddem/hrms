@@ -141,7 +141,7 @@
                     		//alert(newval);
                     		    $.ajax({
                     type: "GET",    //GET or POST or PUT or DELETE verb
-                    url: 'http://localhost/hrms/payroll/empids/'+val,     // Location of the service
+                    url: '<?php echo base_url(); ?>/payroll/empids/'+val,     // Location of the service
                     data: "",     //Data sent to server
                    
                     dataType: "json",   //Expected data format from server
