@@ -18,7 +18,10 @@ class Dashboard extends In_frontend {
 		{
 			$admindetails=$this->session->userdata('hrmsdetails');
 			$data['details']=$this->Employees_model->get_adminbasic_details($admindetails['e_id']);
-              //echo'<pre>';print_r($data);exit;
+			$data['total_employee']=$this->Dashboard_model->get_total_employee_count(); 
+			    //echo'<pre>';print_r($data);exit;
+			  
+			  
 				$this->load->view('employee/dashboard',$data);
 	            $this->load->view('html/footer');
 		}else{
