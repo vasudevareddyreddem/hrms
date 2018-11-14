@@ -1,6 +1,6 @@
 <?php if (!defined('BASEPATH')) exit('No direct script access allowed');
 @include_once( APPPATH . 'controllers/In_frontend.php');
-class employeeprofile extends In_frontend
+class Employeeprofile extends In_frontend
 {
 
  	  public function __construct() 
