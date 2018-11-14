@@ -34,8 +34,8 @@ class In_frontend extends CI_Controller {
 					$data['leaves_notification']=$this->User_model->get_all_employee_leaves_list_details($admindetails['e_id']);
 				}
 				//echo '<pre>';print_r($data);exit;
-				$this->load->view('html/header',$data);
-				$this->load->view('html/sidebar',$data);
+				//$this->load->view('html/header',$data);
+				//$this->load->view('html/sidebar',$data);
 				
 			}
 	}
