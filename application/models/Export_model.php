@@ -27,6 +27,11 @@ class Export_model extends CI_Model
 
 		 return $this->db->get()->result_array();
 	}
+	/* sales  man daliy work report*/
+	public  function get_sales_man_daily_work_report(){
+		$this->db->select('sales_track_details.sales_emp_id')->from('sales_track_details');
+		 return $this->db->get()->result_array();
+	}
     
 	
   }
