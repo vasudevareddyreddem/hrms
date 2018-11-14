@@ -29,7 +29,7 @@ class User extends CI_Controller
 	     $this->load->view('html/login'); 
 	     }else{
 			$this->session->set_flashdata('loginerror',"Invalid Email Address or Password!");
-			redirect('');
+			redirect('dashboard');
 		}
 	}
 
