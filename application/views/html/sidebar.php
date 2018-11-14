@@ -27,14 +27,14 @@
                 <li class="submenu">
                     <a href="#"><span>Employee Management</span> <span class="menu-arrow"></span></a>
                     <ul class="list-unstyled" style="display: none;">
-                        <li><a href="<?php echo base_url('employee/attendance'); ?>">Employee attendance </a></li>
+                        <li><a href="<?php echo base_url('employee/attendance'); ?>">Employee Attendance </a></li>
                         <li><a href="<?php echo base_url('employee/shiftmangement');?>">Shift Mangement </a></li>
                         <li><a href="<?php echo base_url('employee/leaverequests');?>"><span>Leave Requests</span> <span class="badge bg-primary pull-right" id="notification_unread_count"><?php if(isset($notification_count['cnt']) && $notification_count['cnt']>0){  echo $notification_count['cnt']; } ?></span></a></li>
                         <li><a href="<?php echo base_url('employee/leaveslists');?>">Leaves List </a></li>
                     </ul>
                 </li>
                 <li class="submenu">
-                    <a href="#"><span>Employee communication </span> <span class="menu-arrow"></span></a>
+                    <a href="#"><span>Employee Communication </span> <span class="menu-arrow"></span></a>
                     <ul class="list-unstyled" style="display: none;">
                         <li><a href="<?php echo base_url('employee/chat');?>">Chat </a></li>
 
@@ -65,7 +65,7 @@
                     <a href="<?php echo base_url('sales'); ?>"><span>Salesman Man Track </span> </a>
                 </li>
 				<li class="submenu">
-                    <a href="#"><span>Employee resignation</span> <span class="menu-arrow"></span></a>
+                    <a href="#"><span>Employee Resignation</span> <span class="menu-arrow"></span></a>
                     <ul class="list-unstyled" style="display: none;">
                         <li><a href="<?php echo base_url('employee/resignation');?>"> Resignation</a></li>
                         <li><a href="<?php echo base_url('employee/resignationlist');?>"> List</a></li>
