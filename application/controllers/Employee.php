@@ -1198,7 +1198,7 @@ public function adddepartment(){
 		 $check_department_exit=$this->Employees_model->check_department_already($post['department']);
 				//echo'<pre>';print_r($check_department_exit);exit;
 				if(count($check_department_exit)>0){
-					$this->session->set_flashdata('error',"Department  already exit");
+					$this->session->set_flashdata('error',"Department Name already exist. Please use another Department name ");
 					redirect('employee/departmentlist');
 				}	
 		 $save_data=array(
@@ -1262,7 +1262,7 @@ public function editdepartmentpost(){
 		 if($department_details['department']!=$post['department']){
 						$check=$this->Employees_model->check_department_data_exsists($post['department']);
 						if(count($check)>0){
-						$this->session->set_flashdata('error'," Department  alreay exit");
+						$this->session->set_flashdata('error',"Department Name already exist. Please use another Department name");
 						redirect('employee/departmentlist');
 						}	
 					}	
@@ -1381,8 +1381,8 @@ public function addshift(){
 		
 		 $check_department_exit=$this->Employees_model->check_shift_already($post['shift']);
 				//echo'<pre>';print_r($check_department_exit);exit;
-				if(count($check_department_exit)>0){
-					$this->session->set_flashdata('error',"Shift  already exit");
+				if(count($check_department_exit)>0){     
+					$this->session->set_flashdata('error',"Shift  already exits. Please another Shift.");
 					redirect('employee/shiftlist');
 				}	
 				
@@ -1446,7 +1446,7 @@ public function editshiftpost(){
 		 if($shift_details['shift']!=$post['shift']){
 						$check=$this->Employees_model->check_shift_data_exsists($post['shift']);
 						if(count($check)>0){
-						$this->session->set_flashdata('error'," Shift alreay exit");
+						$this->session->set_flashdata('error'," Shift  already exits. Please another Shift. ");
 						redirect('employee/shiftlist');
 						}	
 					}	
@@ -1567,7 +1567,7 @@ public function addarea(){
 			 $check_area_exit=$this->Employees_model->check_area_already($post['area']);
 				//echo'<pre>';print_r($check_area_exit);exit;
 				if(count($check_area_exit)>0){
-					$this->session->set_flashdata('error',"Area  already exit");
+					$this->session->set_flashdata('error',"Area Name already exist. Please use another area name");
 					redirect('employee/arealist');
 				}	
 		 $save_data=array(
@@ -1755,7 +1755,7 @@ public function addsubdepartment(){
 		$check=$this->Employees_model->check_subdepartment_data_exsists($post['department'],$post['sub_department']);
 						//echo '<pre>';print_r($check);exit;
 						if(count($check)>0){
-							$this->session->set_flashdata('error',"Sub department already exist. Please use another sub department");
+							$this->session->set_flashdata('error',"Sub department Name already exist. Please use another Sub department name");
 							redirect('employee/subdepartmentlist');
 						}
 		 $save_data=array(
@@ -1818,7 +1818,7 @@ public function editsubdepartmentpost(){
 		 if($subdepartment_details['department']!=$post['department'] || $subdepartment_details['sub_department']!=$post['sub_department']){
 						$check=$this->Employees_model->check_subdepartment_data_exsists($post['department'],$post['sub_department']);
 						if(count($check)>0){
-						$this->session->set_flashdata('error'," Subdepartment  alreay exit");
+						$this->session->set_flashdata('error'," Sub department Name already exist. Please use another Sub department name");
 						redirect('employee/subdepartmentlist');
 						}	
 					}	

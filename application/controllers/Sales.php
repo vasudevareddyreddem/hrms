@@ -52,28 +52,7 @@ class Sales extends In_frontend {
 
   }
 		
-    public function form(){
-	 if($this->session->userdata('hrmsdetails'))
-		{	
-         $admindetails=$this->session->userdata('hrmsdetails');	
-	    $post=$this->input->post();
-		 
-	      $save_data=array(
-		  'date'=>isset($post['date'])?$post['date']:''
-	       );
-	        //echo'<pre>';print_r($save_data);exit;
-		
-			
-			
-			
-		    redirect('sales/trackdetails');
-			
-	     }else{
-			$this->session->set_flashdata('error',"Please login and continue");
-			redirect('');  
-	   }
-     }
-
+    
 	
 	
 }	
