@@ -115,20 +115,20 @@
                                <?php }?>
                                <?php if($sal_type==1){?>
                                 <tr>
-                                <td style="border: 1px solid #bbb; border-right: none; border-top: none;"><strong>Deducted Monthly salary</strong></td>
-                                <td style="text-align: right; border: 1px solid #bbb; border-left: none; border-top: none;"><span>0</span></td>
+                                <td style="border: 1px solid #bbb; border-right: none; border-top: none;"><strong>Take Home Monthly salary</strong></td>
+                                <td style="text-align: right; border: 1px solid #bbb; border-left: none; border-top: none;"><span><?php echo $pslip_det->monthly_sal ?></span></td>
                             </tr>
                         <?php }?>
                         <?php if($sal_type==2){?>
                                 <tr>
-                                <td style="border: 1px solid #bbb; border-right: none; border-top: none;"><strong>Deducted Monthly salary</strong></td>
-                                <td style="text-align: right; border: 1px solid #bbb; border-left: none; border-top: none;"><span>0</span></td>
+                                <td style="border: 1px solid #bbb; border-right: none; border-top: none;"><strong>Take Home Weekly salary</strong></td>
+                                <td style="text-align: right; border: 1px solid #bbb; border-left: none; border-top: none;"><span><?php echo $pslip_det->weekly_sal ?></span></td>
                             </tr>
                         <?php }?>
                         <?php if($sal_type==3){?>
                                 <tr>
-                                <td style="border: 1px solid #bbb; border-right: none; border-top: none;"><strong>Deducted Monthly salary</strong></td>
-                                <td style="text-align: right; border: 1px solid #bbb; border-left: none; border-top: none;"><span>0</span></td>
+                                <td style="border: 1px solid #bbb; border-right: none; border-top: none;"><strong>Take Home Daily salary</strong></td>
+                                <td style="text-align: right; border: 1px solid #bbb; border-left: none; border-top: none;"><span><?php echo $pslip_det->day_sal ?></span></td>
                             </tr>
                         <?php }?>
                         </tbody>
@@ -149,35 +149,35 @@
                         <tbody>
                             <tr>
                                 <td style="border: 1px solid #bbb; border-right: none;"><strong>Basic Salary</strong></td>
-                                <td style="text-align: right; border: 1px solid #bbb; border-left: none;"><span>200000</span></td>
+                                <td style="text-align: right; border: 1px solid #bbb; border-left: none;"><span><?php echo $pslip_det->e_basic ?></span></td>
                             </tr>
                             <tr>
                                 <td style="border: 1px solid #bbb; border-right: none; border-top: none;"><strong>DA</strong></td>
-                                <td style="text-align: right; border: 1px solid #bbb; border-left: none; border-top: none;"><span>2000</span></td>
+                                <td style="text-align: right; border: 1px solid #bbb; border-left: none; border-top: none;"><span> <?php echo $pslip_det->e_da ?></span></td>
                             </tr>
                             <tr>
                                 <td style="border: 1px solid #bbb; border-right: none; border-top: none;"><strong>House Rent Allowance (HRA)</strong></td>
-                                <td style="text-align: right; border: 1px solid #bbb; border-left: none; border-top: none;"><span>200000</span></td>
+                                <td style="text-align: right; border: 1px solid #bbb; border-left: none; border-top: none;"><span><?php echo $pslip_det->e_hra ?></span></td>
                             </tr>
                             <tr>
                                 <td style="border: 1px solid #bbb; border-right: none; border-top: none;"><strong>Conveyance</strong></td>
-                                <td style="text-align: right; border: 1px solid #bbb; border-left: none; border-top: none;"><span>200000</span></td>
+                                <td style="text-align: right; border: 1px solid #bbb; border-left: none; border-top: none;"><span><?php echo $pslip_det->e_conveyance ?></span></td>
                             </tr>
                             <tr>
                                 <td style="border: 1px solid #bbb; border-right: none; border-top: none;"><strong>Allowance</strong></td>
-                                <td style="text-align: right; border: 1px solid #bbb; border-left: none; border-top: none;"><span>200000</span></td>
+                                <td style="text-align: right; border: 1px solid #bbb; border-left: none; border-top: none;"><span> <?php echo $pslip_det->e_allowance ?></span></td>
                             </tr>
                             <tr>
                                 <td style="border: 1px solid #bbb; border-right: none; border-top: none;"><strong>Medical Allowance</strong></td>
-                                <td style="text-align: right; border: 1px solid #bbb; border-left: none; border-top: none;"><span>200000</span></td>
+                                <td style="text-align: right; border: 1px solid #bbb; border-left: none; border-top: none;"><span><?php echo $pslip_det->e_medical_allowance ?></span></td>
                             </tr>
                             <tr>
                                 <td style="border: 1px solid #bbb; border-right: none; border-top: none;"><strong>Other Allowance</strong></td>
-                                <td style="text-align: right; border: 1px solid #bbb; border-left: none; border-top: none;"><span>200000</span></td>
+                                <td style="text-align: right; border: 1px solid #bbb; border-left: none; border-top: none;"><span><?php echo $pslip_det->e_others ?></span></td>
                             </tr>
                             <tr>
                                 <td style="border: 1px solid #bbb; border-right: none; border-top: none;"><strong>Total Earnings</strong></td>
-                                <td style="text-align: right; border: 1px solid #bbb; border-left: none; border-top: none;"><strong>200000</strong></td>
+                                <td style="text-align: right; border: 1px solid #bbb; border-left: none; border-top: none;"><strong><?php echo $pslip_det->e_net_salary ?></strong></td>
                             </tr>
                         </tbody>
                     </table>
@@ -192,39 +192,39 @@
                         <tbody>
                             <tr>
                                 <td style="border: 1px solid #bbb; border-right: none;"><strong>Tax Deducted at Source (T.D.S)</strong></td>
-                                <td style="text-align: right; border: 1px solid #bbb; border-left: none;"><span>200000</span></td>
+                                <td style="text-align: right; border: 1px solid #bbb; border-left: none;"><span><?php echo $pslip_det->e_d_tds ?></span></td>
                             </tr>
                             <tr>
                                 <td style="border: 1px solid #bbb; border-right: none; border-top: none;"><strong>Provident Fund</strong></td>
-                                <td style="text-align: right; border: 1px solid #bbb; border-left: none; border-top: none;"><span>2000</span></td>
+                                <td style="text-align: right; border: 1px solid #bbb; border-left: none; border-top: none;"><span><?php echo $pslip_det->e_d_pf ?></span></td>
                             </tr>
                             <tr>
                                 <td style="border: 1px solid #bbb; border-right: none; border-top: none;"><strong>ESI</strong></td>
-                                <td style="text-align: right; border: 1px solid #bbb; border-left: none; border-top: none;"><span>200000</span></td>
+                                <td style="text-align: right; border: 1px solid #bbb; border-left: none; border-top: none;"><span><?php echo $pslip_det->e_d_esi ?></span></td>
                             </tr>
                             <tr>
                                 <td style="border: 1px solid #bbb; border-right: none; border-top: none;"><strong>Professional Tax</strong></td>
-                                <td style="text-align: right; border: 1px solid #bbb; border-left: none; border-top: none;"><span>200000</span></td>
+                                <td style="text-align: right; border: 1px solid #bbb; border-left: none; border-top: none;"><span><?php echo $pslip_det->e_d_Prof_tax ?></span></td>
                             </tr>
                             <tr>
                                 <td style="border: 1px solid #bbb; border-right: none; border-top: none;"><strong>Fund</strong></td>
-                                <td style="text-align: right; border: 1px solid #bbb; border-left: none; border-top: none;"><span>200000</span></td>
+                                <td style="text-align: right; border: 1px solid #bbb; border-left: none; border-top: none;"><span><?php echo $pslip_det->e_d_fund ?></span></td>
                             </tr>
                             <tr>
                                 <td style="border: 1px solid #bbb; border-right: none; border-top: none;"><strong>Leaves</strong></td>
-                                <td style="text-align: right; border: 1px solid #bbb; border-left: none; border-top: none;"><span>200000</span></td>
+                                <td style="text-align: right; border: 1px solid #bbb; border-left: none; border-top: none;"><span><?php echo $pslip_det->e_leaves_deduction ?></span></td>
                             </tr>
                             <tr>
                                 <td style="border: 1px solid #bbb; border-right: none; border-top: none;"><strong>Labour Welfare Fund</strong></td>
-                                <td style="text-align: right; border: 1px solid #bbb; border-left: none; border-top: none;"><span>200000</span></td>
+                                <td style="text-align: right; border: 1px solid #bbb; border-left: none; border-top: none;"><span><?php echo $pslip_det->e_d_labour_welfare ?></span></td>
                             </tr>
                             <tr>
                                 <td style="border: 1px solid #bbb; border-right: none; border-top: none;"><strong>Others</strong></td>
-                                <td style="text-align: right; border: 1px solid #bbb; border-left: none; border-top: none;"><span>200000</span></td>
+                                <td style="text-align: right; border: 1px solid #bbb; border-left: none; border-top: none;"><span><?php echo $pslip_det->e_d_others ?></span></td>
                             </tr>
                             <tr>
                                 <td style="border: 1px solid #bbb; border-right: none; border-top: none;"><strong>Total Deductions</strong></td>
-                                <td style="text-align: right; border: 1px solid #bbb; border-left: none; border-top: none;"><strong>200000</strong></td>
+                                <td style="text-align: right; border: 1px solid #bbb; border-left: none; border-top: none;"><strong> <?php echo $pslip_det->e_salary_deduction ?></strong></td>
                             </tr>
                         </tbody>
                     </table>
@@ -236,7 +236,8 @@
             <tr>
                 <td style="border: none;">
                     <h3 style="text-transform: uppercase; margin-bottom: 0px;">
-                        Net Salary : 9000 (<span style="text-transform: capitalize; font-weight: 100;">Nine Thousand Rupees Only</span>)
+                        Net Salary : <?php echo $pslip_det->e_net_salary ?></strong>
+                                <?php echo $this->numbertowords->convert_number($pslip_det->e_net_salary).'Rupees'; ?> (<span style="text-transform: capitalize; font-weight: 100;">Nine Thousand Rupees Only</span>)
                     </h3>
                 </td>
             </tr>
