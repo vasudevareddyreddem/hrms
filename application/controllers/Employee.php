@@ -714,30 +714,19 @@ else {
    public function payslip(){
     if($this->session->userdata('hrmsdetails'))
 		{	
-              $id=base64_decode($this->uri->segment(3));
-			$query = $this->db->get_where('empployee', array('e_id' => $id));
-			$data['data']=$query->row();
+              $eid=base64_decode($this->uri->segment(3));
+			//$query = $this->db->get_where('empployee', array('e_id' => $id));
+			//$this->payroll_model->emp_sal_det($eid);
+              $this->load->model('payroll_model');
+			$data['data']=$this->payroll_model->emp_sal_det($eid);
 			//echo '<pre>'; print_r($data);exit;
-			$this->load->model('payroll_model');
+			
 $data['mon']=$this->payroll_model->get_month();
 $data['year']=$this->payroll_model->get_year();
 
 
 
-//echo '<pre>'; print_r($mon);exit;
-// foreach($mon['mon'] as $key=>$value){
 
-// 	echo $value['month'];
-// }
-// exit;
-// // 			// $query = $this->db->query('SELECT distinct(month)  FROM calendar_tab');
-			// //print_r($data); exit;
-			// $mon['month']=$query->result();
-			
-			// $query = $this->db->query('SELECT distinct(year)  FROM calendar_tab');
-			// $year['year']=$query->result();
-			
-			//echo '<pre>';print_r($mon); exit;
          $admindetails=$this->session->userdata('hrmsdetails');	
 	     $this->load->view('employee/payslip',$data);
 	     $this->load->view('html/footer');  

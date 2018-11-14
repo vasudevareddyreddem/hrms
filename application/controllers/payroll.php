@@ -724,7 +724,7 @@ public function sal_delete(){
 
         $this->load->library('form_validation');
       $this->form_validation->set_rules('eid', 'employee id', 'required');
-    $this->form_validation->set_rules('sal-type', 'salary type', 'required');
+    //$this->form_validation->set_rules('sal-type', 'salary type', 'required');
    
      //echo $eid; exit;
  if ($this->form_validation->run() == FALSE)
@@ -736,7 +736,7 @@ $this->session->set_flashdata('error',validation_errors());
   $eid=$this->input->post('eid');
      
      $day=$this->input->post('day');
-     $sal_type=$this->input->post('sal-type');
+     //$sal_type=$this->input->post('sal-type');
     
    $date=date('Y-m-d');
    //echo $date;exit;
@@ -814,7 +814,7 @@ $path = rtrim(FCPATH,"/");
           ini_set('memory_limit','320M'); // boost the memory limit if it's low <img 
           
                   
-          $html = $this->load->view('employee/payslip-emppdf',$data,true); // render the view into HTML
+          $html = $this->load->view('employee/edited-payslip',$data,true); // render the view into HTML
           //echo '<pre>';print_r($html);exit;
           $this->load->library('pdf');
           $pdf = $this->pdf->load();
@@ -865,7 +865,7 @@ else{
 
         $this->load->library('form_validation');
       $this->form_validation->set_rules('eid', 'employee id', 'required');
-    $this->form_validation->set_rules('sal-type', 'salary type', 'required');
+    //$this->form_validation->set_rules('sal-type', 'salary type', 'required');
    
      //echo $eid; exit;
  if ($this->form_validation->run() == FALSE)
@@ -1027,7 +1027,7 @@ $cnt_pay=$payleaves;
 //echo 'pay'.$cnt_pay.'gen'.$cnt_gen.'med'.$cnt_med; exit;
 
 
-$sal=$saldata->e_basic/(float)30;
+$sal=$saldata->e_net_salary/(float)30;
 $sal_ded=$sal*$cnt_pay;// salary deduction
 $weeklysalary=$count_logins*$sal;
 
@@ -1076,7 +1076,7 @@ $path = rtrim(FCPATH,"/");
           ini_set('memory_limit','320M'); // boost the memory limit if it's low <img 
           
                   
-          $html = $this->load->view('employee/payslip-emppdf',$data,true); // render the view into HTML
+          $html = $this->load->view('employee/edited-payslip',$data,true); // render the view into HTML
           //echo '<pre>';print_r($html);exit;
           $this->load->library('pdf');
           $pdf = $this->pdf->load();

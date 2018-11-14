@@ -42,7 +42,7 @@
 													$count++;
                                                   
 													echo substr($row->e_f_name,0,1)?></a>
-												<h2><a href="#"><?php echo $row->e_f_name?> <span><?php echo $row->role?></span></a></h2>
+												<h2><a href="#"><?php echo $row->e_login_name?> <span><?php echo $row->role?></span></a></h2>
 											</td>
 											<td><?php echo $row->e_emplouee_id?></td>
 											<td><?php echo $row->e_email_work?></td>
