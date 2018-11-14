@@ -64,19 +64,22 @@
         </div>
         <div class="row">
             <div class="col-md-12">
+			<form action "<?php echo base_url('sales/trackdetails'); ?>" method="post">
                 <div>
                     <div class="col-md-6 h3">
                         <?php echo $sale_man_details['area'];?>
                     </div>
+					<input  type="hidden" name="sales_emp_id" id="sales_emp_id" value="<?php echo isset($sale_man_details['sales_emp_id'])?$sale_man_details['sales_emp_id']:''; ?>">
                     <div class="col-md-3">
                         <div class="cal-icon">
-                            <input class="form-control datetimepicker" type="text" onchange="get_date(this.value)" name="work_date" id="work_date">
+                            <input class="form-control datetimepicker" type="text"  name="work_date" id="work_date">
                         </div>
                     </div>
                     <div class="col-md-3">
                         <button type="submit" class="btn btn-primary">Search</button>
                     </div>
                 </div>
+			</form>
             </div>
         </div>
         <div class="row">
@@ -88,7 +91,7 @@
                     <div class="col-md-6">
 
                         <div class="card-title">Today (
-                            <?php echo $current['work_date'] ;?>)</div>
+                            <?php echo isset($today_date)?$today_date:''; ?>)</div>
 
                         <div class="experience-box">
                             <ul class="experience-list">
@@ -123,7 +126,7 @@
                     <div class="col-md-6">
 
                         <h3 class="card-title">Yesterday (
-                            <?php echo $prevoius['work_date'] ;?>)</h3>
+                            <?php echo isset($prevoiu_date)?$prevoiu_date:''; ?>)</h3>
                         <div class="experience-box">
                             <ul class="experience-list">
 

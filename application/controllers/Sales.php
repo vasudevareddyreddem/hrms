@@ -34,14 +34,28 @@ class Sales extends In_frontend {
 	  if($this->session->userdata('hrmsdetails'))
 		{	
          $admindetails=$this->session->userdata('hrmsdetails');	
-		 
+		 $post=$this->input->post();
 		 $emp_id=base64_decode($this->uri->segment(3));
 		 $data['sale_man_details']=$this->Sales_model->get_sales_man_details($emp_id);
-		 
-		 $data['prevoius_date']=$this->Sales_model->get_employee_previous_date_location_details($emp_id,date('Y-m-d', strtotime(' -1 day')));
-		 $data['current_date']=$this->Sales_model->get_employee_current_date_location_details($emp_id,date('Y-m-d'));
-		  $data['prevoius']=$this->Sales_model->get_employee_previous_date($emp_id,date('Y-m-d', strtotime(' -1 day')));
-		 $data['current']=$this->Sales_model->get_employee_current_date($emp_id,date('Y-m-d'));
+		
+		 if(isset($post['work_date']) && $post['work_date']!=''){
+				$dat=explode('/',$post['work_date']);
+				$current_date=$dat[2].'-'.$dat[1].'-'.$dat[0];
+				$previous_date=$dat[2].'-'.$dat[1].'-'.($dat[0]-1);
+				$data['today_date']=$current_date;
+				$data['prevoiu_date']=$previous_date;
+				$data['prevoius_date']=$this->Sales_model->get_employee_previous_date_location_details($emp_id,$previous_date);
+				$data['current_date']=$this->Sales_model->get_employee_current_date_location_details($emp_id,$current_date);
+				 
+		 }else{
+				 $data['today_date']=date('Y-m-d');
+				 $data['prevoiu_date']=date('Y-m-d', strtotime(' -1 day'));
+				 
+				 $data['prevoius_date']=$this->Sales_model->get_employee_previous_date_location_details($emp_id,date('Y-m-d', strtotime(' -1 day')));
+				 $data['current_date']=$this->Sales_model->get_employee_current_date_location_details($emp_id,date('Y-m-d'));
+				  
+				 
+			}
 		 //echo'<pre>';print_r($data);exit;
 	     $this->load->view('sales/track-details',$data);
 	     $this->load->view('html/footer');   
