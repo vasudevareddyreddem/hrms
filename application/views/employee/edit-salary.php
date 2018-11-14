@@ -156,13 +156,7 @@
 
 			 });
 
-				<?php if($this->session->userdata('errors')){?>
-					
-                   alert('errors in page');
-                   //$('#m12').modal('show');
-
-			<?php	} ?>
-
+				
 
  
    $('#salform').bootstrapValidator({

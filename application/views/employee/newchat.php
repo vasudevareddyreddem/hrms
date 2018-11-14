@@ -355,7 +355,6 @@
 
 });
                     }
-					
   }
                     ,
                     error: function() { 
@@ -420,8 +419,6 @@
                     //alert(result.datenow);
                     $(".chat-time:last").append(result.datenow);
                       } 
-					  else{alert('messeage could not be sent,server problem');
-					  }
                          
                                            }
                     ,

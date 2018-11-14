@@ -372,9 +372,10 @@ else{
 
     
    // retreving the employee salary deatails
-    public function editsal($id){
+    public function editsal(){
        if($this->session->userdata('hrmsdetails'))
     { 
+     $id=base64_decode($this->uri->segment(3));
 //$query = $this->db->get_where('salary_tab', array('emp_id' => $id));
         $this->db->select('*');
 $this->db->from('empployee');
@@ -667,10 +668,10 @@ else{
 
 
 // delete emp salare
-public function sal_delete($eid){
+public function sal_delete(){
 	 if($this->session->userdata('hrmsdetails'))
     { 
-
+     $eid=base64_decode($this->uri->segment(3));
    $this->load->model('payroll_model');
    $this->payroll_model->emp_sal_delete($eid);
    $this->session->set_flashdata('success','salary deleted'); 

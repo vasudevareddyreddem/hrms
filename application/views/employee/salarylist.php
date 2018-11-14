@@ -49,14 +49,14 @@
 											<td><?php echo $row->e_join_date?></td>
 											
 											<td><?php echo $row->e_net_salary?></td>
-											<td><a class="btn btn-xs btn-primary" href="<?php echo base_url('employee/payslip/'.$row->e_id); ?>">Generate Slip</a></td>
+											<td><a class="btn btn-xs btn-primary" href="<?php echo base_url('employee/payslip/'.base64_encode($row->e_id )); ?>">Generate Slip</a></td>
 											<td class="text-right">
 												<div class="dropdown">
 													<a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-ellipsis-v"></i></a>
 													<ul class="dropdown-menu pull-right">
-														<li><a href='<?php echo base_url('payroll/editsal/'.$row->e_id); ?>'    title="Edit"><i class="fa fa-pencil m-r-5"></i> Edit</a></li>
+														<li><a href='<?php echo base_url('payroll/editsal/'.base64_encode($row->e_id)); ?>'    title="Edit"><i class="fa fa-pencil m-r-5"></i> Edit</a></li>
 														<?php if(!($row->status==2)){?>
-														<li><a href="<?php echo base_url('payroll/sal_delete/'.$row->e_id); ?>" data-toggle="modal" data-target="#delete_salary" title="Delete"><i class="fa fa-trash-o m-r-5"></i> Delete</a></li>
+														<li><a href="<?php echo base_url('payroll/sal_delete/'.base64_encode($row->e_id)); ?>" data-toggle="modal" data-target="#delete_salary" title="Delete"><i class="fa fa-trash-o m-r-5"></i> Delete</a></li>
 														<?php } ?>
 													</ul>
 												</div>
@@ -607,12 +607,10 @@
 	    	$('#update-form').bootstrapValidator('validate');}
 	    	);
 
-		<?php if(isset($_SESSION['update'])){?>
-			alert( 'updated succefully');
-<?php } ?>
+		
 		$('.salid').on('click',function(){
 			val=$(this).data('id');
-			alert(val);
+			//alert(val);
 			//return false;
 			
 			      $.ajax({

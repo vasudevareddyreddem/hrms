@@ -17,13 +17,22 @@ class Dashboard extends In_frontend {
 		if($this->session->userdata('hrmsdetails'))
 		{
 			$admindetails=$this->session->userdata('hrmsdetails');
+	if($admindetails['role_id']==1 || $admindetails['role_id']==2){
 			$data['details']=$this->Employees_model->get_adminbasic_details($admindetails['e_id']);
 			$data['total_employee']=$this->Dashboard_model->get_total_employee_count(); 
 			    //echo'<pre>';print_r($data);exit;
-			  
-			  
-				$this->load->view('employee/dashboard',$data);
+			  $this->load->view('employee/dashboard',$data);
+				}else{
+					
+					
+					$this->load->view('employee/remaing-dashboard');
+				}
+				
+				
+				
+				
 	            $this->load->view('html/footer');
+				
 		}else{
 			 $this->session->set_flashdata('error','Please login to continue');
 			 redirect('');
