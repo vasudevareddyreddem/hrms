@@ -29,8 +29,21 @@ class Export_model extends CI_Model
 	}
 	/* sales  man daliy work report*/
 	public  function get_sales_man_daily_work_report(){
-		$this->db->select('sales_track_details.sales_emp_id')->from('sales_track_details');
-		 return $this->db->get()->result_array();
+		 $this->db->select('empployee.e_id,empployee.e_emplouee_id,assign_work.w_d_id')->from('assign_work');
+		 $this->db->join('empployee', 'empployee.e_id = assign_work.work_employee_id ', 'left');
+		 $this->db->order_by('empployee.role_id',8);
+		 $this->db->where('empployee.status',1);
+		 $return=$this->db->get()->result_array();
+		 foreach($return as $list){
+			 $emp_work=$this->get_employee_work_details($list['w_d_id'],$list['e_id']);
+			 $data[$list['e_id']]=$list;
+			 echo '<pre>';print_r($list);exit;
+			 
+		 }
+	}
+	
+	public  function get_employee_work_details($w_d_id,$e_id){
+		
 	}
     
 	

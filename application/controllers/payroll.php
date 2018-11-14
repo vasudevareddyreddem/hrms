@@ -327,7 +327,7 @@ $path = rtrim(FCPATH,"/");
           ini_set('memory_limit','320M'); // boost the memory limit if it's low <img 
           
                   
-          $html = $this->load->view('employee/payslip-emppdf',$data,true); // render the view into HTML
+          $html = $this->load->view('employee/edited-payslip',$data,true); // render the view into HTML
           //echo '<pre>';print_r($html);exit;
           $this->load->library('pdf');
           $pdf = $this->pdf->load();
