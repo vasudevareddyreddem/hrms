@@ -63,7 +63,7 @@ class User extends CI_Controller
 			
 					
 		}else{
-			$this->session->set_flashdata('loginerror',"Invalid Email Address or Password!");
+			$this->session->set_flashdata('error',"Invalid Email Address or Password!");
 			redirect('');
 		}
 		
