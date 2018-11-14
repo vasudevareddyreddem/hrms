@@ -1,6 +1,6 @@
 <?php if (!defined('BASEPATH')) exit('No direct script access allowed');
 //@include_once( APPPATH . 'controllers/In_frontend.php');
-class downloadfile extends CI_Controller
+class Downloadfile extends CI_Controller
 {
 
 // down load file
