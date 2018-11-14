@@ -83,8 +83,9 @@ $data['attendance']=$attendance;
 
 
 }
-  	//echo '<pre>';print_r($attendance);exit;
+ //echo '<pre>';print_r($attendance);exit;
   }
+  //echo '<pre>';print_r($attendance);exit;
 //$attendance=array();
   $data['attendance']=$attendance;
          $this->load->view('employee/attendence-view',$data);
