@@ -115,7 +115,7 @@
 												
 												<h3 class="user-name m-t-10 m-b-0"><?php echo $rec_det->e_f_name?></h3>
 												<small class="text-muted"><?php echo $rec_det->role?></small>
-												<a href="edit-profile.html" class="btn btn-primary edit-btn"><i class="fa fa-pencil"></i></a><?php }?>
+												<!-- <a href="edit-profile.html" class="btn btn-primary edit-btn"><i class="fa fa-pencil"></i></a> --><?php }?>
 											</div>
 											<div class="chat-profile-info">
 												<?php if($status=='yes'){?>
