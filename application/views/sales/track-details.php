@@ -72,7 +72,7 @@
                     </div>
                     <div class="col-md-3">
                         <div class="cal-icon">
-                            <input class="form-control datetimepicker" type="text"  name="work_date" id="work_date">
+                            <input class="form-control datetimepicker" type="text"  name="work_date" id="work_date" required>
                         </div>
                     </div>
                     <div class="col-md-2">
@@ -81,10 +81,10 @@
                 </div>
                 <div>
                     <div class="col-md-6 h3">
-                        <?php echo $sale_man_details['area'];?>
+                        <?php echo isset($current_work_location)?$current_work_location:'';?>
                     </div>
                     <div class="col-md-6 h3">
-                        <?php echo $sale_man_details['area'];?>
+                        <?php echo isset($previous_work_location)?$previous_work_location:'';?>
                     </div>
                 </div>
 			</form>
