@@ -120,7 +120,7 @@
                                         </tr>
                                         <tr>
                                             <td><strong>Take Home Monthly Salary</strong> <span class="pull-right">
-                                                    <?php echo $pslip_det->e_d_pf ?></span></td>
+                                                    <?php echo $pslip_det->monthly_sal ?></span></td>
                                         </tr>
                                     <?php }?>
                                     <?php if($sal_type==2){?>
