@@ -128,7 +128,7 @@ $this->db->select('*');
 $this->db->from('empployee');
 $this->db->join('employee_salary', 'empployee.e_id = employee_salary.e_id');
 $this->db->join('role', 'role.r_id = empployee.role_id','left');
-$this->db->where('empployee.role_id',1);
+$this->db->where('empployee.role_id !=',1);
 $query = $this->db->get();
 return $query->result();
 
