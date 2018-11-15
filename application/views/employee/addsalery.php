@@ -21,7 +21,7 @@
 											<?php if($flag==1) {?>
 											
 												<?php foreach($data as $row):?>
-													<option value='<?php echo $row->e_f_name?>' ><?php echo $row->e_f_name?></option>
+													<option value='<?php echo base64_encode($row->e_f_name)?>' ><?php echo $row->e_f_name?></option>
 												<?php endforeach?>
 											<?php }else{?>
 											

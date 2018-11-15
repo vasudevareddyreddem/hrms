@@ -633,6 +633,7 @@ public function addsalary(){
     if($this->session->userdata('hrmsdetails'))
 		{	
          $admindetails=$this->session->userdata('hrmsdetails');
+         $adminid=$admindetails['e_id'];
          $this->load->library('session');
          $this->load->model('payroll_model');
 
@@ -641,9 +642,9 @@ $data['salary_type']=$this->payroll_model->salary_type();
 
       
  //$query = $this->db->get('empployee');
-$cnt=$this->payroll_model->no_sal_emp();
+$cnt=$this->payroll_model->no_sal_emp($adminid);
 if(count($cnt)>0){
-	$data['data']=$this->payroll_model->no_sal_emp();
+	$data['data']=$cnt;
 
 
 
@@ -652,7 +653,7 @@ $data['flag']=1;
 
 }else{
 	$data['flag']=0;
-	$data['data']=$this->payroll_model->no_sal_emp();
+	
 }
 // echo '<pre>';
 

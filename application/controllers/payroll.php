@@ -17,7 +17,7 @@ $this->load->library('numbertowords');
       if($this->session->userdata('hrmsdetails'))
     { 
 
-      //$name=base64_decode($this->uri->segment(3));
+      $name=base64_decode($this->uri->segment(3));
         $this->load->model('payroll_model');
         //print_r($this->payroll_model->emp_ids($name));exit;
     //     $post=$this->input->post();
@@ -83,7 +83,7 @@ $data['year']=$this->payroll_model->get_year();
  if ($this->form_validation->run() == FALSE)
                 {
 
-                    redirect('employee/salarylist');
+                    redirect($_SERVER['HTTP_REFERER']);
 
                 }
                 $data['sal_type']=1;
@@ -230,6 +230,7 @@ $this->load->library('numbertowords');
 $saldata=$this->payroll_model->emp_sal_det($eid);
 
 $wdays=$last_day-$cnt_sun-$cnt_hol; //total working days
+if($saldata->salary_type==1){
 
 //$sal=$this->payroll_model->emp_sal($eid);
 //$day_sal=$saldata->e_net_salary/$wdays;
@@ -281,6 +282,7 @@ if($saldata->role_id==8){
 if($saldata->role_id==9){
  $sal=$this->payroll_model->tylor_salary($eid,$month,$year);
   $tot_month_sal=$sal+$saldata->e_net_salary-$leaves_ded;
+}
 }
 
 

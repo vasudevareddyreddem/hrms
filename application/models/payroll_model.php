@@ -113,11 +113,18 @@ return $query->result();
 
 //getting employeess who are not in  emp_salry_tab
 
-public function no_sal_emp(){
+public function no_sal_emp($adminid){
+$this->db->select('e_id');
+  $this->db->from('employee_salary');
+   $this->db->where('role_id !=',1);
+   $this->db->where('e_id !=',$adminid);
 
-$sql = " select distinct e_f_name from empployee where e_id not in (select e_id from employee_salary) ";
+   $subquery = $this->db->get_compiled_select();
 
-$query=$this->db->query($sql);
+$this->db->select('*');
+$this->db->from('empployee');
+$this->db->where("`e_id`  NOT IN ($subquery)");
+$query = $this->db->get();
 return $query->result();
 }
 
